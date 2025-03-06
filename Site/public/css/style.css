@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Metrophobic&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+* {
+    font-family: "Nunito", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+header {
+    font-family: "Metrophobic", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-image: url(../assets/imgs/HomePage\ -\ BG\ Image.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10vh;
+    width: 100vw;
+}
+
+.navButton {
+    display: flex;
+    justify-content: space-around;
+    width: 45%;
+    list-style: none;
+    background: red;
+}
+
+.navButton a{
+    text-decoration: none;
+    color: white;
+}
+
+.navButton button {
+    background: none;
+    border: none;
+    font-size: 3vh;
+    margin: 0 15px;
+}
+
+.navContato {
+    list-style: none;
+    background: blue;
+}
