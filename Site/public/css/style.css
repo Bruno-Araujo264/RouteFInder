@@ -14,6 +14,7 @@ header {
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    width: 100vw;
     background-image: url(../assets/imgs/HomePage\ -\ BG\ Image.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -23,16 +24,24 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 10vh;
-    width: 100vw;
+    /* height: 30%; */
+    margin-top: 40px;
+    width: 90vw;
+
+}
+
+nav span {
+    color: white;
+    font-size: 2.5vh;
 }
 
 .navButton {
     display: flex;
-    justify-content: space-around;
-    width: 45%;
+    justify-content: space-evenly;
+    width: 40%;
+    margin-left: 10px;
     list-style: none;
-    background: red;
+    /* background: red; */
 }
 
 .navButton a{
@@ -43,11 +52,94 @@ nav {
 .navButton button {
     background: none;
     border: none;
-    font-size: 3vh;
+    font-size: 2.5vh;
     margin: 0 15px;
 }
 
 .navContato {
+    display: flex;
+    justify-content: space-evenly;
+    width: 25%;
     list-style: none;
+    /* background: blue; */
+    margin-right: 10px;
+}
+
+.navContato i {
+    font-size: 5vh;
+    color: white;
+}
+
+.navContato a {
+    text-decoration: none;
+}
+
+.navContato button {
+    background: none;
+    border: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    /* background: green; */
+}
+
+header .texto {
+    font-size: 5rem;
+    font-weight: normal;
+    line-height: 1.1;
+    color: white;
+    border-bottom: solid 2px white;
+}
+
+header .texto2 {
+    font-size: 2rem;
+    width: 39%;
+    color: white;
+    /* background: blue; */
+}
+
+header .texto, header .texto2{
+    text-align: start;
+    margin-right: 400px;
+
+}
+
+
+
+.conteudo {
+    width: 100vw;
+    height: 90vh;
+    background: green;
+}
+
+.conteudo .container {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 80%;
+    height: 100%;
+    background: red;
+    gap: 7rem;
+}
+
+.conteudo .texto {
+    width: 35%;
+    background: yellow;
+}
+
+.conteudo .imagem {
+    width: 35%;
+    height: 70%;
     background: blue;
+}
+
+.conteudo .texto,
+.conteudo .imagem {
+    margin-bottom: 4rem;
 }
