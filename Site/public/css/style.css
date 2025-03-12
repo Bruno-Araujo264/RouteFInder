@@ -14,9 +14,9 @@ header {
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     background-image: url(../assets/imgs/HomePage\ -\ BG\ Image.png);
-    background-size: cover;
+    background-size: auto;
     background-repeat: no-repeat;
 }
 
@@ -95,6 +95,7 @@ header .texto {
     line-height: 1.1;
     color: white;
     border-bottom: solid 2px white;
+    overflow: hidden;
 }
 
 header .texto2 {
@@ -110,36 +111,105 @@ header .texto, header .texto2{
 
 }
 
-
+/* CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO  */
+/* CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO  */
+/* CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO  */
+/* CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO  */
+/* CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO  */
 
 .conteudo {
-    width: 100vw;
-    height: 90vh;
-    background: green;
+    width: 100%;
+    height: 110vh;
+    background: #161616;
 }
 
 .conteudo .container {
+    margin: auto;
+    width: 90%;
+}
+
+.conteudo .sobreNos {
+    width: 100%;
+    height: auto;
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
+    /* background: yellow; */
+}
+
+.sobreNos span {
+    width: 35%;
+    font-size: xx-large;
+    color: white;
+}
+
+.conteudo .imagem {
+    width: 35%;
+    background: green;
+
+}
+
+.sobreNos {
     margin: auto;
+}
+
+.conteudo .nossosServicos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+    width: 50%;
+    margin: auto;
+}
+
+.nossosServicos h4 {
+    /* text-align: center; */
+    font-size: x-large;
+    color: white;
+}
+
+.nossosServicos h1 {
+    /* text-align: center; */
+    font-size: xxx-large;
+    color: #FFD700;
+    text-shadow: 0 10px 4px #333333;
+}
+
+.nossosServicos img {
+    display: flex;
+    align-items: center;
+}
+
+
+/* SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS */
+/* SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS */
+/* SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS */
+
+.servicos {
+    height: 80vh;
+    width: 100%;
+}
+
+.servicos .container {
+    width: 90%;
+    margin: auto;
+    /* background: red; */
+}
+
+.servicos .boxContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     width: 80%;
-    height: 100%;
-    background: red;
-    gap: 7rem;
+    height: 60%;
+    /* background: gray; */
+    gap: 30px;
 }
 
-.conteudo .texto {
-    width: 35%;
-    background: yellow;
-}
-
-.conteudo .imagem {
-    width: 35%;
-    height: 70%;
-    background: blue;
-}
-
-.conteudo .texto,
-.conteudo .imagem {
-    margin-bottom: 4rem;
+.box {
+    width: 30%;
+    text-align: center;
+    background: #FFC300;
+    border-radius: 8px;
+    box-shadow: -10px 10px 2px #a7a7a7;
 }
