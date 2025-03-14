@@ -186,7 +186,7 @@ header .texto, header .texto2{
 /* SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS */
 
 .servicos {
-    height: 80vh;
+    height: 100vh;
     width: 100%;
 }
 
@@ -201,15 +201,43 @@ header .texto, header .texto2{
     flex-direction: row;
     justify-content: space-around;
     width: 80%;
-    height: 60%;
+    height: 80vh;
     /* background: gray; */
     gap: 30px;
+    margin: 100px 0 40px 0;
 }
 
 .box {
-    width: 30%;
+    width: 20vw;
+    height: 45vh;
     text-align: center;
     background: #FFC300;
     border-radius: 8px;
     box-shadow: -10px 10px 2px #a7a7a7;
+}
+
+.textoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    height: 50vh;
+    gap: 30px;
+}
+
+.textoContainer .texto {
+    display: flex;
+    text-align: start;
+    border-left: solid 2px gray;
+    width: 45%;
+    height: fit-content;
+    font-size: 3vh;
+    margin-left: 50px;
+    padding-left: 20px;;
+}
+
+.textoContainer .imagem {
+    width: 38vw;
+    height: 35vh;
+    left: 500px;
 }
