@@ -44,7 +44,7 @@ nav span {
     /* background: red; */
 }
 
-.navButton a{
+.navButton a {
     text-decoration: none;
     color: white;
 }
@@ -105,7 +105,8 @@ header .texto2 {
     /* background: blue; */
 }
 
-header .texto, header .texto2{
+header .texto,
+header .texto2 {
     text-align: start;
     margin-right: 400px;
 
@@ -233,11 +234,170 @@ header .texto, header .texto2{
     height: fit-content;
     font-size: 3vh;
     margin-left: 50px;
-    padding-left: 20px;;
+    padding-left: 20px;
+    ;
 }
 
 .textoContainer .imagem {
     width: 38vw;
     height: 35vh;
     left: 500px;
+}
+
+
+
+
+
+.explicacao {
+    width: 100%;
+    height: 50vh;
+    background: #161616;
+}
+
+.explicacao .container {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    margin: auto;
+    width: 80%;
+    height: 100%;
+}
+
+.explicacao .texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    color: white;
+    width: 40%;
+    height: 80%;
+    text-align: start;
+}
+
+.explicacao h2 {
+    font-size: xx-large;
+    margin-top: 30px;;
+}
+
+.localizacao {
+    height: 40%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.localizacao img {
+    position: absolute;
+    right: 150px;
+    transform: translateY(-300px);
+    zoom: 90%;
+    background: rgb(206, 206, 206);
+    border-radius: 8px;
+    border: solid 5px white;
+}
+
+
+
+
+
+footer {
+    height: 50vh;
+    width: 100%;
+    background: #FFC300;
+    border-top: solid 2px rgb(184, 184, 184);
+}
+
+footer .container {
+    margin: auto;
+    width: 80%;
+    height: 100%;
+    /* background: red; */
+}
+
+footer .superior {
+    width: 100%;
+    height: 65%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    ;
+    /* background: blue; */
+}
+
+footer .embaixo {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    border-top: 2px solid white;
+    padding-top: 30px;
+    gap: 30px;
+    /* background: blue; */
+}
+
+footer .esquerdo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background: rebeccapurple; */
+}
+
+footer .direito {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: end;
+    height: auto;
+    width: 55%;
+}
+
+.esquerdo p {
+    width: 70%;
+    font-family: "Metrophobic", sans-serif !important;
+    font-size: 40px;
+}
+
+.esquerdo .social {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.esquerdo .social i {
+    -webkit-text-stroke: 2px #353535;
+    color: #FFC300;
+    font-size: 6vh;
+}
+
+.esquerdo .boxContato {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+}
+
+.boxContato input {
+    width: 250px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    color: black;
+    font-size: 20px;
+    padding-left: 20px
+}
+
+.boxContato button {
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    background: #555555;
+    color: white;
+}
+
+.direito a {
+    color: black;
+    text-decoration: underline;
+
 }
