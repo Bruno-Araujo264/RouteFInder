@@ -56,6 +56,15 @@ nav span {
     margin: 0 15px;
 }
 
+.navButton .navLogin {
+    padding-left: 20px;
+}
+
+.navButton .navCadastro {
+    padding-left: 40px;
+    border-left: solid 2px white;
+}
+
 .navContato {
     display: flex;
     justify-content: space-evenly;
@@ -91,7 +100,7 @@ nav span {
 
 header .texto {
     font-size: 5rem;
-    font-weight: normal;
+    font-weight: lighter;
     line-height: 1.1;
     color: white;
     border-bottom: solid 2px white;
@@ -102,14 +111,24 @@ header .texto2 {
     font-size: 2rem;
     width: 39%;
     color: white;
+    margin-left: 30px;
+    margin-top: 20px;
     /* background: blue; */
 }
+
 
 header .texto,
 header .texto2 {
     text-align: start;
     margin-right: 400px;
+}
 
+header .cabecalho {
+    font-size: 5rem;
+    font-weight: lighter;
+    line-height: 1.1;
+    color: white;
+    overflow: hidden;
 }
 
 /* CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO  */
@@ -250,7 +269,7 @@ header .texto2 {
 
 .explicacao {
     width: 100%;
-    height: 50vh;
+    height: 40vh;
     background: #161616;
 }
 
@@ -275,8 +294,12 @@ header .texto2 {
 }
 
 .explicacao h2 {
-    font-size: xx-large;
-    margin-top: 30px;;
+    font-size: x-large;
+    margin-top: 30px;
+}
+
+.explicacao h1 {
+    font-size: xxxxx-large;
 }
 
 .localizacao {
