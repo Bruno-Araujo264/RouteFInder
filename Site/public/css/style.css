@@ -263,9 +263,11 @@ header .cabecalho {
     left: 500px;
 }
 
-
-
-
+/* EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO  */
+/* EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO  */
+/* EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO  */
+/* EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO  */
+/* EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO  */
 
 .explicacao {
     width: 100%;
@@ -318,9 +320,11 @@ header .cabecalho {
     border: solid 5px white;
 }
 
-
-
-
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
 
 footer {
     height: 50vh;
@@ -422,5 +426,221 @@ footer .direito {
 .direito a {
     color: black;
     text-decoration: underline;
-
 }
+
+/* QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS  */
+/* QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS  */
+/* QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS  */
+
+.quemSomos {
+    height: 80vh;
+    width: 100%;
+    /* background: red; */
+}
+
+.quemSomos .container {
+    height: 100%;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.quemSomos .texto {
+    width: 60%;
+    height: 50%;
+    /* background: red; */
+}
+
+.quemSomos .texto h2 {
+    font-size: 55px;
+}
+
+.quemSomos .texto p {
+    font-size: 20px;
+    color: #295897;
+    margin-top: 10px;
+}
+
+.quemSomos img {
+    zoom: 40%;
+}
+
+/* EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE  */
+/* EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE  */
+/* EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE EQUIPE  */
+
+.equipe {
+    height: auto;
+    width: 100%;
+    padding: 50px 0;
+}
+
+.equipe .container {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    /* display: flex; */
+    /* background: blue; */
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.boxSuperior {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.boxInferior {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.equipe .box {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-radius: 4px;
+    box-shadow: none;
+    height: calc(45vh + 50px);
+    width: 30%;
+    border: solid 3px #FFC300;
+}
+
+.equipe .box.b1 {
+    background-image: url(../assets/imgs/memes-de-gatos.jpg);
+    background-size: cover;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.equipe .box.b2 {
+    background-image: url(../assets/imgs/gato-teste2.jpg);
+    background-size: cover;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.equipe .box.b3 {
+    background-image: url(../assets/imgs/gato-em-pe.jpg);
+    background-size: cover;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.equipe .box.b4 {
+    background-image: url(../assets/imgs/huh.jpg);
+    background-size: cover;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.equipe .box.b5 {
+    background-image: url(../assets/imgs/cato.jpg);
+    background-size: cover;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.equipe .box.b6 {
+    background-image: url(../assets/imgs/Cute-Cat.jpg);
+    background-size: cover;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.linkedIn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 85%;
+    height: 15%;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+.linkedIn p {
+    font-size: 20px;
+}
+
+.linkedIn i {
+    right: 10px;
+    font-size: 40px;
+}
+
+
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
+
+.footer2 {
+  background: #161616;
+  color: white;  
+} 
+
+.footer2 .superior {
+    height: 55%;
+}
+
+.footer2 .direito {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer2 .social i{
+    -webkit-text-stroke: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.footer2 .social i:hover {
+    color: #FFC300;
+}
+
+.footer2 .boxContato {
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+    /* background: rebeccapurple; */
+}
+
+.footer2 input {
+    width: 65%;
+}
+
+.footer2 button {
+    background: #FFD700;
+    color: black;
+}
+
+.footer2 .button{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 60%;
+}
+
+.footer2 a {
+    color: white;
+    font-size:15px;
+}
+
+.footer2 .button button {
+    background: transparent;
+    border: none;
+}
+
+.footer2 .button a:hover {
+    color: #FFC300;
+}
+
+
