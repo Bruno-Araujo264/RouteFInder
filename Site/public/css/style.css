@@ -136,7 +136,7 @@ nav span {
     /* Bordas arredondadas */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     /* Sombra suave */
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* border: 1px solid rgba(255, 255, 255, 0.3); */
     /* Borda sutil */
     color: white;
     font-size: 20px;
@@ -150,7 +150,7 @@ header .texto {
     font-weight: bold;
     line-height: 1.1;
     color: white;
-    border-bottom: solid 2px white;
+    border-bottom: solid 1px white;
 }
 
 header .texto2 {
@@ -185,7 +185,7 @@ header .cabecalho {
     /* Bordas arredondadas */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     /* Sombra suave */
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* border: 1px solid rgba(255, 255, 255, 0.3); */
     /* Borda sutil */
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     padding: 40px;
