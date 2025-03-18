@@ -13,11 +13,12 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
     width: 100%;
-    background-image: url(../assets/imgs/HomePage\ -\ BG\ Image.png);
-    background-size: auto;
+    background-image: url(../assets/imgs/LALALA.jpeg);
+    background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 nav {
@@ -47,6 +48,12 @@ nav span {
 .navButton a {
     text-decoration: none;
     color: white;
+    transition: ease 0.5s;
+}
+
+.navButton a:hover {
+    color: orange;
+    transition: ease 0.5s;
 }
 
 .navButton button {
@@ -100,11 +107,12 @@ nav span {
 
 header .texto {
     font-size: 5rem;
-    font-weight: lighter;
+    font-weight: bold;
     line-height: 1.1;
     color: white;
     border-bottom: solid 2px white;
     overflow: hidden;
+ 
 }
 
 header .texto2 {
@@ -116,11 +124,14 @@ header .texto2 {
     /* background: blue; */
 }
 
-
 header .texto,
 header .texto2 {
     text-align: start;
     margin-right: 400px;
+}
+
+header span {
+    color: rgb(46, 235, 46);
 }
 
 header .cabecalho {
@@ -150,34 +161,33 @@ header .cabecalho {
 
 .conteudo .sobreNos {
     width: 100%;
-    height: auto;
+    height: 60vh;
+    padding: 20px 0 20px 0;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin: auto;
     /* background: yellow; */
 }
 
 .sobreNos span {
+    display: flex;
+    align-self: center;
     width: 35%;
-    font-size: xx-large;
+    font-size: 3vh;
     color: white;
 }
 
 .conteudo .imagem {
-    width: 35%;
+    width: 30%;
     background: green;
-
-}
-
-.sobreNos {
-    margin: auto;
 }
 
 .conteudo .nossosServicos {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 70px;
+    margin-top: 10vh;
     width: 50%;
     margin: auto;
 }
@@ -190,7 +200,8 @@ header .cabecalho {
 
 .nossosServicos h1 {
     /* text-align: center; */
-    font-size: xxx-large;
+    width: 65vw;
+    font-size: 5vw;
     color: #FFD700;
     text-shadow: 0 10px 4px #333333;
 }
@@ -224,7 +235,7 @@ header .cabecalho {
     height: 80vh;
     /* background: gray; */
     gap: 30px;
-    margin: 100px 0 40px 0;
+    margin: 7vh;
 }
 
 .box {
@@ -240,9 +251,10 @@ header .cabecalho {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 80%;
-    height: 50vh;
+    width: 85%;
+    height: auto;
     gap: 30px;
+    margin: 5vh 0 5vh 0;
 }
 
 .textoContainer .texto {
@@ -252,8 +264,8 @@ header .cabecalho {
     width: 45%;
     height: fit-content;
     font-size: 3vh;
-    margin-left: 50px;
-    padding-left: 20px;
+    margin-left: 7.6vh;
+    padding-left: 3vh;
     ;
 }
 
@@ -314,7 +326,7 @@ header .cabecalho {
     position: absolute;
     right: 150px;
     transform: translateY(-300px);
-    zoom: 90%;
+    zoom: 80%;
     background: rgb(206, 206, 206);
     border-radius: 8px;
     border: solid 5px white;
@@ -393,7 +405,16 @@ footer .direito {
     -webkit-text-stroke: 2px #353535;
     color: #FFC300;
     font-size: 6vh;
+    transition: ease 0.3s;
+    cursor: pointer;
 }
+
+.esquerdo .social i:hover {
+    color: white;
+    /* -webkit-text-stroke: 1px white; */
+    transition: ease 0.3s;
+}
+
 
 .esquerdo .boxContato {
     display: flex;
