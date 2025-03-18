@@ -33,13 +33,20 @@ nav {
     /* height: 30%; */
     margin-top: 40px;
     width: 90vw;
-
 }
 
 .navLogo img{
     width: 50px;
     height: 50px;
     filter: brightness(150%);
+}
+
+.navLogo p:first-child{
+    border-bottom: solid 1px white;
+}
+
+.navLogo p {
+    font-size: 4vh;
 }
 
 nav span {
@@ -59,12 +66,17 @@ nav span {
 .navButton a {
     text-decoration: none;
     color: white;
-    transition: ease 0.5s;
+    transition: ease 0.3s;
+    font-size: 2.6vh;
 }
 
 .navButton a:hover {
     color: orange;
     transition: ease 0.5s;
+
+    p {
+        border-left: #FFC300;
+    }
 }
 
 .navButton button {
@@ -72,15 +84,6 @@ nav span {
     border: none;
     font-size: 2.5vh;
     margin: 0 15px;
-}
-
-.navButton .navLogin {
-    padding-left: 30px;
-}
-
-.navButton .navCadastro {
-    padding-left: 30px;
-    border-left: solid 2px white;
 }
 
 .navContato {
@@ -290,7 +293,7 @@ header .cabecalho {
     text-align: center;
     background: #FFC300;
     border-radius: 8px;
-    box-shadow: -10px 10px 2px #a7a7a7;
+    box-shadow: 10px 10px 2px #a7a7a7;
 }
 
 .textoContainer {
@@ -585,9 +588,10 @@ h1 {
     align-items: flex-end;
     border-radius: 4px;
     box-shadow: none;
-    height: calc(45vh + 50px);
-    width: 30%;
+    height: 50vh;
+    width: 25%;
     border: solid 3px #FFC300;
+    transition: 0.3s;
 }
 
 .equipe .box.b1 {
