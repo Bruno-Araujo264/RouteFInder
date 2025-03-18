@@ -35,11 +35,11 @@ nav {
     width: 90vw;
 }
 
-.navLogo img{
+/* .navLogo img{
     width: 50px;
     height: 50px;
     filter: brightness(150%);
-}
+} */
 
 .navLogo p:first-child{
     border-bottom: solid 1px white;
@@ -145,6 +145,7 @@ nav span {
     padding: 10px;
 }
 
+/* Slogan */
 header .texto {
     font-size: 5rem;
     font-weight: bold;
@@ -153,6 +154,7 @@ header .texto {
     border-bottom: solid 1px white;
 }
 
+/* Slogan */
 header .texto2 {
     font-size: 2rem;
     width: 39%;
@@ -738,4 +740,141 @@ h1 {
 
 .footer2 .button a:hover {
     color: #FFC300;
+}
+
+
+@media screen and (max-width: 1280px) {
+
+    /* HOMEPAGE HOMEPAGE HOMEPAGE HOMEPAGE HOMEPAGE  */
+
+    header {
+        font-family: "Metrophobic", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 60vh;
+        width: 100vw;
+        background-image: url(../assets/imgs/LALALA.jpeg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 95vw;
+    }
+
+    .navButton {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        margin-left: 10px;
+        list-style: none;
+    }
+
+    .navContato {
+        display: none;
+    }
+
+    .navButton a:hover {
+        display: none;
+    }
+
+    /* CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO  */
+
+    .conteudo {
+        height: auto;
+        padding: 6vh 0;
+    }
+
+    .conteudo span {
+        width: 100vw;
+        font-size: 2.5em;
+    }
+
+    .conteudo .imagem {
+        display: none;
+    }
+
+    .conteudo .nossosServicos {
+        width: 90vw;
+    }
+
+    .conteudo h4 {
+        font-size: 3em;
+    }
+
+    .conteudo h1 {
+        font-size: 4em;
+    }
+
+    /* SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS  */
+
+    .servicos {
+        padding: 3vh 0;
+    }
+
+    .servicos .boxContainer {
+        flex-direction: column;
+        width: 80vw;
+        /* overflow: hidden; */
+    }
+
+    .servicos .boxContainer .box {
+        height: 40vh;
+        width: 60vw;
+        margin: auto;
+        font-size: 3em;
+    }
+
+    .servicos .textoContainer .texto{
+        width: 95%;
+        margin: auto;
+        font-size: 2.5em;
+    }
+
+    .servicos .textoContainer .imagem {
+        display: none;
+    }
+
+    /* LOCALIZAÇÃO LOCALIZAÇÃO LOCALIZAÇÃO LOCALIZAÇÃO */
+
+    .explicacao {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 20vh;
+    }
+
+    .explicacao .container .texto {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .explicacao .container .texto h2{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 3em;
+    }
+
+    .localizacao {
+        height: 10vh;
+        overflow: visible;
+    }
+
+    .localizacao img{
+        display: none;
+        zoom: 100%;
+        transform: 0;
+        right: 0;
+
+    }
 }
