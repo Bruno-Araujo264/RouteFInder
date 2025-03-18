@@ -8,6 +8,10 @@
     scroll-behavior: smooth;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 header {
     font-family: "Metrophobic", sans-serif;
     display: flex;
@@ -25,10 +29,17 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     /* height: 30%; */
     margin-top: 40px;
     width: 90vw;
 
+}
+
+.navLogo img{
+    width: 50px;
+    height: 50px;
+    filter: brightness(150%);
 }
 
 nav span {
@@ -64,11 +75,11 @@ nav span {
 }
 
 .navButton .navLogin {
-    padding-left: 20px;
+    padding-left: 30px;
 }
 
 .navButton .navCadastro {
-    padding-left: 40px;
+    padding-left: 30px;
     border-left: solid 2px white;
 }
 
@@ -84,6 +95,12 @@ nav span {
 .navContato i {
     font-size: 5vh;
     color: white;
+    transition: 0.3s ease;
+}
+
+.navContato i:hover {
+    color: #FFC300;
+    transition: 0.3s ease;
 }
 
 .navContato a {
@@ -105,33 +122,51 @@ nav span {
     /* background: green; */
 }
 
+.slogan {
+    height: auto;
+    width: auto;
+    background: linear-gradient(45deg, rgba(214, 214, 214, 0.1) rgba(255, 255, 255, 0.726));
+    /* Fundo semi-transparente */
+    backdrop-filter: blur(6px);
+    /* Efeito de desfoque */
+    border-radius: 8px;
+    /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Sombra suave */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Borda sutil */
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+}
+
 header .texto {
     font-size: 5rem;
     font-weight: bold;
     line-height: 1.1;
     color: white;
     border-bottom: solid 2px white;
-    overflow: hidden;
- 
 }
 
 header .texto2 {
     font-size: 2rem;
     width: 39%;
     color: white;
-    margin-left: 30px;
-    margin-top: 20px;
+    width: 100%;
     /* background: blue; */
 }
 
 header .texto,
 header .texto2 {
     text-align: start;
-    margin-right: 400px;
+    right: 400px;
+    /* margin-left: 20px; */
 }
 
-header span {
-    color: rgb(46, 235, 46);
+header .container span {
+    color: #FFC300;
 }
 
 header .cabecalho {
@@ -139,8 +174,19 @@ header .cabecalho {
     font-weight: lighter;
     line-height: 1.1;
     color: white;
-    overflow: hidden;
-}
+    background: linear-gradient(45deg, rgba(214, 214, 214, 0.1) rgba(255, 255, 255, 0.726));
+    /* Fundo semi-transparente */
+    backdrop-filter: blur(6px);
+    /* Efeito de desfoque */
+    border-radius: 8px;
+    /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Sombra suave */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Borda sutil */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+}   
 
 /* CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO  */
 /* CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO  */
@@ -217,7 +263,7 @@ header .cabecalho {
 /* SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS */
 
 .servicos {
-    height: 100vh;
+    height: auto;
     width: 100%;
 }
 
@@ -232,9 +278,9 @@ header .cabecalho {
     flex-direction: row;
     justify-content: space-around;
     width: 80%;
-    height: 80vh;
+    height: auto;
     /* background: gray; */
-    gap: 30px;
+    gap: 40px;
     margin: 7vh;
 }
 
@@ -251,6 +297,7 @@ header .cabecalho {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 85%;
     height: auto;
     gap: 30px;
@@ -325,8 +372,8 @@ header .cabecalho {
 .localizacao img {
     position: absolute;
     right: 150px;
-    transform: translateY(-300px);
-    zoom: 80%;
+    transform: translateY(-250px);
+    zoom: 75%;
     background: rgb(206, 206, 206);
     border-radius: 8px;
     border: solid 5px white;
@@ -339,7 +386,7 @@ header .cabecalho {
 /* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
 
 footer {
-    height: 50vh;
+    height: 55vh;
     width: 100%;
     background: #FFC300;
     border-top: solid 2px rgb(184, 184, 184);
@@ -364,12 +411,14 @@ footer .superior {
 }
 
 footer .embaixo {
+    display: flex;
+    align-items: center;
     width: 100%;
-    height: 15%;
+    height: 25%;
     display: flex;
     border-top: 2px solid white;
-    padding-top: 30px;
-    gap: 30px;
+    /* padding-top: 30px; */
+    gap: 10px;
     /* background: blue; */
 }
 
@@ -387,6 +436,12 @@ footer .direito {
     align-items: end;
     height: auto;
     width: 55%;
+}
+
+footer .embaixo img {
+    height: 60px;
+    width: 60px;
+    filter: brightness(150%);
 }
 
 .esquerdo p {
@@ -469,7 +524,7 @@ footer .direito {
 
 .quemSomos .texto {
     width: 60%;
-    height: 50%;
+    /* height: 50%; */
     /* background: red; */
 }
 
@@ -494,7 +549,7 @@ footer .direito {
 .equipe {
     height: auto;
     width: 100%;
-    padding: 50px 0;
+    margin-bottom: 3vh;
 }
 
 .equipe .container {
@@ -587,6 +642,22 @@ h1 {
     border-radius: 8px;
     margin-bottom: 5px;
     padding: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.linkedIn:hover {
+    background: rgb(48, 48, 48);
+    transition: 0.3s;
+
+    i {
+        color:#295897;
+        transform: 0.3s;
+    }
+
+    p {
+        color: white;
+    }
 }
 
 .linkedIn p {
@@ -604,9 +675,10 @@ h1 {
 /* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
 
 .footer2 {
-  background: #161616;
-  color: white;  
-} 
+    height: 40vh;
+    background: #161616;
+    color: white;
+}
 
 .footer2 .superior {
     height: 55%;
@@ -617,7 +689,7 @@ h1 {
     flex-direction: column;
 }
 
-.footer2 .social i{
+.footer2 .social i {
     -webkit-text-stroke: transparent;
     color: white;
     cursor: pointer;
@@ -643,7 +715,7 @@ h1 {
     color: black;
 }
 
-.footer2 .button{
+.footer2 .button {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -652,7 +724,7 @@ h1 {
 
 .footer2 a {
     color: white;
-    font-size:15px;
+    font-size: 15px;
 }
 
 .footer2 .button button {
@@ -663,5 +735,3 @@ h1 {
 .footer2 .button a:hover {
     color: #FFC300;
 }
-
-

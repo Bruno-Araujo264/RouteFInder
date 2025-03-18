@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Login</title>
+    <title>Login</title>
 
     <script src="./js/sessao.js"></script>
 
@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="card-login">
                     <div class="voltar">
-                        <button class="botao">&#8592</button>
+                        <button class="botao" onclick="window.location.href='index.html' " >&#8592</button>
                     </div>
                     <div class="formulario">
                         <h2>Login</h2>
@@ -31,12 +31,12 @@
                             <input id="email_input" type="text" placeholder="Email">
                         </div>
                         <div class="campo">
-                            <input id="senha_input" type="password" placeholder="Senha">
-                            <img src="../public/assets/icon/olho.png" class="verSenha">
+                                <input id="senha_input" type="password" placeholder="Senha">
+                                <img src="../public/assets/icon/olho.png" class="verSenha">
                             <span>Esqueceu a senha?</span>
                         </div>
                         <button class="botao" onclick="entrar()">Entrar</button>
-                        <p href="cadastro.html">Ainda não tem conta?</p>
+                        <p onclick="window.location.href='cadastro.html'">Ainda não tem conta?</p>
                     </div>
                 </div>
                 <div class="slider">
