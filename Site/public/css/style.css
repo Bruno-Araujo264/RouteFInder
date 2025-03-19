@@ -176,7 +176,7 @@ header .container span {
 
 header .cabecalho {
     font-size: 5rem;
-    font-weight: lighter;
+    font-weight: bold;
     line-height: 1.1;
     color: white;
     background: linear-gradient(45deg, rgba(214, 214, 214, 0.1) rgba(255, 255, 255, 0.726));
