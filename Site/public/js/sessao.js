@@ -19,9 +19,15 @@ function limparSessao() {
 
 // carregamento (loading)
 function aguardar() {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "flex";
+    var cardErro = document.getElementById("cardErro");
+    if (!cardErro) {
+        console.error("Elemento cardErro não encontrado!");
+        return;
+    }
+    
+    cardErro.style.display = "block"; 
 }
+
 
 function finalizarAguardar(texto) {
     var divAguardar = document.getElementById("div_aguardar");
