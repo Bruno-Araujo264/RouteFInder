@@ -212,8 +212,8 @@ header .cabecalho {
 
 .conteudo .sobreNos {
     width: 100%;
-    height: 60vh;
-    padding: 20px 0 20px 0;
+    height: auto;
+    padding: 20px 0;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -224,8 +224,9 @@ header .cabecalho {
 .sobreNos span {
     display: flex;
     align-self: center;
-    width: 35%;
-    font-size: 3vh;
+    text-align: center;
+    width: 80%;
+    font-size: 4vh;
     color: white;
 }
 
@@ -296,6 +297,20 @@ header .cabecalho {
     background: #FFC300;
     border-radius: 8px;
     box-shadow: 10px 10px 2px #a7a7a7;
+}
+
+.box .container {
+    display: flex;
+    justify-content: start;
+    height: 95%;
+    width: 90%;
+    /* background: red; */
+}
+
+.box .container h2 {
+    width: 100%;
+    margin-top: 2vh;
+    /* background: blue; */
 }
 
 .textoContainer {
@@ -597,43 +612,55 @@ h1 {
 }
 
 .equipe .box.b1 {
-    background-image: url(../assets/imgs/memes-de-gatos.jpg);
+    background-image: url(../assets/fotos/ali_kadri.jpeg);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     padding: 10px;
     border-radius: 8px;
 }
 
 .equipe .box.b2 {
-    background-image: url(../assets/imgs/gato-teste2.jpg);
+    background-image: url(../assets/fotos/bruno_araujo.jpeg);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     padding: 10px;
     border-radius: 8px;
 }
 
 .equipe .box.b3 {
-    background-image: url(../assets/imgs/gato-em-pe.jpg);
+    background-image: url(../assets/fotos/erick_lee.jpeg);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
     padding: 10px;
     border-radius: 8px;
 }
 
 .equipe .box.b4 {
-    background-image: url(../assets/imgs/huh.jpg);
+    background-image: url(../assets/fotos/giovana.jpeg);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     padding: 10px;
     border-radius: 8px;
 }
 
 .equipe .box.b5 {
-    background-image: url(../assets/imgs/cato.jpg);
+    background-image: url(../assets/fotos/kaue_souza.jpeg);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     padding: 10px;
     border-radius: 8px;
 }
 
 .equipe .box.b6 {
-    background-image: url(../assets/imgs/Cute-Cat.jpg);
+    background-image: url(../assets/fotos/pedro_leao.jpeg);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     padding: 10px;
     border-radius: 8px;
 }
