@@ -12,7 +12,9 @@ body {
   margin: 0;
   padding: 0;
   align-items: center;
-  background-color: rgb(255, 195,0);
+  background-image: url("../assets/imgs/BACKGROUND-BORRADO.png");
+  background-position: center;
+  background-size: cover;
 }
 
 
