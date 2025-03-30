@@ -6,7 +6,7 @@ public class Main {
 
 String dataHoraAtual = getDataSystem.getSystemDateTime();
         String prefixo = "INFO";
-        String mensagem = "Coletando os dados das Ruas de São Paulo...";
+        String mensagem = "Extraindo de (CET)";
 
         for (int i = 0; i <= 100 ; i++){
             System.out.println(String.format("[%s] [%s] - %s", dataHoraAtual, prefixo, mensagem));
