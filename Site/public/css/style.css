@@ -25,6 +25,12 @@ header {
     background-position: center;
 }
 
+/* NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR  */
+/* NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR  */
+/* NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR  */
+/* NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR  */
+/* NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR  */
+
 nav {
     display: flex;
     flex-direction: row;
@@ -33,8 +39,8 @@ nav {
     margin-top: 10px;
     height: 10%;
     /* margin-top: 40px; */
-    width: 95%;
-    background: rgba(190, 190, 190, 0.3);
+    width: 75%;
+    background: white;
     backdrop-filter: blur(8px);
     border-radius: 8px;
 }
@@ -50,9 +56,9 @@ nav {
 
 .navButton a {
     text-decoration: none;
-    color: white;
+    color: gray;
     font-size: 2vh;
-    font-weight: light;
+    font-weight: bold;
     letter-spacing: 1px;
     transition: ease 0.3s;
 }
@@ -69,13 +75,15 @@ nav {
     margin: 0 15px;
 }
 
-.navLogo p:first-child {
-    border-bottom: solid 1px #161616;
+.navLogo p{
+    font-family: "Metrophobic", sans-serif;
+    font-weight: bold;
+    transition: ease 0.3s;
 }
 
-.navLogo p::before {
-    color: #161616;
-    font-size: 3vh;
+.navLogo p:first-child {
+    border-bottom: solid 1px gray;
+    transition: ease 0.3s;
 }
 
 .navContato {
@@ -90,7 +98,7 @@ nav {
 
 .navContato i {
     font-size: 1.7em;
-    color: white;
+    color: gray;
     transition: 0.3s ease;
 }
 
@@ -103,7 +111,12 @@ nav {
     text-decoration: none;
     font-size: 1.3em;
     font-weight: light;
-    color: white;
+    color: grey;
+}
+
+.navContato span:hover {
+    color: #FFC300;
+    transition: 0.3s ease;
 }
 
 .navContato button {
@@ -123,26 +136,23 @@ nav {
 }
 
 .slogan {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: auto;
-    width: auto;
+    width: 100%;
     background: linear-gradient(45deg, rgba(214, 214, 214, 0.1) rgba(255, 255, 255, 0.726));
-    /* Fundo semi-transparente */
     backdrop-filter: blur(6px);
-    /* Efeito de desfoque */
     border-radius: 8px;
-    /* Bordas arredondadas */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* Sombra suave */
-    /* border: 1px solid rgba(255, 255, 255, 0.3); */
-    /* Borda sutil */
     color: white;
     font-size: 20px;
     font-weight: bold;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    padding: 10px;
+    padding: 20px;
 }
 
-/* Slogan */
 header .texto {
     font-size: 5rem;
     font-weight: bold;
@@ -151,20 +161,16 @@ header .texto {
     border-bottom: solid 1px white;
 }
 
-/* Slogan */
 header .texto2 {
     font-size: 2rem;
-    width: 39%;
     color: white;
-    width: 100%;
-    /* background: blue; */
 }
 
 header .texto,
 header .texto2 {
     text-align: start;
     right: 400px;
-    /* margin-left: 20px; */
+
 }
 
 header .container span {
@@ -312,7 +318,7 @@ header .cabecalho {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 85%;
+    width: 95%;
     height: auto;
     gap: 30px;
     margin: 5vh 0 5vh 0;
