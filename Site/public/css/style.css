@@ -43,6 +43,7 @@ nav {
     background: transparent;
     backdrop-filter: blur(8px);
     border-radius: 8px;
+    border-bottom: solid 1.5px white;
 }
 
 .navButton {
@@ -158,7 +159,7 @@ header .texto {
     font-weight: bold;
     line-height: 1.1;
     color: white;
-    border-bottom: solid 1px white;
+    /* border-bottom: solid 1px white; */
 }
 
 header .texto2 {
@@ -324,7 +325,6 @@ footer {
     position: relative;
     height: 110vh;
     width: 100%;
-    overflow: visible;
 }
 
 .footerBackground {
@@ -403,7 +403,7 @@ footer .textoContainer {
     position: absolute;
     right: 250px;
     transform: translateY(-250px);
-    zoom: 75%;
+    zoom: 65%;
     border-radius: 8px;
     border: solid 5px white;
 }
@@ -653,6 +653,69 @@ h1 {
 /* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
 /* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
 /* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
+
+.social {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6vh;
+}
+
+.social i {
+    -webkit-text-stroke: 2px #353535;
+    color: white;
+    font-size: 6vh;
+    transition: ease 0.3s;
+    cursor: pointer;
+}
+
+.social i:hover {
+    color: #FFC300;
+    /* -webkit-text-stroke: 1px white; */
+    transition: ease 0.3s;
+}
+
+.boxContato {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+}
+
+.boxContato input {
+    width: 250px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    color: black;
+    font-size: 20px;
+    padding-left: 30px
+}
+
+.boxContato button {
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    background: #FFD700;
+    color: black;
+}
+
+.embaixo {
+    width: 80%;
+    border-top: 2px solid white;
+    margin: auto;
+}
+
+.embaixo p{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+    color: white;
+}
 
 .footer2 {
     height: 40vh;
