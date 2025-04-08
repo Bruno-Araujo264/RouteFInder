@@ -40,7 +40,7 @@ nav {
     height: 10%;
     /* margin-top: 40px; */
     width: 75%;
-    background: white;
+    background: transparent;
     backdrop-filter: blur(8px);
     border-radius: 8px;
 }
@@ -56,7 +56,7 @@ nav {
 
 .navButton a {
     text-decoration: none;
-    color: gray;
+    color: #dbdbdb;
     font-size: 2vh;
     font-weight: bold;
     letter-spacing: 1px;
@@ -98,7 +98,7 @@ nav {
 
 .navContato i {
     font-size: 1.7em;
-    color: gray;
+    color: #dbdbdb;
     transition: 0.3s ease;
 }
 
@@ -111,7 +111,7 @@ nav {
     text-decoration: none;
     font-size: 1.3em;
     font-weight: light;
-    color: grey;
+    color: #dbdbdb;
 }
 
 .navContato span:hover {
@@ -313,15 +313,39 @@ header .cabecalho {
     /* background: blue; */
 }
 
-.textoContainer {
+
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
+
+footer {
+    position: relative;
+    height: 110vh;
+    width: 100%;
+    overflow: visible;
+}
+
+.footerBackground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #29292B;
+    clip-path: polygon(0 55%, 100% 0, 100% 100%, 0 100%);
+    z-index: -1;
+}
+
+footer .textoContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 95%;
-    height: auto;
+    width: 90%;
     gap: 30px;
-    margin: 5vh 0 5vh 0;
+    margin: auto;
 }
 
 .textoContainer .texto {
@@ -342,16 +366,10 @@ header .cabecalho {
     left: 500px;
 }
 
-/* EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO  */
-/* EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO  */
-/* EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO  */
-/* EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO  */
-/* EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO EXPLICAÇÃO  */
-
 .explicacao {
     width: 100%;
     height: 40vh;
-    background: #161616;
+    margin: 15vh 0;
 }
 
 .explicacao .container {
@@ -359,169 +377,98 @@ header .cabecalho {
     justify-content: center;
     align-items: start;
     margin: auto;
-    width: 80%;
+    width: 70%;
     height: 100%;
 }
 
 .explicacao .texto {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    color: white;
     width: 40%;
-    height: 80%;
-    text-align: start;
+    height: auto;
+    color: white;
+    margin: 4vh 0;
 }
 
 .explicacao h2 {
-    font-size: x-large;
+    font-size: 2.5em;
+    font-weight: normal;
     margin-top: 30px;
 }
 
 .explicacao h1 {
-    font-size: xxxxx-large;
-}
-
-.localizacao {
-    height: 40%;
-    width: 100%;
-    overflow: hidden;
+    font-size: 1em;
+    font-weight: normal;
 }
 
 .localizacao img {
     position: absolute;
-    right: 150px;
+    right: 250px;
     transform: translateY(-250px);
     zoom: 75%;
-    background: rgb(206, 206, 206);
     border-radius: 8px;
     border: solid 5px white;
 }
 
-/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
-/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
-/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
-/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
-/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER  */
-
-footer {
-    height: 55vh;
-    width: 100%;
-    background: #FFC300;
-    border-top: solid 2px rgb(184, 184, 184);
-}
-
-footer .container {
-    margin: auto;
-    width: 80%;
-    height: 100%;
-    /* background: red; */
-}
-
-footer .superior {
-    width: 100%;
-    height: 65%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    ;
-    /* background: blue; */
-}
-
-footer .embaixo {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 25%;
-    display: flex;
-    border-top: 2px solid white;
-    /* padding-top: 30px; */
-    gap: 10px;
-    /* background: blue; */
-}
-
-footer .esquerdo {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* background: rebeccapurple; */
-}
-
-footer .direito {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: end;
-    height: auto;
-    width: 55%;
-}
-
-footer .embaixo img {
-    height: 60px;
-    width: 60px;
-    filter: brightness(150%);
-}
-
-.esquerdo p {
-    width: 70%;
-    font-family: "Metrophobic", sans-serif !important;
-    font-size: 40px;
-}
-
-.esquerdo .social {
-    width: 70%;
+.social {
+    width: 30%;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 6vh;
 }
 
-.esquerdo .social i {
+.social i {
     -webkit-text-stroke: 2px #353535;
-    color: #FFC300;
+    color: white;
     font-size: 6vh;
     transition: ease 0.3s;
     cursor: pointer;
 }
 
-.esquerdo .social i:hover {
-    color: white;
+.social i:hover {
+    color: #FFC300;
     /* -webkit-text-stroke: 1px white; */
     transition: ease 0.3s;
 }
 
-
-.esquerdo .boxContato {
+.boxContato {
     display: flex;
     flex-direction: row;
     width: 100%;
-    gap: 10px;
+    gap: 20px;
 }
 
 .boxContato input {
     width: 250px;
     height: 40px;
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     color: black;
     font-size: 20px;
-    padding-left: 20px
+    padding-left: 30px
 }
 
 .boxContato button {
     width: 100px;
     height: 40px;
     border: none;
-    border-radius: 20px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 20px;
-    background: #555555;
-    color: white;
+    background: #FFD700;
+    color: black;
 }
 
-.direito a {
-    color: black;
-    text-decoration: underline;
+.embaixo {
+    width: 80%;
+    border-top: 2px solid white;
+    margin: auto;
+}
+
+.embaixo p{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+    color: white;
 }
 
 /* QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS  */
