@@ -752,7 +752,7 @@ h1 {
 
 
 
-@media screen and (max-width: 576px) {
+@media screen and (min-width: 360 ) and (max-width: 576px) {
 
     /* HOMEPAGE HOMEPAGE HOMEPAGE HOMEPAGE HOMEPAGE  */
 
