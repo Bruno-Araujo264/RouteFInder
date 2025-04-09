@@ -239,7 +239,7 @@ header .cabecalho {
     flex-direction: column;
     align-items: center;
     margin-top: 10vh;
-    width: 50%;
+    /* width: 50%; */
     margin: auto;
 }
 
@@ -251,7 +251,7 @@ header .cabecalho {
 
 .nossosServicos h1 {
     /* text-align: center; */
-    width: 65vw;
+    /* width: 60vw; */
     font-size: 5vw;
     color: #FFD700;
     text-shadow: 0 10px 4px #333333;
@@ -752,138 +752,81 @@ h1 {
 
 
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 576px) {
 
     /* HOMEPAGE HOMEPAGE HOMEPAGE HOMEPAGE HOMEPAGE  */
 
     header {
-        font-family: "Metrophobic", sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 60vh;
-        width: 100vw;
-        background-image: url(../assets/imgs/LALALA.jpeg);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
+        height: 50vh;
     }
 
+    /* NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR */
     nav {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 95vw;
+        height: 15%;
+        width: 80%;
     }
 
-    .navButton {
-        display: flex;
-        justify-content: space-evenly;
-        width: 100%;
-        margin-left: 10px;
-        list-style: none;
+    .navButton a {
+        font-size: + 15px;
+        color: white;
     }
 
     .navContato {
         display: none;
     }
 
-    .navButton a:hover {
-        display: none;
+    .slogan {
+        .texto, .texto2 {
+            font-size: 2rem;
+        }
     }
 
-    /* CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO  */
-
-    .conteudo {
-        height: auto;
-        padding: 6vh 0;
-    }
-
-    .conteudo span {
-        width: 100vw;
-        font-size: 2.5em;
-    }
-
-    .conteudo .imagem {
-        display: none;
-    }
-
-    .conteudo .nossosServicos {
-        width: 90vw;
-    }
-
-    .conteudo h4 {
-        font-size: 3em;
-    }
-
-    .conteudo h1 {
-        font-size: 4em;
-    }
-
-    /* SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS  */
-
-    .servicos {
-        padding: 3vh 0;
-    }
+    /* SERVICOS SERVICOS SERVICOS SERVICOS SERVICOS */
 
     .servicos .boxContainer {
-        flex-direction: column;
-        width: 80vw;
-        /* overflow: hidden; */
-    }
-
-    .servicos .boxContainer .box {
-        height: 40vh;
-        width: 60vw;
-        margin: auto;
-        font-size: 3em;
-    }
-
-    .servicos .textoContainer .texto {
-        width: 95%;
-        margin: auto;
-        font-size: 2.5em;
-    }
-
-    .servicos .textoContainer .imagem {
-        display: none;
-    }
-
-    /* LOCALIZAÇÃO LOCALIZAÇÃO LOCALIZAÇÃO LOCALIZAÇÃO */
-
-    .explicacao {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 20vh;
     }
 
-    .explicacao .container .texto {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .box {
         width: 100%;
+
+        .container h2 {
+            font-size: 2.4em;
+            padding: 10px;
+            height: 40%;
+        }
+
+        .container p {
+            font-size: 1.2em;
+            height: 100%;
+        }
     }
 
-    .explicacao .container .texto h2 {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        font-size: 3em;
+    /* FOOTER FOOTER FOOTER FOOTER */
+
+    footer {
+        height: 100vh;
+    }
+
+    .textoContainer {
+
+        .texto {
+            width: 90%;
+        }
+
+        img {
+            display: none;
+        }
+    }
+
+    .footerBackground {
+        clip-path: polygon(0 45%, 100% 0, 100% 100%, 0 100%);
     }
 
     .localizacao {
-        height: 10vh;
-        overflow: visible;
-    }
-
-    .localizacao img {
         display: none;
-        zoom: 100%;
-        transform: 0;
-        right: 0;
-
     }
+
+
 }
