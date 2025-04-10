@@ -431,8 +431,9 @@ footer .textoContainer {
 .boxContato {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    gap: 20px;
+    width: 70%;
+    gap: 30px;
+    margin: auto;
 }
 
 .boxContato input {
@@ -751,8 +752,7 @@ h1 {
 }
 
 
-
-@media screen and (min-width: 360 ) and (max-width: 576px) {
+@media screen and (min-width: 360px ) and (max-width: 576px) {
 
     /* HOMEPAGE HOMEPAGE HOMEPAGE HOMEPAGE HOMEPAGE  */
 
@@ -762,14 +762,26 @@ h1 {
 
     /* NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR */
     nav {
-        height: 15%;
+        height: 25%;
         width: 80%;
     }
 
-    .navButton a {
-        font-size: + 15px;
-        color: white;
-    }
+    .navButton {
+        width: 100%;
+        margin: 0;
+
+        .navLogo {
+            display: none;
+        }
+        
+        
+        a {
+            font-size: 1em;
+            color: white;
+        }
+
+    } 
+    
 
     .navContato {
         display: none;
@@ -806,7 +818,7 @@ h1 {
     /* FOOTER FOOTER FOOTER FOOTER */
 
     footer {
-        height: 100vh;
+        height: auto;
     }
 
     .textoContainer {
@@ -821,11 +833,41 @@ h1 {
     }
 
     .footerBackground {
+        height: 70%;
         clip-path: polygon(0 45%, 100% 0, 100% 100%, 0 100%);
     }
 
     .localizacao {
         display: none;
+    }
+
+    .explicacao {
+        margin: 100px 0 100px 0;
+
+        .container {
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            height: 100%;
+        }
+
+        .texto {
+            width: 100%;
+        }
+
+        .social {
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            gap: 20px;
+        }
+
+        .boxContato {
+            justify-content: space-between;
+        }
     }
 
 
