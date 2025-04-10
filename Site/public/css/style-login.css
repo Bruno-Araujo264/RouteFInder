@@ -159,3 +159,28 @@ input {
     border-radius: 8px;
   }
 }
+
+@media screen and (min-width: 300px) and (max-width: 576px) {
+  
+  .container {
+    width: 95%;
+  }
+
+  .card-login {
+    width: 100%;
+  }
+
+  .slider {
+    display: none;
+  }
+
+  .card {
+    height: 90%;
+  }
+
+  .voltar .botao {
+    margin-top: 40px;
+    margin-left: 40px;
+  }
+  
+}
