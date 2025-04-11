@@ -158,3 +158,28 @@ input {
   text-align: center;
   border-radius: 10px;
 }
+
+@media screen and (min-width: 300px) and (max-width: 576px) {
+  
+  .container {
+    width: 95%;
+  }
+
+  .card-cadastro {
+    width: 100%;
+  }
+
+  .slider {
+    display: none;
+  }
+
+  .card {
+    height: 90%;
+  }
+
+  .voltar .botao {
+    margin-top: 40px;
+    margin-left: 40px;
+  }
+  
+}
