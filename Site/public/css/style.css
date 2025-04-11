@@ -476,8 +476,9 @@ footer .textoContainer {
 /* QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS  */
 
 .quemSomos {
-    height: 80vh;
+    height: auto;
     width: 100%;
+    padding: 30px;
     /* background: red; */
 }
 
@@ -580,7 +581,7 @@ h1 {
     background-image: url(../assets/fotos/erick_lee.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center bottom;
+    background-position: center;
     padding: 10px;
     border-radius: 8px;
 }
@@ -867,6 +868,47 @@ h1 {
 
         .boxContato {
             justify-content: space-between;
+        }
+    }
+
+    .quemSomos {
+        height: auto;
+        padding: 30px;
+
+        .container {
+            width: 90%;
+        }
+
+        h2 {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .texto {
+            width: 85%;
+        }
+
+        .h2 {
+            font-size: 2em;
+        }
+
+        img {
+            display: none;
+        }
+    }
+
+    .equipe {
+
+        .boxSuperior,
+        .boxInferior {
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .box {
+            height: 50vh;
+            width: 100%;
         }
     }
 
