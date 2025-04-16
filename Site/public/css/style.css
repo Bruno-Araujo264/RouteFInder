@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Metrophobic&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 
 * {
     font-family: "Nunito", sans-serif;
@@ -13,7 +14,7 @@ html {
 }
 
 header {
-    font-family: "Metrophobic", sans-serif;
+    font-family: "Roboto Flex", sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,6 +45,7 @@ nav {
     backdrop-filter: blur(8px);
     border-radius: 8px;
     border-bottom: solid 1.5px white;
+    border-right: solid 0.1px rgb(128, 128, 128);
 }
 
 .navButton {
@@ -179,22 +181,21 @@ header .container span {
 }
 
 header .cabecalho {
-    font-size: 5rem;
-    font-weight: bold;
-    line-height: 1.1;
-    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
     background: linear-gradient(45deg, rgba(214, 214, 214, 0.1) rgba(255, 255, 255, 0.726));
-    /* Fundo semi-transparente */
     backdrop-filter: blur(6px);
-    /* Efeito de desfoque */
     border-radius: 8px;
-    /* Bordas arredondadas */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* Sombra suave */
-    /* border: 1px solid rgba(255, 255, 255, 0.3); */
-    /* Borda sutil */
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    padding: 40px;
+    padding: 20px;
 }
 
 /* CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO  */
@@ -239,7 +240,7 @@ header .cabecalho {
     flex-direction: column;
     align-items: center;
     margin-top: 10vh;
-    width: 50%;
+    /* width: 50%; */
     margin: auto;
 }
 
@@ -251,7 +252,7 @@ header .cabecalho {
 
 .nossosServicos h1 {
     /* text-align: center; */
-    width: 65vw;
+    /* width: 60vw; */
     font-size: 5vw;
     color: #FFD700;
     text-shadow: 0 10px 4px #333333;
@@ -290,7 +291,7 @@ header .cabecalho {
 }
 
 .box {
-    width: 20vw;
+    width: 24vw;
     height: 45vh;
     text-align: center;
     background: #FFC300;
@@ -431,8 +432,9 @@ footer .textoContainer {
 .boxContato {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    gap: 20px;
+    width: 70%;
+    gap: 30px;
+    margin: auto;
 }
 
 .boxContato input {
@@ -475,8 +477,9 @@ footer .textoContainer {
 /* QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS QUEMSOMOS  */
 
 .quemSomos {
-    height: 80vh;
+    height: auto;
     width: 100%;
+    padding: 30px;
     /* background: red; */
 }
 
@@ -579,7 +582,7 @@ h1 {
     background-image: url(../assets/fotos/erick_lee.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center bottom;
+    background-position: center;
     padding: 10px;
     border-radius: 8px;
 }
@@ -679,7 +682,7 @@ h1 {
 }
 
 .footer2 .texto h2 {
-    font-size: 2vh;
+    font-size: 3vh;
     letter-spacing: 1px;
     color: #f1c40f;
     margin-bottom: 10px;
@@ -751,139 +754,168 @@ h1 {
 }
 
 
-
-@media screen and (max-width: 1280px) {
+@media screen and (min-width: 360px ) and (max-width: 576px) {
 
     /* HOMEPAGE HOMEPAGE HOMEPAGE HOMEPAGE HOMEPAGE  */
 
     header {
-        font-family: "Metrophobic", sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 60vh;
-        width: 100vw;
-        background-image: url(../assets/imgs/LALALA.jpeg);
+        height: 50vh;
         background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
+        /* filter: blur(8px); */
+
+        .cabecalho {
+            display: none;
+        }
     }
 
+    /* NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR */
     nav {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 95vw;
+        height: 10vh;
+        width: 80%;
     }
 
     .navButton {
-        display: flex;
-        justify-content: space-evenly;
         width: 100%;
-        margin-left: 10px;
-        list-style: none;
-    }
+        margin: 0;        
+        
+        a {
+            font-size: 1em;
+            color: white;
+        }
+
+        .navLogo p:first-child {
+            border-bottom: solid 1px white;
+        }
+
+    } 
+    
 
     .navContato {
         display: none;
     }
 
-    .navButton a:hover {
-        display: none;
+    .slogan {
+        .texto, .texto2 {
+            font-size: 2rem;
+        }
     }
 
-    /* CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO  */
-
-    .conteudo {
-        height: auto;
-        padding: 6vh 0;
-    }
-
-    .conteudo span {
-        width: 100vw;
-        font-size: 2.5em;
-    }
-
-    .conteudo .imagem {
-        display: none;
-    }
-
-    .conteudo .nossosServicos {
-        width: 90vw;
-    }
-
-    .conteudo h4 {
-        font-size: 3em;
-    }
-
-    .conteudo h1 {
-        font-size: 4em;
-    }
-
-    /* SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS SERVIÇOS  */
-
-    .servicos {
-        padding: 3vh 0;
-    }
+    /* SERVICOS SERVICOS SERVICOS SERVICOS SERVICOS */
 
     .servicos .boxContainer {
-        flex-direction: column;
-        width: 80vw;
-        /* overflow: hidden; */
-    }
-
-    .servicos .boxContainer .box {
-        height: 40vh;
-        width: 60vw;
-        margin: auto;
-        font-size: 3em;
-    }
-
-    .servicos .textoContainer .texto {
-        width: 95%;
-        margin: auto;
-        font-size: 2.5em;
-    }
-
-    .servicos .textoContainer .imagem {
-        display: none;
-    }
-
-    /* LOCALIZAÇÃO LOCALIZAÇÃO LOCALIZAÇÃO LOCALIZAÇÃO */
-
-    .explicacao {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 20vh;
     }
 
-    .explicacao .container .texto {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .box {
         width: 100%;
+
+        .container h2 {
+            font-size: 2.4em;
+            padding: 10px;
+            height: 40%;
+        }
+
+        .container p {
+            font-size: 1.2em;
+            height: 100%;
+        }
     }
 
-    .explicacao .container .texto h2 {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        font-size: 3em;
+    /* FOOTER FOOTER FOOTER FOOTER */
+
+    footer {
+        height: auto;
+    }
+
+    .textoContainer {
+
+        .texto {
+            width: 90%;
+        }
+
+        img {
+            display: none;
+        }
+    }
+
+    .footerBackground {
+        height: 70%;
+        clip-path: polygon(0 45%, 100% 0, 100% 100%, 0 100%);
     }
 
     .localizacao {
-        height: 10vh;
-        overflow: visible;
+        display: none;
     }
 
-    .localizacao img {
-        display: none;
-        zoom: 100%;
-        transform: 0;
-        right: 0;
+    .explicacao {
+        margin: 100px 0 100px 0;
 
+        .container {
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            height: 100%;
+        }
+
+        .texto {
+            width: 100%;
+        }
+
+        .social {
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            gap: 20px;
+        }
+
+        .boxContato {
+            justify-content: space-between;
+        }
+    }
+
+    .quemSomos {
+        height: auto;
+        padding: 30px;
+
+        .container {
+            width: 90%;
+
+        }
+
+        h2 {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .texto {
+            width: 85%;
+        }
+
+        .h2 {
+            font-size: 2em;
+        }
+
+        img {
+            display: none;
+        }
+    }
+
+    .equipe {
+
+        .boxSuperior,
+        .boxInferior {
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .box {
+            height: 50vh;
+            width: 100%;
+        }
     }
 }
