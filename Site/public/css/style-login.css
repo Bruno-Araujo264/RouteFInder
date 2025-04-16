@@ -159,3 +159,40 @@ input {
     border-radius: 8px;
   }
 }
+
+@media screen and (min-width: 300px) and (max-width: 576px) {
+
+  body {
+    background-size: auto;
+  }
+
+  .formulario {
+    justify-content: space-between;
+
+    p {
+      margin-bottom: 30px;
+    }
+  }
+  
+  .container {
+    width: 95%;
+  }
+
+  .card-login {
+    width: 100%;
+  }
+
+  .slider {
+    display: none;
+  }
+
+  .card {
+    height: 70%;
+  }
+
+  .voltar .botao {
+    margin-top: 40px;
+    margin-left: 40px;
+  }
+  
+}
