@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Metrophobic&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 
 * {
     font-family: "Nunito", sans-serif;
@@ -13,7 +14,7 @@ html {
 }
 
 header {
-    font-family: "Metrophobic", sans-serif;
+    font-family: "Roboto Flex", sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,6 +45,7 @@ nav {
     backdrop-filter: blur(8px);
     border-radius: 8px;
     border-bottom: solid 1.5px white;
+    border-right: solid 0.1px rgb(128, 128, 128);
 }
 
 .navButton {
@@ -179,22 +181,21 @@ header .container span {
 }
 
 header .cabecalho {
-    font-size: 5rem;
-    font-weight: bold;
-    line-height: 1.1;
-    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
     background: linear-gradient(45deg, rgba(214, 214, 214, 0.1) rgba(255, 255, 255, 0.726));
-    /* Fundo semi-transparente */
     backdrop-filter: blur(6px);
-    /* Efeito de desfoque */
     border-radius: 8px;
-    /* Bordas arredondadas */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* Sombra suave */
-    /* border: 1px solid rgba(255, 255, 255, 0.3); */
-    /* Borda sutil */
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    padding: 40px;
+    padding: 20px;
 }
 
 /* CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO CONTEUDO  */
@@ -290,7 +291,7 @@ header .cabecalho {
 }
 
 .box {
-    width: 20vw;
+    width: 24vw;
     height: 45vh;
     text-align: center;
     background: #FFC300;
@@ -681,7 +682,7 @@ h1 {
 }
 
 .footer2 .texto h2 {
-    font-size: 2vh;
+    font-size: 3vh;
     letter-spacing: 1px;
     color: #f1c40f;
     margin-bottom: 10px;
@@ -759,26 +760,31 @@ h1 {
 
     header {
         height: 50vh;
+        background-size: cover;
+        /* filter: blur(8px); */
+
+        .cabecalho {
+            display: none;
+        }
     }
 
     /* NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR */
     nav {
-        height: 25%;
+        height: 10vh;
         width: 80%;
     }
 
     .navButton {
         width: 100%;
-        margin: 0;
-
-        .navLogo {
-            display: none;
-        }
-        
+        margin: 0;        
         
         a {
             font-size: 1em;
             color: white;
+        }
+
+        .navLogo p:first-child {
+            border-bottom: solid 1px white;
         }
 
     } 
@@ -877,6 +883,7 @@ h1 {
 
         .container {
             width: 90%;
+
         }
 
         h2 {
@@ -911,6 +918,4 @@ h1 {
             width: 100%;
         }
     }
-
-
 }
