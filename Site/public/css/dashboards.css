@@ -617,6 +617,7 @@ body.dark .qtdCongestionamento {
     padding: 10px;
     margin-right: 10px;
     border-radius: 16px;
+    color: black;
   }
 
   .norte {
@@ -662,9 +663,6 @@ body.dark .lista .box {
   background: var(--primary-color-light);
   transition: var(--tran-04);
   box-shadow: none;
-  border: solid 1px #6e6e6e;
-}
-
-body.dark .lista .boxRegiao{
-  color: black;
+  border-right: 1px solid #5a5a5a;
+    border-bottom: 1px solid #5a5a5a;
 }
