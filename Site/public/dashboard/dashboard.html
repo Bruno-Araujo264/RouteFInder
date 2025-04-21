@@ -170,7 +170,36 @@
 
                 <div class="coluna3">
                     <div class="topCongestionado">
-                        <div class="container"></div>
+                        <h2>Top 5 Trechos Congestionado</h2>
+                        <div class="lista">
+                            <div class="container">
+                                <div class="box">
+                                    <p>Tralalero Tralala</p>
+                                    <div class="boxRegiao norte">Norte</div>
+                                </div>
+                                <div class="box">
+                                    <p>Bombardino Crocodilo</p>
+                                    <div class="boxRegiao oeste">Oeste</div>
+                                </div>
+                                <div class="box">
+                                    <p>Tung Tung Tung Tung Sahur</p>
+                                    <div class="boxRegiao sul">Sul</div>
+                                </div>
+                                <div class="box">
+                                    <p>Brr Brr Patapim</p>
+                                    <div class="boxRegiao leste">Leste</div>
+                                </div>
+                                <div class="box">
+                                    <p>Trulimero Trulichina</p>
+                                    <div class="boxRegiao centro">Centro</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grafico">
+                            <div class="container">
+                                <canvas id="canvas_grafico_inferior3"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -188,8 +217,8 @@
             data: {
                 // labels: ['N', 'O', 'S', 'L', 'C'],
                 datasets: [{
-                    data: [10, 20, 30],
-                    backgroundColor: ['#78A55A', '#FFE862', '#E16A54'],
+                    data: [10, 20, 30, 40, 50],
+                    backgroundColor: ['#78A55A', '#FFE862', '#E16A54', '#9EC6F3', '#E5D9F2'],
                     borderWidth: 1,
                     borderColor: 'white',
                 }]
@@ -240,6 +269,7 @@
                         position: 'top'
                     },
                     title: {
+                        color: 'orange',
                         display: true,
                         text: 'Quantidade de congestionamentos por região'
                     }
@@ -257,11 +287,7 @@
                     label: 'My Dataset',
                     data: [11, 16, 7, 14, 9],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(54, 162, 235, 0.6)',
-                        'rgba(255, 206, 86, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)'
+                        '#78A55A', '#FFE862', '#E16A54', '#9EC6F3', '#E5D9F2'
                     ]
                 }]
             },
@@ -279,6 +305,43 @@
             }
         });
 
+        const graficoLinha = canvas_grafico_inferior3;
+        new Chart(graficoLinha, {
+            type: 'line',
+
+            data: {
+                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                backgroundColor: ['#78A55A', '#FFE862', '#E16A54', '#9EC6F3', '#E5D9F2'],
+                datasets: [{
+                    label: 'Tietê',
+                    data: [20, 82, 80, 45, 80, 83],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Paulista',
+                    data: [30, 69, 28, 25, 82, 23],
+                    borderWidth: 1
+
+                }]
+
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Evolução do transito'
+                    }
+                }
+            }
+        });
+
+
+
         const pasta = document.getElementById("pasta");
 
         const regioes = {
@@ -289,15 +352,12 @@
             idCentro: "#F9A825",
         };
 
-        const border = {
-
-        }
-
         Object.entries(regioes).forEach(([id, cor]) => {
             const div = document.getElementById(id);
             if (div) {
                 div.addEventListener("click", () => {
                     pasta.style.backgroundColor = cor;
+                    pasta.style.transition = "background-color 0.2s ease-out";
 
                     console.log(`Eu cliquei em ${id.replace("id", "")}`);
                 });
