@@ -134,27 +134,30 @@
                             <div id="idLeste" class="leste filtro"></div>
                             <div id="idCentro" class="centro filtro"></div>
                         </div>
-                        <p>Ajustar as cores, posição e tamanho</p> <br>
+                        <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
                         <div class="pasta" id="pasta">
-                           
-                            <canvas id="canvas_grafico_superior"></canvas> 
+
+                            <canvas id="canvas_grafico_superior"></canvas>
                         </div>
                     </div>
 
                     <div class="tabelaPico">
                         <div class="container">
-                            
+                            <canvas id="canvas_grafico_inferior"></canvas>
                         </div>
                     </div>
                 </div>
 
                 <div class="coluna2">
                     <div class="horario">
+                        <h2>Melhor e Pior Horário</h2>
                         <div class="container">
                             <div class="horas box">
                                 <p>Melhor: 00:00</p>
                             </div>
-                            <div class="horas box"></div>
+                            <div class="horas box">
+                                <p>Pior: 23:59</p>
+                            </div>
                         </div>
                     </div>
 
@@ -183,11 +186,12 @@
         const gaugeChart = new Chart(velocimetro, {
             type: 'doughnut',
             data: {
-                labels: ['N', 'O', 'S', 'L', 'C'],
+                // labels: ['N', 'O', 'S', 'L', 'C'],
                 datasets: [{
                     data: [10, 20, 30],
-                    backgroundColor: ['green', 'yellow', 'red'],
-                    borderWidth: 0
+                    backgroundColor: ['#78A55A', '#FFE862', '#E16A54'],
+                    borderWidth: 1,
+                    borderColor: 'white',
                 }]
             },
             options: {
@@ -197,10 +201,48 @@
                 plugins: {
                     tooltip: { enabled: false },
                     legend: { display: true },
-                    // title: {
-                    //     display: true,
-                    //     text: 'Nível de congestionamento geral'
-                    // }
+                    title: {
+                        display: true,
+                        text: 'Nível de congestionamento geral',
+                        color: 'white',
+                        font: {
+                            size: 20,
+                            family: 'Verdana'
+                        }
+                    }
+                }
+            }
+        });
+
+        const graficoBarra = canvas_grafico_inferior;
+        const barChart = new Chart(graficoBarra, {
+            type: 'bar',
+            data: {
+                labels: ['Norte', 'Sul', 'Leste', 'Oeste', 'Centro'],
+                datasets: [{
+                    label: ['Semana'],
+                    data: [12, 19, 3, 5, 8],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Quantidade de congestionamentos por região'
+                    }
                 }
             }
         });
@@ -239,21 +281,26 @@
 
         const pasta = document.getElementById("pasta");
 
-const regioes = {
-  idNorte: "#DDFF8D",
-  idOeste: "#FFE862",
-  idSul: "#FFD54F",
-  idLeste: "#FBC02D",
-  idCentro: "#F9A825",
-};
+        const regioes = {
+            idNorte: "#DDFF8D",
+            idOeste: "#FFE862",
+            idSul: "#FFD54F",
+            idLeste: "#FBC02D",
+            idCentro: "#F9A825",
+        };
 
-Object.entries(regioes).forEach(([id, cor]) => {
-  const div = document.getElementById(id);
-  if (div) {
-    div.addEventListener("click", () => {
-      pasta.style.backgroundColor = cor;
-      console.log(`Eu cliquei em ${id.replace("id", "")}`);
-    });
-  }
-});
+        const border = {
+
+        }
+
+        Object.entries(regioes).forEach(([id, cor]) => {
+            const div = document.getElementById(id);
+            if (div) {
+                div.addEventListener("click", () => {
+                    pasta.style.backgroundColor = cor;
+
+                    console.log(`Eu cliquei em ${id.replace("id", "")}`);
+                });
+            }
+        });
     </script>

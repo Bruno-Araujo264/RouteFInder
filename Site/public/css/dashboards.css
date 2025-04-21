@@ -359,7 +359,7 @@ body.dark .switch::before {
     height: 7%;
     margin: auto;
     margin-top: 20px;
-    margin-left: 175px;
+    margin-left: 178px;
     position: relative;
 
     .filtro {
@@ -396,12 +396,12 @@ body.dark .switch::before {
   .pasta {
     display: flex;
     justify-content: center;
-    align-items: centers;
     width: 90%;
     height: 80%;
     background: #F9A825;
     border-radius: 16px 0 16px 16px;
     margin: auto;
+    border-top: solid 1px #cccccc;
     /* margin-top: 30px; */
   }
 
@@ -417,6 +417,10 @@ body.dark .switch::before {
       /* background: #000; */
     }
   }
+}
+
+#canvas_grafico_superior {
+  margin-top: 25px;
 }
 
 .coluna2 {
@@ -447,14 +451,30 @@ body.dark .switch::before {
     }
 
     .container .box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
       height: 35%;
-      border-right: 1px solid rgb(199, 199, 199);
-      border-bottom: 1px solid rgb(182, 182, 182);
+      border-right: 1px solid #c7c7c7;
+      border-bottom: 1px solid #c7c7c7;
       border-radius: 16px;
-      box-shadow: 4px 6px 10px 0 rgb(192, 192, 192);
+      box-shadow: 4px 6px 10px 0 #c0c0c0;
       /* background: red; */
 
+    }
+
+    h2 {
+      position: absolute;
+      padding: 3px;
+      background: white;
+      font-size: 15px;
+      font-weight: normal;
+      border: solid 1px #cfcfcf;
+      border-radius: 6px;
+      top: 5px;
+      left: 470px;
+    
     }
   }
 
