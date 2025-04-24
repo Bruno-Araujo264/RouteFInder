@@ -57,7 +57,7 @@
                     </div>
                 </div>
 
-                <i class='bx bx-chevron-right toggle'></i>
+                <i class='bx bx-chevron-right toggle' style="cursor: pointer"></i>
             </header>
 
             <div class="menu-bar">
@@ -81,8 +81,8 @@
                         </li>
                         <li class="nav-list">
                             <a href="#">
-                                <i class='bx bx-bar-chart-alt-2 icon'></i>
-                                <span class="text nav-text">Revenue</span>
+                                <i class='bx bx-search-alt icon'></i>
+                                <span class="text nav-text">Consultar</span>
                             </a>
                         </li>
                         <li class="nav-list">
@@ -136,7 +136,9 @@
                         </div>
                         <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
                         <div class="pasta" id="pasta">
-
+                            <div class="circulo-container">
+                                <div class="circulo"></div>
+                            </div>
                             <canvas id="canvas_grafico_superior"></canvas>
                         </div>
                     </div>
@@ -150,8 +152,8 @@
 
                 <div class="coluna2">
                     <div class="horario">
-                        <h2>Melhor e Pior Horário</h2>
                         <div class="container">
+                            <h2>Melhor e Pior Horário</h2>
                             <div class="horas box">
                                 <p>Melhor: 00:00</p>
                             </div>
@@ -235,8 +237,8 @@
                         text: 'Nível de congestionamento geral',
                         color: 'white',
                         font: {
-                            size: 20,
-                            family: 'Verdana'
+                            family: 'Afacad',
+                            size: 25
                         }
                     }
                 }
@@ -269,9 +271,13 @@
                         position: 'top'
                     },
                     title: {
-                        color: 'orange',
+                        color: 'black',
                         display: true,
-                        text: 'Quantidade de congestionamentos por região'
+                        text: 'Quantidade de congestionamentos por região',
+                        font: {
+                            family: 'Afacad',
+                            size: 20 // Aumente o valor para o tamanho desejado
+                        },
                     }
                 }
             }
@@ -279,7 +285,7 @@
 
 
         const graficoPolarArea = canvas_grafico_inferior2;
-        new Chart(graficoPolarArea, {
+        const polarAreaChart = new Chart(graficoPolarArea, {
             type: 'polarArea',
             data: {
                 labels: ['Norte', 'Sul', 'Leste', 'Oeste', 'Centro'],
@@ -292,38 +298,54 @@
                 }]
             },
             options: {
-                responsive: true,
                 plugins: {
-                    legend: {
-                        position: 'right'
-                    },
                     title: {
                         display: true,
-                        text: 'Nivel de congestionamentos por região'
+                        color: 'black', // Cor padrão
+                        text: 'Nível de congestionamentos por região',
+                        font: {
+                            family: 'Afacad',
+                            size: 20
+                        },
+                        padding: {
+                            top: 0,
+                            bottom: 20
+                        }
+                    }
+                },
+                scales: {
+                    r: { // Para gráficos polarArea
+                        grid: {
+                            color: 'gray' // Cor padrão das linhas de grade
+                        },
+                        angleLines: {
+                            color: 'gray' // Cor padrão das linhas angulares
+                        },
+                        ticks: {
+                            color: 'black' // Cor padrão dos rótulos
+                        }
                     }
                 }
             }
         });
 
-        const graficoLinha = canvas_grafico_inferior3;
-        new Chart(graficoLinha, {
+        const graficoLinha = new Chart(canvas_grafico_inferior3, {
             type: 'line',
-
             data: {
                 labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
                 backgroundColor: ['#78A55A', '#FFE862', '#E16A54', '#9EC6F3', '#E5D9F2'],
-                datasets: [{
-                    label: 'Tietê',
-                    data: [20, 82, 80, 45, 80, 83],
-                    borderWidth: 1
-                },
-                {
-                    label: 'Paulista',
-                    data: [30, 69, 28, 25, 82, 23],
-                    borderWidth: 1
-
-                }]
-
+                datasets: [
+                    {
+                        label: 'Tietê',
+                        data: [20, 82, 80, 45, 80, 83],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Paulista',
+                        data: [30, 69, 28, 25, 82, 23],
+                        borderWidth: 1
+                    }
+                ]
             },
             options: {
                 scales: {
@@ -333,14 +355,21 @@
                 },
                 plugins: {
                     title: {
+                        color: 'black',
                         display: true,
-                        text: 'Evolução do transito'
+                        text: 'Evolução do transito',
+                        font: {
+                            family: 'Afacad',
+                            size: 20 // Aumente o valor para o tamanho desejado
+                        },
+                        padding: {
+                            top: 0,
+                            bottom: 30
+                        }
                     }
                 }
             }
         });
-
-
 
         const pasta = document.getElementById("pasta");
 
@@ -363,4 +392,42 @@
                 });
             }
         });
+
+        function atualizarCoresDoGrafico() {
+            const isDarkMode = document.body.classList.contains('dark');
+
+            // Atualiza o gráfico Polar Area
+            polarAreaChart.options.plugins.title.color = isDarkMode ? 'white' : 'black'; // Título
+            polarAreaChart.options.plugins.legend.labels.color = isDarkMode ? 'white' : 'gray'; // Legendas
+            polarAreaChart.options.scales.r.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos
+            polarAreaChart.options.scales.r.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
+            polarAreaChart.update(); // Atualiza o gráfico
+
+            // Atualiza o gráfico de barras
+            barChart.options.plugins.title.color = isDarkMode ? 'white' : 'black'; // Título
+            barChart.options.plugins.legend.labels.color = isDarkMode ? 'white' : 'gray'; // Legendas
+            barChart.options.scales.y.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo Y
+            barChart.options.scales.y.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
+            barChart.options.scales.x.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo X
+            barChart.options.scales.x.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
+            barChart.update(); // Atualiza o gráfico
+
+            // Atualiza o gráfico de linhas (Evolução do trânsito)
+            graficoLinha.options.plugins.title.color = isDarkMode ? 'white' : 'black'; // Título
+            graficoLinha.options.plugins.legend.labels.color = isDarkMode ? 'white' : 'gray'; // Legendas
+            graficoLinha.options.scales.y.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo Y
+            graficoLinha.options.scales.y.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
+            graficoLinha.options.scales.x.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo X
+            graficoLinha.options.scales.x.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
+            graficoLinha.update(); // Atualiza o gráfico
+        }
+
+        // Detecta a troca de tema
+        const toggleSwitch = document.querySelector('.toggle-switch');
+        toggleSwitch.addEventListener('click', () => {
+            atualizarCoresDoGrafico();
+        });
+
+        // Atualiza as cores ao carregar a página
+        atualizarCoresDoGrafico();
     </script>
