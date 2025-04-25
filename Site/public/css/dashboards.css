@@ -169,7 +169,7 @@ body {
 
 .sidebar header .toggle {
   position: absolute;
-  top: 50%;
+  top: 49%;
   right: -25px;
   transform: translateY(-50%) rotate(180deg);
   height: 25px;
@@ -189,7 +189,8 @@ body {
 }
 
 body.dark .sidebar header .toggle {
-  color: var(--text-color);
+  color: black;
+  background: white;
 }
 
 .sidebar .search-box {
@@ -324,8 +325,8 @@ body.dark .switch::before {
 .home {
   position: relative;
   height: 100vh;
-  left: 250px;
-  width: calc(100% - 250px);
+  left: 88px;
+  width: calc(100% - 88px);
   background: var(--body-color);
   transition: var(--tran-05);
 }
@@ -345,11 +346,6 @@ body.dark .switch::before {
 /* DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD*/
 /* DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD*/
 /* DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD*/
-
-.home {
-  height: 100%;
-  width: 100%;
-}
 
 .container {
   display: flex;
