@@ -219,7 +219,7 @@
             data: {
                 // labels: ['N', 'O', 'S', 'L', 'C'],
                 datasets: [{
-                    data: [10, 20, 30],
+                    data: [10, 15, 10],
                     backgroundColor: ['#78A55A', '#FFE862', '#E16A54'],
                     borderWidth: 1,
                     borderColor: 'white',
@@ -249,13 +249,13 @@
         const barChart = new Chart(graficoBarra, {
             type: 'bar',
             data: {
-                labels: ['Norte', 'Sul', 'Leste', 'Oeste', 'Centro'],
+                labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
                 datasets: [{
                     label: ['Semana'],
                     data: [12, 19, 3, 5, 8],
-                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
+                    backgroundColor: ['#e27070', '#FFE862', '#78A55A', '#9EC6F3', '#E5D9F2'],
+                    borderColor: 'black',
+                    borderWidth: 0.5
                 }]
             },
             options: {
@@ -288,7 +288,7 @@
         const polarAreaChart = new Chart(graficoPolarArea, {
             type: 'polarArea',
             data: {
-                labels: ['Norte', 'Sul', 'Leste', 'Oeste', 'Centro'],
+                labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
                 datasets: [{
                     label: 'My Dataset',
                     data: [11, 16, 7, 14, 9],
@@ -410,6 +410,7 @@
             barChart.options.scales.y.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
             barChart.options.scales.x.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo X
             barChart.options.scales.x.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
+            // barChart.data.datasets[0].borderColor = isDarkMode ? 'white' : 'black'; // Cor da borda do gráfico
             barChart.update(); // Atualiza o gráfico
 
             // Atualiza o gráfico de linhas (Evolução do trânsito)

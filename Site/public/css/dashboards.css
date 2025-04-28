@@ -499,8 +499,11 @@ body.dark .tabelaPico {
       border-radius: 16px;
       box-shadow: 4px 6px 10px 0 #c0c0c0;
       transition: var(--tran-04);
-      /* background: red; */
+      background: #729762a8;
+    }
 
+    .box:nth-child(3) {
+      background: #e16954c0;
     }
 
     h2 {
@@ -545,7 +548,7 @@ body.dark .horario {
 }
 
 body.dark .horario .container .box {
-  background: var(--primary-color-light);
+  /* background: var(--primary-color-light); */
   transition: var(--tran-04);
   box-shadow: none;
   border-right: 1px solid #5a5a5a;
@@ -648,7 +651,7 @@ body.dark .qtdCongestionamento {
   }
 
   .norte {
-    background: #E16A54;
+    background: #e27070;
   }
   
   .oeste {
@@ -683,7 +686,7 @@ body.dark .qtdCongestionamento {
 body.dark .topCongestionado {
   background: var(--primary-color);
   transition: var(--tran-04);
-  color: var(--text-color);
+  color: white;
 }
 
 body.dark .topCongestionado h2 {
