@@ -128,16 +128,18 @@
                 <div class="coluna1">
                     <div class="nivelCongestionamento">
                         <div class="subpasta">
-                            <div id="idNorte" class="norte filtro"></div>
-                            <div id="idOeste" class="oeste filtro"></div>
-                            <div id="idSul" class="sul filtro"></div>
-                            <div id="idLeste" class="leste filtro"></div>
-                            <div id="idCentro" class="centro filtro"></div>
+                            <div id="idNorte" class="norte filtro"><p>N</p></div>
+                            <div id="idOeste" class="oeste filtro"><p>O</p></div>
+                            <div id="idSul" class="sul filtro"><p>S</p></div>
+                            <div id="idLeste" class="leste filtro"><p>L</p></div>
+                            <div id="idCentro" class="centro filtro"><p>C</p></div>
                         </div>
                         <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
                         <div class="pasta" id="pasta">
                             <div class="circulo-container">
-                                <div class="circulo"></div>
+                                <div class="circulo">
+                                    <p id="id_regiao">Centro</p>
+                                </div>
                             </div>
                             <canvas id="canvas_grafico_superior"></canvas>
                         </div>
@@ -253,9 +255,9 @@
                 datasets: [{
                     label: ['Semana'],
                     data: [12, 19, 3, 5, 8],
-                    backgroundColor: ['#e27070', '#FFE862', '#78A55A', '#9EC6F3', '#E5D9F2'],
-                    borderColor: 'black',
-                    borderWidth: 0.5
+                    backgroundColor: ['#e27070', '#FFE862', '#78A55A', '#9EC6F3', '#C599B6'],
+                    // borderColor: 'black',
+                    borderWidth: 2
                 }]
             },
             options: {
@@ -293,8 +295,9 @@
                     label: 'My Dataset',
                     data: [11, 16, 7, 14, 9],
                     backgroundColor: [
-                        '#78A55A', '#FFE862', '#E16A54', '#9EC6F3', '#E5D9F2'
-                    ]
+                        '#78A55A', '#FFE862', '#E16A54', '#9EC6F3', '#C599B6'
+                    ],
+                    borderWidth: 2
                 }]
             },
             options: {
@@ -374,12 +377,20 @@
         const pasta = document.getElementById("pasta");
 
         const regioes = {
-            idNorte: "#DDFF8D",
-            idOeste: "#FFE862",
-            idSul: "#FFD54F",
-            idLeste: "#FBC02D",
-            idCentro: "#F9A825",
+            idNorte: "#fddb19",
+            idOeste: "#ffc400",
+            idSul: "#ffb411",
+            idLeste: "#fc940c",
+            idCentro: "#ff7b00",
         };
+
+        const p_regiao = [
+            "Norte",
+            "Oeste",
+            "Sul",
+            "Leste",
+            "Centro"
+        ];
 
         Object.entries(regioes).forEach(([id, cor]) => {
             const div = document.getElementById(id);
@@ -387,6 +398,7 @@
                 div.addEventListener("click", () => {
                     pasta.style.backgroundColor = cor;
                     pasta.style.transition = "background-color 0.2s ease-out";
+                    id_regiao.innerHTML = p_regiao[Object.keys(regioes).indexOf(id)];
 
                     console.log(`Eu cliquei em ${id.replace("id", "")}`);
                 });
@@ -401,6 +413,7 @@
             polarAreaChart.options.plugins.legend.labels.color = isDarkMode ? 'white' : 'gray'; // Legendas
             polarAreaChart.options.scales.r.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos
             polarAreaChart.options.scales.r.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
+            polarAreaChart.data.datasets[0].borderColor = isDarkMode ? 'white' : 'black'; // Branco no tema escuro, preto no tema claro
             polarAreaChart.update(); // Atualiza o gráfico
 
             // Atualiza o gráfico de barras
@@ -410,7 +423,8 @@
             barChart.options.scales.y.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
             barChart.options.scales.x.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo X
             barChart.options.scales.x.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
-            // barChart.data.datasets[0].borderColor = isDarkMode ? 'white' : 'black'; // Cor da borda do gráfico
+            barChart.data.datasets[0].borderColor = isDarkMode ? 'white' : 'black'; // Branco no tema escuro, preto no tema claro
+            // barChart.data.datasets[0].borderWidth = isDarkMode ? 2 : 1; // Branco no tema escuro, preto no tema claro
             barChart.update(); // Atualiza o gráfico
 
             // Atualiza o gráfico de linhas (Evolução do trânsito)

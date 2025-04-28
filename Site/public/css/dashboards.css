@@ -36,23 +36,23 @@ body {
 }
 
 .norte {
-  background: #DDFF8D;
+  background: #fddb19;
 }
 
 .oeste {
-  background: #FFE862;
+  background: #ffc400;
 }
 
 .sul {
-  background: #FFD54F;
+  background: #ffb411;
 }
 
 .leste {
-  background: #FBC02D;
+  background: #fc940c;
 }
 
 .centro {
-  background: #F9A825;
+  background: #ff7b00;
 }
 
 body.dark {
@@ -370,7 +370,7 @@ body.dark .switch::before {
     background-color: var(--sidebar-color);
     border: solid 1px #cfcfcf;
     border-radius: 16px;
-    transition: var(--tran-04);
+    transition: var(--tran-03);
     z-index: 10;
 
   }
@@ -385,6 +385,8 @@ body.dark .switch::before {
     position: relative;
 
     .filtro {
+      display: flex;
+      justify-content: center;
       position: relative;
       height: 100%;
       width: 40%;
@@ -392,6 +394,14 @@ body.dark .switch::before {
       z-index: 1;
       margin-left: -20px;
       /* sobreposição */
+    }
+
+    p {
+      margin-right: 15px;
+      margin-top: 1px;
+      /* text-decoration: underline; */
+      font-weight: bold;
+      transition: var(--tran-02);
     }
   }
 
@@ -414,7 +424,7 @@ body.dark .switch::before {
     background: var(--sidebar-color);
     border: solid 1px #cfcfcf;
     border-radius: 16px;
-    transition: var(--tran-04); 
+    transition: var(--tran-03); 
 
     .container {
       /* background: #000; */
@@ -431,11 +441,26 @@ body.dark .switch::before {
 }
 
 .circulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   background: white;
   border-radius: 100%;
   width: 190px;
   height: 190px;
+  transition: var(--tran-03);
+}
+
+.circulo p {
+  margin-top: 30px;
+  font-size: 30px;
+  transition: var(--tran-02);
+}
+
+body.dark .circulo {
+  background-color: var(--primary-color);
+  transition: var(--tran-03);
 }
 
 #canvas_grafico_superior {
@@ -443,21 +468,26 @@ body.dark .switch::before {
 }
 
 #canvas_grafico_inferior {
-  transition: var(--tran-04);
+  transition: var(--tran-03);
 }
 
 body.dark .nivelCongestionamento {
   background-color: var(--primary-color);
-  transition: var(--tran-04);
+  transition: var(--tran-03);
 }
 
 body.dark .tabelaPico {
   background: var(--primary-color);
-  transition: var(--tran-04);
+  transition: var(--tran-03);
 }
 
 #canvas_grafico_superior {
   margin-top: 25px;
+}
+
+body.dark p {
+  color: var(--text-color);
+  transition: var(--tran-02);
 }
 
 .coluna2 {
@@ -476,7 +506,7 @@ body.dark .tabelaPico {
     background: var(--sidebar-color);
     border: solid 1px #cfcfcf;
     border-radius: 16px;
-    transition: var(--tran-04);
+    transition: var(--tran-03);
 
     .container {
       display: flex;
@@ -498,7 +528,7 @@ body.dark .tabelaPico {
       border-bottom: 1px solid #c7c7c7;
       border-radius: 16px;
       box-shadow: 4px 6px 10px 0 #c0c0c0;
-      transition: var(--tran-04);
+      transition: var(--tran-03);
       background: #729762a8;
     }
 
@@ -516,7 +546,7 @@ body.dark .tabelaPico {
     }
 
     p {
-      transition: var(--tran-04);
+      transition: var(--tran-03);
     }
   }
 
@@ -529,7 +559,7 @@ body.dark .tabelaPico {
     background: var(--sidebar-color);
     border: solid 1px #cfcfcf;
     border-radius: 16px;
-    transition: var(--tran-04);
+    transition: var(--tran-03);
 
     .container {
       display: flex;
@@ -544,12 +574,12 @@ body.dark .tabelaPico {
 
 body.dark .horario {
   background: var(--primary-color);
-  transition: var(--tran-04);
+  transition: var(--tran-03);
 }
 
 body.dark .horario .container .box {
   /* background: var(--primary-color-light); */
-  transition: var(--tran-04);
+  transition: var(--tran-03);
   box-shadow: none;
   border-right: 1px solid #5a5a5a;
   border-bottom: 1px solid #5a5a5a;
@@ -557,17 +587,21 @@ body.dark .horario .container .box {
 
 body.dark .horario p {
   color: var(--text-color);
-  transition: var(--tran-04);
+  transition: var(--tran-03);
 }
 
 body.dark .horario h2 {
   color: var(--text-color);
-  transition: var(--tran-04);
+  transition: var(--tran-03);
 }
 
 body.dark .qtdCongestionamento {
   background: var(--primary-color);
-  transition: var(--tran-04);
+  transition: var(--tran-03);
+}
+
+#canvas_grafico_inferior2 {
+  transition: var(--tran-03);
 }
 
 .coluna3 {
@@ -588,7 +622,7 @@ body.dark .qtdCongestionamento {
     background: var(--sidebar-color);
     border: solid 1px #cfcfcf;
     border-radius: 16px;
-    transition: var(--tran-04);
+    transition: var(--tran-03);
   }
 
   h2 {
@@ -632,7 +666,7 @@ body.dark .qtdCongestionamento {
     border-radius: 16px;
     box-shadow: 4px 6px 10px 0 #c0c0c0;
     background: var(--sidebar-color);
-    transition: var(--tran-04);
+    transition: var(--tran-03);
   }
 
   p {
@@ -667,7 +701,7 @@ body.dark .qtdCongestionamento {
   }
   
   .centro {
-    background: #E5D9F2;
+    background: #C599B6;
   }
 
   .grafico {
@@ -685,19 +719,31 @@ body.dark .qtdCongestionamento {
 
 body.dark .topCongestionado {
   background: var(--primary-color);
-  transition: var(--tran-04);
+  transition: var(--tran-03);
   color: white;
 }
 
 body.dark .topCongestionado h2 {
   color: white;
-  transition: var(--tran-04);
+  transition: var(--tran-03);
 }
 
 body.dark .lista .box {
   background: var(--primary-color-light);
-  transition: var(--tran-04);
+  transition: var(--tran-03);
   box-shadow: none;
   border-right: 1px solid #5a5a5a;
   border-bottom: 1px solid #5a5a5a;
+}
+
+body.dark .boxRegiao {
+  font-weight: 600;
+  font-size: 24px;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  transition: var(--tran-01);
+}
+
+#canvas_grafico_inferior3 {
+  transition: var(--tran-03);
 }
