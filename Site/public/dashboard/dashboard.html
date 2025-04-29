@@ -42,13 +42,33 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     </head>
 
+    <style>
+        .sidebar .menu-links li:first-child {
+        background: var(--primary-color);
+        border-radius: 6px;
+        transition: var(--tran-03);
+    }
+
+    body.dark .sidebar li:first-child {
+        background: var(--primary-color);
+        border-radius: 6px;
+        transition: var(--tran-03);
+    }
+
+
+    .sidebar li:first-child a .text,
+    .sidebar li:first-child a .icon {
+        color: white;
+    }
+    </style>
+
     <body>
 
         <nav class="sidebar close">
             <header>
                 <div class="image-text">
                     <span class="image">
-                        <img src="csgoskins-avatar (1).jpg" alt="logo">
+                        <i class="fa fa-user" style="font-size:24px"></i>
                     </span>
 
                     <div class="text header-text">
@@ -79,8 +99,8 @@
                                 <span class="text nav-text">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-list">
-                            <a href="#">
+                        <li class="nav-list"">
+                            <a href="mural.html">
                                 <i class='bx bx-search-alt icon'></i>
                                 <span class="text nav-text">Consultar</span>
                             </a>
@@ -102,7 +122,7 @@
 
                 <div class="bottom-content">
                     <li class="">
-                        <a href="#">
+                        <a href="../index.html">
                             <i class="fa fa-sign-out icon"></i>
                             <span class="text nav-text">Logout</span>
                         </a>

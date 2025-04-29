@@ -19,7 +19,7 @@ body {
 
   --body-color: #E4E9F7;
   --sidebar-color: #FFF;
-  --primary-color: #1F88FF;
+  --primary-color: #E8B86D;
   --primary-color-light: #F6F5FF;
   --toggle-color: #DDD;
   --text-color: #707070;
@@ -224,6 +224,7 @@ body.dark .sidebar header .toggle {
   transition: var(--tran-04);
 }
 
+
 .sidebar li a:hover {
   background: var(--primary-color);
 }
@@ -236,6 +237,7 @@ body.dark .sidebar header .toggle {
 body.dark .sidebar li a:hover .icon,
 body.dark .sidebar li a:hover .text {
   color: var(--text-color);
+  /* background: #fff; */
 }
 
 .sidebar .menu-bar {
@@ -289,7 +291,7 @@ body.dark .menu-bar .mode i.moon {
   min-width: 60px;
   cursor: pointer;
   border-radius: 6px;
-  background: var(--primary-color-light);
+  /* background: var(--primary-color-light); */
   transition: var(--tran-05);
 
 }
@@ -746,5 +748,14 @@ body.dark .boxRegiao {
 }
 
 #canvas_grafico_inferior3 {
+  transition: var(--tran-03);
+}
+
+body.dark i {
+  color: var(--text-color);
+  transition: var(--tran-03);
+}
+
+i {
   transition: var(--tran-03);
 }
