@@ -682,6 +682,7 @@ body.dark .qtdCongestionamento {
     margin-right: 10px;
     border-radius: 16px;
     color: black;
+    transition: var(--tran-01);
   }
 
   .norte {
