@@ -426,7 +426,7 @@ body.dark .switch::before {
     background: var(--sidebar-color);
     border: solid 1px #cfcfcf;
     border-radius: 16px;
-    transition: var(--tran-03); 
+    transition: var(--tran-03);
 
     .container {
       /* background: #000; */
@@ -436,10 +436,14 @@ body.dark .switch::before {
 
 .circulo-container {
   position: absolute;
-  width: 190px; /* Mesma largura do círculo */
-  height: 120px; /* Aumente a altura para diminuir o corte */
-  overflow: hidden; /* Esconde a parte excedente */
-  top: 180px; /* Ajuste a posição conforme necessário */
+  width: 190px;
+  /* Mesma largura do círculo */
+  height: 120px;
+  /* Aumente a altura para diminuir o corte */
+  overflow: hidden;
+  /* Esconde a parte excedente */
+  top: 180px;
+  /* Ajuste a posição conforme necessário */
 }
 
 .circulo {
@@ -633,7 +637,7 @@ body.dark .qtdCongestionamento {
     width: 100%;
     font-size: 20px;
     font-weight: bold;
-    margin-top:15px;
+    margin-top: 15px;
     margin-bottom: 5px;
   }
 
@@ -690,19 +694,19 @@ body.dark .qtdCongestionamento {
   .norte {
     background: #e27070;
   }
-  
+
   .oeste {
     background: #FFE862;
   }
-  
+
   .sul {
     background: #78A55A;
   }
-  
+
   .leste {
     background: #9EC6F3;
   }
-  
+
   .centro {
     background: #C599B6;
   }
@@ -714,7 +718,8 @@ body.dark .qtdCongestionamento {
       align-items: center;
       width: 100%;
       height: 90%;
-      margin-top: 20px;;
+      margin-top: 20px;
+      ;
       /* background: rgba(225, 105, 84, 0.25); */
     }
   }

@@ -10,21 +10,18 @@
     <title>AquaTech | Dashboards</title>
 
 
-    <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="stylesheet" href="./../css/mural.css">
+
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-
-    <!-- scripts do Chart.js - 2022-1 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <!--FONT AWESOME-->
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <style>
@@ -50,429 +47,429 @@
 <!-- <body onload=" atualizarFeed()"> -->
 
 <body>
-    <!DOCTYPE html>
-    <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sidebar Menu</title>
-        <link rel="stylesheet" href="style.css">
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <i class="fa fa-user" style="font-size:24px"></i>
+                </span>
 
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    </head>
-
-    <body>
-
-        <nav class="sidebar close">
-            <header>
-                <div class="image-text">
-                    <span class="image">
-                        <i class="fa fa-user" style="font-size:24px"></i>
-                    </span>
-
-                    <div class="text header-text">
-                        <span class="name">Route Finder</span>
-                        <span class="profession">#Usuário</span>
-                    </div>
+                <div class="text header-text">
+                    <span class="name">Route Finder</span>
+                    <span class="profession">#Usuário</span>
                 </div>
+            </div>
 
-                <i class='bx bx-chevron-right toggle' style="cursor: pointer"></i>
-            </header>
+            <i class='bx bx-chevron-right toggle' style="cursor: pointer"></i>
+        </header>
 
-            <div class="menu-bar">
-                <div class="menu">
-                    <!-- <li class="search-box">
+        <div class="menu-bar">
+            <div class="menu">
+                <!-- <li class="search-box">
                         <i class='bx bx-search-alt icon'></i>
                         <input type="text" placeholder="Search...">
                 </li> -->
-                    <ul class="menu-links">
-                        <!-- <li class="nav-list">
+                <ul class="menu-links">
+                    <!-- <li class="nav-list">
                         <a href="#">
                             <i class='bx bxs-user icon'></i>
                             <span class="text nav-text">Olá, FrizzaTech</span>
                         </a>
                     </li> -->
-                        <li class="nav-list">
-                            <a href="dashboard.html">
-                                <i class='bx bx-home-alt icon'></i>
-                                <span class="text nav-text">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="nav-list">
-                            <a>
-                                <i class='bx bx-search-alt icon'></i>
-                                <span class="text nav-text">Consultar</span>
-                            </a>
-                        </li>
-                        <li class="nav-list">
-                            <a href="#">
-                                <i class='bx bx-bell icon'></i>
-                                <span class="text nav-text">Notification</span>
-                            </a>
-                        </li>
-                        <!-- <li class="nav-list">
+                    <li class="nav-list">
+                        <a href="dashboard.html">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-list">
+                        <a>
+                            <i class='bx bx-search-alt icon'></i>
+                            <span class="text nav-text">Consultar</span>
+                        </a>
+                    </li>
+                    <li class="nav-list">
+                        <a href="#">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Notification</span>
+                        </a>
+                    </li>
+                    <!-- <li class="nav-list">
                             <a href="#">
                                 <i class='bx bx-pie-chart-alt icon'></i>
                                 <span class="text nav-text">Analytics</span>
                             </a>
                         </li> -->
-                    </ul>
-                </div>
-
-                <div class="bottom-content">
-                    <li class="">
-                        <a href="../index.html">
-                            <i class="fa fa-sign-out icon"></i>
-                            <span class="text nav-text">Logout</span>
-                        </a>
-                    </li>
-                    <li class="mode">
-                        <div class="moon-sun">
-                            <i class="bx bx-moon icon moon"></i>
-                            <i class="bx bx-sun icon sun"></i>
-                        </div>
-                        <span class="mode-text text">Dark Mode</span>
-
-                        <div class="toggle-switch">
-                            <span class="switch"></span>
-                        </div>
-                    </li>
-                </div>
+                </ul>
             </div>
-        </nav>
 
-        <section class="home">
-            <div class="container">
+            <div class="bottom-content">
+                <li class="">
+                    <a href="../index.html">
+                        <i class="fa fa-sign-out icon"></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+                <li class="mode">
+                    <div class="moon-sun">
+                        <i class="bx bx-moon icon moon"></i>
+                        <i class="bx bx-sun icon sun"></i>
+                    </div>
+                    <span class="mode-text text">Dark Mode</span>
 
-                <div class="coluna1">
-                    <div class="nivelCongestionamento">
-                        <div class="subpasta">
-                            <div id="idNorte" class="norte filtro">
-                                <p>N</p>
-                            </div>
-                            <div id="idOeste" class="oeste filtro">
-                                <p>O</p>
-                            </div>
-                            <div id="idSul" class="sul filtro">
-                                <p>S</p>
-                            </div>
-                            <div id="idLeste" class="leste filtro">
-                                <p>L</p>
-                            </div>
-                            <div id="idCentro" class="centro filtro">
-                                <p>C</p>
-                            </div>
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </nav>
+
+    <section class="home">
+        <div class="container">
+
+            <div class="coluna1">
+                <div class="nivelCongestionamento">
+                    <div class="subpasta">
+                        <div id="idNorte" class="norte filtro">
+                            <p>N</p>
                         </div>
-                        <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
-                        <div class="pasta" id="pasta">
-                            <div class="circulo-container">
-                                <div class="circulo">
-                                    <p id="id_regiao">Centro</p>
-                                </div>
-                            </div>
-                            <canvas id="canvas_grafico_superior"></canvas>
+                        <div id="idOeste" class="oeste filtro">
+                            <p>O</p>
+                        </div>
+                        <div id="idSul" class="sul filtro">
+                            <p>S</p>
+                        </div>
+                        <div id="idLeste" class="leste filtro">
+                            <p>L</p>
+                        </div>
+                        <div id="idCentro" class="centro filtro">
+                            <p>C</p>
                         </div>
                     </div>
+                    <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
+                    <div class="pasta" id="pasta">
+                        <div class="circulo-container">
+                            <div class="circulo">
+                                <p id="id_regiao">Centro</p>
+                            </div>
+                        </div>
+                        <canvas id="canvas_grafico_superior"></canvas>
+                    </div>
+                </div>
 
+                <div class="horario">
+                    <div class="container">
+                        <h2>Melhor e Pior Horário</h2>
+                        <div class="horas box">
+                            <p>Melhor: 00:00</p>
+                        </div>
+                        <div class="horas box">
+                            <p>Pior: 23:59</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="coluna3">
+                <div class="topCongestionado">
+                    <h2>Top 5 Trechos Congestionado</h2>
+                    <div class="lista">
+                        <div class="container">
+                            <div class="box">
+                                <p>Tralalero Tralala</p>
+                                <div class="boxRegiao norte">Norte</div>
+                            </div>
+                            <div class="box">
+                                <p>Bombardino Crocodilo</p>
+                                <div class="boxRegiao oeste">Oeste</div>
+                            </div>
+                            <div class="box">
+                                <p>Tung Tung Tung Tung Sahur</p>
+                                <div class="boxRegiao sul">Sul</div>
+                            </div>
+                            <div class="box">
+                                <p>Brr Brr Patapim</p>
+                                <div class="boxRegiao leste">Leste</div>
+                            </div>
+                            <div class="box">
+                                <p>Trulimero Trulichina</p>
+                                <div class="boxRegiao centro">Centro</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grafico">
+                        <div class="container">
+                            <canvas id="canvas_grafico_inferior3"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="barra-direita fechar">
+        <header>
+            <i class="bx bx-chevron-left alternar"></i>
+        </header>
+        <div class="barra-menu">
+            <div class="container-menu">
+                <div class="sensor-list">
+                    <h2>Quantidade Sensor:</h2>
                     <div class="tabelaPico">
                         <div class="container">
                             <canvas id="canvas_grafico_inferior"></canvas>
                         </div>
                     </div>
                 </div>
-
-                <div class="coluna2">
-                    <div class="horario">
-                        <div class="container">
-                            <h2>Melhor e Pior Horário</h2>
-                            <div class="horas box">
-                                <p>Melhor: 00:00</p>
-                            </div>
-                            <div class="horas box">
-                                <p>Pior: 23:59</p>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="sensor-list" style="padding: 0 0 20px 0">
+                    <h2>Sensor Status:</h2>
                     <div class="qtdCongestionamento">
                         <div class="container">
                             <canvas id="canvas_grafico_inferior2"></canvas>
                         </div>
                     </div>
                 </div>
-
-                <div class="coluna3">
-                    <div class="topCongestionado">
-                        <h2>Top 5 Trechos Congestionado</h2>
-                        <div class="lista">
-                            <div class="container">
-                                <div class="box">
-                                    <p>Tralalero Tralala</p>
-                                    <div class="boxRegiao norte">Norte</div>
-                                </div>
-                                <div class="box">
-                                    <p>Bombardino Crocodilo</p>
-                                    <div class="boxRegiao oeste">Oeste</div>
-                                </div>
-                                <div class="box">
-                                    <p>Tung Tung Tung Tung Sahur</p>
-                                    <div class="boxRegiao sul">Sul</div>
-                                </div>
-                                <div class="box">
-                                    <p>Brr Brr Patapim</p>
-                                    <div class="boxRegiao leste">Leste</div>
-                                </div>
-                                <div class="box">
-                                    <p>Trulimero Trulichina</p>
-                                    <div class="boxRegiao centro">Centro</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grafico">
-                            <div class="container">
-                                <canvas id="canvas_grafico_inferior3"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </section>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <script src="../js/slider.js"></script>
-    </body>
+    <script src="../js/slider.js"></script>
+</body>
 
-    </html>
+</html>
 
-    <script>
-        const velocimetro = canvas_grafico_superior;
-        const gaugeChart = new Chart(velocimetro, {
-            type: 'doughnut',
-            data: {
-                // labels: ['N', 'O', 'S', 'L', 'C'],
-                datasets: [{
-                    data: [10, 15, 10],
-                    backgroundColor: ['#78A55A', '#FFE862', '#E16A54'],
-                    borderWidth: 1,
-                    borderColor: 'white',
-                }]
-            },
-            options: {
-                rotation: -100,
-                circumference: 200,
-                cutout: '80%',
-                plugins: {
-                    tooltip: { enabled: false },
-                    legend: { display: true },
-                    title: {
-                        display: true,
-                        text: 'Nível de congestionamento geral',
-                        color: 'white',
-                        font: {
-                            family: 'Afacad',
-                            size: 25
-                        }
+<script>
+    const velocimetro = canvas_grafico_superior;
+    const gaugeChart = new Chart(velocimetro, {
+        type: 'doughnut',
+        data: {
+            // labels: ['N', 'O', 'S', 'L', 'C'],
+            datasets: [{
+                data: [10, 15, 10],
+                backgroundColor: ['#78A55A', '#FFE862', '#E16A54'],
+                borderWidth: 1,
+                borderColor: 'white',
+            }]
+        },
+        options: {
+            rotation: -100,
+            circumference: 200,
+            cutout: '80%',
+            plugins: {
+                tooltip: { enabled: false },
+                legend: { display: true },
+                title: {
+                    display: true,
+                    text: 'Nível de congestionamento geral',
+                    color: 'white',
+                    font: {
+                        family: 'Afacad',
+                        size: 25
                     }
                 }
             }
-        });
-
-        const graficoBarra = canvas_grafico_inferior;
-        const barChart = new Chart(graficoBarra, {
-            type: 'bar',
-            data: {
-                labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
-                datasets: [{
-                    label: ['Semana'],
-                    data: [12, 19, 3, 5, 8],
-                    backgroundColor: ['#e27070', '#FFE862', '#78A55A', '#9EC6F3', '#C599B6'],
-                    // borderColor: 'black',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    },
-                    title: {
-                        color: 'black',
-                        display: true,
-                        text: 'Quantidade de congestionamentos por região',
-                        font: {
-                            family: 'Afacad',
-                            size: 20 // Aumente o valor para o tamanho desejado
-                        },
-                    }
-                }
-            }
-        });
-
-
-        const graficoPolarArea = canvas_grafico_inferior2;
-        const polarAreaChart = new Chart(graficoPolarArea, {
-            type: 'polarArea',
-            data: {
-                labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
-                datasets: [{
-                    label: 'My Dataset',
-                    data: [11, 16, 7, 14, 9],
-                    backgroundColor: [
-                        '#78A55A', '#FFE862', '#E16A54', '#9EC6F3', '#C599B6'
-                    ],
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        color: 'black', // Cor padrão
-                        text: 'Nível de congestionamentos por região',
-                        font: {
-                            family: 'Afacad',
-                            size: 20
-                        },
-                        padding: {
-                            top: 0,
-                            bottom: 20
-                        }
-                    }
-                },
-                scales: {
-                    r: { // Para gráficos polarArea
-                        grid: {
-                            color: 'gray' // Cor padrão das linhas de grade
-                        },
-                        angleLines: {
-                            color: 'gray' // Cor padrão das linhas angulares
-                        },
-                        ticks: {
-                            color: 'black' // Cor padrão dos rótulos
-                        }
-                    }
-                }
-            }
-        });
-
-        const graficoLinha = new Chart(canvas_grafico_inferior3, {
-            type: 'line',
-            data: {
-                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-                backgroundColor: ['#78A55A', '#FFE862', '#E16A54', '#9EC6F3', '#E5D9F2'],
-                datasets: [
-                    {
-                        label: 'Tietê',
-                        data: [20, 82, 80, 45, 80, 83],
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Paulista',
-                        data: [30, 69, 28, 25, 82, 23],
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    title: {
-                        color: 'black',
-                        display: true,
-                        text: 'Evolução do transito',
-                        font: {
-                            family: 'Afacad',
-                            size: 20 // Aumente o valor para o tamanho desejado
-                        },
-                        padding: {
-                            top: 0,
-                            bottom: 30
-                        }
-                    }
-                }
-            }
-        });
-
-        const pasta = document.getElementById("pasta");
-
-        const regioes = {
-            idNorte: "#fddb19",
-            idOeste: "#ffc400",
-            idSul: "#ffb411",
-            idLeste: "#fc940c",
-            idCentro: "#ff7b00",
-        };
-
-        const p_regiao = [
-            "Norte",
-            "Oeste",
-            "Sul",
-            "Leste",
-            "Centro"
-        ];
-
-        Object.entries(regioes).forEach(([id, cor]) => {
-            const div = document.getElementById(id);
-            if (div) {
-                div.addEventListener("click", () => {
-                    pasta.style.backgroundColor = cor;
-                    pasta.style.transition = "background-color 0.2s ease-out";
-                    id_regiao.innerHTML = p_regiao[Object.keys(regioes).indexOf(id)];
-
-                    console.log(`Eu cliquei em ${id.replace("id", "")}`);
-                });
-            }
-        });
-
-        function atualizarCoresDoGrafico() {
-            const isDarkMode = document.body.classList.contains('dark');
-
-            // Atualiza o gráfico Polar Area
-            polarAreaChart.options.plugins.title.color = isDarkMode ? 'white' : 'black'; // Título
-            polarAreaChart.options.plugins.legend.labels.color = isDarkMode ? 'white' : 'gray'; // Legendas
-            polarAreaChart.options.scales.r.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos
-            polarAreaChart.options.scales.r.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
-            polarAreaChart.data.datasets[0].borderColor = isDarkMode ? 'white' : 'black'; // Branco no tema escuro, preto no tema claro
-            polarAreaChart.update(); // Atualiza o gráfico
-
-            // Atualiza o gráfico de barras
-            barChart.options.plugins.title.color = isDarkMode ? 'white' : 'black'; // Título
-            barChart.options.plugins.legend.labels.color = isDarkMode ? 'white' : 'gray'; // Legendas
-            barChart.options.scales.y.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo Y
-            barChart.options.scales.y.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
-            barChart.options.scales.x.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo X
-            barChart.options.scales.x.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
-            barChart.data.datasets[0].borderColor = isDarkMode ? 'white' : 'black'; // Branco no tema escuro, preto no tema claro
-            // barChart.data.datasets[0].borderWidth = isDarkMode ? 2 : 1; // Branco no tema escuro, preto no tema claro
-            barChart.update(); // Atualiza o gráfico
-
-            // Atualiza o gráfico de linhas (Evolução do trânsito)
-            graficoLinha.options.plugins.title.color = isDarkMode ? 'white' : 'black'; // Título
-            graficoLinha.options.plugins.legend.labels.color = isDarkMode ? 'white' : 'gray'; // Legendas
-            graficoLinha.options.scales.y.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo Y
-            graficoLinha.options.scales.y.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
-            graficoLinha.options.scales.x.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo X
-            graficoLinha.options.scales.x.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
-            graficoLinha.update(); // Atualiza o gráfico
         }
+    });
 
-        // Detecta a troca de tema
-        const toggleSwitch = document.querySelector('.toggle-switch');
-        toggleSwitch.addEventListener('click', () => {
-            atualizarCoresDoGrafico();
-        });
+    const graficoBarra = canvas_grafico_inferior;
+    const barChart = new Chart(graficoBarra, {
+        type: 'bar',
+        data: {
+            labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
+            datasets: [{
+                label: ['Semana'],
+                data: [12, 19, 3, 5, 8],
+                backgroundColor: ['#e27070', '#FFE862', '#78A55A', '#9EC6F3', '#C599B6'],
+                // borderColor: 'black',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                title: {
+                    color: 'black',
+                    display: true,
+                    text: 'Quantidade de congestionamentos por região',
+                    font: {
+                        family: 'Afacad',
+                        size: 20 // Aumente o valor para o tamanho desejado
+                    },
+                }
+            }
+        }
+    });
 
-        // Atualiza as cores ao carregar a página
+
+    const graficoPolarArea = canvas_grafico_inferior2;
+    const polarAreaChart = new Chart(graficoPolarArea, {
+        type: 'polarArea',
+        data: {
+            labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
+            datasets: [{
+                label: 'My Dataset',
+                data: [11, 16, 7, 14, 9],
+                backgroundColor: [
+                    '#78A55A', '#FFE862', '#E16A54', '#9EC6F3', '#C599B6'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    color: 'black', // Cor padrão
+                    text: 'Nível de congestionamentos por região',
+                    font: {
+                        family: 'Afacad',
+                        size: 20
+                    },
+                    padding: {
+                        top: 0,
+                        bottom: 20
+                    }
+                }
+            },
+            scales: {
+                r: { // Para gráficos polarArea
+                    grid: {
+                        color: 'gray' // Cor padrão das linhas de grade
+                    },
+                    angleLines: {
+                        color: 'gray' // Cor padrão das linhas angulares
+                    },
+                    ticks: {
+                        color: 'black' // Cor padrão dos rótulos
+                    }
+                }
+            }
+        }
+    });
+
+    const graficoLinha = new Chart(canvas_grafico_inferior3, {
+        type: 'line',
+        data: {
+            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            backgroundColor: ['#78A55A', '#FFE862', '#E16A54', '#9EC6F3', '#E5D9F2'],
+            datasets: [
+                {
+                    label: 'Tietê',
+                    data: [20, 82, 80, 45, 80, 83],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Paulista',
+                    data: [30, 69, 28, 25, 82, 23],
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                title: {
+                    color: 'black',
+                    display: true,
+                    text: 'Evolução do transito',
+                    font: {
+                        family: 'Afacad',
+                        size: 20 // Aumente o valor para o tamanho desejado
+                    },
+                    padding: {
+                        top: 0,
+                        bottom: 30
+                    }
+                }
+            }
+        }
+    });
+
+    const pasta = document.getElementById("pasta");
+
+    const regioes = {
+        idNorte: "#fddb19",
+        idOeste: "#ffc400",
+        idSul: "#ffb411",
+        idLeste: "#fc940c",
+        idCentro: "#ff7b00",
+    };
+
+    const p_regiao = [
+        "Norte",
+        "Oeste",
+        "Sul",
+        "Leste",
+        "Centro"
+    ];
+
+    Object.entries(regioes).forEach(([id, cor]) => {
+        const div = document.getElementById(id);
+        if (div) {
+            div.addEventListener("click", () => {
+                pasta.style.backgroundColor = cor;
+                pasta.style.transition = "background-color 0.2s ease-out";
+                id_regiao.innerHTML = p_regiao[Object.keys(regioes).indexOf(id)];
+
+                console.log(`Eu cliquei em ${id.replace("id", "")}`);
+            });
+        }
+    });
+
+    function atualizarCoresDoGrafico() {
+        const isDarkMode = document.body.classList.contains('dark');
+
+        // Atualiza o gráfico Polar Area
+        polarAreaChart.options.plugins.title.color = isDarkMode ? 'white' : 'black'; // Título
+        polarAreaChart.options.plugins.legend.labels.color = isDarkMode ? 'white' : 'gray'; // Legendas
+        polarAreaChart.options.scales.r.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos
+        polarAreaChart.options.scales.r.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
+        polarAreaChart.data.datasets[0].borderColor = isDarkMode ? 'white' : 'black'; // Branco no tema escuro, preto no tema claro
+        polarAreaChart.update(); // Atualiza o gráfico
+
+        // Atualiza o gráfico de barras
+        barChart.options.plugins.title.color = isDarkMode ? 'white' : 'black'; // Título
+        barChart.options.plugins.legend.labels.color = isDarkMode ? 'white' : 'gray'; // Legendas
+        barChart.options.scales.y.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo Y
+        barChart.options.scales.y.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
+        barChart.options.scales.x.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo X
+        barChart.options.scales.x.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
+        barChart.data.datasets[0].borderColor = isDarkMode ? 'white' : 'black'; // Branco no tema escuro, preto no tema claro
+        // barChart.data.datasets[0].borderWidth = isDarkMode ? 2 : 1; // Branco no tema escuro, preto no tema claro
+        barChart.update(); // Atualiza o gráfico
+
+        // Atualiza o gráfico de linhas (Evolução do trânsito)
+        graficoLinha.options.plugins.title.color = isDarkMode ? 'white' : 'black'; // Título
+        graficoLinha.options.plugins.legend.labels.color = isDarkMode ? 'white' : 'gray'; // Legendas
+        graficoLinha.options.scales.y.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo Y
+        graficoLinha.options.scales.y.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
+        graficoLinha.options.scales.x.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo X
+        graficoLinha.options.scales.x.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
+        graficoLinha.update(); // Atualiza o gráfico
+    }
+
+    // Detecta a troca de tema
+    const toggleSwitch = document.querySelector('.toggle-switch');
+    toggleSwitch.addEventListener('click', () => {
         atualizarCoresDoGrafico();
-    </script>
+    });
+
+    // Atualiza as cores ao carregar a página
+    atualizarCoresDoGrafico();
+</script>
