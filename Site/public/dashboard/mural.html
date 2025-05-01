@@ -47,7 +47,6 @@
 <!-- <body onload=" atualizarFeed()"> -->
 
 <body>
-
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -130,7 +129,12 @@
         <div class="container">
 
             <div class="coluna1">
+                <div class="pesquisa">
+                    <i class="fa fa-search icon" aria-hidden="true"></i>
+                    <input type="text" id="idPesquisa">
+                </div>
                 <div class="nivelCongestionamento">
+
                     <div class="subpasta">
                         <div id="idNorte" class="norte filtro">
                             <p>N</p>
@@ -216,19 +220,13 @@
         <div class="barra-menu">
             <div class="container-menu">
                 <div class="sensor-list">
-                    <h2>Quantidade Sensor:</h2>
                     <div class="tabelaPico">
-                        <div class="container">
-                            <canvas id="canvas_grafico_inferior"></canvas>
-                        </div>
+                        <canvas id="canvas_grafico_inferior"></canvas>
                     </div>
                 </div>
                 <div class="sensor-list" style="padding: 0 0 20px 0">
-                    <h2>Sensor Status:</h2>
                     <div class="qtdCongestionamento">
-                        <div class="container">
-                            <canvas id="canvas_grafico_inferior2"></canvas>
-                        </div>
+                        <canvas id="canvas_grafico_inferior2"></canvas>
                     </div>
                 </div>
             </div>
@@ -289,6 +287,7 @@
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true
