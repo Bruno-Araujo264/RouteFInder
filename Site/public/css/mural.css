@@ -36,24 +36,24 @@ body {
 }
 
 .norte {
-    background: #fddb19;
-}
-
-.oeste {
-    background: #ffc400;
-}
-
-.sul {
-    background: #ffb411;
-}
-
-.leste {
-    background: #fc940c;
-}
-
-.centro {
-    background: #ff7b00;
-}
+    background: #E16A54;
+  }
+  
+  .oeste {
+    background: #FFE862;
+  }
+  
+  .sul {
+    background: #78A55A;
+  }
+  
+  .leste {
+    background: #9EC6F3;
+  }
+  
+  .centro {
+    background: #C599B6;
+  }
 
 body.dark {
     --body-color: #18191a;
@@ -441,7 +441,7 @@ body.dark .switch::before {
         justify-content: center;
         width: 90%;
         height: 80%;
-        background: #F9A825;
+        background: #C599B6;
         border-radius: 16px 0 16px 16px;
         margin: auto;
         /* border-top: solid 1px #cccccc; */
@@ -498,6 +498,8 @@ body.dark .switch::before {
 
         p {
             transition: var(--tran-03);
+            width: 15%;
+            align-text: center;
         }
     }
 }
@@ -539,10 +541,11 @@ body.dark .circulo {
 
 #canvas_grafico_superior {
     z-index: 3;
+    transition: var(--tran-01);
 }
 
 #canvas_grafico_inferior {
-    transition: var(--tran-03);
+    transition: var(--tran-01);
     width: 100%;
     height: 100%;
     display: block;
@@ -560,6 +563,7 @@ body.dark .tabelaPico {
 
 #canvas_grafico_superior {
     margin-top: 25px;
+    transition: var(--tran-01);
 }
 
 body.dark p {
@@ -608,8 +612,9 @@ body.dark #idPesquisa {
 .coluna3 {
     display: flex;
     flex-direction: column;
+    margin: auto 0;
     width: 37%;
-    height: 100%;
+    height: 95%;
     /* background: green; */
 
     .topCongestionado {
@@ -617,8 +622,8 @@ body.dark #idPesquisa {
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        height: 95%;
-        width: 95%;
+        height: 100%;
+        width: 100%;
         margin: auto;
         background: var(--sidebar-color);
         border: solid 1px #cfcfcf;
@@ -784,11 +789,11 @@ i {
     height: 100%;
     width: 550px;
     padding: 10px 14px;
-    background: var(--primary-color);
+    background: var(--body-color);
     /* background: red; */
     transition: var(--tran-05);
     z-index: 200;
-    border-left: solid 2px var(--primary-color);
+    border-left: solid 2px white;
 }
 
 body.dark .barra-direita {
@@ -809,7 +814,7 @@ body.dark .barra-direita {
 .container-menu {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
     height: 100%;
@@ -819,6 +824,7 @@ body.dark .barra-direita {
 
 .barra-direita.fechar {
     width: 88px;
+    background: white;
 }
 
 .barra-direita.fechar .container-menu {
@@ -832,7 +838,7 @@ body.dark .barra-direita {
 
 .barra-direita header .alternar {
     position: absolute;
-    top: 300px;
+    top: 316px;
     left: -25px;
     transform: translateY(-50%) rotate(180deg);
     height: 25px;
@@ -845,7 +851,7 @@ body.dark .barra-direita {
     color: var(--sidebar-color);
     font-size: 22px;
     transition: var(--tran-03);
-    color: black;
+    color: white;
     /* border-right: solid 2px white; */
 }
 
@@ -856,6 +862,7 @@ body.dark .barra-direita {
 body.dark .barra-direita header .alternar {
     background: white;
     border-right: white;
+    color: black;
 }
 
 .sensor-list {
@@ -863,17 +870,13 @@ body.dark .barra-direita header .alternar {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background: var(--body-color); */
-    /* background: red; */
-    width: 100%;
     height: 100%;
+    width: 100%;
     transition: none;
-    margin-bottom: 20px;
-    border-radius: 24px;
     transition: var(--tran-04);
 }
 
-.sensor-list:first-child {
+.sensor-list:nth-child(2) {
     margin-top: 20px;
 }
 
@@ -919,7 +922,7 @@ body.dark .barra-direita .sensor-list {
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: 95%;
+    width: 100%;
     margin: auto;
     background: var(--sidebar-color);
     border: solid 1px #cfcfcf;

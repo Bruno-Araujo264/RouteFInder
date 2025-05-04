@@ -36,23 +36,23 @@ body {
 }
 
 .norte {
-  background: #fddb19;
+  background: #E16A54;
 }
 
 .oeste {
-  background: #ffc400;
+  background: #FFE862;
 }
 
 .sul {
-  background: #ffb411;
+  background: #78A55A;
 }
 
 .leste {
-  background: #fc940c;
+  background: #9EC6F3;
 }
 
 .centro {
-  background: #ff7b00;
+  background: #C599B6;
 }
 
 body.dark {
@@ -411,7 +411,7 @@ body.dark .switch::before {
     justify-content: center;
     width: 90%;
     height: 80%;
-    background: #F9A825;
+    background: #C599B6;
     border-radius: 16px 0 16px 16px;
     margin: auto;
     /* border-top: solid 1px #cccccc; */
