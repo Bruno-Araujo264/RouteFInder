@@ -436,13 +436,10 @@ body.dark .switch::before {
 .circulo-container {
   position: absolute;
   width: 190px;
-  /* Mesma largura do círculo */
   height: 120px;
-  /* Aumente a altura para diminuir o corte */
   overflow: hidden;
-  /* Esconde a parte excedente */
   top: 180px;
-  /* Ajuste a posição conforme necessário */
+  left: 145px;
 }
 
 .circulo {
@@ -460,7 +457,7 @@ body.dark .switch::before {
 .circulo p {
   margin-top: 30px;
   font-size: 30px;
-  transition: var(--tran-02);
+  transition: var(--tran-04);
 }
 
 body.dark .circulo {
@@ -762,4 +759,58 @@ body.dark i {
 
 i {
   transition: var(--tran-03);
+}
+
+.pasta .box {
+  margin-top: 60px;
+  height:208px;
+  width: 208px;
+}
+
+.gauge {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+      red 0deg 36deg,
+      yellow 36deg 72deg,
+      green 72deg 108deg,
+      blue 108deg 144deg, 
+      purple 144deg 180deg 
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pointer {
+  position: relative;
+  top:125px;
+  left:32%;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 90px solid black;
+  border-bottom-left-radius: 35%;
+  border-bottom-right-radius: 35%;
+  transform: rotate(-90deg);
+  transform-origin: center bottom;
+  z-index: 100;
+}
+
+body.dark .pointer {
+  border-bottom-color: white;
+}
+
+.animate {
+  transition-duration:1.5s ;
+  transition-property: 0 opacity;
+  transition-timing-function: ease;
+}
+
+.pasta:hover .pointerAnimation {
+  transform: rotate(90deg);
+  border-bottom-color: darkred;
 }
