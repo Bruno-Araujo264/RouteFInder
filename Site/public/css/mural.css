@@ -498,8 +498,6 @@ body.dark .switch::before {
 
         p {
             transition: var(--tran-03);
-            width: 15%;
-            align-text: center;
         }
     }
 }
@@ -838,7 +836,7 @@ body.dark .barra-direita {
 
 .barra-direita header .alternar {
     position: absolute;
-    top: 316px;
+    top: 317px;
     left: -25px;
     transform: translateY(-50%) rotate(180deg);
     height: 25px;
