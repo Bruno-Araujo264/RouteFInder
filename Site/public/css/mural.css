@@ -444,7 +444,7 @@ body.dark .switch::before {
         background: #C599B6;
         border-radius: 16px 0 16px 16px;
         margin: auto;
-        overflow: hidden;
+        /* overflow: hidden; */
         /* border-top: solid 1px #cccccc; */
         /* margin-top: 30px; */
     }
@@ -505,11 +505,11 @@ body.dark .switch::before {
 
 .circulo-container {
     position: absolute;
-    width: 250px;
-    height: 200px;
+    width: 200px;
+    height: 130px;
     overflow: hidden;
-    top: 215.49px;
-    left: 250px;
+    top: 260px;
+    left: 257px;
 }
 
 .circulo {
@@ -525,9 +525,10 @@ body.dark .switch::before {
 }
 
 .circulo p {
-    margin-top: 100px;
+    margin-top: 50px;
     font-size: 30px;
-    transition: var(--tran-02);
+    transition: var(--tran-04);
+    z-index: 100;
 }
 
 body.dark .circulo {
@@ -945,15 +946,23 @@ body.dark .barra-direita .sensor-list {
     position: relative;
     width: 100%;
     height: 100%;
-    border: 10px solid #333;
     border-radius: 50%;
-    border-bottom: 10px dashed transparent;
+    background: conic-gradient(
+        red 0deg 36deg,
+        yellow 36deg 72deg,
+        green 72deg 108deg,
+        blue 108deg 144deg, 
+        purple 144deg 180deg 
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .pointer {
     position: relative;
-    top:5%;
-    left:48%;
+    top:125px;
+    left:32%;
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
@@ -961,7 +970,7 @@ body.dark .barra-direita .sensor-list {
     border-bottom: 90px solid black;
     border-bottom-left-radius: 35%;
     border-bottom-right-radius: 35%;
-    transform: rotate(-125deg);
+    transform: rotate(-90deg);
     transform-origin: center bottom;
     z-index: 100;
 }
@@ -977,6 +986,6 @@ body.dark .pointer {
 }
 
 .pasta:hover .pointerAnimation {
-    transform: rotate(125deg);
+    transform: rotate(90deg);
     border-bottom-color: darkred;
 }

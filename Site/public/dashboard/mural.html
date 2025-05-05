@@ -154,17 +154,13 @@
                     </div>
                     <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
                     <div class="pasta" id="pasta">
-                        <div class="box">
-                            <div class="gauge">
-                                <div class="pointer animate pointerAnimation"></div>
-                            </div>
-                        </div>
+                        <div class="pointer animate pointerAnimation"></div>
                         <div class="circulo-container">
                             <div class="circulo">
                                 <p id="id_regiao">Centro</p>
                             </div>
                         </div>
-                        <!-- <canvas id="canvas_grafico_superior"></canvas> -->
+                        <canvas id="canvas_grafico_superior"></canvas>
                     </div>
                 </div>
 
@@ -207,7 +203,7 @@
                             <div class="box">
                                 <p>Marginal Tietê - Pista Central</p>
                                 <div class="boxRegiao centro">Centro</div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="grafico">
@@ -247,37 +243,37 @@
 </html>
 
 <script>
-    // const velocimetro = canvas_grafico_superior;
-    // const gaugeChart = new Chart(velocimetro, {
-    //     type: 'doughnut',
-    //     data: {
-    //         // labels: ['N', 'O', 'S', 'L', 'C'],
-    //         datasets: [{
-    //             data: [10, 15, 10],
-    //             backgroundColor: ['#78A55A', '#FFE862', '#E16A54'],
-    //             borderWidth: 1,
-    //             borderColor: 'white',
-    //         }]
-    //     },
-    //     options: {
-    //         rotation: -100,
-    //         circumference: 200,
-    //         cutout: '80%',
-    //         plugins: {
-    //             tooltip: { enabled: false },
-    //             legend: { display: true },
-    //             title: {
-    //                 display: true,
-    //                 text: 'Nível de congestionamento',
-    //                 color: 'white',
-    //                 font: {
-    //                     family: 'Afacad',
-    //                     size: 25
-    //                 }
-    //             }
-    //         }
-    //     }
-    // });
+    const velocimetro = canvas_grafico_superior;
+    const gaugeChart = new Chart(velocimetro, {
+        type: 'doughnut',
+        data: {
+            // labels: ['N', 'O', 'S', 'L', 'C'],
+            datasets: [{
+                data: [10, 15, 10],
+                backgroundColor: ['#78A55A', '#FFE862', '#E16A54'],
+                borderWidth: 1,
+                borderColor: 'white',
+            }]
+        },
+        options: {
+            rotation: -100,
+            circumference: 200,
+            cutout: '80%',
+            plugins: {
+                tooltip: { enabled: false },
+                legend: { display: true },
+                title: {
+                    display: true,
+                    text: 'Nível de Congestionamento',
+                    color: 'white',
+                    font: {
+                        family: 'Afacad',
+                        size: 25
+                    }
+                }
+            }
+        }
+    });
 
     const graficoBarra = canvas_grafico_inferior;
     const barChart = new Chart(graficoBarra, {
@@ -308,7 +304,7 @@
                 title: {
                     color: 'black',
                     display: true,
-                    text: 'Quantidade de congestionamentos por região',
+                    text: 'Quantidade de Congestionamentos Por Região',
                     font: {
                         family: 'Afacad',
                         size: 20 // Aumente o valor para o tamanho desejado
@@ -338,7 +334,7 @@
                 title: {
                     display: true,
                     color: 'black', // Cor padrão
-                    text: 'Nível de congestionamentos por região',
+                    text: 'Nível de Congestionamentos por Região',
                     font: {
                         family: 'Afacad',
                         size: 20
@@ -377,7 +373,7 @@
                     borderWidth: 1
                 },
                 {
-                    label: 'Paulista',
+                    label: 'Pacaembu',
                     data: [30, 69, 28, 25, 82, 23],
                     borderWidth: 1
                 }
@@ -393,7 +389,7 @@
                 title: {
                     color: 'black',
                     display: true,
-                    text: 'Evolução do transito',
+                    text: 'Evolução do Transito',
                     font: {
                         family: 'Afacad',
                         size: 20 // Aumente o valor para o tamanho desejado
