@@ -12,7 +12,7 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 router.post("/alterarSenha", function (req, res) {
-    usuarioController.primeiroAcesso(req, res);
+    usuarioController.alterarSenha(req, res);
 })
 
 module.exports = router;

@@ -94,7 +94,7 @@ function alterarSenha(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
-        usuarioModel.primeiroAcesso(email, senha)
+        usuarioModel.alterarSenha(email, senha)
             .then(
                 function (resposta) {
                     res.json(resposta)
