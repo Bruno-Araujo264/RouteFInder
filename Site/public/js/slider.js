@@ -6,7 +6,7 @@ const body = document.querySelector("body"),
     searchBtn = document.querySelector(".search-box"),
     modeSwitch = document.querySelector(".toggle-switch"),
     modeText = body.querySelector(".mode-text"),
-    dash = body.querySelector(".dashboard");
+    dash = body.querySelector(".home");
 
 // fechando a barra de navegador da esquerda
 toggle.addEventListener("click", () => {

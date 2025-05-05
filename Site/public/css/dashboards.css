@@ -19,7 +19,7 @@ body {
 
   --body-color: #E4E9F7;
   --sidebar-color: #FFF;
-  --primary-color: #1F88FF;
+  --primary-color: #E8B86D;
   --primary-color-light: #F6F5FF;
   --toggle-color: #DDD;
   --text-color: #707070;
@@ -36,23 +36,23 @@ body {
 }
 
 .norte {
-  background: #fddb19;
+  background: #E16A54;
 }
 
 .oeste {
-  background: #ffc400;
+  background: #FFE862;
 }
 
 .sul {
-  background: #ffb411;
+  background: #78A55A;
 }
 
 .leste {
-  background: #fc940c;
+  background: #9EC6F3;
 }
 
 .centro {
-  background: #ff7b00;
+  background: #C599B6;
 }
 
 body.dark {
@@ -108,7 +108,6 @@ body {
 
 .sidebar.close {
   width: 88px;
-
 }
 
 .sidebar.close .text {
@@ -224,6 +223,7 @@ body.dark .sidebar header .toggle {
   transition: var(--tran-04);
 }
 
+
 .sidebar li a:hover {
   background: var(--primary-color);
 }
@@ -236,6 +236,7 @@ body.dark .sidebar header .toggle {
 body.dark .sidebar li a:hover .icon,
 body.dark .sidebar li a:hover .text {
   color: var(--text-color);
+  /* background: #fff; */
 }
 
 .sidebar .menu-bar {
@@ -289,7 +290,7 @@ body.dark .menu-bar .mode i.moon {
   min-width: 60px;
   cursor: pointer;
   border-radius: 6px;
-  background: var(--primary-color-light);
+  /* background: var(--primary-color-light); */
   transition: var(--tran-05);
 
 }
@@ -410,7 +411,7 @@ body.dark .switch::before {
     justify-content: center;
     width: 90%;
     height: 80%;
-    background: #F9A825;
+    background: #C599B6;
     border-radius: 16px 0 16px 16px;
     margin: auto;
     /* border-top: solid 1px #cccccc; */
@@ -424,7 +425,7 @@ body.dark .switch::before {
     background: var(--sidebar-color);
     border: solid 1px #cfcfcf;
     border-radius: 16px;
-    transition: var(--tran-03); 
+    transition: var(--tran-03);
 
     .container {
       /* background: #000; */
@@ -434,10 +435,14 @@ body.dark .switch::before {
 
 .circulo-container {
   position: absolute;
-  width: 190px; /* Mesma largura do círculo */
-  height: 120px; /* Aumente a altura para diminuir o corte */
-  overflow: hidden; /* Esconde a parte excedente */
-  top: 180px; /* Ajuste a posição conforme necessário */
+  width: 190px;
+  /* Mesma largura do círculo */
+  height: 120px;
+  /* Aumente a altura para diminuir o corte */
+  overflow: hidden;
+  /* Esconde a parte excedente */
+  top: 180px;
+  /* Ajuste a posição conforme necessário */
 }
 
 .circulo {
@@ -631,7 +636,7 @@ body.dark .qtdCongestionamento {
     width: 100%;
     font-size: 20px;
     font-weight: bold;
-    margin-top:15px;
+    margin-top: 15px;
     margin-bottom: 5px;
   }
 
@@ -688,19 +693,19 @@ body.dark .qtdCongestionamento {
   .norte {
     background: #e27070;
   }
-  
+
   .oeste {
     background: #FFE862;
   }
-  
+
   .sul {
     background: #78A55A;
   }
-  
+
   .leste {
     background: #9EC6F3;
   }
-  
+
   .centro {
     background: #C599B6;
   }
@@ -712,7 +717,8 @@ body.dark .qtdCongestionamento {
       align-items: center;
       width: 100%;
       height: 90%;
-      margin-top: 20px;;
+      margin-top: 20px;
+      ;
       /* background: rgba(225, 105, 84, 0.25); */
     }
   }
@@ -746,5 +752,14 @@ body.dark .boxRegiao {
 }
 
 #canvas_grafico_inferior3 {
+  transition: var(--tran-03);
+}
+
+body.dark i {
+  color: var(--text-color);
+  transition: var(--tran-03);
+}
+
+i {
   transition: var(--tran-03);
 }
