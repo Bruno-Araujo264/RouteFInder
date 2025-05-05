@@ -444,6 +444,7 @@ body.dark .switch::before {
         background: #C599B6;
         border-radius: 16px 0 16px 16px;
         margin: auto;
+        overflow: hidden;
         /* border-top: solid 1px #cccccc; */
         /* margin-top: 30px; */
     }
@@ -504,14 +505,11 @@ body.dark .switch::before {
 
 .circulo-container {
     position: absolute;
-    width: 190px;
-    /* Mesma largura do círculo */
-    height: 120px;
-    /* Aumente a altura para diminuir o corte */
+    width: 250px;
+    height: 200px;
     overflow: hidden;
-    /* Esconde a parte excedente */
-    top: 260px;
-    /* Ajuste a posição conforme necessário */
+    top: 215.49px;
+    left: 250px;
 }
 
 .circulo {
@@ -527,7 +525,7 @@ body.dark .switch::before {
 }
 
 .circulo p {
-    margin-top: 30px;
+    margin-top: 100px;
     font-size: 30px;
     transition: var(--tran-02);
 }
@@ -935,4 +933,50 @@ body.dark .barra-direita .sensor-list {
         width: 95%;
         /* background: red; */
     }
+}
+
+.pasta .box {
+    margin-top: 60px;
+    height:208px;
+    width: 208px;
+}
+
+.gauge {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 10px solid #333;
+    border-radius: 50%;
+    border-bottom: 10px dashed transparent;
+}
+
+.pointer {
+    position: relative;
+    top:5%;
+    left:48%;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 90px solid black;
+    border-bottom-left-radius: 35%;
+    border-bottom-right-radius: 35%;
+    transform: rotate(-125deg);
+    transform-origin: center bottom;
+    z-index: 100;
+}
+
+body.dark .pointer {
+    border-bottom-color: white;
+}
+
+.animate {
+    transition-duration:1.5s ;
+    transition-property: 0 opacity;
+    transition-timing-function: ease;
+}
+
+.pasta:hover .pointerAnimation {
+    transform: rotate(125deg);
+    border-bottom-color: darkred;
 }
