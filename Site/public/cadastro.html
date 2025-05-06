@@ -73,10 +73,8 @@
       emailVar == "" ||
       senhaVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
+      
+      alert("Mensagem de erro para todos os campos em branco")
       finalizarAguardar();
       return false;
     } else {
@@ -90,8 +88,7 @@
         console.log("Código de ativação válido.");
         break;
       } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+        alert("Mensagem de erro para código inválido")
         finalizarAguardar();
       }
     }
@@ -114,14 +111,11 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de cadastro...";
-
+        
+          alert("Cadastro realizado com sucesso! Você irá para a Tela de login!")
           setTimeout(() => {
-            window.location = "cadastro.html";
-          }, "2000");
+            window.location = "/login.html";
+          }, "1000");
 
           limparFormulario();
           finalizarAguardar();
@@ -157,6 +151,5 @@
   } 
 
   function sumirMensagem() {
-    cardErro.style.display = "none";
   }
 </script>
