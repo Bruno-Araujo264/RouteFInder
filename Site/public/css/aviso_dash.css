@@ -426,6 +426,11 @@ body.dark .switch::before {
   top: 75px;
   left: 200px;
   cursor: pointer;
-  
+  transition: all 0.3s ease-in-out;
+ }
+ .icone-botao:hover{
+font-size: 25px;
+  color: #000;
+  transition: all 0.3s ease-in-out;
  }
 
