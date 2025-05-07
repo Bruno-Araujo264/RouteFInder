@@ -322,11 +322,28 @@ body.dark .switch::before {
   left: 24px;
 }
 
-.home {
-  position: relative;
+.box-notificacao {
   height: 100vh;
   left: 88px;
-  width: calc(100% - 88px);
-  background: var(--body-color);
+  width: calc(105% - 88px);
+  /* background: var(--body-color); */
+  background: red;
   transition: var(--tran-05);
 }
+
+.box-notificacao .conteiner {
+    width: 50%; 
+    height: 50%;
+    margin: auto;
+    background: #00ff00; /* Cor verde chamativa */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    justify-content: center;
+    transition: var(--tran-05);
+}
+
+
+
