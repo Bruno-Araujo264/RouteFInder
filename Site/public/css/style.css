@@ -805,10 +805,12 @@ h1 {
     .servicos .boxContainer {
         display: flex;
         flex-direction: column;
+        width: 90%;
     }
 
     .box {
         width: 100%;
+        height: 50vh;
 
         .container h2 {
             font-size: 2.4em;
@@ -829,9 +831,11 @@ h1 {
     }
 
     .textoContainer {
+        width: 100vw;
 
         .texto {
             width: 90%;
+            margin: auto;
         }
 
         img {
@@ -841,7 +845,7 @@ h1 {
 
     .footerBackground {
         height: 70%;
-        clip-path: polygon(0 45%, 100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 100%);
     }
 
     .localizacao {
@@ -849,7 +853,7 @@ h1 {
     }
 
     .explicacao {
-        margin: 100px 0 100px 0;
+        margin: 10px 0 100px 0;
 
         .container {
             flex-direction: row;
