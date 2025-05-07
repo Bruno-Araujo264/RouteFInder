@@ -325,25 +325,107 @@ body.dark .switch::before {
 .box-notificacao {
   height: 100vh;
   left: 88px;
+  display: flex;
+  align-items: center;
+/* background-color: red; */
   width: calc(105% - 88px);
-  /* background: var(--body-color); */
-  background: red;
+    background: var(--body-color);
+  /* background: red; */
   transition: var(--tran-05);
 }
 
 .box-notificacao .conteiner {
-    width: 50%; 
-    height: 50%;
-    margin: auto;
-    background: #00ff00; /* Cor verde chamativa */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 85%; 
+    height: 85%;
+    margin: auto; 
+    align-items: center ;
+    margin-left: 150px;
+    margin-top: 50px;
     display: flex;
-    flex-direction: center;
-    align-items: center;
-    justify-content: center;
-    transition: var(--tran-05);
+    justify-content: space-evenly ;
+    background:white;  
+    border-radius: 8px;
+
+}
+.box{
+  width: 40%;
+  height: 75%;
+  background-color: transparent;
+  border-right: #726d6d 3px  solid ;
+  border-bottom: #726d6d 3px solid;
+  border-radius: 24px;
+  box-shadow: #726d6d 4px 4px 11px;
+  display: flex;
+  flex-direction: column;
+  padding: 100px;
+  justify-content: space-around;
+  align-items: center;
 }
 
+.box h1{
+  font-size: 30px;
+  font-weight: 600px;
+  color: black;
+}
+.box #criar_notificacao{
+  width: 90%;
+  height: 50px;
+  background-color: white;
+  border-radius: 8px;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  border: 2px solid black;
+  cursor: auto;
+  padding-left: 65px; 
+}
 
+.box #botao-notificacao{
+  width: 90%;
+  height: 50px;
+  background-color: rgb(216, 208, 208);
+  border-radius: 8px;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  border: 2px solid black;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out; 
+}
+
+.box #botao-notificacao:hover{
+  background-color: rgb(216, 208, 208);
+  color: white;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}   
+
+.box .ruas{
+  width: 90%;
+  height: 40px;
+  background-color: white;
+  border-radius: 8px;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  border: 2px solid black;
+  cursor: auto;
+  display: flex;
+  justify-content: center;
+  
+   
+
+}
+
+.box:nth-child(2) {
+  padding: 50px;
+ }
+
+ .icone-botao{
+  position: absolute;
+  top: 75px;
+  left: 200px;
+  cursor: pointer;
+  
+ }
 
