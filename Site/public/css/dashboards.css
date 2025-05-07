@@ -435,11 +435,11 @@ body.dark .switch::before {
 
 .circulo-container {
   position: absolute;
-  width: 190px;
-  height: 120px;
+  width: 300px;
+  height: 130px;
   overflow: hidden;
-  top: 180px;
-  left: 145px;
+  top: 28%;
+  left: 11.65%;
 }
 
 .circulo {
