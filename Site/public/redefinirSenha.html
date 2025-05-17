@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <title>Redefinição de Senha</title>
   <link rel="stylesheet" href="./css/style-cadastro.css" />
 </head>
@@ -18,23 +20,16 @@
       <div class="card">
         <div class="card-cadastro">
           <div class="voltar">
-            <button class="botao" onclick="window.location.href='index.html'">&#8592</button>
+            <button class="botao" onclick="window.location.href='login.html'" id="botao2">&#8592</button>
           </div>
-          <div class="formulario">
+          <div class="formulario" id="formulario">
             <h2>Redefinir senha</h2>
 
             <div class="campo">
-              <input id="email_input" type="text" placeholder="Email">
+              <input id="email_input_rec" type="text" placeholder="Insira o seu Email">
             </div>
-            <div class="campo">
-              <input id="senha_input" type="password" placeholder="Senha">
-              <!-- <img src="assets/icon/olho.png" class="verSenha"> -->
-            </div>
-            <div class="campo">
-              <input id="confirmaSenha_input" type="password" placeholder="Confirmar senha">
-              <!-- <img src="assets/icon/olho.png" class="verSenha"> -->
-            </div>
-            <button class="botao" onclick="AlterarSenha()">Redefinir Senha</button>
+          
+            <button class="botao" onclick="AlterarSenha()">Enviar Email</button>
             <p onclick="window.location.href='login.html'">Já tem uma conta?</p>
           </div>
         </div>
@@ -54,13 +49,13 @@
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   let listaEmpresasCadastradas = [];
 
+
   function cadastrar() {
     // aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmaSenha_input.value;
 
@@ -158,23 +153,51 @@
     cardErro.style.display = "none";
   }
 
-  function AlterarSenha() {
-    
-    var email = email_input.value
-    var senha = senha_input.value
-    var confirmarSenha = confirmaSenha_input.value
+  var etapa = 0;
 
-    if(email == "" || senha == "" || confirmarSenha == ""){
+  function AlterarSenha() {
+
+    var email = email_input_rec.value
+    console.log(email)
+
+    if(etapa == 0){
+
+      if(email == ""){
         Swal.fire({
             title: 'Preencha todos os campos!',
             icon: 'error',
             showConfirmButton: false,
             timer: 2000
         })
-    }
-    else if(email.indexOf("@") == -1 || email.indexOf(".") == -1){
+      } else if(email.indexOf("@") == -1 || email.indexOf(".") == -1){
         Swal.fire({
             title: 'Insira um email válido!',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2000
+        })
+    } else {
+        etapa++;
+        trocarTela()
+        sendEmail(email)
+      }
+    } else {
+    
+    var senha = senha_input.value
+    var confirmarSenha = confirmaSenha_input.value
+    var token = token_input.value 
+
+    if (token != sessionStorage.CODIGO) {
+        Swal.fire({
+            title: 'Token Inválido!',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2000
+        })
+      }
+    else if(token == "" || senha == "" || confirmarSenha == ""){
+        Swal.fire({
+            title: 'Preencha todos os campos!',
             icon: 'error',
             showConfirmButton: false,
             timer: 2000
@@ -232,6 +255,60 @@
             })
 
         }
+  }
+
+function trocarTela(){
+
+  document.getElementById("formulario").innerHTML =
+    `<div class="campo">
+      <h2>Redefinir senha</h2> <br>
+              <input id="token_input" type="password" placeholder="Insira o seu Token">
+               <!-- <img src="assets/icon/olho.png" class="verSenha">  -->
+            </div> 
+            <div class="campo">
+              <input id="senha_input" type="password" placeholder="Senha">
+               <!-- <img src="assets/icon/olho.png" class="verSenha"> -->
+            </div>
+            <div class="campo">
+              <input id="confirmaSenha_input" type="password" placeholder="Confirmar senha">
+               <!-- <img src="assets/icon/olho.png" class="verSenha">  -->
+            </div> 
+
+          
+            <button class="botao" onclick="AlterarSenha()">Alterar Senha</button>
+            <p onclick="window.location.href='login.html'">Já tem uma conta?</p>`
+  }
+
+  
+
 }
 
+
+(function () {
+        emailjs.init('UPzH5EKwpvtN46yh3'); // Seu public key
+    })();
+
+    var codigoValidacao = Math.floor(100000 + Math.random() * 900000); // gera código de 6 dígitos
+
+    function sendEmail(email) {
+
+        if (!email) {
+            console.error("Email não informado!");
+            return;
+        }
+
+        sessionStorage.CODIGO = codigoValidacao;
+        console.log(email)
+
+        emailjs.send("service_5cott2o", "template_dqn6ukh", {
+            fulano: "Giovana",
+            email: email,
+            from_email: 'giovana.ratao@sptech.school',
+            codigo: codigoValidacao
+        }).then(function (response) {
+            console.log('SUCCESS!', response.status, response.text);
+        }, function (error) {
+            console.log('FAILED...', error);
+        });
+    }
 </script>
