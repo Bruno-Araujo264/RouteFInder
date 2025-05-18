@@ -19,9 +19,9 @@ body {
 
   --body-color: #E4E9F7;
   --sidebar-color: #FFF;
-  --primary-color: #E8B86D;
-  --primary-color-light: #F6F5FF;
-  --toggle-color: #DDD;
+  --primary-color: #ffd186;
+  --primary-color-light: #ffcd83;
+  --toggle-color: #494949;
   --text-color: #707070;
 
   --cor-verde: #729762;
@@ -58,7 +58,7 @@ body {
 body.dark {
   --body-color: #18191a;
   --sidebar-color: #242526;
-  --primary-color: #3a3b3c;
+  --primary-color: #3c3e3f;
   --primary-color-light: #5c5c5c;
   --toggle-color: #FFF096;
   --text-color: #fff;
@@ -328,7 +328,7 @@ body.dark .switch::before {
   height: 100vh;
   left: 88px;
   width: calc(100% - 88px);
-  background: #ffcd83;
+  background: var(--primary-color);
   transition: var(--tran-05);
 }
 
