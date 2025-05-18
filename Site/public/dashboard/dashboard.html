@@ -166,6 +166,7 @@
                 <div class="horario">
                     <div class="container">
                         <h2>Melhor e Pior Horário</h2>
+                        <p class="rua" id="id_rua">Rua: xxxxx</p>
                         <div class="horas box">
                             <p>Melhor: 00:00</p>
                         </div>
@@ -263,7 +264,6 @@
         data: {
             labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
             datasets: [{
-                label: ['Semana'],
                 data: [12, 19, 3, 5, 8],
                 backgroundColor: ['#ff5101', '#ff7301', '#ff9901', '#ffbb00', '#ffd000'],
                 // borderColor: 'black',
@@ -279,17 +279,19 @@
             },
             plugins: {
                 legend: {
-                    display: true,
-                    position: 'top'
+                    display: false,
                 },
                 title: {
                     color: 'black',
                     display: true,
-                    text: 'Quantidade de congestionamentos por região',
+                    text: 'N° de Ruas Congestionadas',
                     font: {
                         family: 'Afacad',
                         size: 20 // Aumente o valor para o tamanho desejado
                     },
+                    padding: {
+                        bottom: 20 
+                    }
                 }
             }
         }
@@ -313,13 +315,13 @@
                 title: {
                     display: true,
                     color: 'black', // Cor padrão
-                    text: 'Nível de congestionamentos por região',
+                    text: 'Intensidade do Congestionamento',
                     font: {
                         family: 'Afacad',
                         size: 20
                     },
                     padding: {
-                        top: 0,
+                        top: 10,
                         bottom: 20
                     }
                 }
@@ -368,7 +370,7 @@
                 title: {
                     color: 'black',
                     display: true,
-                    text: 'Histórico do transito',
+                    text: 'Histórico do Congestionamento',
                     font: {
                         family: 'Afacad',
                         size: 20 // Aumente o valor para o tamanho desejado
