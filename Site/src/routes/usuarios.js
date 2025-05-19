@@ -10,9 +10,14 @@ router.post("/cadastrar", function (req, res) {
 
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
-});
+})
+
 router.post("/alterarSenha", function (req, res) {
     usuarioController.alterarSenha(req, res);
+})
+
+router.get("/coletarEmail/:email", function (req, res) {
+    usuarioController.coletarEmail(req, res);
 })
 
 module.exports = router;

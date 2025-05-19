@@ -28,7 +28,7 @@
             <div class="campo">
               <input id="email_input_rec" type="text" placeholder="Insira o seu Email">
             </div>
-          
+
             <button class="botao" onclick="AlterarSenha()">Enviar Email</button>
             <p onclick="window.location.href='login.html'">Já tem uma conta?</p>
           </div>
@@ -46,269 +46,157 @@
 
 <script>
 
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
-
-
-  function cadastrar() {
-    // aguardar();
-
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmaSenha_input.value;
-
-
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == ""
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
-
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
-    }
-
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de cadastro...";
-
-          setTimeout(() => {
-            window.location = "cadastro.html";
-          }, "2000");
-
-          limparFormulario();
-          finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-
-    return false;
-  }
-
-  // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  } 
-
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
-
   var etapa = 0;
+  var email
+  var nomeColetado
 
-  function AlterarSenha() {
 
-    var email = email_input_rec.value
-    console.log(email)
+  async function AlterarSenha() {
+    if (etapa == 0) {
+      email = email_input_rec.value;
+      console.log(email);
 
-    if(etapa == 0){
+      if (email == "") {
+        alert(`Preencha todos os campos!`);
+      } else if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+        alert(`Insira um email válido!`);
+      } else {
+        // Espera coletarEmail terminar e retornar o nome
+        nomeColetado = await coletarEmail(email);
 
-      if(email == ""){
-        Swal.fire({
-            title: 'Preencha todos os campos!',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2000
-        })
-      } else if(email.indexOf("@") == -1 || email.indexOf(".") == -1){
-        Swal.fire({
-            title: 'Insira um email válido!',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2000
-        })
-    } else {
-        etapa++;
-        trocarTela()
-        sendEmail(email)
+        if (nomeColetado != undefined && nomeColetado != null) {
+          trocarTela();
+          console.log(nomeColetado);
+          sendEmail(nomeColetado, email);
+          etapa++;
+        }
       }
     } else {
-    
-    var senha = senha_input.value
-    var confirmarSenha = confirmaSenha_input.value
-    var token = token_input.value 
+      // Seu código original para etapa 1 (alterar senha) aqui sem alterações
+      var senha = senha_input.value;
+      var confirmarSenha = confirmaSenha_input.value;
+      var token = token_input.value;
 
-    if (token != sessionStorage.CODIGO) {
-        Swal.fire({
-            title: 'Token Inválido!',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2000
-        })
-      }
-    else if(token == "" || senha == "" || confirmarSenha == ""){
-        Swal.fire({
-            title: 'Preencha todos os campos!',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2000
-        })
-    }
-    else if(senha !== confirmarSenha){
-        Swal.fire({
-            title: 'As senhas não coincidem!',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2000
-        })
-    }
-    else{
-        // Fetch para o caminho do usuário ADMIN
+      if (token != sessionStorage.CODIGO) {
+        alert(`Token Inválido`);
+      } else if (token == "" || senha == "" || confirmarSenha == "") {
+        alert(`Preencha todos os campos!`);
+      } else if (senha !== confirmarSenha) {
+        alert(`As senhas não coincidem`);
+      } else {
         fetch("/usuarios/alterarSenha", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                emailServer: email,
-                senhaServer: senha
-            }),
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            emailServer: email,
+            senhaServer: senha,
+          }),
         })
-
-            .then(function (resposta) {
-                console.log("resposta: ", resposta)
-                if (resposta.ok) {
-                    Swal.fire({
-                        title: 'Sucesso ao alterar senha!',
-                        text: 'Redirecionando para a tela de login!',
-                        imageUrl: "img/ok.svg",
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-                    console.log("Alteração de senha do usuário admin realizado")
-                    setTimeout(() => {
-                        window.location = "login.html";
-                      }, "3000");
-
-                }
-                else {
-                    throw "Houve um erro ao tentar realizar o alteração de senha do usuário"
-                }
-            })
-            .catch(function (resposta) {
-                console.log(`Erro: ${resposta}`)
-                Swal.fire({
-                    title: 'Houve um erro ao alterar senha',
-                    text: 'Tente novamente',
-                    icon: 'error',
-                    timer: 2000
-                  })
-            })
-
-        }
-  }
-
-function trocarTela(){
-
-  document.getElementById("formulario").innerHTML =
-    `<div class="campo">
-      <h2>Redefinir senha</h2> <br>
-              <input id="token_input" type="password" placeholder="Insira o seu Token">
-               <!-- <img src="assets/icon/olho.png" class="verSenha">  -->
-            </div> 
-            <div class="campo">
-              <input id="senha_input" type="password" placeholder="Senha">
-               <!-- <img src="assets/icon/olho.png" class="verSenha"> -->
-            </div>
-            <div class="campo">
-              <input id="confirmaSenha_input" type="password" placeholder="Confirmar senha">
-               <!-- <img src="assets/icon/olho.png" class="verSenha">  -->
-            </div> 
-
-          
-            <button class="botao" onclick="AlterarSenha()">Alterar Senha</button>
-            <p onclick="window.location.href='login.html'">Já tem uma conta?</p>`
-  }
-
-  
-
-}
-
-
-(function () {
-        emailjs.init('UPzH5EKwpvtN46yh3'); // Seu public key
-    })();
-
-    var codigoValidacao = Math.floor(100000 + Math.random() * 900000); // gera código de 6 dígitos
-
-    function sendEmail(email) {
-
-        if (!email) {
-            console.error("Email não informado!");
-            return;
-        }
-
-        sessionStorage.CODIGO = codigoValidacao;
-        console.log(email)
-
-        emailjs.send("service_5cott2o", "template_dqn6ukh", {
-            fulano: "Giovana",
-            email: email,
-            from_email: 'giovana.ratao@sptech.school',
-            codigo: codigoValidacao
-        }).then(function (response) {
-            console.log('SUCCESS!', response.status, response.text);
-        }, function (error) {
-            console.log('FAILED...', error);
-        });
+          .then(function (resposta) {
+            console.log("resposta: ", resposta);
+            if (resposta.ok) {
+              alert(`Sucesso ao alterar senha!`);
+              console.log("Alteração de senha do usuário admin realizado");
+              setTimeout(() => {
+                window.location = "login.html";
+              }, 1000);
+            } else {
+              throw "Houve um erro ao tentar realizar o alteração de senha do usuário";
+            }
+          })
+          .catch(function (resposta) {
+            console.log(`Erro: ${resposta}`);
+            alert(`Houve um erro ao alterar senha!`);
+          });
+      }
     }
+  }
+
+  function trocarTela() {
+
+    document.getElementById("formulario").innerHTML = `
+      <div class="campo">
+      <h2>Redefinir senha</h2> <br>
+        <input id="token_input" placeholder="Insira o seu Token">
+         <!-- <img src="assets/icon/olho.png" class="verSenha">  -->
+      </div> 
+      <div class="campo">
+        <input id="senha_input" type="password" placeholder="Senha">
+         <!-- <img src="assets/icon/olho.png" class="verSenha"> -->
+      </div>
+      <div class="campo">
+        <input id="confirmaSenha_input" type="password" placeholder="Confirmar senha">
+         <!-- <img src="assets/icon/olho.png" class="verSenha">  -->
+      </div> 
+      <button class="botao" onclick="AlterarSenha()">Alterar Senha</button>
+      <p onclick="window.location.href='login.html'">Já tem uma conta?</p>`
+  }
+
+  (function () {
+    emailjs.init('UPzH5EKwpvtN46yh3'); // Seu public key
+  })();
+
+  var codigoValidacao = Math.floor(100000 + Math.random() * 900000); // gera código de 6 dígitos
+
+  function sendEmail(fulano, email) {
+
+    if (!email) {
+      console.error("Email não informado!");
+      return;
+    }
+
+    sessionStorage.CODIGO = codigoValidacao;
+    console.log(email)
+    console.log(fulano)
+
+    emailjs.send("service_5cott2o", "template_dqn6ukh", {
+      fulano: fulano,
+      email: email,
+      from_email: 'route_finder@outlook.com',
+      codigo: codigoValidacao
+    }).then(function (response) {
+      console.log('SUCCESS!', response.status, response.text);
+    }, function (error) {
+      console.log('FAILED...', error);
+    });
+  }
+
+  async function coletarEmail(email) {
+    try {
+      const resposta = await fetch(`/usuarios/coletarEmail/${email}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!resposta.ok) {
+        throw new Error("Houve um erro ao tentar coletar os dados do usuário");
+      }
+
+      const json = await resposta.json();
+      console.log("Dados recebidos:", JSON.stringify(json));
+
+      if (json.resultado && json.resultado.length > 0) {
+        console.log(json.resultado);
+        console.log(json.resultado[0].name_user);
+        // Ajuste aqui se name_user for objeto
+        const nomeUser = json.resultado[0].name_user;
+        if (typeof nomeUser === "object") {
+          return nomeUser.first ?? "Usuário";
+        } else {
+          return nomeUser;
+        }
+      } else {
+        alert(`O email digitado não corresponde a um usuário cadastrado`);
+        return null;
+      }
+    } catch (erro) {
+      console.error("Erro:", erro);
+      alert(`Houve um erro ao alterar senha!`);
+      return null;
+    }
+  }
 </script>
