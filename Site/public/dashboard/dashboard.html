@@ -51,7 +51,7 @@
                 </span>
 
                 <div class="text header-text">
-                    <span class="name">Route Finder</span>
+                    <span class="name"> <span id="NOME_USUARIO"></span></span>
                     <span class="profession">#Usuário</span>
                 </div>
             </div>
@@ -225,6 +225,9 @@
 </html>
 
 <script>
+
+    NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO
+
     const velocimetro = canvas_grafico_superior;
     const gaugeChart = new Chart(velocimetro, {
         type: 'doughnut',
