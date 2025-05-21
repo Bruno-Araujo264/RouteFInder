@@ -19,9 +19,9 @@ body {
 
     --body-color: #E4E9F7;
     --sidebar-color: #FFF;
-    --primary-color: #E8B86D;
-    --primary-color-light: #F6F5FF;
-    --toggle-color: #DDD;
+    --primary-color: #ffd186;
+    --primary-color-light: #ffcd83;
+    --toggle-color: #494949;
     --text-color: #707070;
 
     --cor-verde: #729762;
@@ -36,31 +36,31 @@ body {
 }
 
 .norte {
-    background: #E16A54;
-  }
-  
-  .oeste {
-    background: #FFE862;
-  }
-  
-  .sul {
-    background: #78A55A;
-  }
-  
-  .leste {
-    background: #9EC6F3;
-  }
-  
-  .centro {
-    background: #C599B6;
-  }
+    background: #ff5101;
+}
+
+.oeste {
+    background: #ff7301;
+}
+
+.sul {
+    background: #ff9901;
+}
+
+.leste {
+    background: #ffbb00;
+}
+
+.centro {
+    background: #ffd000;
+}
 
 body.dark {
     --body-color: #18191a;
     --sidebar-color: #242526;
     --primary-color: #3a3b3c;
     --primary-color-light: #5c5c5c;
-    --toggle-color: #FFF096;
+    --toggle-color: #494949;
     --text-color: #fff;
 }
 
@@ -329,6 +329,7 @@ body.dark .switch::before {
     height: 100vh;
     left: 88px;
     width: calc(100% - 88px);
+    background: var(--primary-color);
     transition: var(--tran-05);
 }
 
@@ -372,26 +373,31 @@ body.dark .switch::before {
         align-items: center;
         height: 7%;
         width: 90%;
-        margin:auto;
+        margin: auto;
     }
-    
+
     .pesquisa .icon {
         position: absolute;
-        left: 10px; /* Ajuste a posição horizontal do ícone */
-        color: #aaa; /* Cor do ícone */
-        font-size: 18px; /* Tamanho do ícone */
+        left: 10px;
+        /* Ajuste a posição horizontal do ícone */
+        color: #aaa;
+        /* Cor do ícone */
+        font-size: 18px;
+        /* Tamanho do ícone */
     }
-    
+
     #idPesquisa {
         width: 100%;
-        padding: 10px 10px 10px 35px; /* Espaço para o ícone */
+        padding: 10px 10px 10px 35px;
+        /* Espaço para o ícone */
         border: 1px solid #ccc;
         border-radius: 4px;
         font-size: 16px;
     }
-    
+
     #idPesquisa::placeholder {
-        color: #aaa; /* Cor do placeholder */
+        color: #aaa;
+        /* Cor do placeholder */
     }
 
     .nivelCongestionamento {
@@ -441,7 +447,7 @@ body.dark .switch::before {
         justify-content: center;
         width: 90%;
         height: 80%;
-        background: #C599B6;
+        background: #ffd000;
         border-radius: 16px 0 16px 16px;
         margin: auto;
         /* overflow: hidden; */
@@ -506,7 +512,7 @@ body.dark .switch::before {
     width: 300px;
     height: 130px;
     overflow: hidden;
-    top: 41.4%;
+    top: 40%;
     left: 20.31%;
 }
 
@@ -687,23 +693,23 @@ body.dark #idPesquisa {
     }
 
     .norte {
-        background: #e27070;
+        background: #ff5101;
     }
 
     .oeste {
-        background: #FFE862;
+        background: #ff7301;
     }
 
     .sul {
-        background: #78A55A;
+        background: #ff9901;
     }
 
     .leste {
-        background: #9EC6F3;
+        background: #ffbb00;
     }
 
     .centro {
-        background: #C599B6;
+        background: #ffd000;
     }
 
     .grafico {
@@ -784,7 +790,7 @@ i {
     height: 100%;
     width: 550px;
     padding: 10px 14px;
-    background: var(--body-color);
+    background: var(--primary-color);
     /* background: red; */
     transition: var(--tran-05);
     z-index: 200;
@@ -936,8 +942,8 @@ body.dark .barra-direita .sensor-list {
 
 .pointer {
     position: relative;
-    top:125px;
-    left:32%;
+    top: 125px;
+    left: 32%;
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
@@ -955,7 +961,7 @@ body.dark .pointer {
 }
 
 .animate {
-    transition-duration:1.5s ;
+    transition-duration: 1.5s;
     transition-property: 0 opacity;
     transition-timing-function: ease;
 }

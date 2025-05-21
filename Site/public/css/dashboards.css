@@ -19,9 +19,9 @@ body {
 
   --body-color: #E4E9F7;
   --sidebar-color: #FFF;
-  --primary-color: #E8B86D;
-  --primary-color-light: #F6F5FF;
-  --toggle-color: #DDD;
+  --primary-color: #ffd186;
+  --primary-color-light: #ffcd83;
+  --toggle-color: #494949;
   --text-color: #707070;
 
   --cor-verde: #729762;
@@ -36,29 +36,29 @@ body {
 }
 
 .norte {
-  background: #E16A54;
+  background: #ff5101;
 }
 
 .oeste {
-  background: #FFE862;
+  background: #ff7301;
 }
 
 .sul {
-  background: #78A55A;
+  background: #ff9901;
 }
 
 .leste {
-  background: #9EC6F3;
+  background: #ffbb00;
 }
 
 .centro {
-  background: #C599B6;
+  background: #ffd000;
 }
 
 body.dark {
   --body-color: #18191a;
   --sidebar-color: #242526;
-  --primary-color: #3a3b3c;
+  --primary-color: #3c3e3f;
   --primary-color-light: #5c5c5c;
   --toggle-color: #FFF096;
   --text-color: #fff;
@@ -66,7 +66,7 @@ body.dark {
 
 body {
   height: 100vh;
-  background: var(--body-color);
+  background: #696969;
   transition: var(--tran-05);
 }
 
@@ -328,7 +328,7 @@ body.dark .switch::before {
   height: 100vh;
   left: 88px;
   width: calc(100% - 88px);
-  background: var(--body-color);
+  background: var(--primary-color);
   transition: var(--tran-05);
 }
 
@@ -362,6 +362,7 @@ body.dark .switch::before {
   flex-direction: column;
   width: 36%;
   height: 100%;
+  /* overflow: hidden; */
   /* background: red; */
 
   .nivelCongestionamento {
@@ -411,7 +412,7 @@ body.dark .switch::before {
     justify-content: center;
     width: 90%;
     height: 80%;
-    background: #C599B6;
+    background: #ffd000;
     border-radius: 16px 0 16px 16px;
     margin: auto;
     /* border-top: solid 1px #cccccc; */
@@ -426,17 +427,22 @@ body.dark .switch::before {
     border: solid 1px #cfcfcf;
     border-radius: 16px;
     transition: var(--tran-03);
-
-    .container {
-      /* background: #000; */
-    }
   }
+}
+
+.tabelaPico .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  height: 95%;
+  margin: auto;
 }
 
 .circulo-container {
   position: absolute;
   width: 18.75em;
-  height: 8.125em;
+  height: 7.87em;
   overflow: hidden;
   top: 28%;
   left: 11.65%;
@@ -502,7 +508,7 @@ body.dark p {
   .horario {
     display: flex;
     align-items: center;
-    height: 30%;
+    height: 40%;
     width: 95%;
     margin: auto;
     background: var(--sidebar-color);
@@ -524,7 +530,7 @@ body.dark p {
       justify-content: center;
       align-items: center;
       width: 100%;
-      height: 35%;
+      height: 25%;
       background: #FFF;
       border-right: 1px solid #c7c7c7;
       border-bottom: 1px solid #c7c7c7;
@@ -555,7 +561,7 @@ body.dark p {
   .qtdCongestionamento {
     display: flex;
     align-items: center;
-    height: 60%;
+    height: 50%;
     width: 95%;
     margin: auto;
     background: var(--sidebar-color);
@@ -688,23 +694,23 @@ body.dark .qtdCongestionamento {
   }
 
   .norte {
-    background: #e27070;
+    background: #ff5101;
   }
 
   .oeste {
-    background: #FFE862;
+    background: #ff7301;
   }
 
   .sul {
-    background: #78A55A;
+    background: #ff9901;
   }
 
   .leste {
-    background: #9EC6F3;
+    background: #ffbb00;
   }
 
   .centro {
-    background: #C599B6;
+    background: #ffd000;
   }
 
   .grafico {

@@ -124,25 +124,25 @@
             <div class="coluna1">
                 <div class="pesquisa">
                     <i class="fa fa-search icon" aria-hidden="true"></i>
-                    <input type="text" id="idPesquisa">
+                    <input type="text" id="idPesquisa" placeholder="Pesquisar rua...">
                 </div>
                 <div class="nivelCongestionamento">
 
                     <div class="subpasta">
-                        <div id="idNorte" class="norte filtro">
-                            <p>N</p>
+                        <div id="idNorte" class="norte filtro" style="background-color: white;">
+                            <!-- <p>N</p> -->
                         </div>
-                        <div id="idOeste" class="oeste filtro">
-                            <p>O</p>
+                        <div id="idOeste" class="oeste filtro" style="background-color: white;">
+                            <!-- <p>O</p> -->
                         </div>
-                        <div id="idSul" class="sul filtro">
-                            <p>S</p>
+                        <div id="idSul" class="sul filtro" style="background-color: white;">
+                            <!-- <p>S</p> -->
                         </div>
-                        <div id="idLeste" class="leste filtro">
-                            <p>L</p>
+                        <div id="idLeste" class="leste filtro" style="background-color: white;">
+                            <!-- <p>L</p> -->
                         </div>
                         <div id="idCentro" class="centro filtro">
-                            <p>C</p>
+                            <!-- <p>C</p> -->
                         </div>
                     </div>
                     <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
@@ -150,7 +150,7 @@
                         <div class="pointer animate pointerAnimation"></div>
                         <div class="circulo-container">
                             <div class="circulo">
-                                <p id="id_regiao">Centro</p>
+                                <!-- <p id="id_regiao">Centro</p> -->
                             </div>
                         </div>
                         <canvas id="canvas_grafico_superior"></canvas>
@@ -160,6 +160,7 @@
                 <div class="horario">
                     <div class="container">
                         <h2>Melhor e Pior Horário</h2>
+                        <p class="rua" id="id_rua">Rua: xxxxx</p>
                         <div class="horas box">
                             <p>Melhor:</p>
                             <p>00:00</p>
@@ -276,7 +277,7 @@
             datasets: [{
                 label: ['Semana'],
                 data: [12, 19, 3, 5, 8],
-                backgroundColor: ['#e27070', '#FFE862', '#78A55A', '#9EC6F3', '#C599B6'],
+                backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#78A55A', '#FFE862'],
                 // borderColor: 'black',
                 borderWidth: 2
             }]
@@ -291,13 +292,12 @@
             },
             plugins: {
                 legend: {
-                    display: true,
-                    position: 'top'
+                    display: false,
                 },
                 title: {
                     color: 'black',
                     display: true,
-                    text: 'Quantidade de Congestionamentos Por Região',
+                    text: 'N° de Ruas Congestionadas',
                     font: {
                         family: 'Afacad',
                         size: 20 // Aumente o valor para o tamanho desejado
@@ -317,24 +317,27 @@
                 label: 'My Dataset',
                 data: [11, 16, 7, 14, 9],
                 backgroundColor: [
-                    '#78A55A', '#FFE862', '#E16A54', '#9EC6F3', '#C599B6'
+                    '#FFE862', '#E16A54', '#78A55A', '#E16A54', '#78A55A'
                 ],
                 borderWidth: 2
             }]
         },
         options: {
             plugins: {
+                legend: {
+                    display: true,
+                    position: 'right',
+                },
                 title: {
                     display: true,
                     color: 'black', // Cor padrão
-                    text: 'Nível de Congestionamentos por Região',
+                    text: 'Intensidade do Congestionamento',
                     font: {
                         family: 'Afacad',
                         size: 20
                     },
                     padding: {
-                        top: 0,
-                        bottom: 20
+                        top: 10,
                     }
                 }
             },
@@ -358,7 +361,7 @@
         type: 'line',
         data: {
             labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-            backgroundColor: ['#78A55A', '#FFE862', '#E16A54', '#9EC6F3', '#E5D9F2'],
+            backgroundColor: ['#ff5101', '#ff7301', '#ff9901', '#ffbb00', '#ffd000'],
             datasets: [
                 {
                     label: 'Tietê',
@@ -382,7 +385,7 @@
                 title: {
                     color: 'black',
                     display: true,
-                    text: 'Evolução do Transito',
+                    text: 'Histórico do Congestionamento',
                     font: {
                         family: 'Afacad',
                         size: 20 // Aumente o valor para o tamanho desejado
@@ -399,11 +402,11 @@
     const pasta = document.getElementById("pasta");
 
     const regioes = {
-        idNorte: "#E16A54",
-        idOeste: "#FFE862",
-        idSul: "#78A55A",
-        idLeste: "#9EC6F3",
-        idCentro: "#C599B6",
+        idNorte: "#ff5101",
+        idOeste: "#ff7301",
+        idSul: "#ff9901",
+        idLeste: "#ffbb00",
+        idCentro: "#ffd000",
     };
 
     const p_regiao = [
