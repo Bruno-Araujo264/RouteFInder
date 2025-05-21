@@ -17,12 +17,12 @@ body {
 :root {
   /* === Cores === */
 
-  --body-color: #E4E9F7;
-  --sidebar-color: #FFF;
-  --primary-color: #ffd186;
-  --primary-color-light: #ffcd83;
-  --toggle-color: #494949;
-  --text-color: #707070;
+  --body-color: #18191a;
+  --sidebar-color: #242526;
+  --primary-color: #3c3e3f;
+  --primary-color-light: #5c5c5c;
+  --toggle-color: #FFF096;
+  --text-color: #fff;
 
   --cor-verde: #729762;
   --cor-amarela: #E8B86D;
@@ -361,10 +361,26 @@ body.dark .switch::before {
   display: flex;
   flex-direction: column;
   width: 36%;
-  height: 100%;
-  /* overflow: hidden; */
-  /* background: red; */
+  height: 100%; 
+}
 
+.coluna1 .nivelCongestionamento {
+  margin: auto;
+  height: 45%;
+  width: 95%;
+  background: var(--sidebar-color);
+  border: solid 1px var(--primary-color-light);
+}
+
+.coluna1 .nivelCongestionamento .pasta {
+  margin: auto;
+  margin-top: auto;
+  width: 90%;
+  height: 80%;
+  background: var(--primary-color-light)
+}
+
+/* 
   .nivelCongestionamento {
     height: 45%;
     width: 95%;
@@ -375,7 +391,7 @@ body.dark .switch::before {
     transition: var(--tran-03);
     z-index: 10;
 
-  }
+  } */
 
   .nivelCongestionamento .subpasta {
     display: flex;
@@ -425,10 +441,9 @@ body.dark .switch::before {
     margin: auto;
     background: var(--sidebar-color);
     border: solid 1px #cfcfcf;
-    border-radius: 16px;
+    /* border-radius: 16px; */
     transition: var(--tran-03);
   }
-}
 
 .tabelaPico .container {
   display: flex;
@@ -513,7 +528,7 @@ body.dark p {
     margin: auto;
     background: var(--sidebar-color);
     border: solid 1px #cfcfcf;
-    border-radius: 16px;
+    /* border-radius: 16px; */
     transition: var(--tran-03);
 
     .container {
@@ -566,7 +581,7 @@ body.dark p {
     margin: auto;
     background: var(--sidebar-color);
     border: solid 1px #cfcfcf;
-    border-radius: 16px;
+    /* border-radius: 16px; */
     transition: var(--tran-03);
 
     .container {
@@ -629,7 +644,7 @@ body.dark .qtdCongestionamento {
     margin: auto;
     background: var(--sidebar-color);
     border: solid 1px #cfcfcf;
-    border-radius: 16px;
+    /* border-radius: 16px; */
     transition: var(--tran-03);
   }
 
@@ -671,7 +686,7 @@ body.dark .qtdCongestionamento {
     height: 17%;
     border-right: 1px solid #c7c7c7;
     border-bottom: 1px solid #c7c7c7;
-    border-radius: 16px;
+    /* border-radius: 16px; */
     box-shadow: 4px 6px 10px 0 #c0c0c0;
     background: var(--sidebar-color);
     transition: var(--tran-03);
