@@ -380,48 +380,53 @@ body.dark .switch::before {
   background: var(--primary-color-light)
 }
 
-/* 
-  .nivelCongestionamento {
-    height: 45%;
-    width: 95%;
-    margin: auto;
-    background-color: var(--sidebar-color);
-    border: solid 1px #cfcfcf;
-    border-radius: 16px;
-    transition: var(--tran-03);
-    z-index: 10;
+.coluna1 .nivelCongestionamento .subpasta {
+  display: flex;
+  width: 50%;
+  height: 7%;
+  margin: auto;
+  margin-top: 20px;
+  margin-left: 45%;
+  position: relative;
+}
 
-  } */
+.nivelCongestionamento .subpasta .filtro {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+  width: 40%;
+  border-radius: 100px 16px 0 0;
+  z-index: 1;
+  margin-left: -20px;
+}
 
-  .nivelCongestionamento .subpasta {
-    display: flex;
-    width: 50%;
-    height: 7%;
-    margin: auto;
-    margin-top: 20px;
-    margin-left: 45%;
-    position: relative;
+.nivelCongestionamento .subpasta p {
+  margin-right: 15px;
+  margin-top: 1px;
+  font-weight: bold;
+}
 
-    .filtro {
-      display: flex;
-      justify-content: center;
-      position: relative;
-      height: 100%;
-      width: 40%;
-      border-radius: 100px 16px 0 0;
-      z-index: 1;
-      margin-left: -20px;
-      /* sobreposição */
-    }
+.nivelCongestionamento .circulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: var(--sidebar-color);
+  border-radius: 100%;
+  width: 62%;
+  height: 29vh;
+}
 
-    p {
-      margin-right: 15px;
-      margin-top: 1px;
-      /* text-decoration: underline; */
-      font-weight: bold;
-      transition: var(--tran-02);
-    }
-  }
+.circulo-container {
+  position: absolute;
+  width: 18.75em;
+  height: 7.87em;
+  overflow: hidden;
+  top: 28%;
+  left: 11.65%;
+}
+
 
   .pasta {
     display: flex;
@@ -452,27 +457,6 @@ body.dark .switch::before {
   width: 95%;
   height: 95%;
   margin: auto;
-}
-
-.circulo-container {
-  position: absolute;
-  width: 18.75em;
-  height: 7.87em;
-  overflow: hidden;
-  top: 28%;
-  left: 11.65%;
-}
-
-.circulo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  background: white;
-  border-radius: 100%;
-  width: 11.875em;
-  height: 11.875em;
-  transition: var(--tran-03);
 }
 
 .circulo p {
