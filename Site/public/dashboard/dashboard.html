@@ -126,23 +126,29 @@
 
             <div class="coluna1">
                 <div class="nivelCongestionamento">
-                    <div class="subpasta">
-                        <div id="idNorte" class="norte filtro">
-                            <p>N</p>
-                        </div>
-                        <div id="idOeste" class="oeste filtro">
-                            <p>O</p>
-                        </div>
-                        <div id="idSul" class="sul filtro">
-                            <p>S</p>
-                        </div>
-                        <div id="idLeste" class="leste filtro">
-                            <p>L</p>
-                        </div>
-                        <div id="idCentro" class="centro filtro">
-                            <p>C</p>
+                    <div class="teste">
+                        <h2>Nível de Congestionamento <br>
+                            alterar o design
+                        </h2>
+                        <div class="subpasta">
+                            <div id="idNorte" class="norte filtro">
+                                <p>N</p>
+                            </div>
+                            <div id="idOeste" class="oeste filtro">
+                                <p>O</p>
+                            </div>
+                            <div id="idSul" class="sul filtro">
+                                <p>S</p>
+                            </div>
+                            <div id="idLeste" class="leste filtro">
+                                <p>L</p>
+                            </div>
+                            <div id="idCentro" class="centro filtro">
+                                <p>C</p>
+                            </div>
                         </div>
                     </div>
+
                     <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
                     <div class="pasta" id="pasta">
                         <div class="pointer animate pointerAnimation"></div>
@@ -166,17 +172,22 @@
                 <div class="horario">
                     <div class="container">
                         <h2>Melhor e Pior Horário</h2>
-                        <p class="rua" id="id_rua">Rua: xxxxx</p>
                         <div class="horas box">
-                            <p>Melhor: 00:00</p>
+                            <div class="container">
+                                <i class="fa-solid fa-square-check"></i>
+                                <p><u>15:00</u></p>
+                            </div>
                         </div>
                         <div class="horas box">
-                            <p>Pior: 23:59</p>
+                            <div class="container">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                                <p><u>08:00</u></p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="qtdCongestionamento">
+                <div class="intensidadeCongestionamento">
                     <div class="container">
                         <canvas id="canvas_grafico_inferior2"></canvas>
                     </div>
@@ -248,15 +259,6 @@
             plugins: {
                 tooltip: { enabled: false },
                 legend: { display: true },
-                title: {
-                    display: true,
-                    text: 'Nível de congestionamento',
-                    color: 'white',
-                    font: {
-                        family: 'Afacad',
-                        size: 25
-                    }
-                }
             }
         }
     });
@@ -283,7 +285,6 @@
             plugins: {
                 legend: {
                     display: true,
-                    position: top
                 },
                 title: {
                     color: 'black',
@@ -294,7 +295,7 @@
                         size: 20 // Aumente o valor para o tamanho desejado
                     },
                     padding: {
-                        bottom: 20 
+                        bottom: 20
                     }
                 }
             }
