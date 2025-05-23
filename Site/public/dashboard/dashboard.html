@@ -127,26 +127,28 @@
             <div class="coluna1">
                 <div class="nivelCongestionamento">
                     <div class="teste">
-                        <h2>Nível de Congestionamento</h2>
+                        <h2>Nível de Congestionamento <br>
+                            alterar o design
+                        </h2>
                         <div class="subpasta">
-                        <div id="idNorte" class="norte filtro">
-                            <p>N</p>
-                        </div>
-                        <div id="idOeste" class="oeste filtro">
-                            <p>O</p>
-                        </div>
-                        <div id="idSul" class="sul filtro">
-                            <p>S</p>
-                        </div>
-                        <div id="idLeste" class="leste filtro">
-                            <p>L</p>
-                        </div>
-                        <div id="idCentro" class="centro filtro">
-                            <p>C</p>
+                            <div id="idNorte" class="norte filtro">
+                                <p>N</p>
+                            </div>
+                            <div id="idOeste" class="oeste filtro">
+                                <p>O</p>
+                            </div>
+                            <div id="idSul" class="sul filtro">
+                                <p>S</p>
+                            </div>
+                            <div id="idLeste" class="leste filtro">
+                                <p>L</p>
+                            </div>
+                            <div id="idCentro" class="centro filtro">
+                                <p>C</p>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                    
+
                     <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
                     <div class="pasta" id="pasta">
                         <div class="pointer animate pointerAnimation"></div>
@@ -172,20 +174,20 @@
                         <h2>Melhor e Pior Horário</h2>
                         <div class="horas box">
                             <div class="container">
-                                <div class="status"></div>
-                                <p>Melhor: <u>15:00</u></p>
+                                <i class="fa-solid fa-square-check"></i>
+                                <p><u>15:00</u></p>
                             </div>
                         </div>
                         <div class="horas box">
                             <div class="container">
-                                <div class="status"></div>
-                                <p>Pior: <u>08:00</u></p>
+                                <i class="fa-solid fa-circle-xmark"></i>
+                                <p><u>08:00</u></p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="qtdCongestionamento">
+                <div class="intensidadeCongestionamento">
                     <div class="container">
                         <canvas id="canvas_grafico_inferior2"></canvas>
                     </div>
@@ -280,7 +282,6 @@
             plugins: {
                 legend: {
                     display: true,
-                    position: top
                 },
                 title: {
                     color: 'black',
