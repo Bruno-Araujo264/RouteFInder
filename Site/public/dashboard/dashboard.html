@@ -126,7 +126,9 @@
 
             <div class="coluna1">
                 <div class="nivelCongestionamento">
-                    <div class="subpasta">
+                    <div class="teste">
+                        <h2>Nível de Congestionamento</h2>
+                        <div class="subpasta">
                         <div id="idNorte" class="norte filtro">
                             <p>N</p>
                         </div>
@@ -143,6 +145,8 @@
                             <p>C</p>
                         </div>
                     </div>
+                    </div>
+                    
                     <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
                     <div class="pasta" id="pasta">
                         <div class="pointer animate pointerAnimation"></div>
@@ -166,12 +170,17 @@
                 <div class="horario">
                     <div class="container">
                         <h2>Melhor e Pior Horário</h2>
-                        <p class="rua" id="id_rua">Rua: xxxxx</p>
                         <div class="horas box">
-                            <p>Melhor: 00:00</p>
+                            <div class="container">
+                                <div class="status"></div>
+                                <p>Melhor: <u>15:00</u></p>
+                            </div>
                         </div>
                         <div class="horas box">
-                            <p>Pior: 23:59</p>
+                            <div class="container">
+                                <div class="status"></div>
+                                <p>Pior: <u>08:00</u></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -245,15 +254,6 @@
             plugins: {
                 tooltip: { enabled: false },
                 legend: { display: true },
-                title: {
-                    display: true,
-                    text: 'Nível de congestionamento',
-                    color: 'white',
-                    font: {
-                        family: 'Afacad',
-                        size: 25
-                    }
-                }
             }
         }
     });
@@ -291,7 +291,7 @@
                         size: 20 // Aumente o valor para o tamanho desejado
                     },
                     padding: {
-                        bottom: 20 
+                        bottom: 20
                     }
                 }
             }
