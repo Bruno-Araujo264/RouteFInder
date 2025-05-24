@@ -22,7 +22,7 @@ body {
   --primary-color: #3c3e3f;
   --primary-color-light: #5c5c5c;
   --toggle-color: #FFF096;
-  --text-color: #fff;
+  --text-color: #d3d3d3;
 
   --cor-verde: #729762;
   --cor-amarela: #E8B86D;
@@ -34,17 +34,17 @@ body {
   --tran-04: all 0.4s ease;
   --tran-05: all 0.4s ease;
 
-  --norte: #ff5101;
-  --oeste: #ff7301;
-  --sul: #ff9901;
-  --leste: #ffbb00;
-  --centro: #ffd000;
+  --norte: #1100ff;
+  --oeste: #285aff;
+  --sul: #288cff;
+  --leste: #28bbff;
+  --centro: #28e6ff;
 
-  --bg-norte: #ff510180;
-  --bg-oeste: #ff730180;
-  --bg-sul: #ff990180;
-  --bg-leste: #ffbb0080;
-  --bg-centro: #ffd00080;
+  --bg-norte: #0044ff80;
+  --bg-oeste: #285aff80;
+  --bg-sul: #288cff80;
+  --bg-leste: #28bbff80;
+  --bg-centro: #28e6ff80;
 }
 
 body.dark {
@@ -471,8 +471,10 @@ body.dark .switch::before {
   color: var(--text-color)
 }
 
-#canvas_grafico_superior {
-  z-index: 3;
+#canvas_grafico_inferior {
+    background: #18181c;
+    border-radius: 16px;
+    padding: 16px 0;
 }
 
 #canvas_grafico_superior {
