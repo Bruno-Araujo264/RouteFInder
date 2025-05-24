@@ -36,6 +36,16 @@
               <input id="confirmaSenha_input" type="password" placeholder="Confirmar senha">
               <!-- <img src="assets/icon/olho.png" class="verSenha"> -->
             </div>
+            <div class="campo">
+              <input id="token_input" type="text" placeholder="Token">
+            </div>
+            <div class="campo">
+              <select name="id_cargo" id="id_cargo" required style="color: gray;" oninput="this.style.color = '#000'">
+            <option value="" disabled selected hidden>Selecione o seu Cargo</option>
+            <option value="cargoAdmin">Administrador</option>
+            <option value="cargoFuncionario">Funcionário</option>
+            </select>
+            </div>
             <button class="botao" onclick="cadastrar()">Finalizar Cadastro</button>
             <p onclick="window.location.href='login.html'">Já tem uma conta?</p>
           </div>
@@ -64,6 +74,8 @@
     var nomeVar = nome_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
+    var tokenVar = token_input.value;
+    var cargoVar = id_cargo.value;
     var confirmacaoSenhaVar = confirmaSenha_input.value;
 
 
@@ -71,7 +83,10 @@
     if (
       nomeVar == "" ||
       emailVar == "" ||
-      senhaVar == ""
+      senhaVar == "" ||
+      tokenVar == "" ||
+      cargoVar == "" ||
+      confirmacaoSenhaVar == ""
     ) {
       
       alert("Mensagem de erro para todos os campos em branco")
@@ -79,6 +94,16 @@
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
+    }
+
+    if (!/\S+@\S+\.\S+/.test(emailVar)) {
+    alert("E-mail inválido. Tente novamente.");
+    }
+
+    if (senhaVar.length < 8 || !/@|#|%|&/.test(senhaVar) || !/[0-9]/.test(senhaVar)) {
+    alert("Senha inválida! Ela deve conter pelo menos um número e um caractere especial.");
+    } else if(senhaVar != confirmacaoSenhaVar){
+      alert("As senhas não coincidem. Verifique e tente novamente.");
     }
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
