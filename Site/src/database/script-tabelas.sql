@@ -1,62 +1,131 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
+	 -- use triade;
+	 -- drop database triade;
+	 -- create database triade;
 
-/*
-comandos para mysql server
-*/
+CREATE database routeFinder;
 
-CREATE DATABASE aquatech;
+use routeFinder;
 
-USE aquatech;
 
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
+CREATE TABLE company (
+
+id_company INT AUTO_INCREMENT PRIMARY KEY,
+
+corporate_name VARCHAR(45),
+
+address VARCHAR(50),
+
+
+CNPJ CHAR(14)
+
 );
 
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+
+CREATE TABLE position (
+
+id_position INT AUTO_INCREMENT PRIMARY KEY,
+
+name VARCHAR(45),
+
+description VARCHAR(45)
+
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+
+CREATE TABLE access_level (
+
+id_access_level INT AUTO_INCREMENT PRIMARY KEY,
+
+name VARCHAR(45),
+
+description VARCHAR(45)
+
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+
+CREATE TABLE user (
+id_user INT AUTO_INCREMENT PRIMARY KEY,
+name_user VARCHAR(45),
+password VARCHAR(45),
+email VARCHAR(45),
+phone VARCHAR(45),
+created_at DATETIME,
+fk_company INT,
+FOREIGN KEY (fk_company) REFERENCES company(id_company),
+fk_position INT,
+FOREIGN KEY (fk_position) REFERENCES position (id_position),
+fk_access_level INT,
+FOREIGN KEY (fk_access_level) REFERENCES access_level(id_access_level)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
 
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
+
+CREATE TABLE category (
+
+id_category INT AUTO_INCREMENT PRIMARY KEY,
+
+type VARCHAR(45),
+
+description VARCHAR(255)
+
 );
 
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+
+
+
+CREATE TABLE alert (
+
+id_alert INT AUTO_INCREMENT PRIMARY KEY,
+
+name_alert VARCHAR(45),
+
+description VARCHAR(45),
+
+fk_user INT,
+
+FOREIGN KEY (fk_user) REFERENCES user(id_user)
+
+);
+
+
+CREATE TABLE log (
+id_log INT AUTO_INCREMENT PRIMARY KEY,
+date_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+description VARCHAR(200),
+fk_alert INT,
+FOREIGN KEY (fk_alert) REFERENCES alert(id_alert),
+fk_category INT,
+FOREIGN KEY (fk_category) REFERENCES category(id_category)
+);
+
+CREATE TABLE passage (
+id_passage INT AUTO_INCREMENT PRIMARY KEY,
+name_passage VARCHAR(200),
+region VARCHAR(10),
+type CHAR(1)
+);
+
+
+CREATE TABLE direction (
+id_direction INT AUTO_INCREMENT PRIMARY KEY,
+name_direction VARCHAR(200),
+fk_passage INT,
+FOREIGN KEY (fk_passage) REFERENCES passage(id_passage)
+);
+
+
+CREATE TABLE segment (
+id_segment INT AUTO_INCREMENT PRIMARY KEY,
+name_segment VARCHAR(100),
+fk_direction INT,
+FOREIGN KEY (fk_direction) REFERENCES direction(id_direction)
+);
+
+
+CREATE TABLE timestamp (
+id_timestamp INT AUTO_INCREMENT PRIMARY KEY,
+date_time DATETIME,
+jam_size INT,
+fk_segment INT,
+FOREIGN KEY (fk_segment) REFERENCES segment(id_segment)
+);
