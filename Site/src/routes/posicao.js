@@ -1,23 +1,19 @@
 var express = require("express");
 var router = express.Router();
 
-var usuarioController = require("../controllers/usuarioController");
+var posicaoController = require("../controllers/posicaoController");
 
-//Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
-router.post("/cadastrar", function (req, res) {
-    usuarioController.cadastrar(req, res);
+//Recebendo os dados do html e direcionando para a função cadastrar de posicaoController.js
+router.post("/cadastrarPosicao", function (req, res) {
+    posicaoController.cadastrarPosicao(req, res);
 })
 
-router.post("/autenticar", function (req, res) {
-    usuarioController.autenticar(req, res);
+router.post("/alterarDescricao", function (req, res) {
+    usuarioController.alterarDescricao(req, res);
 })
 
-router.post("/alterarSenha", function (req, res) {
-    usuarioController.alterarSenha(req, res);
-})
-
-router.get("/coletarEmail/:email", function (req, res) {
-    usuarioController.coletarEmail(req, res);
+router.get("/coletarUsuariosDaPosicao", function (req, res) {
+    usuarioController.coletarUsuariosDaPosicao(req, res);
 })
 
 module.exports = router;
