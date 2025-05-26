@@ -372,36 +372,20 @@ body.dark .switch::before {
   display: flex;
   justify-content: center;
   width: 90%;
-  height: 70%;
+  height: 80%;
   background: var(--primary-color);
   border-radius: 0px 0 4px 4px;
-}
+  margin: auto;
 
-.nivelCongestionamento .teste {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center ;
-  background: white;
-  width: 90%;
-  height: 10%;
-}
-
-.nivelCongestionamento .teste h2 {
-  display: flex;
-  align-items: end;
-  width: 100%;
-  margin-left: 15%;
-  font-size: 1em;
-  white-space: nowrap;
 }
 
 .nivelCongestionamento .subpasta {
   display: flex;
-  height: 100%;
-  /* margin: auto; */
+  width: 50%;
+  height: 7%;
+  margin: auto;
   margin-top: 20px;
-  margin-left:55%;
+  margin-left: 45%;
   position: relative;
 }
 
@@ -409,10 +393,12 @@ body.dark .switch::before {
   display: flex;
   justify-content: center;
   position: relative;
-  height: 100%;
-  width: 100%;
-  border-radius: 10px 0 0 0;
+  width: 90%;
+  height: 80%;
+  border-radius: 100px 16px 0 0;
   z-index: 1;
+  margin-left: -20px;
+  margin: auto;
 }
 
 .nivelCongestionamento .subpasta p {
@@ -445,7 +431,7 @@ body.dark .switch::before {
   margin: auto;
 }
 
-.coluna1 .tabelaPico .container .indicadores{
+.coluna1 .tabelaPico .container .indicadores {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -456,7 +442,7 @@ body.dark .switch::before {
 }
 
 .coluna1 .tabelaPico .container .indicadores .box {
-  height:25px;
+  height: 25px;
   width: 25px;
   border-radius: 4px;
   /* background: red; */
@@ -473,7 +459,7 @@ body.dark .switch::before {
 .coluna1 .tabelaPico .container .indicadores .box:nth-of-type(3) {
   background: var(--cor-vermelha);
 }
- 
+
 .coluna1 .tabelaPico .container .indicadores p {
   color: var(--text-color);
   font-size: 1em;
@@ -487,17 +473,17 @@ body.dark .switch::before {
   position: relative;
   background: var(--sidebar-color);
   border-radius: 100%;
-  width: 11.62em;
+  width: 12.62em;
   height: 11.875em;
 }
 
 .circulo-container {
   position: absolute;
   width: 18.75em;
-  height: 7.87em;
+  height: 8.125em;
   overflow: hidden;
-  top: 28%;
-  left: 11.65%;
+  top: 27%;
+  left: 10.75%;
 }
 
 .circulo p {
@@ -507,7 +493,8 @@ body.dark .switch::before {
 }
 
 #canvas_grafico_superior {
-  margin-top: 25px;
+  margin-top: 40px;
+  z-index: 10;
 }
 
 .coluna2 {
@@ -567,7 +554,7 @@ body.dark .switch::before {
 }
 
 .coluna2 .box:nth-of-type(1) .container i {
-  color:  var(--cor-verde);
+  color: var(--cor-verde);
 }
 
 .coluna2 .box:nth-of-type(2) .container i {
@@ -744,22 +731,18 @@ i {
 
 .pointer {
   position: relative;
-  top: 7.8125em;
+  top: 6.5em;
   left: 32%;
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 90px solid black;
+  border-bottom: 90px solid white;
   border-bottom-left-radius: 35%;
   border-bottom-right-radius: 35%;
   transform: rotate(-90deg);
   transform-origin: center bottom;
   z-index: 100;
-}
-
-body.dark .pointer {
-  border-bottom-color: white;
 }
 
 .animate {
