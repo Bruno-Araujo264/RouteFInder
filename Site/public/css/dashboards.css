@@ -445,6 +445,41 @@ body.dark .switch::before {
   margin: auto;
 }
 
+.coluna1 .tabelaPico .container .indicadores{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
+  height: 15%;
+  /* background: white; */
+}
+
+.coluna1 .tabelaPico .container .indicadores .box {
+  height:25px;
+  width: 25px;
+  border-radius: 4px;
+  /* background: red; */
+}
+
+.coluna1 .tabelaPico .container .indicadores .box:nth-of-type(1) {
+  background: var(--cor-verde);
+}
+
+.coluna1 .tabelaPico .container .indicadores .box:nth-of-type(2) {
+  background: var(--cor-amarela);
+}
+
+.coluna1 .tabelaPico .container .indicadores .box:nth-of-type(3) {
+  background: var(--cor-vermelha);
+}
+ 
+.coluna1 .tabelaPico .container .indicadores p {
+  color: var(--text-color);
+  font-size: 1em;
+  /* margin-right: 50px; */
+}
+
 .circulo {
   display: flex;
   justify-content: center;
@@ -469,12 +504,6 @@ body.dark .switch::before {
   margin-top: 30px;
   font-size: 30px;
   color: var(--text-color)
-}
-
-#canvas_grafico_inferior {
-    background: #18181c;
-    border-radius: 16px;
-    padding: 16px 0;
 }
 
 #canvas_grafico_superior {
@@ -646,7 +675,7 @@ body.dark .switch::before {
     padding: 5px;
     margin-right: 10px;
     border-radius: 8px;
-    color: var(--text-color)
+    color: white;
   }
 
   .norte {

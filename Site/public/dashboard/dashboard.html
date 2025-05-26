@@ -164,6 +164,14 @@
 
                 <div class="tabelaPico">
                     <div class="container">
+                        <div class="indicadores">
+                            <div class="box"></div>
+                            <p>Ótimo</p>
+                            <div class="box"></div>
+                            <p>Ruim</p>
+                            <div class="box"></div>
+                            <p>Péssimo</p>
+                        </div>
                         <canvas id="canvas_grafico_inferior"></canvas>
                     </div>
                 </div>
@@ -261,96 +269,87 @@
         }
     });
 
-    // const graficoBarra = canvas_grafico_inferior;
-    // const barChart = new Chart(graficoBarra, {
-    //     type: 'bar',
-    //     data: {
-    //         labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
-    //         datasets: [{
-    //             data: [12, 19, 3, 5, 8],
-    //             backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#78A55A', '#FFE862'],
-    //             borderWidth: 2
-    //         }]
-    //     },
-    //     options: {
-    //         responsive: true,
-    //         scales: {
-    //             y: {
-    //                 beginAtZero: true
-    //             }
-    //         },
-    //         plugins: {
-    //             legend: {
-    //                 display: true,
-    //             },
-    //             title: {
-    //                 color: '#DBDBDB',
-    //                 display: true,
-    //                 text: 'N° de Ruas Congestionadas',
-    //                 font: {
-    //                     family: 'Afacad',
-    //                     size: 20
-    //                 },
-    //                 padding: {
-    //                     bottom: 20
-    //                 }
-    //             }
-    //         }
-    //     }
-    // });
-
-    const graficoBarra = document.getElementById('canvas_grafico_inferior').getContext('2d');
-const barChart = new Chart(graficoBarra, {
-    type: 'bar',
-    data: {
-        labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
-        datasets: [{
-            data: [12, 19, 3, 5, 8],
-            backgroundColor: [
-                '#444',      // Norte
-                '#444',      // Oeste
-                '#444',      // Sul
-                '#FF6A00',   // Leste (destaque)
-                '#222'       // Centro (apagado)
-            ],
-            borderRadius: 12,
-            borderSkipped: false,
-            barPercentage: 0.6,
-            categoryPercentage: 0.7
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: { display: false },
-            title: { display: false },
-            datalabels: {
-                anchor: 'end',
-                align: 'end',
-                color: '#fff',
-                font: { weight: 'bold', size: 14 },
-                formatter: (value) => value > 0 ? `${value} ruas` : ''
-            }
+    const graficoBarra = canvas_grafico_inferior;
+    const barChart = new Chart(graficoBarra, {
+        type: 'bar',
+        data: {
+            labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
+            datasets: [{
+                data: [12, 19, 3, 5, 8],
+                backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#78A55A', '#FFE862'],
+                borderWidth: 2
+            }]
         },
-        scales: {
-            x: {
-                grid: { display: false },
-                ticks: {
-                    color: '#aaa',
-                    font: { weight: 'bold', size: 14 },
-                    callback: function (value, index) {
-                        return index === 3 ? this.getLabelForValue(value) : this.getLabelForValue(value);
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                title: {
+                    color: '#DBDBDB',
+                    display: true,
+                    text: 'N° de Ruas Congestionadas',
+                    font: {
+                        family: 'Afacad',
+                        size: 20
+                    },
+                    padding: {
+                        bottom: 20
+                    }
+                }
+            }
+        }
+    });
+
+    const graficoPolarArea = canvas_grafico_inferior2;
+    const polarAreaChart = new Chart(graficoPolarArea, {
+        type: 'polarArea',
+        data: {
+            labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
+            datasets: [{
+                label: 'My Dataset',
+                data: [11, 16, 7, 14, 9],
+                backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#E16A54', '#78A55A'],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    color: 'black', // Cor padrão
+                    text: 'Intensidade do Congestionamento',
+                    font: {
+                        family: 'Afacad',
+                        size: 20
+                    },
+                    padding: {
+                        top: 10,
+                        bottom: 20
                     }
                 }
             },
-            y: {
-                display: false,
-                beginAtZero: true
+            scales: {
+                r: { // Para gráficos polarArea
+                    grid: {
+                        color: 'gray' // Cor padrão das linhas de grade
+                    },
+                    angleLines: {
+                        color: 'gray' // Cor padrão das linhas angulares
+                    },
+                    ticks: {
+                        color: 'black' // Cor padrão dos rótulos
+                    }
+                }
             }
         }
-    },
-    plugins: [ChartDataLabels]
-});
+    });
 
     const graficoLinha = new Chart(canvas_grafico_inferior3, {
         type: 'line',
