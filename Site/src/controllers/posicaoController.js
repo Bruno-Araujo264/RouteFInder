@@ -1,4 +1,4 @@
-var usuarioModel = require("../models/posicaoModel");
+var posicaoModel = require("../models/posicaoModel");
 
 function cadastrarPosicao(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html

@@ -9,11 +9,11 @@ router.post("/cadastrarPosicao", function (req, res) {
 })
 
 router.post("/alterarDescricao", function (req, res) {
-    usuarioController.alterarDescricao(req, res);
+    posicaoController.alterarDescricao(req, res);
 })
 
 router.get("/coletarUsuariosDaPosicao", function (req, res) {
-    usuarioController.coletarUsuariosDaPosicao(req, res);
+    posciaoController.coletarUsuariosDaPosicao(req, res);
 })
 
 module.exports = router;
