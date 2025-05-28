@@ -371,13 +371,40 @@ body.dark .switch::before {
 
 .nivelCongestionamento .pasta {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 90%;
   height: 80%;
   background: var(--primary-color);
   border-radius: 8px;
   margin: auto;
+}
 
+.nivelCongestionamento .pasta h2 {
+  width: 100%;
+  color: var(--text-color);
+  font-size: 1.2em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.nivelCongestionamento .pasta .kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  background: white;
+}
+
+.nivelCongestionamento .pasta .kpi h2 {
+  color: var(--text-color);
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: auto;
+}
+
+.nivelCongestionamento .pasta .kpi .box {
+  height: auto;
 }
 
 .nivelCongestionamento .subpasta {
