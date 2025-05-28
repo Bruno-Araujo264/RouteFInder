@@ -5,24 +5,128 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <link rel="stylesheet" href="./../css/empresas.css" />
+  <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <title>Cadastro</title>
-  <link rel="stylesheet" href="/Site/public/css/empresas.css" />
 </head>
 
 <body>
+  <style>
+    .sidebar .menu-links li:first-child {
+        background: var(--primary-color);
+        border-radius: 6px;
+        transition: var(--tran-03);
+    }
+
+    body.dark .menu-links .sidebar li:first-child {
+        background: var(--primary-color);
+        border-radius: 6px;
+        transition: var(--tran-03);
+    }
 
 
-  <div class="empresa">
-    <div class="container">
-      <div class="card">
+    .sidebar .menu-links li:first-child a .text,
+    .sidebar .menu-links li:first-child a .icon {
+        color: white;
+    }
+</style>
+  <nav class="sidebar close">
+    <header>
+        <div class="image-text">
+            <span class="image">
+                <i class="fa fa-user" style="font-size:24px"></i>
+            </span>
+
+            <div class="text header-text">
+                <span class="name"> <span id="NOME_USUARIO"></span></span>
+                <span class="profession">#Usuário</span>
+            </div>
+        </div>
+
+        <i class='bx bx-chevron-right toggle' style="cursor: pointer"></i>
+    </header>
+
+    <div class="menu-bar">
+        <div class="menu">
+            <!-- <li class="search-box">
+                    <i class='bx bx-search-alt icon'></i>
+                    <input type="text" placeholder="Search...">
+            </li> -->
+            <ul class="menu-links">
+                <!-- <li class="nav-list">
+                    <a href="#">
+                        <i class='bx bxs-user icon'></i>
+                        <span class="text nav-text">Olá, FrizzaTech</span>
+                    </a>
+                </li> -->
+                <li class="nav-list">
+                    <a>
+                      <a href="dashboard.html">
+                        <i class='bx bx-home-alt icon'></i>
+                        <span class="text nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-list">
+                        <a href=" mural.html">
+                    <i class='bx bx-search-alt icon'></i>
+                    <span class="text nav-text">Consultar</span>
+                    </a>
+                </li>
+                <li class="nav-list">
+                    <a href="aviso.html">
+                        <i class='bx bx-bell icon'></i>
+                        <span class="text nav-text">Notificação</span>
+                    </a>
+                </li>
+                <li class="nav-list">
+                    <a href=" empresas.html">
+                        <i class='bx bx-enterprise icon'></i> 
+                        <span class="text nav-text">Cadastrar Empresas</span>
+                    </a>
+                </li>
+                <!-- <li class="nav-list">
+                        <a href="#">
+                            <i class='bx bx-pie-chart-alt icon'></i>
+                            <span class="text nav-text">Analytics</span>
+                        </a>
+                    </li> -->
+            </ul>
+        </div>
+
+        <div class="bottom-content">
+            <li class="">
+                <a href="../index.html">
+                    <i class="fa fa-sign-out icon"></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+            <li class="mode">
+                <div class="moon-sun">
+                    <i class="bx bx-moon icon moon"></i>
+                    <i class="bx bx-sun icon sun"></i>
+                </div>
+                <span class="mode-text text">Dark Mode</span>
+
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </div>
+    </div>
+</nav>
+
+  <section class="home">
+    <div class="empresa">
+      <div class="container">
+        <div class="card">
         <div class="card-cadastro-empresa">
           <div class="formulario">
             <h2>Cadastro de Empresas</h2>
             <div class="campo">
                 <input id="cnpj_input" type="text" placeholder="CNPJ">
               </div>
-            <div class="campo">
+              <div class="campo">
               <input id="corporate_name_input" type="text" placeholder="Nome da empresa" onblur="chamarEmpresa()">
             </div>
             <div class="campo">
@@ -36,6 +140,8 @@
       </div>
     </div>
   </div>
+</section>
+<script src="../js/slider.js"></script>
 
 </body>
 
