@@ -24,13 +24,23 @@ function excluirEmpresa(CNPJ) {
     return database.executar(instrucaoSql);
 }
 
-function editarEmpresa(address, CNPJ) {
-    console.log("ACESSEI O DASHBOARD MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function AlterarCNPJ():", address, CNPJ);
-    console.log("Modificando na tabela user:", address, CNPJ);
+function editarEmpresa(corporate_name, address, CNPJ) {
+    console.log("ACESSEI O DASHBOARD MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editarEmpresa():", corporate_name, address, CNPJ);
+    console.log("Modificando na tabela company:",corporate_name ,address, CNPJ);
 
     var instrucaoSql = `
-           UPDATE user SET CNPJ = '${CNPJ}' WHERE address = '${address}';
+           UPDATE company SET address = '${address}', corporate_name = '${corporate_name}' WHERE CNPJ = '${CNPJ}';
     `
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function chamarEmpresa(corporate_name) {
+    console.log("Tô buscando a empresa");
+    
+    var instrucaoSql = `
+        select * from company WHERE corporate_name = '${corporate_name}';
+    `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -38,5 +48,6 @@ function editarEmpresa(address, CNPJ) {
 module.exports = {
     cadastrarEmpresa,
     editarEmpresa,
-    excluirEmpresa
+    excluirEmpresa,
+    chamarEmpresa
 };
