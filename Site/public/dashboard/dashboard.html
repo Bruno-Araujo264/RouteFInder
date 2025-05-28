@@ -15,7 +15,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -112,17 +113,6 @@
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
-                <li class="mode">
-                    <div class="moon-sun">
-                        <i class="bx bx-moon icon moon"></i>
-                        <i class="bx bx-sun icon sun"></i>
-                    </div>
-                    <span class="mode-text text">Dark Mode</span>
-
-                    <div class="toggle-switch">
-                        <span class="switch"></span>
-                    </div>
-                </li>
             </div>
         </div>
     </nav>
@@ -132,11 +122,11 @@
 
             <div class="coluna1">
                 <div class="nivelCongestionamento">
-                    <div class="teste">
-                        <h2>Nível de Congestionamento <br>
-                            alterar o design
-                        </h2>
-                        <div class="subpasta">
+                    <div class="subpasta">
+                        <div class="titulo">
+                            <h2>Filtros:</h2>
+                        </div>
+                        <div class="regiao">
                             <div id="idNorte" class="norte filtro">
                                 <p>N</p>
                             </div>
@@ -157,18 +147,41 @@
 
                     <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
                     <div class="pasta" id="pasta">
-                        <div class="pointer animate pointerAnimation"></div>
-                        <div class="circulo-container">
-                            <div class="circulo">
-                                <p id="id_regiao">Centro</p>
+                        <div class="kpi">
+                            <h2>Intensidade do Congestionamento</h2>
+                            <div class="indicadores">
+                                <div class="box"></div>
+                                <p>Ótimo</p>
+                                <div class="box"></div>
+                                <p>Ruim</p>
+                                <div class="box"></div>
+                                <p>Péssimo</p>
                             </div>
                         </div>
-                        <canvas id="canvas_grafico_superior"></canvas>
+                        <div class="container">
+                            <div class="pointer animate pointerAnimation"></div>
+                            <div class="circulo-container">
+                                <div class="circulo">
+                                    <p id="id_regiao">Centro</p>
+                                </div>
+                            </div>
+                            <canvas id="canvas_grafico_superior"></canvas>
+                        </div>
                     </div>
                 </div>
 
                 <div class="tabelaPico">
+
                     <div class="container">
+                        <h2>N° de Ruas Congestionadas</h2>
+                        <div class="indicadores">
+                            <div class="box"></div>
+                            <p>Ótimo</p>
+                            <div class="box"></div>
+                            <p>Ruim</p>
+                            <div class="box"></div>
+                            <p>Péssimo</p>
+                        </div>
                         <canvas id="canvas_grafico_inferior"></canvas>
                     </div>
                 </div>
@@ -195,6 +208,15 @@
 
                 <div class="intensidadeCongestionamento">
                     <div class="container">
+                        <h2>Intensidade do Congestionamento</h2>
+                        <div class="indicadores">
+                            <div class="box"></div>
+                            <p>Ótimo</p>
+                            <div class="box"></div>
+                            <p>Ruim</p>
+                            <div class="box"></div>
+                            <p>Péssimo</p>
+                        </div>
                         <canvas id="canvas_grafico_inferior2"></canvas>
                     </div>
                 </div>
@@ -229,7 +251,8 @@
                     </div>
                     <div class="grafico">
                         <div class="container">
-                            <canvas id="canvas_grafico_inferior3"></canvas>
+                            <canvas id="canvas_grafico_inferior3" width="413" height="216"
+                                style="display: block; box-sizing: border-box; height: 413px; width: 216px;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -252,15 +275,15 @@
         data: {
             // labels: ['N', 'O', 'S', 'L', 'C'],
             datasets: [{
-                data: [10, 15, 10],
+                data: [10, 12.5, 10],
                 backgroundColor: ['#78A55A', '#FFE862', '#E16A54'],
                 borderWidth: 1,
                 borderColor: 'white',
             }]
         },
         options: {
-            rotation: -100,
-            circumference: 200,
+            rotation: -108,
+            circumference: 215,
             cutout: '80%',
             plugins: {
                 tooltip: { enabled: false },
@@ -277,37 +300,40 @@
             datasets: [{
                 data: [12, 19, 3, 5, 8],
                 backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#78A55A', '#FFE862'],
-                // borderColor: 'black',
-                borderWidth: 2
+                borderWidth: 2,
+                borderRadius: 6,
+                borderColor: '#fff',
+
             }]
         },
         options: {
             responsive: true,
             scales: {
+                x: {
+                    grid: {
+                        color: 'gray'
+                    },
+                    ticks: {
+                        color: 'white'
+                    }
+                },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        color: '#d3d3d3'
+                    },
+                    ticks: {
+                        color: 'white'
+                    }
                 }
             },
             plugins: {
                 legend: {
-                    display: true,
-                },
-                title: {
-                    color: 'black',
-                    display: true,
-                    text: 'N° de Ruas Congestionadas',
-                    font: {
-                        family: 'Afacad',
-                        size: 20 // Aumente o valor para o tamanho desejado
-                    },
-                    padding: {
-                        bottom: 20
-                    }
+                    display: false,
                 }
             }
         }
     });
-
 
     const graficoPolarArea = canvas_grafico_inferior2;
     const polarAreaChart = new Chart(graficoPolarArea, {
@@ -318,35 +344,31 @@
                 label: 'My Dataset',
                 data: [11, 16, 7, 14, 9],
                 backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#E16A54', '#78A55A'],
-                borderWidth: 2
+                borderWidth: 1,
             }]
         },
         options: {
             plugins: {
-                title: {
+                legend: {
                     display: true,
-                    color: 'black', // Cor padrão
-                    text: 'Intensidade do Congestionamento',
-                    font: {
-                        family: 'Afacad',
-                        size: 20
-                    },
-                    padding: {
-                        top: 10,
-                        bottom: 20
+                    position: 'right',
+                    labels: {
+                        color: 'white',
+                        boxWidth: 20,
+                        boxHeight: 20,
+                        borderRadius: 10,
+                        borderWidth: 1
                     }
                 }
             },
             scales: {
                 r: { // Para gráficos polarArea
                     grid: {
-                        color: 'gray' // Cor padrão das linhas de grade
-                    },
-                    angleLines: {
-                        color: 'gray' // Cor padrão das linhas angulares
+                        color: '#d3d3d3'
                     },
                     ticks: {
-                        color: 'black' // Cor padrão dos rótulos
+                        color: 'white',
+                        backdropColor: '#242526' // <-- Remove o fundo dos números
                     }
                 }
             }
@@ -362,24 +384,39 @@
                 {
                     label: 'Tietê',
                     data: [20, 82, 80, 45, 80, 83],
-                    borderWidth: 1
+                    borderWidth: 3
                 },
                 {
                     label: 'Pacaembu',
                     data: [30, 69, 28, 25, 82, 23],
-                    borderWidth: 1
+                    borderWidth: 3
                 }
             ]
         },
         options: {
+            responsive: false,
             scales: {
+                x: {
+                    grid: {
+                        color: '#d3d3d3'
+                    },
+                    ticks: {
+                        color: 'white'
+                    }
+                },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        color: '#d3d3d3'
+                    },
+                    ticks: {
+                        color: 'white'
+                    }
                 }
             },
             plugins: {
                 title: {
-                    color: 'black',
+                    color: '#DBDBDB',
                     display: true,
                     text: 'Histórico do Congestionamento',
                     font: {
@@ -390,6 +427,13 @@
                         top: 0,
                         bottom: 30
                     }
+                },
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: 'white'
+                    }
                 }
             }
         }
@@ -398,11 +442,11 @@
     const pasta = document.getElementById("pasta");
 
     const regioes = {
-        idNorte: "#ff5101",
-        idOeste: "#ff7301",
-        idSul: "#ff9901",
-        idLeste: "#ffbb00",
-        idCentro: "#ffd000",
+        idNorte: "#1100ff",
+        idOeste: "#285aff",
+        idSul: "#288cff",
+        idLeste: "#28bbff",
+        idCentro: "#28e6ff",
     };
 
     const p_regiao = [
@@ -417,46 +461,14 @@
         const div = document.getElementById(id);
         if (div) {
             div.addEventListener("click", () => {
-                pasta.style.backgroundColor = cor;
-                pasta.style.transition = "background-color 0.2s ease-out";
+                id_regiao.style.color = cor;
+                id_regiao.style.transition = "color 0.4s ease-out";
                 id_regiao.innerHTML = p_regiao[Object.keys(regioes).indexOf(id)];
 
                 console.log(`Eu cliquei em ${id.replace("id", "")}`);
             });
         }
     });
-
-    function atualizarCoresDoGrafico() {
-        const isDarkMode = document.body.classList.contains('dark');
-
-        // Atualiza o gráfico Polar Area
-        polarAreaChart.options.plugins.title.color = isDarkMode ? 'white' : 'black'; // Título
-        polarAreaChart.options.plugins.legend.labels.color = isDarkMode ? 'white' : 'gray'; // Legendas
-        polarAreaChart.options.scales.r.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos
-        polarAreaChart.options.scales.r.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
-        polarAreaChart.data.datasets[0].borderColor = isDarkMode ? 'white' : 'black'; // Branco no tema escuro, preto no tema claro
-        polarAreaChart.update(); // Atualiza o gráfico
-
-        // Atualiza o gráfico de barras
-        barChart.options.plugins.title.color = isDarkMode ? 'white' : 'black'; // Título
-        barChart.options.plugins.legend.labels.color = isDarkMode ? 'white' : 'gray'; // Legendas
-        barChart.options.scales.y.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo Y
-        barChart.options.scales.y.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
-        barChart.options.scales.x.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo X
-        barChart.options.scales.x.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
-        barChart.data.datasets[0].borderColor = isDarkMode ? 'white' : 'black'; // Branco no tema escuro, preto no tema claro
-        // barChart.data.datasets[0].borderWidth = isDarkMode ? 2 : 1; // Branco no tema escuro, preto no tema claro
-        barChart.update(); // Atualiza o gráfico
-
-        // Atualiza o gráfico de linhas (Evolução do trânsito)
-        graficoLinha.options.plugins.title.color = isDarkMode ? 'white' : 'black'; // Título
-        graficoLinha.options.plugins.legend.labels.color = isDarkMode ? 'white' : 'gray'; // Legendas
-        graficoLinha.options.scales.y.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo Y
-        graficoLinha.options.scales.y.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
-        graficoLinha.options.scales.x.ticks.color = isDarkMode ? 'white' : 'black'; // Rótulos do eixo X
-        graficoLinha.options.scales.x.ticks.backdropColor = 'transparent'; // Remove o fundo dos números
-        graficoLinha.update(); // Atualiza o gráfico
-    }
 
     // Detecta a troca de tema
     const toggleSwitch = document.querySelector('.toggle-switch');

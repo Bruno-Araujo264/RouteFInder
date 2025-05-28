@@ -28,6 +28,10 @@ dash.addEventListener("click", () => {
     sidebar.classList.add("close")
 });
 
+sidebar.addEventListener("click", () => {
+    sidebar.classList.toggle("close");
+}); 
+
 dash.addEventListener("click", () => {
     barDireita.classList.add("fechar")
 });
