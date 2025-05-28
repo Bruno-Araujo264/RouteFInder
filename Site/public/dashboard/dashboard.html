@@ -141,6 +141,15 @@
 
                     <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
                     <div class="pasta" id="pasta">
+                        <h2>Intensidade do Congestionamento</h2>
+                        <div class="indicadores">
+                            <div class="box"></div>
+                            <p>Ótimo</p>
+                            <div class="box"></div>
+                            <p>Ruim</p>
+                            <div class="box"></div>
+                            <p>Péssimo</p>
+                        </div>
                         <div class="pointer animate pointerAnimation"></div>
                         <div class="circulo-container">
                             <div class="circulo">
@@ -253,15 +262,15 @@
         data: {
             // labels: ['N', 'O', 'S', 'L', 'C'],
             datasets: [{
-                data: [10, 15, 10],
+                data: [10, 12.5, 10],
                 backgroundColor: ['#78A55A', '#FFE862', '#E16A54'],
                 borderWidth: 1,
                 borderColor: 'white',
             }]
         },
         options: {
-            rotation: -112.50,
-            circumference: 225,
+            rotation: -108,
+            circumference: 215,
             cutout: '80%',
             plugins: {
                 tooltip: { enabled: false },
