@@ -375,43 +375,76 @@ body.dark .switch::before {
   width: 90%;
   height: 80%;
   background: var(--primary-color);
-  border-radius: 0px 0 4px 4px;
+  border-radius: 8px;
   margin: auto;
 
 }
 
 .nivelCongestionamento .subpasta {
   display: flex;
-  width: 50%;
-  height: 7%;
+  justify-content: space-around;
+  width: 90%;
+  height: 10%;
   margin: auto;
-  margin-top: 20px;
-  margin-left: 45%;
-  position: relative;
+}
+
+.nivelCongestionamento .subpasta .titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  font-size: 0.8em;
+  color: var(--text-color);
+}
+
+.nivelCongestionamento .subpasta .regiao {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
 }
 
 .nivelCongestionamento .subpasta .filtro {
   display: flex;
   justify-content: center;
-  position: relative;
-  width: 90%;
-  height: 80%;
-  border-radius: 100px 16px 0 0;
-  z-index: 1;
-  margin-left: -20px;
-  margin: auto;
+  align-self: center;
+  width: 30px;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.subpasta .norte {
+  border: 1px solid var(--norte);
+  background: var(--bg-norte);
+}
+
+.subpasta .oeste {
+  border: 1px solid var(--oeste);
+  background: var(--bg-oeste);
+}
+
+.subpasta .sul {
+  border: 1px solid var(--sul);
+  background: var(--bg-sul);
+}
+
+.subpasta .leste {
+  border: 1px solid var(--leste);
+  background: var(--bg-leste);
+}
+
+.subpasta .centro {
+  border: 1px solid var(--centro);
+  background: var(--bg-centro);
 }
 
 .nivelCongestionamento .subpasta p {
-  margin-right: 15px;
-  margin-top: 1px;
+  margin: auto;
+  text-align: center;
   font-weight: bold;
-}
-
-.nivelCongestionamento .subpasta .filtro p {
-  margin-right: 15px;
-  margin-top: 1px;
-  font-weight: bold;
+  color: white;
 }
 
 .coluna1 .tabelaPico {
@@ -482,27 +515,27 @@ body.dark .switch::before {
   position: relative;
   background: var(--sidebar-color);
   border-radius: 100%;
-  width: 12.62em;
-  height: 11.875em;
+  width: 15vw;
+  height: 30vh;
 }
 
 .circulo-container {
   position: absolute;
   width: 18.75em;
-  height: 8.125em;
+  height: 10em;
   overflow: hidden;
-  top: 27%;
-  left: 10.75%;
+  top: 22%;
+  left: 10.85%;
 }
 
 .circulo p {
-  margin-top: 30px;
+  margin-top: 100px;
   font-size: 30px;
   color: var(--text-color)
 }
 
 #canvas_grafico_superior {
-  margin-top: 40px;
+  margin-top: 10px;
   z-index: 10;
 }
 
@@ -786,7 +819,7 @@ i {
 
 .pointer {
   position: relative;
-  top: 6.5em;
+  top: 4.5em;
   left: 32%;
   width: 0;
   height: 0;
