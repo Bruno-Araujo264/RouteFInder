@@ -23,7 +23,7 @@
                 <input id="cnpj_input" type="text" placeholder="CNPJ">
               </div>
             <div class="campo">
-              <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
+              <input id="corporate_name_input" type="text" placeholder="Nome da empresa" onblur="chamarEmpresa()">
             </div>
             <div class="campo">
               <input id="address_input" type="text" placeholder="Endereço">
@@ -97,6 +97,58 @@
     return false;
   }
 
+  function editarEmpresa(){
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var corporateNameVar = corporate_name_input.value;
+    var addressVar = address_input.value;
+    var cnpjVar = cnpj_input.value;
+
+
+    // Verificando se há algum campo em branco
+    if (
+      corporateNameVar == "" ||
+      addressVar == "" ||
+      cnpjVar == ""
+    ) {
+      
+      alert("Preencha todos os campos")
+      return false;
+    }
+
+    if(cnpjVar.length != 14){
+        alert("CNPJ deve possuir 14 digitos")
+        return false
+    }
+
+    // Enviando o valor da nova input
+    fetch("/dashboard/editarEmpresa", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/dashboard.js
+        corporateNameServer: corporateNameVar,
+        addressServer: addressVar,
+        cnpjServer: cnpjVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          alert("Empresa editada com sucesso!")
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
+
   function excluirEmpresa() {
 
 //Recupere o valor da nova input pelo nome do id
@@ -150,4 +202,38 @@ return false;
     address_input.value = ""
     cnpj_input.value = ""
   }
+
+  function chamarEmpresa() {
+
+//Recupere o valor da nova input pelo nome do id
+// Agora vá para o método fetch logo abaixo
+var corporateNameVar = corporate_name_input.value;
+
+// Enviando o valor da nova input
+fetch("/dashboard/chamarEmpresa", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    // crie um atributo que recebe o valor recuperado aqui
+    // Agora vá para o arquivo routes/dashboard.js
+    corporateNameServer: corporateNameVar
+  }),
+})
+  .then(function (resposta) {
+    console.log("resposta: ", resposta);
+    return resposta.json();
+    
+  })
+  .then(function (dados) {
+    cnpj_input.value = dados[0].CNPJ
+    address_input.value = dados[0].address
+  })
+  .catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+  });
+
+return false;
+}
 </script>
