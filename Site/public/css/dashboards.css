@@ -578,20 +578,20 @@ body.dark .switch::before {
 .circulo-container {
   position: absolute;
   width: 18.75em;
-  height: 8em;
+  height: 6em;
   overflow: hidden;
-  top: 27%;
-  left: 10.85%;
+  top: 32%;
+  left: 10.80%;
 }
 
-.circulo p {
-  margin-top: 10%;
+#id_regiao {
+  /* margin-top: 10%; */
   font-size: 30px;
-  color: var(--text-color)
+  color: var(--centro);
 }
 
 #canvas_grafico_superior {
-  margin-top: 10%;
+  margin-top: 14%;
   z-index: 10;
 }
 
@@ -869,7 +869,7 @@ i {
 
 .pointer {
   position: relative;
-  top: 5.5em;
+  top: 7.5em;
   left: 50%;
   width: 0;
   height: 0;
