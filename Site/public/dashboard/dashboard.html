@@ -16,9 +16,8 @@
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <!-- <body onload=" atualizarFeed()"> -->
@@ -63,8 +62,8 @@
         <div class="menu-bar">
             <div class="menu">
                 <li class="search-box">
-                        <i class='bx bx-search-alt icon'></i>
-                        <input type="text" placeholder="Search...">
+                    <i class='bx bx-search-alt icon'></i>
+                    <input type="text" placeholder="Search...">
                 </li>
                 <ul class="menu-links">
                     <!-- <li class="nav-list">
@@ -75,41 +74,41 @@
                     </li> -->
                     <li class="nav-list">
                         <a>
-                            <i class='bx bx-home-alt icon'></i>
+                            <i class="fa-solid fa-house icon"></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-list">
+                    <!-- <li class="nav-list">
                             <a href=" mural.html">
                         <i class='bx bx-search-alt icon'></i>
                         <span class="text nav-text">Consultar</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="nav-list">
                         <a href="aviso.html">
-                            <i class='bx bx-bell icon'></i>
+                            <i class="fa-solid fa-bell icon"></i>
                             <span class="text nav-text">Notificação</span>
                         </a>
                     </li>
                     <li class="nav-list">
                         <a href=" empresas.html">
-                            <i class='bx bx-enterprise icon'></i> 
-                            <span class="text nav-text">Cadastrar Empresas</span>
+                            <i class="fa-solid fa-hotel icon"></i>
+                                <span class="text nav-text">Cadastrar Empresas</span>
                         </a>
                     </li>
                     <li class="nav-list">
-                            <a href="posicao.html">
-                                <i class='bx bx-pie-chart-alt icon'></i>
-                                <span class="text nav-text">Posições</span>
-                            </a>
-                    </li> 
+                        <a href="posicao.html">
+                            <i class="fa-solid fa-gear icon"></i>
+                            <span class="text nav-text">Posições</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
 
             <div class="bottom-content">
                 <li class="">
                     <a href="../index.html">
-                        <i class="fa fa-sign-out icon"></i>
+                        <i class="fa-solid fa-right-from-bracket icon"></i>
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
@@ -475,7 +474,4 @@
     toggleSwitch.addEventListener('click', () => {
         atualizarCoresDoGrafico();
     });
-
-    // Atualiza as cores ao carregar a página
-    atualizarCoresDoGrafico();
 </script>

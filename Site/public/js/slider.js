@@ -6,11 +6,20 @@ const body = document.querySelector("body"),
     searchBtn = document.querySelector(".search-box"),
     modeSwitch = document.querySelector(".toggle-switch"),
     modeText = body.querySelector(".mode-text"),
-    dash = body.querySelector(".home");
+    dash = body.querySelector(".home"),
+    pesquisar = body.querySelector(".search-box");
 
 // fechando a barra de navegador da esquerda
-toggle.addEventListener("click", () => {
+sidebar.addEventListener("click", () => {
     sidebar.classList.toggle("close");
+});
+
+pesquisar.addEventListener("click", () => {
+    sidebar.classList.add("close");
+});
+
+dash.addEventListener("click", () => {
+    sidebar.classList.add("close")
 });
 
 // pegando o classe 'toggle-switch', altere a classe dele para 'dark'
@@ -22,10 +31,6 @@ modeSwitch.addEventListener("click", () => {
     } else {
         modeText.innerText = "Dark Mode"
     }
-});
-
-dash.addEventListener("click", () => {
-    sidebar.classList.add("close")
 });
 
 sidebar.addEventListener("click", () => {
