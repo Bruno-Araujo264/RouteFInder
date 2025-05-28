@@ -152,13 +152,15 @@
                                 <p>Péssimo</p>
                             </div>
                         </div>
-                        <div class="pointer animate pointerAnimation"></div>
-                        <div class="circulo-container">
-                            <div class="circulo">
-                                <p id="id_regiao">Centro</p>
+                        <div class="container">
+                            <div class="pointer animate pointerAnimation"></div>
+                            <div class="circulo-container">
+                                <div class="circulo">
+                                    <p id="id_regiao">Centro</p>
+                                </div>
                             </div>
+                            <canvas id="canvas_grafico_superior"></canvas>
                         </div>
-                        <canvas id="canvas_grafico_superior"></canvas>
                     </div>
                 </div>
 
@@ -431,11 +433,11 @@
     const pasta = document.getElementById("pasta");
 
     const regioes = {
-        idNorte: "#ff5101",
-        idOeste: "#ff7301",
-        idSul: "#ff9901",
-        idLeste: "#ffbb00",
-        idCentro: "#ffd000",
+        idNorte: "#1100ff",
+        idOeste: "#285aff",
+        idSul: "#288cff",
+        idLeste: "#28bbff",
+        idCentro: "#28e6ff",
     };
 
     const p_regiao = [
@@ -450,8 +452,8 @@
         const div = document.getElementById(id);
         if (div) {
             div.addEventListener("click", () => {
-                pasta.style.backgroundColor = cor;
-                pasta.style.transition = "background-color 0.2s ease-out";
+                id_regiao.style.color = cor;
+                id_regiao.style.transition = "color 0.4s ease-out";
                 id_regiao.innerHTML = p_regiao[Object.keys(regioes).indexOf(id)];
 
                 console.log(`Eu cliquei em ${id.replace("id", "")}`);

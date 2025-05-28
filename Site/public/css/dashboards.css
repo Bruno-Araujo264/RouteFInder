@@ -392,8 +392,7 @@ body.dark .switch::before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: auto;
-  background: white;
+  height: 10%;
 }
 
 .nivelCongestionamento .pasta .kpi h2 {
@@ -403,8 +402,38 @@ body.dark .switch::before {
   margin: auto;
 }
 
-.nivelCongestionamento .pasta .kpi .box {
-  height: auto;
+.nivelCongestionamento .pasta .indicadores {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 80%;
+  color: var(--text-color);
+  margin-top: 20px;
+}
+
+.nivelCongestionamento .pasta .kpi .indicadores .box {
+  height: 25px;
+  width: 25px;
+  border-radius: 4px;
+}
+
+.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(1) {
+  background: var(--cor-verde);
+}
+
+.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(2) {
+  background: var(--cor-amarela);
+}
+
+.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(3) {
+  background: var(--cor-vermelha);
+}
+
+.nivelCongestionamento .container {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .nivelCongestionamento .subpasta {
@@ -549,20 +578,20 @@ body.dark .switch::before {
 .circulo-container {
   position: absolute;
   width: 18.75em;
-  height: 10em;
+  height: 8em;
   overflow: hidden;
-  top: 22%;
+  top: 27%;
   left: 10.85%;
 }
 
 .circulo p {
-  margin-top: 100px;
+  margin-top: 10%;
   font-size: 30px;
   color: var(--text-color)
 }
 
 #canvas_grafico_superior {
-  margin-top: 10px;
+  margin-top: 10%;
   z-index: 10;
 }
 
@@ -779,27 +808,27 @@ body.dark .switch::before {
   }
 
   .norte {
-    border: 3px solid var(--norte);
+    border: 2px solid var(--norte);
     background: var(--bg-norte);
   }
 
   .oeste {
-    border: 3px solid var(--oeste);
+    border: 2px solid var(--oeste);
     background: var(--bg-oeste);
   }
 
   .sul {
-    border: 3px solid var(--sul);
+    border: 2px solid var(--sul);
     background: var(--bg-sul);
   }
 
   .leste {
-    border: 3px solid var(--leste);
+    border: 2px solid var(--leste);
     background: var(--bg-leste);
   }
 
   .centro {
-    border: 3px solid var(--centro);
+    border: 2px solid var(--centro);
     background: var(--bg-centro);
   }
 
@@ -808,7 +837,7 @@ body.dark .switch::before {
       display: flex;
       justify-content: center;
       width: 100%;
-      height: 100%;
+      height: 95%;
       margin-top: 20px;
     }
   }
@@ -821,12 +850,6 @@ body.dark .switch::before {
 
 i {
   transition: var(--tran-03);
-}
-
-.pasta .box {
-  margin-top: 60px;
-  height: 208px;
-  width: 208px;
 }
 
 .gauge {
@@ -846,8 +869,8 @@ i {
 
 .pointer {
   position: relative;
-  top: 4.5em;
-  left: 32%;
+  top: 5.5em;
+  left: 50%;
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
