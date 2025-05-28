@@ -342,7 +342,7 @@ body.dark .switch::before {
 .containerDescription h1 {
   color: var(--text-color);
   transition: var(--tran-04);
-  padding-left: 88px;
+  margin-left: 28px;
   font-size: 1.2em;
 }
 
