@@ -834,7 +834,7 @@ body.dark .switch::before {
 
   .grafico {
     .container {
-      display: flex;
+      display: flex; 
       justify-content: center;
       width: 100%;
       height: 95%;
