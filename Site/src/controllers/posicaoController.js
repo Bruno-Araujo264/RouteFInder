@@ -17,7 +17,7 @@ function cadastrarPosicao(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo posicaoModel.js
-        posicaoModel.cadastrarPosicao(nome, descricao)
+        posicaoModel.cadastrarPosicao(nome, descricao, nivelAcesso)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -85,6 +85,27 @@ function coletarEmail(req, res) {
     }
 }
 
+function buscarPosicoesPorEmpresa(req, res){
+  const idEmpresa = req.params.empresaId
+  console.log(idEmpresa)
+  
+    if (!idEmpresa) {
+      return res.status(400).send("O ID da empresa é obrigatório!");
+    }
+
+     posicaoModel.buscarPosicoesPorEmpresa(idEmpresa).then(function (resultado) {
+       if (resultado.length > 0) {
+        console.log("foi aqui",resultado)
+         res.status(200).json(resultado);
+       } else {
+         res.status(204).send("Nenhuma sala encontrada para a empresa especificada.");
+       }
+     })
+
+
+}
+
 module.exports = {
     cadastrarPosicao,
+    buscarPosicoesPorEmpresa
 }

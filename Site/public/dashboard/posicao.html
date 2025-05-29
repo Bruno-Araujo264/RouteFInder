@@ -41,7 +41,7 @@
     }
 </style>
 
-<body>
+<body onload="carregarPosicoes()">
 
     <nav class="sidebar close">
         <header>
@@ -133,7 +133,8 @@
                 <h1>Posições</h1>
             </header>
             <main>
-                <section class="containerKpi">
+                <section class="containerKpi" id="containerCards">
+
                     <div class="kpi1" onclick="abrirPosicao()">
                         <h1>Analista de RH</h1>
                         <img src="./imgs/salaMaturacao.png" alt="Analista de RH">
@@ -161,5 +162,44 @@
 // função que redireciona para tela de criação de Posição
     function redirecionarParaCadastroPosicao() {
       window.location.href = "posicaoCriar.html";
+    }
+// Função para carregar a pocições da empresa
+    function carregarPosicoes(empresaId) {
+      empresaId = sessionStorage.getItem("ID_EMPRESA")
+      const apiUrl = `/posicao/${empresaId}`;
+  
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(posicoes => {
+          const container = document.getElementById('containerCards');
+  
+          // Limpa o container antes de inserir os novos dados
+          container.innerHTML = '';
+  
+          // Adiciona os cards das posições retornadas pela API
+          posicoes.forEach(posicao => {
+            const card = document.createElement('div');
+            card.className = 'kpi1';
+            card.onclick = () => abrirPosicao(posicao.id_position);
+            card.innerHTML = `
+              <h1>${posicao.nome}</h1>
+              <img src="./imgs/salaMaturacao.png" alt="Posição">
+            `;
+            container.appendChild(card);
+          });
+  
+          // Adiciona o card "Adicionar Sala"
+          const addCard = document.createElement('div');
+          addCard.className = 'kpi2';
+          addCard.onclick = redirecionarParaCadastroPosicao();
+          addCard.innerHTML = `
+            <h1>Adicionar Posição</h1>
+            <img src="./imgs/adicionar (2).png" alt="Adicionar Posição">
+          `;
+          container.appendChild(addCard);
+        })
+        .catch(error => {
+          console.error('Erro ao carregar posições:', error);
+        });
     }
 </script>
