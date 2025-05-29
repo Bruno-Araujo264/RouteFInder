@@ -28,10 +28,10 @@ body {
   --cor-vermelha: #DA7272;
 
   /* === Transições ===  */
-  --tran-02: all 0.4s ease;
-  --tran-03: all 0.4s ease;
+  --tran-02: all 0.2s ease;
+  --tran-03: all 0.3s ease;
   --tran-04: all 0.4s ease;
-  --tran-05: all 0.4s ease;
+  --tran-05: all 0.5s ease;
 
   --norte: #1100ff;
   --oeste: #285aff;
@@ -203,24 +203,25 @@ body.dark .sidebar header .toggle {
   align-items: center;
   text-decoration: none;
   border-radius: 6px;
-  transition: var(--tran-04);
+  transition: all 0.1ms ease-out;
 }
 
 
 .sidebar li a:hover {
   background: var(--primary-color-light);
-  transition: var(--tran-04);
+  transition: all 0.7s ease-in-out;
 }
 
 .sidebar li a:hover .icon,
 .sidebar li a:hover .text {
   color: var(--toggle-color);
-  transition: var(--tran-04);
+  transition: all 0.1s ease;
 }
 
 body.dark .sidebar li a:hover .icon,
 body.dark .sidebar li a:hover .text {
   color: var(--text-color);
+  transition: all 0.7s ease;
   /* background: #fff; */
 }
 
@@ -310,11 +311,14 @@ body.dark .switch::before {
 
 .home {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 100vh;
   left: 88px;
   width: calc(100% - 88px);
-  background: var(--primary-color);
-  transition: var(--tran-05);
+  background: var(--body-color);
 }
 
 .home .text {
@@ -329,34 +333,165 @@ body.dark .switch::before {
   width: calc(100% - 88px);
 }
 
-.containerDescription {
-  position: relative;
-  width: 100%;
-  height: 70px;
+.home .titulo {
   display: flex;
   align-items: center;
-  background-color: var(--primary-color);
-  border-bottom: 2px solid var(--text-color);
+  justify-content: center;
+  height: 10%;
+  width: 100%;
+  /* background: red; */
 }
 
-.containerDescription h1 {
-  color: var(--text-color);
-  transition: var(--tran-04);
-  margin-left: 28px;
-  font-size: 1.2em;
+.home .card {
+  width: 70%;
+  height: 80%;
+  background: var(--primary-color);
+  border-radius: 8px;
+  padding: 5px;
 }
 
-.containerDescription h1.close {
-  margin-left: 196px;
-  transition: var(--tran-04);
-}
-
-/* .home .container {
+.home .card .container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   margin: auto;
-  width: 99%;
+  width: 100%;
   height: 100%;
   flex-wrap: wrap;
-  background: #000;
-} */
+  background-image: url(../assets/imgs/caminhão.jpg);
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+}
+
+.card-cadastro-empresa {
+  width: 42%;
+  height: 98%;
+}
+
+.formulario {
+  position: relative; /* Adicione isso */
+  width: 56%;
+  height: 98%;
+  background: transparent;
+  border-radius: 8px;
+  overflow: hidden; /* Garante que o ::before não vaze */
+}
+
+.formulario::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(97, 97, 97, 0.295); 
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  z-index: 0; /* Fica atrás do conteúdo */
+  pointer-events: none;
+}
+
+.formulario > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+.formulario h1 {
+  width: 100%;
+  text-align: center;
+  margin-top: 15px;
+  color: var(--text-color);
+  font-size: 2em;
+}
+
+.formulario .input-group{
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  align-items: start;
+  justify-content: space-around;
+  height: 50%;
+  width: 80%;
+  /* background: white; */
+  margin: 10px auto;
+}
+
+.formulario .input-group .campo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.input-group .campo .icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  height: 50%;
+  background: var(--text-color);
+  border-top-left-radius: 10px;
+}
+
+.input-group .campo i {
+  color: var(--primary-color);
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.input-group input {
+  width: 80%;
+  height: 50%;
+  font-size: 1.2em; /* texto digitado maior */
+  outline: none;
+  border: none;
+  border-bottom-right-radius: 10px;
+  transform: var(--tran-03);
+  text-indent: 5%;
+}
+
+.input-group input::placeholder {
+  display: flex;
+  justify-content: center;
+  color: var(--text-color);
+  text-indent: 5%;
+  font-size: 1em; /* placeholder menor, ajuste conforme preferir */
+}
+
+.formulario .button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  height: 20%;
+  margin: auto;
+}
+
+.button-group button {
+  width: 25%;
+  height: 70%;
+  background: white;
+  border: none;
+  border-radius:8px;
+  transition: var(--tran-03);
+}
+
+.button-group button:hover {
+  background: var(--primary-color);
+  transform: translate(2px, -2px); /* 8px para direita, -8px para cima */
+  transition: var(--tran-03);
+  box-shadow: #242526 -4px 4px;
+
+  i {
+    color: var(--text-color);
+    transition: var(--tran-03);
+  }
+}
+
+.button-group button .icone {
+  color: darkslategray;
+  font-size: 2em;
+}

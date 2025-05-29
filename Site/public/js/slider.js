@@ -7,13 +7,11 @@ const body = document.querySelector("body"),
     modeSwitch = document.querySelector(".toggle-switch"),
     modeText = body.querySelector(".mode-text"),
     dash = body.querySelector(".home"),
-    pesquisar = body.querySelector(".search-box"),
-    titulo = body.querySelector(".titulo");
+    pesquisar = body.querySelector(".search-box");
 
 // fechando a barra de navegador da esquerda
 sidebar.addEventListener("click", () => {
     sidebar.classList.toggle("close");
-    titulo.classList.toggle("close");
 });
 
 pesquisar.addEventListener("click", () => {
