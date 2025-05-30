@@ -21,7 +21,6 @@ pesquisar.addEventListener("click", () => {
 dash.addEventListener("click", () => {
     sidebar.classList.add("close")
 });
-
 // pegando o classe 'toggle-switch', altere a classe dele para 'dark'
 modeSwitch.addEventListener("click", () => {
     body.classList.toggle("dark");
@@ -32,15 +31,3 @@ modeSwitch.addEventListener("click", () => {
         modeText.innerText = "Dark Mode"
     }
 });
-
-sidebar.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-}); 
-
-dash.addEventListener("click", () => {
-    barDireita.classList.add("fechar")
-});
-
-barDireita.addEventListener("click", () => {
-    barDireita.classList.toggle("fechar");
-})

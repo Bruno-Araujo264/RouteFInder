@@ -6,142 +6,126 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./../css/empresas.css" />
-  <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <title>Cadastro</title>
 </head>
 
 <body>
   <style>
-    .sidebar .menu-links li:first-child {
-        background: var(--primary-color);
-        border-radius: 6px;
-        transition: var(--tran-03);
+    .sidebar .menu-links li:nth-of-type(3) {
+      background: var(--primary-color);
+      border-radius: 6px;
     }
 
-    body.dark .menu-links .sidebar li:first-child {
-        background: var(--primary-color);
-        border-radius: 6px;
-        transition: var(--tran-03);
+    .sidebar .menu-links li:nth-of-type(3) a .text,
+    .sidebar .menu-links li:nth-of-type(3) a .icon {
+      color: white;
     }
-
-
-    .sidebar .menu-links li:first-child a .text,
-    .sidebar .menu-links li:first-child a .icon {
-        color: white;
-    }
-</style>
+  </style>
   <nav class="sidebar close">
     <header>
-        <div class="image-text">
-            <span class="image">
-                <i class="fa fa-user" style="font-size:24px"></i>
-            </span>
+      <div class="image-text">
+        <span class="image">
+          <i class="fa fa-user" style="font-size:24px"></i>
+        </span>
 
-            <div class="text header-text">
-                <span class="name"> <span id="NOME_USUARIO"></span></span>
-                <span class="profession">#Usuário</span>
-            </div>
+        <div class="text header-text">
+          <span class="name"> <span id="NOME_USUARIO"></span></span>
+          <span class="profession">#Usuário</span>
         </div>
+      </div>
 
-        <i class='bx bx-chevron-right toggle' style="cursor: pointer"></i>
+      <i class='bx bx-chevron-right toggle' style="cursor: pointer"></i>
     </header>
 
     <div class="menu-bar">
-        <div class="menu">
-            <!-- <li class="search-box">
-                    <i class='bx bx-search-alt icon'></i>
-                    <input type="text" placeholder="Search...">
-            </li> -->
-            <ul class="menu-links">
-                <!-- <li class="nav-list">
-                    <a href="#">
-                        <i class='bx bxs-user icon'></i>
-                        <span class="text nav-text">Olá, FrizzaTech</span>
-                    </a>
-                </li> -->
-                <li class="nav-list">
-                    <a>
-                      <a href="dashboard.html">
-                        <i class='bx bx-home-alt icon'></i>
-                        <span class="text nav-text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-list">
-                        <a href=" mural.html">
-                    <i class='bx bx-search-alt icon'></i>
-                    <span class="text nav-text">Consultar</span>
-                    </a>
-                </li>
-                <li class="nav-list">
-                    <a href="aviso.html">
-                        <i class='bx bx-bell icon'></i>
-                        <span class="text nav-text">Notificação</span>
-                    </a>
-                </li>
-                <li class="nav-list">
-                    <a href=" empresas.html">
-                        <i class='bx bx-enterprise icon'></i> 
-                        <span class="text nav-text">Cadastrar Empresas</span>
-                    </a>
-                </li>
-                <!-- <li class="nav-list">
+      <div class="menu">
+        <li class="search-box">
+          <i class='bx bx-search-alt icon'></i>
+          <input type="text" placeholder="Search...">
+        </li>
+        <ul class="menu-links">
+          <!-- <li class="nav-list">
                         <a href="#">
-                            <i class='bx bx-pie-chart-alt icon'></i>
-                            <span class="text nav-text">Analytics</span>
+                            <i class='bx bxs-user icon'></i>
+                            <span class="text nav-text">Olá, FrizzaTech</span>
                         </a>
                     </li> -->
-            </ul>
-        </div>
+          <li class="nav-list">
+            <a href="dashboard.html">
+              <i class="fa-solid fa-house icon"></i>
+              <span class="text nav-text">Dashboard</span>
+            </a>
+          </li>
+          <!-- <li class="nav-list">
+                            <a href=" mural.html">
+                        <i class='bx bx-search-alt icon'></i>
+                        <span class="text nav-text">Consultar</span>
+                        </a>
+                    </li> -->
+          <!-- <li class="nav-list">
+            <a href="aviso.html">
+              <i class="fa-solid fa-bell icon"></i>
+              <span class="text nav-text">Notificação</span>
+            </a>
+          </li> -->
+          <li class="nav-list">
+            <a href="empresas.html">
+              <i class="fa-solid fa-hotel icon"></i>
+              <span class="text nav-text">Cadastrar Empresas</span>
+            </a>
+          </li>
+          <li class="nav-list">
+            <a href="posicao.html">
+              <i class="fa-solid fa-gear icon"></i>
+              <span class="text nav-text">Posições</span>
+            </a>
+          </li>
+        </ul>
+      </div>
 
-        <div class="bottom-content">
-            <li class="">
-                <a href="../index.html">
-                    <i class="fa fa-sign-out icon"></i>
-                    <span class="text nav-text">Logout</span>
-                </a>
-            </li>
-            <li class="mode">
-                <div class="moon-sun">
-                    <i class="bx bx-moon icon moon"></i>
-                    <i class="bx bx-sun icon sun"></i>
-                </div>
-                <span class="mode-text text">Dark Mode</span>
-
-                <div class="toggle-switch">
-                    <span class="switch"></span>
-                </div>
-            </li>
-        </div>
-    </div>
-</nav>
-
-  <section class="home">
-    <div class="empresa">
-      <div class="container">
-        <div class="card">
-        <div class="card-cadastro-empresa">
-          <div class="formulario">
-            <h2>Cadastro de Empresas</h2>
-            <div class="campo">
-                <input id="cnpj_input" type="text" placeholder="CNPJ">
-              </div>
-              <div class="campo">
-              <input id="corporate_name_input" type="text" placeholder="Nome da empresa" onblur="chamarEmpresa()">
-            </div>
-            <div class="campo">
-              <input id="address_input" type="text" placeholder="Endereço">
-            </div>
-            <button class="botao" onclick="cadastrarEmpresa()">Adicionar empresa</button>
-            <button class="botao" onclick="editarEmpresa()">Editar empresa</button>
-            <button class="botao" onclick="excluirEmpresa()">Excluir empresa</button>
-          </div>
-        </div>
+      <div class="bottom-content">
+        <li class="">
+          <a href="../index.html">
+            <i class="fa-solid fa-right-from-bracket icon"></i>
+            <span class="text nav-text">Logout</span>
+          </a>
+        </li>
       </div>
     </div>
-  </div>
-</section>
-<script src="../js/slider.js"></script>
+  </nav>
+
+  <section class="home">
+    <div class="card">
+      <div class="container">
+        <div class="formulario">
+          <h1>Gerenciamento de Empresas</h1>
+          <div class="input-group">
+            <div class="campo">
+              <i class="fa-solid fa-signature icone"></i>
+              <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
+            </div>
+            <div class="campo">
+              <i class="fa-solid fa-location-dot icone"></i>
+              <input id="address_input" type="text" placeholder="Endereço">
+            </div>
+            <div class="campo">
+              <i class="fa-solid fa-id-card-clip icone"></i>
+              <input id="cnpj_input" type="text" placeholder="CNPJ">
+            </div>
+          </div>
+          <div class="button-group">
+            <button class="botao" onclick="cadastrarEmpresa()"><i class="fa-solid fa-square-plus icone"></i></button>
+            <button class="botao" onclick="editarEmpresa()"><i class="fa-solid fa-pen icone"></i></button>
+            <button class="botao" onclick="excluirEmpresa()"><i class="fa-solid fa-trash icone"></i></button>
+          </div>
+        </div>
+        <div class="card-cadastro-empresa"></div>
+      </div>
+    </div>
+  </section>
+  <script src="../js/slider.js"></script>
 
 </body>
 
@@ -164,14 +148,14 @@
       addressVar == "" ||
       cnpjVar == ""
     ) {
-      
+
       alert("Preencha todos os campos")
       return false;
     }
 
-    if(cnpjVar.length != 14){
-        alert("CNPJ deve possuir 14 digitos")
-        return false
+    if (cnpjVar.length != 14) {
+      alert("CNPJ deve possuir 14 digitos")
+      return false
     }
 
     // Enviando o valor da nova input
@@ -203,7 +187,7 @@
     return false;
   }
 
-  function editarEmpresa(){
+  function editarEmpresa() {
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var corporateNameVar = corporate_name_input.value;
@@ -217,14 +201,14 @@
       addressVar == "" ||
       cnpjVar == ""
     ) {
-      
+
       alert("Preencha todos os campos")
       return false;
     }
 
-    if(cnpjVar.length != 14){
-        alert("CNPJ deve possuir 14 digitos")
-        return false
+    if (cnpjVar.length != 14) {
+      alert("CNPJ deve possuir 14 digitos")
+      return false
     }
 
     // Enviando o valor da nova input
@@ -257,51 +241,51 @@
 
   function excluirEmpresa() {
 
-//Recupere o valor da nova input pelo nome do id
-// Agora vá para o método fetch logo abaixo
-var cnpjVar = cnpj_input.value;
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var cnpjVar = cnpj_input.value;
 
 
-// Verificando se há algum campo em branco
-if (
-  cnpjVar == ""
-) {
-  
-  alert("Preencha o cnpj")
-  return false;
-}
+    // Verificando se há algum campo em branco
+    if (
+      cnpjVar == ""
+    ) {
 
-if(cnpjVar.length != 14){
-    alert("CNPJ deve possuir 14 digitos")
-    return false
-}
-
-// Enviando o valor da nova input
-fetch("/dashboard/excluirEmpresa", {
-  method: "DELETE",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    // crie um atributo que recebe o valor recuperado aqui
-    // Agora vá para o arquivo routes/dashboard.js
-    cnpjServer: cnpjVar
-  }),
-})
-  .then(function (resposta) {
-    console.log("resposta: ", resposta);
-
-    if (resposta.ok) {
-      alert("Empresa deletada com sucesso!")
-      limparCampos();
+      alert("Preencha o cnpj")
+      return false;
     }
-  })
-  .catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
-  });
 
-return false;
-}
+    if (cnpjVar.length != 14) {
+      alert("CNPJ deve possuir 14 digitos")
+      return false
+    }
+
+    // Enviando o valor da nova input
+    fetch("/dashboard/excluirEmpresa", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/dashboard.js
+        cnpjServer: cnpjVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          alert("Empresa deletada com sucesso!")
+          limparCampos();
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
 
   function limparCampos() {
     corporate_name_input.value = ""
@@ -311,35 +295,35 @@ return false;
 
   function chamarEmpresa() {
 
-//Recupere o valor da nova input pelo nome do id
-// Agora vá para o método fetch logo abaixo
-var corporateNameVar = corporate_name_input.value;
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var corporateNameVar = corporate_name_input.value;
 
-// Enviando o valor da nova input
-fetch("/dashboard/chamarEmpresa", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    // crie um atributo que recebe o valor recuperado aqui
-    // Agora vá para o arquivo routes/dashboard.js
-    corporateNameServer: corporateNameVar
-  }),
-})
-  .then(function (resposta) {
-    console.log("resposta: ", resposta);
-    return resposta.json();
-    
-  })
-  .then(function (dados) {
-    cnpj_input.value = dados[0].CNPJ
-    address_input.value = dados[0].address
-  })
-  .catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
-  });
+    // Enviando o valor da nova input
+    fetch("/dashboard/chamarEmpresa", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/dashboard.js
+        corporateNameServer: corporateNameVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+        return resposta.json();
 
-return false;
-}
+      })
+      .then(function (dados) {
+        cnpj_input.value = dados[0].CNPJ
+        address_input.value = dados[0].address
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
 </script>
