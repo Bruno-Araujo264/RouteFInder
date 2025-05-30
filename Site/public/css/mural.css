@@ -451,73 +451,6 @@ body.dark .switch::before {
   flex-direction: column;
 }
 
-.nivelCongestionamento .subpasta {
-  display: flex;
-  justify-content: space-around;
-  width: 90%;
-  height: 10%;
-  margin: auto;
-}
-
-.nivelCongestionamento .subpasta .titulo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  height: 100%;
-  font-size: 0.8em;
-  color: var(--text-color);
-}
-
-.nivelCongestionamento .subpasta .regiao {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  display: flex;
-  flex-direction: row;
-}
-
-.nivelCongestionamento .subpasta .filtro {
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  width: 30px;
-  height: 100%;
-  border-radius: 4px;
-}
-
-.subpasta .norte {
-  border: 1px solid var(--norte);
-  background: var(--bg-norte);
-}
-
-.subpasta .oeste {
-  border: 1px solid var(--oeste);
-  background: var(--bg-oeste);
-}
-
-.subpasta .sul {
-  border: 1px solid var(--sul);
-  background: var(--bg-sul);
-}
-
-.subpasta .leste {
-  border: 1px solid var(--leste);
-  background: var(--bg-leste);
-}
-
-.subpasta .centro {
-  border: 1px solid var(--centro);
-  background: var(--bg-centro);
-}
-
-.nivelCongestionamento .subpasta p {
-  margin: auto;
-  text-align: center;
-  font-weight: bold;
-  color: white;
-}
-
 .coluna1 .tabelaPico {
   height: 42.5%;
   width: 95%;
@@ -666,7 +599,7 @@ body.dark .switch::before {
   align-items: center;
   height: 30%;
   width: 95%;
-  margin: auto;
+  margin: 0 auto;
   background: var(--sidebar-color);
   border: solid 1px var(--primary-color-light);
   border-radius: 8px;
@@ -729,7 +662,7 @@ body.dark .switch::before {
 .intensidadeCongestionamento {
   display: flex;
   align-items: center;
-  height: 60%;
+  height: 53%;
   width: 95%;
   margin: auto;
   background: var(--sidebar-color);
@@ -788,6 +721,74 @@ body.dark .switch::before {
 
 .intensidadeCongestionamento .container .indicadores .box:nth-of-type(3) {
   background: var(--cor-vermelha);
+}
+
+.coluna2 .subpasta {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  height: 4.5%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.coluna2 .subpasta .titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  font-size: 0.8em;
+  color: var(--text-color);
+}
+
+.coluna2 .subpasta .regiao {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+.coluna2 .subpasta .filtro {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 30px;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.subpasta .norte {
+  border: 1px solid var(--norte);
+  background: var(--bg-norte);
+}
+
+.subpasta .oeste {
+  border: 1px solid var(--oeste);
+  background: var(--bg-oeste);
+}
+
+.subpasta .sul {
+  border: 1px solid var(--sul);
+  background: var(--bg-sul);
+}
+
+.subpasta .leste {
+  border: 1px solid var(--leste);
+  background: var(--bg-leste);
+}
+
+.subpasta .centro {
+  border: 1px solid var(--centro);
+  background: var(--bg-centro);
+}
+
+.coluna2 .subpasta p {
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
+  color: white;
 }
 
 .coluna3 {
