@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MURAL</title>
+    <title>Route Finder | Dashboard</title>
 
 
-    <link rel="stylesheet" href="./../css/mural.css">
+    <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -78,6 +78,18 @@
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
+                    <!-- <li class="nav-list">
+                            <a href=" mural.html">
+                        <i class='bx bx-search-alt icon'></i>
+                        <span class="text nav-text">Consultar</span>
+                        </a>
+                    </li> -->
+                    <li class="nav-list">
+                        <a href="aviso.html">
+                            <i class="fa-solid fa-bell icon"></i>
+                            <span class="text nav-text">Notificação</span>
+                        </a>
+                    </li>
                     <li class="nav-list">
                         <a href=" empresas.html">
                             <i class="fa-solid fa-hotel icon"></i>
@@ -106,27 +118,31 @@
 
     <section class="home">
         <div class="container">
+
             <div class="coluna1">
-                <div class="titulo">
-                    <h1>Dashboard Geral</h1>
-                </div>
-                <div class="tabelaPico">
-                    <div class="container">
-                        <h2>Distribuições de Ruas Congestionadas</h2>
-                        <div class="indicadores">
-                            <div class="box"></div>
-                            <p>Ótimo</p>
-                            <div class="box"></div>
-                            <p>Ruim</p>
-                            <div class="box"></div>
-                            <p>Péssimo</p>
-                        </div>
-                        <canvas id="canvas_grafico_inferior"></canvas>
-                    </div>
-                </div>
-
                 <div class="nivelCongestionamento">
-
+                    <div class="subpasta">
+                        <div class="titulo">
+                            <h2>Filtros:</h2>
+                        </div>
+                        <div class="regiao">
+                            <div id="idNorte" class="norte filtro">
+                                <p>N</p>
+                            </div>
+                            <div id="idOeste" class="oeste filtro">
+                                <p>O</p>
+                            </div>
+                            <div id="idSul" class="sul filtro">
+                                <p>S</p>
+                            </div>
+                            <div id="idLeste" class="leste filtro">
+                                <p>L</p>
+                            </div>
+                            <div id="idCentro" class="centro filtro">
+                                <p>C</p>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
                     <div class="pasta" id="pasta">
@@ -152,31 +168,25 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="tabelaPico">
+
+                    <div class="container">
+                        <h2>Distribuições de Ruas Congestionadas</h2>
+                        <div class="indicadores">
+                            <div class="box"></div>
+                            <p>Ótimo</p>
+                            <div class="box"></div>
+                            <p>Ruim</p>
+                            <div class="box"></div>
+                            <p>Péssimo</p>
+                        </div>
+                        <canvas id="canvas_grafico_inferior"></canvas>
+                    </div>
+                </div>
             </div>
 
             <div class="coluna2">
-                <div class="subpasta">
-                    <div class="titulo">
-                        <h2>Filtros:</h2>
-                    </div>
-                    <div class="regiao">
-                        <div id="idNorte" class="norte filtro">
-                            <p>N</p>
-                        </div>
-                        <div id="idOeste" class="oeste filtro">
-                            <p>O</p>
-                        </div>
-                        <div id="idSul" class="sul filtro">
-                            <p>S</p>
-                        </div>
-                        <div id="idLeste" class="leste filtro">
-                            <p>L</p>
-                        </div>
-                        <div id="idCentro" class="centro filtro">
-                            <p>C</p>
-                        </div>
-                    </div>
-                </div>
                 <div class="horario">
                     <div class="container">
                         <h2>Melhor e Pior Horário Congestionadas</h2>
