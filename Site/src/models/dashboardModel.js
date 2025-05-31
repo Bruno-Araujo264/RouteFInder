@@ -45,9 +45,63 @@ function chamarEmpresa(corporate_name) {
     return database.executar(instrucaoSql);
 }
 
+function carregarRuas() {
+    var instrucaoSql = `
+        SELECT 
+    'Dia' AS periodo,
+    p.region, 
+    COUNT(DISTINCT s.id_segment) AS total_ruas
+FROM 
+    timestamp t
+    JOIN segment s ON t.fk_segment = s.id_segment
+    JOIN direction d ON s.fk_direction = d.id_direction
+    JOIN passage p ON d.fk_passage = p.id_passage
+WHERE 
+    t.date_time LIKE '2016-04-11%'
+GROUP BY 
+    p.region
+
+UNION ALL
+
+SELECT 
+    'Semana' AS periodo,
+    p.region, 
+    COUNT(DISTINCT s.id_segment) AS total_ruas
+FROM 
+    timestamp t
+    JOIN segment s ON t.fk_segment = s.id_segment
+    JOIN direction d ON s.fk_direction = d.id_direction
+    JOIN passage p ON d.fk_passage = p.id_passage
+WHERE 
+    t.date_time BETWEEN '2016-04-11' AND '2016-04-17 23:59:59'
+GROUP BY 
+    p.region
+
+UNION ALL
+
+SELECT 
+    'Mês' AS periodo,
+    p.region, 
+    COUNT(DISTINCT s.id_segment) AS total_ruas
+FROM 
+    timestamp t
+    JOIN segment s ON t.fk_segment = s.id_segment
+    JOIN direction d ON s.fk_direction = d.id_direction
+    JOIN passage p ON d.fk_passage = p.id_passage
+WHERE 
+    t.date_time BETWEEN '2016-04-01' AND '2016-04-30 23:59:59'
+GROUP BY 
+    p.region;
+
+    `; //Utilizo uma tabela derivada, para selecionar a data limite
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrarEmpresa,
     editarEmpresa,
     excluirEmpresa,
-    chamarEmpresa
+    chamarEmpresa,
+    carregarRuas
 };
