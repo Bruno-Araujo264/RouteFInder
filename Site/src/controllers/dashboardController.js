@@ -149,9 +149,21 @@ function chamarEmpresa(req, res) {
         );
 }
 
+function carregarRuas(req, res) {
+
+    dashboardModel.carregarRuas()
+        .then(
+            function (resultado) {
+                console.log(`Resultados: ${JSON.stringify(resultado)}`); 
+                res.json(resultado);
+                }
+        );
+}
+
 module.exports = {
     cadastrarEmpresa,
     editarEmpresa,
     excluirEmpresa,
-    chamarEmpresa
+    chamarEmpresa,
+    carregarRuas
 }

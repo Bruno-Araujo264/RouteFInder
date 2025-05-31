@@ -20,6 +20,10 @@ router.delete("/excluirEmpresa", function (req, res) {
     dashboardController.excluirEmpresa(req, res);
 })
 
+router.get("/carregarRuas", function (req, res) {
+    dashboardController.carregarRuas(req, res);
+})
+
 
 
 module.exports = router;

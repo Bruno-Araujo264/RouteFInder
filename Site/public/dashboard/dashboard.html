@@ -112,15 +112,7 @@
                 </div>
                 <div class="tabelaPico">
                     <div class="container">
-                        <h2>Distribuições de Ruas Congestionadas</h2>
-                        <div class="indicadores">
-                            <div class="box"></div>
-                            <p>Ótimo</p>
-                            <div class="box"></div>
-                            <p>Ruim</p>
-                            <div class="box"></div>
-                            <p>Péssimo</p>
-                        </div>
+                        <h2>Distribuição Regional de Ruas Congestionadas</h2>
                         <canvas id="canvas_grafico_inferior"></canvas>
                     </div>
                 </div>
@@ -258,6 +250,38 @@
 
     NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO
 
+    window.onload = function criarGraficos(){
+        carregarKpis()
+    }
+
+    //Listas para gráficos
+    var listaRuas = []
+
+    // Carregar dados
+    function carregarKpis(){
+    fetch(`/dashboard/carregarRuas`, {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    }})
+        .then(resposta => {
+
+        if (resposta.ok) {
+            console.log("Ruas carregadas");
+            return resposta.json();
+            } else {
+            console.log("Houve um erro!");
+            resposta.text().then(texto => {
+                console.error(texto);
+            });
+        }
+
+    }).then(dados => {
+        listaRuas.push(dados)
+        criarGraficoBarra()
+    })
+}
+
     const velocimetro = canvas_grafico_superior;
     const gaugeChart = new Chart(velocimetro, {
         type: 'doughnut',
@@ -281,19 +305,62 @@
         }
     });
 
+    function criarGraficoBarra(){
     const graficoBarra = canvas_grafico_inferior;
     const barChart = new Chart(graficoBarra, {
         type: 'bar',
         data: {
-            labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
-            datasets: [{
-                data: [12, 19, 3, 5, 8],
-                backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#78A55A', '#FFE862'],
-                borderWidth: 2,
-                borderRadius: 6,
-                borderColor: '#fff',
-
-            }]
+            labels: [
+                listaRuas[0][0].region,
+                listaRuas[0][1].region,
+                listaRuas[0][2].region,
+                listaRuas[0][3].region,
+                listaRuas[0][4].region
+            ],
+            datasets: [
+                {
+                    label: "Dia",
+                    data: [
+                        listaRuas[0][0].total_ruas,
+                        listaRuas[0][1].total_ruas,
+                        listaRuas[0][2].total_ruas,
+                        listaRuas[0][3].total_ruas,
+                        listaRuas[0][4].total_ruas
+                    ],
+                    backgroundColor: '#28bbff',
+                    borderWidth: 2,
+                    borderRadius: 6,
+                    borderColor: '#fff',
+                },
+                {
+                    label: "Semana",
+                    data: [
+                        listaRuas[0][5].total_ruas,
+                        listaRuas[0][6].total_ruas,
+                        listaRuas[0][7].total_ruas,
+                        listaRuas[0][8].total_ruas,
+                        listaRuas[0][9].total_ruas
+                    ],
+                    backgroundColor: '#288cff',
+                    borderWidth: 2,
+                    borderRadius: 6,
+                    borderColor: '#fff',
+                },
+                {
+                    label: "Mês",
+                    data: [
+                        listaRuas[0][10].total_ruas,
+                        listaRuas[0][11].total_ruas,
+                        listaRuas[0][12].total_ruas,
+                        listaRuas[0][13].total_ruas,
+                        listaRuas[0][14].total_ruas
+                    ],
+                    backgroundColor: '#285aff',
+                    borderWidth: 2,
+                    borderRadius: 6,
+                    borderColor: '#fff',
+                }
+            ]
         },
         options: {
             responsive: true,
@@ -318,11 +385,18 @@
             },
             plugins: {
                 legend: {
-                    display: false,
+                    display: true,
+                    labels: {
+                        color: 'white'
+                    }
                 }
             }
         }
     });
+}
+
+
+
 
     const graficoPolarArea = canvas_grafico_inferior2;
     const polarAreaChart = new Chart(graficoPolarArea, {
