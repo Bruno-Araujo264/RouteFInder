@@ -5,23 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posição Edição</title>
 </head>
-<body>
-    <header><h1>Posição Atual (Select no Banco)</h1></header>
+<body onload="carregarPosicaoEspecifica();carregarProfissionaisDaPosicao();">
+    <header><h1>Nome da Posição:<input id="NomePosicao"></h1></header>
     
     <main>
-        <p><h4>Nível de Acesso dessa posição (Select no Banco fk) <Button onclick="editarNivelAcessoPosicao()">Editar</Button></h4></p>
-        Lista de Usuários nessa Posição vindo do Banco de Dados (Select no Banco de usuários dessa empresa e posição e listar)
-    <button onclick="abrirListaUsuariosDaEmpresa()">addPessoa nessa Posição</button>
+        <p>Nível de Acesso dessa posição: <select id="nivelAcesso">
+            <option value="1">Administrador</option>
+            <option value="2">Funcionário</option>
+            </select></p>
+        <p>Descrição da Posição: <input type="text" name="" id="Descricao"></p>
+       <p> <div id="listaProfissionaisPosicaoAtual" style="display: none;">
+             <!-- Lista de Usuários nessa Posição vindo do Banco de Dados (Select no Banco de usuários dessa empresa e posição e listar) -->
+              <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Acesso</th>
+                </tr>
+            </thead>
+          <tbody id="tabelaProfissionaisPosicaoAtual">
+            <!-- Linhas adicionadas pelo JS -->
+          </tbody>
+      </table>
+        </div></p>
+       
+    <button onclick="carregarProfissionais()">addPessoa nessa Posição</button>
+    <p><div id="listaTodosProfissionaisEmpresa" style="display: none;">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Acesso</th>
+                </tr>
+            </thead>
+          <tbody id="tabelaProfissionais">
+            <!-- Linhas adicionadas pelo JS -->
+          </tbody>
+      </table>
+    </div></p>
+    <Button onclick="editarPosicao()">Atualizar Posição</Button>
     </main>
 </body>
 </html>
 <Script>
-        //Carregar Lista de usuários nessa posição
-    function mostrarUsuariosDessaPosicao(id_position){
+    function carregarPosicaoEspecifica() {
+        const empresaId = sessionStorage.getItem("ID_EMPRESA");
+        const idPosicaoAtual = sessionStorage.getItem("ID_POSICAO_ATUAL");
+        const apiUrl = `/posicao/${empresaId}`;
 
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(posicoes => {
+                const posicao = posicoes.find(p => p.id_position == idPosicaoAtual);
+
+                if (!posicao) {
+                    console.error("Posição não encontrada!");
+                    return;
+                }
+
+                // Aqui você pode preencher os inputs da tela de edição
+                document.getElementById('NomePosicao').value = posicao.name;
+                document.getElementById('Descricao').value = posicao.description;
+                document.getElementById('nivelAcesso').value = posicao.fk_access_level.toString();
+                // Se tiver mais campos, adiciona aqui
+
+            })
+            .catch(error => {
+                console.error('Erro ao carregar a posição:', error);
+            });
     }
-    function abrirListaUsuariosDaEmpresa(){
-        //Mostrar todos os usuários da empresa com seus respectivos níveis de acesso e posição
+        //Carregar Lista de usuários nessa posição
+    function carregarProfissionaisDaPosicao() {
+        const empresaId = sessionStorage.getItem("ID_EMPRESA");
+        const idPosicaoAtual = sessionStorage.getItem("ID_POSICAO_ATUAL");
+        const apiUrl = `/usuarios/${empresaId}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(profissionais => {
+                const tabela = document.getElementById('tabelaProfissionaisPosicaoAtual');
+
+                // Filtra os profissionais que estão na posição atual
+                const profissionaisDaPosicao = profissionais.filter(p => p.fk_position == Number(idPosicaoAtual));
+
+                profissionaisDaPosicao.forEach(profissional => {
+                    document.getElementById('listaProfissionaisPosicaoAtual').style.display = "block";
+                    console.log(`Nome: ${profissional.name_user}, ID Usuário: ${profissional.id_user}`);
+
+                    const linha = document.createElement('tr');
+                    linha.innerHTML = `
+                        <td><input type="checkbox" class="checkbox-usuario" value="${profissional.id_user}"></td>
+                        <td>${profissional.name_user}</td>
+                        <td>${profissional.fk_access_level}</td>
+                    `;
+
+                    tabela.appendChild(linha);
+                });
+
+            })
+            .catch(error => {
+                console.error('Erro ao carregar profissionais da posição:', error);
+            });
+    }
+    // Função para carregar a pocições da empresa
+    function carregarProfissionais(empresaId) {
+        document.getElementById('listaTodosProfissionaisEmpresa').style.display = "block";
+      empresaId = sessionStorage.getItem("ID_EMPRESA")
+      const apiUrl = `/usuarios/${empresaId}`;
+  
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(profissionais => {
+          const tabela = document.getElementById('tabelaProfissionais');
+            
+          // Limpa a tabela antes de adicionar os profissionais
+            tabela.innerHTML = '';
+          // Adiciona os usuários a lista 
+          profissionais.forEach(profissional => {
+            console.log(`Nome: ${profissional.name_user}, ID Usuário: ${profissional.id_user}`);
+            // tabela.innerHTML += `
+            //     <tr>
+            //         <td>${profissional.id_user}</td>
+            //         <td>${profissional.name_user}</td> 
+            //     </tr>
+            // `;
+
+            const linha = document.createElement('tr');
+
+             linha.innerHTML = `
+              <td><input type="checkbox" class="checkbox-usuario" value="${profissional.id_user}"></td>
+              <td>${profissional.name_user}</td>
+              <td>${profissional.fk_access_level}</td>
+              `;
+
+              tabela.appendChild(linha);
+          });
+
+        })
+        .catch(error => {
+          console.error('Erro ao carregar profissionais:', error);
+        });
     }
     function editarNivelAcessoPosicao(){
         //dar update no usuário e seu nível de acesso (Funcionário ou Administrador)

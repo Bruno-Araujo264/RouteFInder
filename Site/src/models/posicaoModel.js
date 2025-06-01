@@ -53,10 +53,33 @@ function coletarUsuariosDaPosicao(email) {
     return database.executar(instrucaoSql);
 }
 
+function associarPosicaoEAcessoAosUsuarios(idPosicao, usuarios) {
+    console.log("ACESSEI O POSIÇÃO MODEL - associarUsuariosComAcesso");
+
+    const usuariosFormatados = usuarios.join(', ');
+
+    const instrucaoSql = `
+        UPDATE user
+        SET fk_position = ${idPosicao}, 
+            fk_access_level = (
+                SELECT fk_access_level 
+                FROM position 
+                WHERE id_position = ${idPosicao}
+            )
+        WHERE id_user IN (${usuariosFormatados});
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
+
+
 
 module.exports = {
     cadastrarPosicao,
     alterarDescricao,
     coletarUsuariosDaPosicao,
-    buscarPosicoesPorEmpresa
+    buscarPosicoesPorEmpresa,
+    associarPosicaoEAcessoAosUsuarios
 };

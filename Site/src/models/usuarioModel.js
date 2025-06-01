@@ -43,10 +43,28 @@ function coletarEmail(email) {
     return database.executar(instrucaoSql);
 }
 
+// Busca posições associadas a uma empresa
+function buscarProfissionaisDaEmpresa(idEmpresa) {
+  const instrucao = `
+    SELECT
+        id_user,
+        name_user,
+        fk_access_level,
+        fk_position
+
+    FROM
+        routeFinder.user
+    WHERE
+        fk_company = ${idEmpresa};
+  `;
+  return database.executar(instrucao);
+}
+
 
 module.exports = {
     autenticar,
     cadastrar,
     alterarSenha,
-    coletarEmail
+    coletarEmail,
+    buscarProfissionaisDaEmpresa
 };

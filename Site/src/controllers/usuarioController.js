@@ -133,9 +133,39 @@ function coletarEmail(req, res) {
     }
 }
 
+function buscarProfissionaisDaEmpresa(req, res){
+  const idEmpresa = req.params.empresaId
+  console.log(idEmpresa)
+  
+    if (!idEmpresa) {
+      return res.status(400).send("O ID da empresa é obrigatório!");
+    }
+
+     usuarioModel.buscarProfissionaisDaEmpresa(idEmpresa).then(function (resultado) {
+    //    if (resultado.length > 0) {
+    //     console.log("foi aqui",resultado)
+    //      res.status(200).json(resultado);
+    //    } else {
+    //      res.status(204).send("Nenhuma sala encontrada para a empresa especificada.");
+    //    }
+
+       if (resultado.length > 0) {
+        console.log("foi aqui",resultado)
+        res.status(200).json(resultado);
+        } else {
+        console.log("nenhuma usuário foi encontrado")
+        res.status(200).json([]); // Retorna array vazio, evitando erro no front
+        }
+
+     })
+
+
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     alterarSenha,
-    coletarEmail
+    coletarEmail,
+    buscarProfissionaisDaEmpresa
 }

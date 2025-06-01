@@ -6,6 +6,7 @@ function cadastrarPosicao(req, res) {
     var descricao = req.body.descricaoPosicaoServer;
     var idEmpresa = req.body.idEmpresaServer;
     var nivelAcesso = req.body.nivelAcessoServer;
+    var usuarios = req.body.usuariosServer;
 
 
     // Faça as validações dos valores
@@ -21,6 +22,12 @@ function cadastrarPosicao(req, res) {
 
         // Passe os valores como parâmetro e vá para o arquivo posicaoModel.js
         posicaoModel.cadastrarPosicao(nome, descricao, idEmpresa, nivelAcesso)
+            .then(resultado => {
+                    const idPosicao = resultado.insertId;
+                    console.log("ESSE é o ID-posição",idPosicao,"esses são os usuários",usuarios);
+                return posicaoModel.associarPosicaoEAcessoAosUsuarios(idPosicao, usuarios);
+                
+            })
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -38,7 +45,7 @@ function cadastrarPosicao(req, res) {
     }
 }
 
-function alterarSenha(req, res) {
+function alterarNivelAcesso(req, res) {
     var email = req.body.emailServer
     var senha = req.body.senhaServer
 

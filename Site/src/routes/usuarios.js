@@ -20,4 +20,10 @@ router.get("/coletarEmail/:email", function (req, res) {
     usuarioController.coletarEmail(req, res);
 })
 
+// Rota para buscar usuários por ID da empresa
+router.get("/:empresaId", function (req, res) {
+  console.log("Ta indo até aqui - usuários")
+  usuarioController.buscarProfissionaisDaEmpresa(req, res);
+});
+
 module.exports = router;

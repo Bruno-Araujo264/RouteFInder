@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Posição</title>
 </head>
-<body>
+<body onload="carregarProfissionais()">
     <header><h1>Criar Nova Posição</h1></header>
     <p>Nome da Posição<input type="text" id="nome"></p>
     <p>Descrição dessa Posição <input type="text" name="" id="descricao"></p>
@@ -13,6 +13,19 @@
       <option value="1">Administrador</option>
       <option value="2">Funcionário</option>
       </select>
+
+      <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Acesso</th>
+                </tr>
+            </thead>
+          <tbody id="tabelaProfissionais">
+            <!-- Linhas adicionadas pelo JS -->
+          </tbody>
+      </table>
       <p><button onclick="cadastrarNovaPosicao()">Cadastrar Posição</button></p>
     </p>
 </body>
@@ -28,13 +41,18 @@
     var nivelAcessoVar = nivelAcesso.value;
     var idEmpresaVar = sessionStorage.getItem("ID_EMPRESA");
 
+    // Coleta de Usuários selecionados pelas checkboxes para atrelar eles à posição
+    const checkboxes = document.querySelectorAll('.checkbox-usuario:checked');
+    const usuariosSelecionados = Array.from(checkboxes).map(cb => cb.value);
+
 
     // Verificando se há algum campo em branco
     if (
       nomePosicaoVar == "" ||
       descricaoPosicaoVar == "" ||
       nivelAcessoVar == "" ||
-      idEmpresaVar == ""
+      idEmpresaVar == "" ||
+      usuariosSelecionados === 0
     ) {
       alert("Mensagem de erro para todos os campos em branco")
       return false;
@@ -72,7 +90,8 @@
         nomePosicaoServer: nomePosicaoVar,
         descricaoPosicaoServer: descricaoPosicaoVar,
         nivelAcessoServer: nivelAcessoVar,
-        idEmpresaServer: idEmpresaVar
+        idEmpresaServer: idEmpresaVar,
+        usuariosServer: usuariosSelecionados
       }),
     })
       .then(function (resposta) {
@@ -107,4 +126,41 @@
 }
 function sumirMensagem() {
   }
+
+  // Função para carregar a pocições da empresa
+    function carregarProfissionais(empresaId) {
+      empresaId = sessionStorage.getItem("ID_EMPRESA")
+      const apiUrl = `/usuarios/${empresaId}`;
+  
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(profissionais => {
+          const tabela = document.getElementById('tabelaProfissionais');
+  
+          // Adiciona os usuários a lista 
+          profissionais.forEach(profissional => {
+            console.log(`Nome: ${profissional.name_user}, ID Usuário: ${profissional.id_user}`);
+            // tabela.innerHTML += `
+            //     <tr>
+            //         <td>${profissional.id_user}</td>
+            //         <td>${profissional.name_user}</td> 
+            //     </tr>
+            // `;
+
+            const linha = document.createElement('tr');
+
+             linha.innerHTML = `
+              <td><input type="checkbox" class="checkbox-usuario" value="${profissional.id_user}"></td>
+              <td>${profissional.name_user}</td>
+              <td>${profissional.fk_access_level}</td>
+              `;
+
+              tabela.appendChild(linha);
+          });
+
+        })
+        .catch(error => {
+          console.error('Erro ao carregar profissionais:', error);
+        });
+    }
 </script>
