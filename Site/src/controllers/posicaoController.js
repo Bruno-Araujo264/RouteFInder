@@ -4,6 +4,7 @@ function cadastrarPosicao(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomePosicaoServer;
     var descricao = req.body.descricaoPosicaoServer;
+    var idEmpresa = req.body.idEmpresaServer;
     var nivelAcesso = req.body.nivelAcessoServer;
 
 
@@ -12,12 +13,14 @@ function cadastrarPosicao(req, res) {
         res.status(400).send("Seu nome está undefined!");
     } else if (descricao == undefined) {
         res.status(400).send("Seu email está undefined!");
+    } else if (idEmpresa == undefined) {
+        res.status(400).send("Sua empresa está undefined!");
     } else if (nivelAcesso == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo posicaoModel.js
-        posicaoModel.cadastrarPosicao(nome, descricao, nivelAcesso)
+        posicaoModel.cadastrarPosicao(nome, descricao, idEmpresa, nivelAcesso)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -94,12 +97,21 @@ function buscarPosicoesPorEmpresa(req, res){
     }
 
      posicaoModel.buscarPosicoesPorEmpresa(idEmpresa).then(function (resultado) {
+    //    if (resultado.length > 0) {
+    //     console.log("foi aqui",resultado)
+    //      res.status(200).json(resultado);
+    //    } else {
+    //      res.status(204).send("Nenhuma sala encontrada para a empresa especificada.");
+    //    }
+
        if (resultado.length > 0) {
         console.log("foi aqui",resultado)
-         res.status(200).json(resultado);
-       } else {
-         res.status(204).send("Nenhuma sala encontrada para a empresa especificada.");
-       }
+        res.status(200).json(resultado);
+        } else {
+        console.log("nenhuma posição foi encontrada")
+        res.status(200).json([]); // Retorna array vazio, evitando erro no front
+        }
+
      })
 
 

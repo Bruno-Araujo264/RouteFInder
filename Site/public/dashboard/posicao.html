@@ -135,14 +135,14 @@
             <main>
                 <section class="containerKpi" id="containerCards">
 
-                    <div class="kpi1" onclick="abrirPosicao()">
+                    <!-- <div class="kpi1" onclick="abrirPosicao()">
                         <h1>Analista de RH</h1>
-                        <img src="./imgs/salaMaturacao.png" alt="Analista de RH">
+                        <img src="" alt="Analista de RH">
                     </div>
                     <div class="kpi2" onclick="redirecionarParaCadastroPosicao()">
                         <h1>Adicionar Posição</h1>
-                        <img src="./imgs/adicionar (2).png" alt="Adicionar Posição">
-                    </div>
+                        <img src="" alt="Adicionar Posição">
+                    </div> -->
                 </section> 
             </main>
         
@@ -175,6 +175,7 @@
   
           // Limpa o container antes de inserir os novos dados
           container.innerHTML = '';
+        
   
           // Adiciona os cards das posições retornadas pela API
           posicoes.forEach(posicao => {
@@ -182,8 +183,8 @@
             card.className = 'kpi1';
             card.onclick = () => abrirPosicao(posicao.id_position);
             card.innerHTML = `
-              <h1>${posicao.nome}</h1>
-              <img src="./imgs/salaMaturacao.png" alt="Posição">
+              <h1>${posicao.name}</h1>
+             <img src="../assets/imgs/LALALA.jpeg" alt="Posição">
             `;
             container.appendChild(card);
           });
@@ -191,10 +192,10 @@
           // Adiciona o card "Adicionar Sala"
           const addCard = document.createElement('div');
           addCard.className = 'kpi2';
-          addCard.onclick = redirecionarParaCadastroPosicao();
+          addCard.onclick = () => redirecionarParaCadastroPosicao();
           addCard.innerHTML = `
             <h1>Adicionar Posição</h1>
-            <img src="./imgs/adicionar (2).png" alt="Adicionar Posição">
+            <img src="../assets/icon/sinal-de-adicao.png" alt="Adicionar Posição">
           `;
           container.appendChild(addCard);
         })

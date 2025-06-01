@@ -10,8 +10,8 @@
     <p>Nome da Posição<input type="text" id="nome"></p>
     <p>Descrição dessa Posição <input type="text" name="" id="descricao"></p>
     <p>Nível de Acesso dessa posição <select id="nivelAcesso">
-      <option value="adm">Administrador</option>
-      <option value="funcionario">Funcionário</option>
+      <option value="1">Administrador</option>
+      <option value="2">Funcionário</option>
       </select>
       <p><button onclick="cadastrarNovaPosicao()">Cadastrar Posição</button></p>
     </p>
@@ -26,13 +26,15 @@
     var nomePosicaoVar = nome.value;
     var descricaoPosicaoVar = descricao.value;
     var nivelAcessoVar = nivelAcesso.value;
+    var idEmpresaVar = sessionStorage.getItem("ID_EMPRESA");
 
 
     // Verificando se há algum campo em branco
     if (
       nomePosicaoVar == "" ||
       descricaoPosicaoVar == "" ||
-      nivelAcessoVar == ""
+      nivelAcessoVar == "" ||
+      idEmpresaVar == ""
     ) {
       alert("Mensagem de erro para todos os campos em branco")
       return false;
@@ -69,7 +71,8 @@
         // Agora vá para o arquivo routes/posicao.js
         nomePosicaoServer: nomePosicaoVar,
         descricaoPosicaoServer: descricaoPosicaoVar,
-        nivelAcessoServer: nivelAcessoVar
+        nivelAcessoServer: nivelAcessoVar,
+        idEmpresaServer: idEmpresaVar
       }),
     })
       .then(function (resposta) {
@@ -80,8 +83,7 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.POSICAO_USUARIO = json.nome;
-                    sessionStorage.ACESSO_USUARIO = json.nivelAcesso;
+                    
                     
           alert("Cadastro da Posição realizado com sucesso! ")
           
