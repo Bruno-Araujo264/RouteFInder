@@ -8,9 +8,16 @@ router.post("/cadastrarPosicao", function (req, res) {
     posicaoController.cadastrarPosicao(req, res);
 })
 
-router.post("/alterarDescricao", function (req, res) {
-    posicaoController.alterarDescricao(req, res);
+//Rota para atualizar dados da posição atual
+router.put("/atualizarPosicao/:idPosicaoAtual", function (req, res) {
+    posicaoController.atualizarPosicao(req, res);
 })
+
+//Rota para deletar a posição especifica
+router.delete("/deletarPosicao/:idPosicao", function (req, res) {
+    posicaoController.deletarPosicao(req, res);
+});
+
 
 // Rota para buscar posições por ID da empresa
 router.get("/:empresaId", function (req, res) {
@@ -19,7 +26,8 @@ router.get("/:empresaId", function (req, res) {
 });
 
 router.get("/coletarUsuariosDaPosicao", function (req, res) {
-    posciaoController.coletarUsuariosDaPosicao(req, res);
+    posicaoController.coletarUsuariosDaPosicao(req, res);
 })
+
 
 module.exports = router;

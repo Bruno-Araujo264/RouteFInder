@@ -31,16 +31,38 @@ function buscarPosicoesPorEmpresa(idEmpresa) {
   return database.executar(instrucao);
 }
 
-// Função para alterar os dados da Descrição daquela Posição
-function alterarDescricao(email, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function AlterarSenha():", email, senha);
-    console.log("Modificando na tabela user:", email, senha);
+// Função para atualizar os dados daquela Posição
+function atualizarPosicao(empresa, idPosicao, nome, descricao, nivelAcesso, listaUsuarios) {
+    console.log('Atualizando posição:', idPosicao);
 
-    var instrucaoSql = `
-           UPDATE user SET password = '${senha}' WHERE email = '${email}';
-    `
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+    // Monta os comandos SQL:
+    return new Promise((resolve, reject) => {
+        var instrucaoSql = `
+            UPDATE position 
+            SET name = '${nome}', description = '${descricao}', fk_access_level = ${nivelAcesso}
+            WHERE id_position = ${idPosicao};
+        `;
+
+        // 1. Atualiza os dados da posição
+        // 2. Remove fk_position de todos os usuários que estavam nessa posição
+        // 3. Atribui fk_position para os usuários selecionados
+
+        instrucaoSql += `
+            UPDATE user SET fk_position = NULL WHERE fk_position = ${idPosicao};
+        `;
+
+        if (listaUsuarios.length > 0) {
+            instrucaoSql += `
+                UPDATE user SET fk_position = ${idPosicao}
+                WHERE id_user IN (${listaUsuarios.join(',')});
+            `;
+        }
+
+        console.log("Executando SQL:\n", instrucaoSql);
+        return database.executar(instrucaoSql)
+            .then(resolve)
+            .catch(reject);
+    });
 }
 
 function coletarUsuariosDaPosicao(email) {
@@ -78,7 +100,7 @@ function associarPosicaoEAcessoAosUsuarios(idPosicao, usuarios) {
 
 module.exports = {
     cadastrarPosicao,
-    alterarDescricao,
+    atualizarPosicao,
     coletarUsuariosDaPosicao,
     buscarPosicoesPorEmpresa,
     associarPosicaoEAcessoAosUsuarios

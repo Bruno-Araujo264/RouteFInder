@@ -96,7 +96,7 @@
 
                     const linha = document.createElement('tr');
                     linha.innerHTML = `
-                        <td><input type="checkbox" class="checkbox-usuario" value="${profissional.id_user}"></td>
+                        <td><input type="checkbox" class="checkbox-usuario" value="${profissional.id_user}"  checked></td>
                         <td>${profissional.name_user}</td>
                         <td>${profissional.fk_access_level}</td>
                     `;
@@ -148,7 +148,65 @@
           console.error('Erro ao carregar profissionais:', error);
         });
     }
-    function editarNivelAcessoPosicao(){
-        //dar update no usuário e seu nível de acesso (Funcionário ou Administrador)
-    }
+
+    // Atualizar todos os campos dessa posição de acordo com a página
+    function editarPosicao() {
+    const empresaId = sessionStorage.getItem("ID_EMPRESA");
+    const idPosicaoAtual = sessionStorage.getItem("ID_POSICAO_ATUAL");
+
+    // Ler dados dos inputs
+    const nomePosicao = document.getElementById('NomePosicao').value;
+    const descricao = document.getElementById('Descricao').value;
+    const nivelAcesso = document.getElementById('nivelAcesso').value;
+
+    // Ler checkboxes selecionadas
+    const checkboxes = document.querySelectorAll('.checkbox-usuario:checked');
+    const usuariosSelecionados = Array.from(checkboxes).map(cb => cb.value);
+
+    // 1️⃣ Atualizar os dados da posição
+    const dadosPosicao = {
+        name: nomePosicao,
+        description: descricao,
+        fk_access_level: Number(nivelAcesso),
+        fk_empresa: Number(empresaId),
+        usuarios: usuariosSelecionados
+    };
+
+    fetch(`/posicao/atualizarPosicao/${idPosicaoAtual}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(dadosPosicao)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao atualizar a posição');
+        }
+        console.log('Posição atualizada com sucesso');
+
+        // 2️⃣ Atualizar os usuários da posição
+        return fetch(`/usuarios/atualizarPosicao`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                fk_position: Number(idPosicaoAtual),
+                usuarios: usuariosSelecionados
+            })
+        });
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao atualizar os usuários da posição');
+        }
+        alert('Posição e usuários atualizados com sucesso!');
+        location.reload();
+          
+          setTimeout(() => {
+            window.location = "./posicao.html";
+          }, "1000");
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Erro ao atualizar');
+    });
+}
 </Script>

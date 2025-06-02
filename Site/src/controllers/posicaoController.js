@@ -45,53 +45,25 @@ function cadastrarPosicao(req, res) {
     }
 }
 
-function alterarNivelAcesso(req, res) {
-    var email = req.body.emailServer
-    var senha = req.body.senhaServer
+function atualizarPosicao(req, res) {
+    var idPosicao = req.params.idPosicaoAtual;
+    var nome = req.body.name;
+    var descricao = req.body.description;
+    var nivelAcesso = req.body.fk_access_level;
+    var empresa = req.body.fk_empresa;
+    var listaUsuarios = req.body.usuarios; // array com IDs dos usuários que ficaram vinculados
 
-    if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
+    if (!idPosicao || !nome || !descricao || !nivelAcesso) {
+        res.status(400).send("Parâmetros ausentes!");
     } else {
-        usuarioModel.alterarSenha(email, senha)
+        posicaoModel.atualizarPosicao(empresa, idPosicao, nome, descricao, nivelAcesso, listaUsuarios)
             .then(
-                function (resposta) {
-                    res.json(resposta)
+                resultado => res.json(resultado),
+                erro => {
+                    console.log(erro);
+                    res.status(500).json(erro.sqlMessage);
                 }
-            )
-            .catch(
-                function (erro) {
-                    console.log(erro)
-                    console.log(`Teve um erro ao realizar a alteração de senha! Erro: ${erro.sqlMessage}`)
-                    res.status(500).json(erro.sqlMessage)
-                }
-            )
-    }
-}
-
-function coletarEmail(req, res) {
-    var email = req.params.email
-
-    if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else {
-        usuarioModel.coletarEmail(email)
-            .then( 
-                function (resultado) {
-                    console.log('Retornei o Model')
-                    res.status(200).json({
-                        resultado: resultado
-                    });
-                }
-            )
-            .catch(
-                function (erro) {
-                    console.log(erro)
-                    console.log(`Teve um erro ao realizar a coleta do Email! Erro: ${erro.sqlMessage}`)
-                    res.status(500).json(erro.sqlMessage)
-                }
-            )
+            );
     }
 }
 
@@ -126,5 +98,6 @@ function buscarPosicoesPorEmpresa(req, res){
 
 module.exports = {
     cadastrarPosicao,
-    buscarPosicoesPorEmpresa
+    buscarPosicoesPorEmpresa,
+    atualizarPosicao
 }
