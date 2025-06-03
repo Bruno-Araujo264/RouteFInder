@@ -24,6 +24,9 @@ router.get("/carregarRuas", function (req, res) {
     dashboardController.carregarRuas(req, res);
 })
 
+router.get("/carregarTop5Ruas", function (req, res) {
+    dashboardController.carregarTop5Ruas(req, res);
+})
 
 
 module.exports = router;

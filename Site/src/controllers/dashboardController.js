@@ -160,10 +160,22 @@ function carregarRuas(req, res) {
         );
 }
 
+function carregarTop5Ruas(req, res) {
+
+    dashboardModel.carregarTop5Ruas()
+        .then(
+            function (resultado) {
+                console.log(`Resultados: ${JSON.stringify(resultado)}`); 
+                res.json(resultado);
+                }
+        );
+}
+
 module.exports = {
     cadastrarEmpresa,
     editarEmpresa,
     excluirEmpresa,
     chamarEmpresa,
-    carregarRuas
+    carregarRuas,
+    carregarTop5Ruas
 }
