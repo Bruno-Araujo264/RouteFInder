@@ -535,7 +535,7 @@ body.dark .switch::before {
 #id_regiao {
   /* margin-top: 10%; */
   font-size: 30px;
-  color: var(--centro);
+  color: var(--text-color);
 }
 
 #canvas_grafico_superior {
@@ -753,42 +753,50 @@ body.dark .switch::before {
 .coluna2 .subpasta .filtro {
   display: flex;
   justify-content: center;
-  align-self: center;
+  align-content: center;
   width: 30px;
   height: 100%;
   border-radius: 4px;
+  background: var(--primary-color-light);
+  border: 2px solid var(--body-color);
+  cursor: pointer;
 }
 
-.subpasta .norte {
-  border: 1px solid var(--norte);
-  background: var(--bg-norte);
-}
-
-.subpasta .oeste {
-  border: 1px solid var(--oeste);
-  background: var(--bg-oeste);
-}
-
-.subpasta .sul {
-  border: 1px solid var(--sul);
-  background: var(--bg-sul);
-}
-
-.subpasta .leste {
-  border: 1px solid var(--leste);
-  background: var(--bg-leste);
-}
-
-.subpasta .centro {
-  border: 1px solid var(--centro);
-  background: var(--bg-centro);
-}
-
-.coluna2 .subpasta p {
-  margin: auto;
-  text-align: center;
-  font-weight: bold;
+.filtro span {
   color: white;
+  font-size: 1.2em;
+}
+
+.filtro .sigla{
+  position: absolute;
+}
+
+
+.filtro .nome-completa {
+  position: relative;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s, transform 0.1s;
+  
+}
+
+.filtro:hover .nome-completa {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(27px);
+}
+
+.regiao .filtro {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Esconde só os irmãos quando um filtro está em hover */
+.regiao .filtro:hover ~ .filtro,
+.regiao .filtro:has(~ .filtro:hover) {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .coluna3 {

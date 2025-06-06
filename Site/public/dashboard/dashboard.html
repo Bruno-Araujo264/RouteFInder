@@ -112,7 +112,15 @@
                 </div>
                 <div class="tabelaPico">
                     <div class="container">
-                        <h2>Distribuição Regional de Ruas Congestionadas</h2>
+                        <h2>Distribuições de Ruas Congestionadas</h2>
+                        <div class="indicadores">
+                            <div class="box"></div>
+                            <p>Ótimo</p>
+                            <div class="box"></div>
+                            <p>Ruim</p>
+                            <div class="box"></div>
+                            <p>Péssimo</p>
+                        </div>
                         <canvas id="canvas_grafico_inferior"></canvas>
                     </div>
                 </div>
@@ -132,7 +140,7 @@
                                 <div class="box"></div>
                                 <p>Péssimo</p>
                             </div>
-                            <p id="id_regiao">Região: Centro</p>
+                            <p id="id_regiao">Centro</p>
                         </div>
                         <div class="container">
                             <div class="pointer animate pointerAnimation"></div>
@@ -152,20 +160,25 @@
                         <h2>Filtros:</h2>
                     </div>
                     <div class="regiao">
-                        <div id="idNorte" class="norte filtro">
-                            <p>N</p>
+                        <div id="idNorte" class="filtro norte">
+                            <span class="sigla">N</span>
+                            <span class="nome-completa">orte</span>
                         </div>
                         <div id="idOeste" class="oeste filtro">
-                            <p>O</p>
-                        </div>
-                        <div id="idSul" class="sul filtro">
-                            <p>S</p>
-                        </div>
-                        <div id="idLeste" class="leste filtro">
-                            <p>L</p>
+                            <span class="sigla">O</span>
+                            <span class="nome-completa">este</span>
                         </div>
                         <div id="idCentro" class="centro filtro">
-                            <p>C</p>
+                            <span class="sigla">C</span>
+                            <span class="nome-completa">entro</span>
+                        </div>
+                        <div id="idLeste" class="leste filtro">
+                            <span class="sigla">L</span>
+                            <span class="nome-completa">este</span>
+                        </div>
+                        <div id="idSul" class="sul filtro">
+                            <span class="sigla">S</span>
+                            <span class="nome-completa">ul</span>
                         </div>
                     </div>
                 </div>
@@ -209,24 +222,24 @@
                     <div class="lista">
                         <div class="container">
                             <div class="box">
-                                <p id="ptop1"></p>
-                                <div id="divtop1" class="boxRegiao norte"></div>
+                                <p>Pacaembu</p>
+                                <div class="boxRegiao norte">Norte</div>
                             </div>
                             <div class="box">
-                                <p id="ptop2"></p>
-                                <div id="divtop2" class="boxRegiao norte"></div>
+                                <p>Vinte Três</p>
+                                <div class="boxRegiao oeste">Oeste</div>
                             </div>
                             <div class="box">
-                                <p id="ptop3"></p>
-                                <div id="divtop3" class="boxRegiao norte"></div>
+                                <p>Passos</p>
+                                <div class="boxRegiao sul">Sul</div>
                             </div>
                             <div class="box">
-                                <p id="ptop4"></p>
-                                <div id="divtop4" class="boxRegiao norte"></div>
+                                <p>Margin Tietê</p>
+                                <div class="boxRegiao leste">Leste</div>
                             </div>
                             <div class="box">
-                                <p id="ptop5"></p>
-                                <div id="divtop5" class="boxRegiao norte"></div>
+                                <p>Marginal Tietê - Pista Central</p>
+                                <div class="boxRegiao centro">Centro</div>
                             </div>
                         </div>
                     </div>
@@ -249,79 +262,6 @@
 <script>
 
     NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO
-
-    window.onload = function criarGraficos(){
-        carregarRuas(),
-        carregarTop5Ruas()
-    }
-
-    //Listas para gráficos
-    var listaRuas = []
-    var top5RuasCongestionadas = []
-
-    // Carregar ruas congestionadas dia/semana/mes
-    function carregarRuas(){
-    fetch(`/dashboard/carregarRuas`, {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json"
-    }})
-        .then(resposta => {
-
-        if (resposta.ok) {
-            console.log("Ruas carregadas");
-            return resposta.json();
-            } else {
-            console.log("Houve um erro!");
-            resposta.text().then(texto => {
-                console.error(texto);
-            });
-        }
-
-    }).then(dados => {
-        listaRuas.push(dados)
-        criarGraficoBarra()
-    })
-}
-
-    // Carregar top 5 ruas
-    function carregarTop5Ruas(){
-    fetch(`/dashboard/carregarTop5Ruas`, {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json"
-    }})
-        .then(resposta => {
-
-        if (resposta.ok) {
-            console.log("Top 5 ruas carregadas");
-            return resposta.json();
-            } else {
-            console.log("Houve um erro!");
-            resposta.text().then(texto => {
-                console.error(texto);
-            });
-        }
-
-    }).then(dados => {
-        top5RuasCongestionadas.push(dados)
-        //TOP 1
-        ptop1.innerHTML = top5RuasCongestionadas[0][0].name_passage
-        divtop1.innerHTML= top5RuasCongestionadas[0][0].region
-        //TOP 2
-        ptop2.innerHTML = top5RuasCongestionadas[0][1].name_passage
-        divtop2.innerHTML= top5RuasCongestionadas[0][1].region
-        //TOP 3
-        ptop3.innerHTML = top5RuasCongestionadas[0][2].name_passage
-        divtop3.innerHTML= top5RuasCongestionadas[0][2].region
-        //TOP 4
-        ptop4.innerHTML = top5RuasCongestionadas[0][3].name_passage
-        divtop4.innerHTML= top5RuasCongestionadas[0][3].region
-        //TOP 5
-        ptop5.innerHTML = top5RuasCongestionadas[0][4].name_passage
-        divtop5.innerHTML= top5RuasCongestionadas[0][4].region
-    })
-}
 
     const velocimetro = canvas_grafico_superior;
     const gaugeChart = new Chart(velocimetro, {
@@ -346,62 +286,19 @@
         }
     });
 
-    function criarGraficoBarra(){
     const graficoBarra = canvas_grafico_inferior;
     const barChart = new Chart(graficoBarra, {
         type: 'bar',
         data: {
-            labels: [
-                listaRuas[0][0].region,
-                listaRuas[0][1].region,
-                listaRuas[0][2].region,
-                listaRuas[0][3].region,
-                listaRuas[0][4].region
-            ],
-            datasets: [
-                {
-                    label: "Dia",
-                    data: [
-                        listaRuas[0][0].total_ruas,
-                        listaRuas[0][1].total_ruas,
-                        listaRuas[0][2].total_ruas,
-                        listaRuas[0][3].total_ruas,
-                        listaRuas[0][4].total_ruas
-                    ],
-                    backgroundColor: '#28bbff',
-                    borderWidth: 2,
-                    borderRadius: 6,
-                    borderColor: '#fff',
-                },
-                {
-                    label: "Semana",
-                    data: [
-                        listaRuas[0][5].total_ruas,
-                        listaRuas[0][6].total_ruas,
-                        listaRuas[0][7].total_ruas,
-                        listaRuas[0][8].total_ruas,
-                        listaRuas[0][9].total_ruas
-                    ],
-                    backgroundColor: '#288cff',
-                    borderWidth: 2,
-                    borderRadius: 6,
-                    borderColor: '#fff',
-                },
-                {
-                    label: "Mês",
-                    data: [
-                        listaRuas[0][10].total_ruas,
-                        listaRuas[0][11].total_ruas,
-                        listaRuas[0][12].total_ruas,
-                        listaRuas[0][13].total_ruas,
-                        listaRuas[0][14].total_ruas
-                    ],
-                    backgroundColor: '#285aff',
-                    borderWidth: 2,
-                    borderRadius: 6,
-                    borderColor: '#fff',
-                }
-            ]
+            labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
+            datasets: [{
+                data: [12, 19, 3, 5, 8],
+                backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#78A55A', '#FFE862'],
+                borderWidth: 2,
+                borderRadius: 6,
+                borderColor: '#fff',
+
+            }]
         },
         options: {
             responsive: true,
@@ -426,18 +323,11 @@
             },
             plugins: {
                 legend: {
-                    display: true,
-                    labels: {
-                        color: 'white'
-                    }
+                    display: false,
                 }
             }
         }
     });
-}
-
-
-
 
     const graficoPolarArea = canvas_grafico_inferior2;
     const polarAreaChart = new Chart(graficoPolarArea, {
@@ -546,11 +436,11 @@
     const pasta = document.getElementById("pasta");
 
     const regioes = {
-        idNorte: "#1100ff",
-        idOeste: "#285aff",
-        idSul: "#288cff",
-        idLeste: "#28bbff",
-        idCentro: "#28e6ff",
+        idNorte: "#d3d3d3",
+        idOeste: "#d3d3d3",
+        idSul: "#d3d3d3",
+        idLeste: "#d3d3d3",
+        idCentro: "#d3d3d3",
     };
 
     const p_regiao = [
@@ -567,7 +457,7 @@
             div.addEventListener("click", () => {
                 id_regiao.style.color = cor;
                 id_regiao.style.transition = "color 0.4s ease-out";
-                id_regiao.innerHTML = "Região: " + p_regiao[Object.keys(regioes).indexOf(id)];
+                id_regiao.innerHTML = p_regiao[Object.keys(regioes).indexOf(id)];
 
                 console.log(`Eu cliquei em ${id.replace("id", "")}`);
             });
