@@ -74,7 +74,6 @@ body {
   margin-top: 35px;
 }
 
-
 /* ==== Sidebar ==== */
 
 .sidebar {
@@ -127,7 +126,6 @@ body {
 .sidebar .image-text img {
   width: 40px;
   border-radius: 6px;
-
 }
 
 .sidebar header .image-text {
@@ -137,19 +135,12 @@ body {
 }
 
 .sidebar .image-text .header-text {
-  margin-left: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 100%;
 }
 
 .header-text .name {
   font-weight: 600;
-  width: 100%;
-  height: 30px;
-  
-  
 }
 
 .header-text .profession {
@@ -210,25 +201,24 @@ body.dark .sidebar header .toggle {
   align-items: center;
   text-decoration: none;
   border-radius: 6px;
-  transition: all 0.1ms ease-out;
+  transition: var(--tran-04);
 }
 
 
 .sidebar li a:hover {
   background: var(--primary-color-light);
-  transition: all 0.7s ease-in-out;
+  transition: var(--tran-04);
 }
 
 .sidebar li a:hover .icon,
 .sidebar li a:hover .text {
   color: var(--toggle-color);
-  transition: all 0.1s ease;
+  transition: var(--tran-04);
 }
 
 body.dark .sidebar li a:hover .icon,
 body.dark .sidebar li a:hover .text {
   color: var(--text-color);
-  transition: all 0.7s ease;
   /* background: #fff; */
 }
 
@@ -308,6 +298,12 @@ body.dark .menu-bar .mode i.moon {
   background: var(--sidebar-color);
   cursor: pointer;
   transition: var(--tran-03);
+}
+
+/* Animação do switch para direita */
+
+body.dark .switch::before {
+  left: 24px;
 }
 
 /* Animação do switch para direita */
@@ -547,7 +543,7 @@ input:focus ~ .input-border {
 
 .button-group button {
   width: 18%;
-  height: 60%;
+  height: 0%;
   background: white;
   border: none;
   border-radius: 4px;
