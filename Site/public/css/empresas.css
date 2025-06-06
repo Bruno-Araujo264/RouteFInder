@@ -422,7 +422,7 @@ body.dark .switch::before {
   width: 100%;
   height: 10%;
   text-align: center;
-  margin-top: 15px;
+  margin-top: 5%;
   color: var(--text-color);
   font-size: 2em;
 }
@@ -546,11 +546,11 @@ input:focus ~ .input-border {
 }
 
 .button-group button {
-  width: 20%;
-  height: 70%;
+  width: 18%;
+  height: 60%;
   background: white;
   border: none;
-  border-radius:8px;
+  border-radius: 4px;
   transition: var(--tran-03);
   
 }
@@ -560,15 +560,17 @@ input:focus ~ .input-border {
   transform: translate(2px, -2px); /* 8px para direita, -8px para cima */
   transition: var(--tran-03);
   box-shadow: #242526 -4px 4px;
+  border-right: 1px solid #8a8a8a;
+  border-top: 1px solid #8a8a8a;
 
   i {
-    color: var(--text-color);
+    color: white;
     transition: var(--tran-03);
   }
 }
 
 .button-group button .icone {
-  color: darkslategray;
+  color: rgb(42, 42, 42);
   font-size: 2em;
   width: 100%;
   height: 100%;
