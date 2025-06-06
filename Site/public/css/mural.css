@@ -535,7 +535,7 @@ body.dark .switch::before {
 #id_regiao {
   /* margin-top: 10%; */
   font-size: 30px;
-  color: var(--centro);
+  color: var(--text-color);
 }
 
 #canvas_grafico_superior {
@@ -764,6 +764,7 @@ body.dark .switch::before {
 
 .filtro span {
   color: white;
+  font-size: 1.2em;
 }
 
 .filtro .sigla{
@@ -776,13 +777,13 @@ body.dark .switch::before {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.1s, transform 0.1s;
-  font-size: 1.2em;
+  
 }
 
 .filtro:hover .nome-completa {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(25px);
+  transform: translateX(27px);
 }
 
 .regiao .filtro {
