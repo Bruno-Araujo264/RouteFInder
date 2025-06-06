@@ -371,84 +371,80 @@ body.dark .switch::before {
     color: var(--text-color);
 }
 
-.coluna1 .nivelCongestionamento {
+.coluna1 .subpasta {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 42.5%;
-  width: 95%;
-  /* margin: auto; */
-  background: var(--sidebar-color);
-  border: solid 1px var(--primary-color-light);
-  border-radius: 8px;
-}
-
-.nivelCongestionamento .pasta {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   width: 90%;
-  height: 80%;
-  background: var(--primary-color);
-  border-radius: 8px;
+  height: 4.5%;
   margin: auto;
-}
-
-.nivelCongestionamento .pasta h2 {
-  width: 100%;
-  color: var(--text-color);
-  font-size: 1.2em;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.nivelCongestionamento .pasta .kpi {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 10%;
-}
-
-.nivelCongestionamento .pasta .kpi h2 {
-  color: var(--text-color);
-  font-size: 1.2em;
-  font-weight: bold;
-  margin: auto;
-}
-
-.nivelCongestionamento .pasta .indicadores {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  width: 80%;
-  color: var(--text-color);
   margin-top: 20px;
 }
 
-.nivelCongestionamento .pasta .kpi .indicadores .box {
-  height: 25px;
-  width: 25px;
-  border-radius: 4px;
-}
-
-.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(1) {
-  background: var(--cor-verde);
-}
-
-.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(2) {
-  background: var(--cor-amarela);
-}
-
-.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(3) {
-  background: var(--cor-vermelha);
-}
-
-.nivelCongestionamento .container {
-  height: 90%;
-  width: 100%;
+.coluna1 .subpasta .titulo {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  font-size: 0.8em;
+  color: var(--text-color);
+}
+
+.coluna1 .subpasta .regiao {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+.coluna1 .subpasta .filtro {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 30px;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--primary-color-light);
+  border: 2px solid var(--body-color);
+  cursor: pointer;
+}
+
+.filtro span {
+  color: white;
+  font-size: 1.2em;
+}
+
+.filtro .sigla{
+  position: absolute;
+}
+
+
+.filtro .nome-completa {
+  position: relative;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s, transform 0.1s;
+  
+}
+
+.filtro:hover .nome-completa {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(27px);
+}
+
+.regiao .filtro {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Esconde só os irmãos quando um filtro está em hover */
+.regiao .filtro:hover ~ .filtro,
+.regiao .filtro:has(~ .filtro:hover) {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .coluna1 .tabelaPico {
@@ -723,80 +719,84 @@ body.dark .switch::before {
   background: var(--cor-vermelha);
 }
 
-.coluna2 .subpasta {
+.coluna2 .nivelCongestionamento {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 42.5%;
+  width: 95%;
+  /* margin: auto; */
+  background: var(--sidebar-color);
+  border: solid 1px var(--primary-color-light);
+  border-radius: 8px;
+}
+
+.nivelCongestionamento .pasta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 90%;
-  height: 4.5%;
+  height: 80%;
+  background: var(--primary-color);
+  border-radius: 8px;
   margin: auto;
+}
+
+.nivelCongestionamento .pasta h2 {
+  width: 100%;
+  color: var(--text-color);
+  font-size: 1.2em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.nivelCongestionamento .pasta .kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 10%;
+}
+
+.nivelCongestionamento .pasta .kpi h2 {
+  color: var(--text-color);
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: auto;
+}
+
+.nivelCongestionamento .pasta .indicadores {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 80%;
+  color: var(--text-color);
   margin-top: 20px;
 }
 
-.coluna2 .subpasta .titulo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  height: 100%;
-  font-size: 0.8em;
-  color: var(--text-color);
-}
-
-.coluna2 .subpasta .regiao {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  display: flex;
-  flex-direction: row;
-}
-
-.coluna2 .subpasta .filtro {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  width: 30px;
-  height: 100%;
+.nivelCongestionamento .pasta .kpi .indicadores .box {
+  height: 25px;
+  width: 25px;
   border-radius: 4px;
-  background: var(--primary-color-light);
-  border: 2px solid var(--body-color);
-  cursor: pointer;
 }
 
-.filtro span {
-  color: white;
-  font-size: 1.2em;
+.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(1) {
+  background: var(--cor-verde);
 }
 
-.filtro .sigla{
-  position: absolute;
+.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(2) {
+  background: var(--cor-amarela);
 }
 
-
-.filtro .nome-completa {
-  position: relative;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.1s, transform 0.1s;
-  
+.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(3) {
+  background: var(--cor-vermelha);
 }
 
-.filtro:hover .nome-completa {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(27px);
-}
-
-.regiao .filtro {
-  opacity: 1;
-  pointer-events: auto;
-  transition: opacity 0.3s, transform 0.3s;
-}
-
-/* Esconde só os irmãos quando um filtro está em hover */
-.regiao .filtro:hover ~ .filtro,
-.regiao .filtro:has(~ .filtro:hover) {
-  opacity: 0;
-  pointer-events: none;
+.nivelCongestionamento .container {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .coluna3 {
