@@ -352,7 +352,7 @@ body.dark .switch::before {
 }
 
 .home .card {
-  width: 70%;
+  width: 40%;
   height: 80%;
   background: var(--primary-color);
   border-radius: 8px;
@@ -439,40 +439,90 @@ body.dark .switch::before {
   margin: 10px auto;
 }
 
-.formulario .input-group .campo {
+.form {
+ --width-of-input: 100%;
+ --border-height: 1px;
+ --border-before-color: rgba(221, 221, 221, 0.39);
+ --border-after-color: #5891ff;
+ --input-hovered-color: #4985e01f;
+ position: relative;
+ width: var(--width-of-input);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  height: auto;
+  /* background: red; */
+}
+/* styling of Input */
+input {
+ color: #fff;
+ font-size: 0.9rem;
+ background-color: transparent;
+ width: 100%;
+ box-sizing: border-box;
+ padding-inline: 0.5em;
+ padding-block: 0.7em;
+ border: none;
+ border-bottom: var(--border-height) solid var(--border-before-color);
+}
+/* styling of animated border */
+.input-border {
+ position: absolute;
+ background: var(--border-after-color);
+ width: 0%;
+ height: 2px;
+ bottom: 0;
+ left: 13%;
+ transition: 0.3s;
+}
+/* Hover on Input */
+input:hover {
+ background: var(--input-hovered-color);
 }
 
-.input-group .campo .icone {
-  display: flex;
+input:focus {
+ outline: none;
+}
+/* here is code of animated border */
+input:focus ~ .input-border {
+ width: 87%;   
+}
+
+
+.input-group .form .icone {
+  
+  display: flex;  
   align-items: center;
   justify-content: center;
   width: 15%;
-  height: 50%;
-  background: var(--text-color);
-  border-top-left-radius: 10px;
-}
-
-.input-group .campo i {
-  color: var(--primary-color);
-  font-size: 1.5em;
+  /* height: 100%; */
+  color: var(--text-color);
+  font-size: 2em;
   text-align: center;
+
 }
 
-.input-group input {
+/* .input-group .icone i {
+  color: var(--primary-color);
+  font-size: 100%;
+  text-align: center;
+} */
+
+/* .input-group input {
   width: 80%;
   height: 50%;
-  font-size: 1.2em; /* texto digitado maior */
+  font-size: 1.2em;
   outline: none;
   border: none;
   border-bottom-right-radius: 10px;
   transform: var(--tran-03);
-  text-indent: 5%;
+  text-indent: 5%; 
+} */
+
+/* .input-group input:focus {
+  border-bottom: 3px solid blue;
+  transition: var(--tran-03);
 }
 
 .input-group input::placeholder {
@@ -482,8 +532,8 @@ body.dark .switch::before {
   justify-content: center;
   color: var(--text-color);
   text-indent: 5%;
-  font-size: 1em; /* placeholder menor, ajuste conforme preferir */
-}
+  font-size: 1em;
+} */
 
 .formulario .button-group {
   display: flex;
