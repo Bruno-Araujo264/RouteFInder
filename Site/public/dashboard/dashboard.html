@@ -61,10 +61,10 @@
 
         <div class="menu-bar">
             <div class="menu">
-                <li class="search-box">
+                <!-- <li class="search-box">
                     <i class='bx bx-search-alt icon'></i>
                     <input type="text" placeholder="Search...">
-                </li>
+                </li> -->
                 <ul class="menu-links">
                     <!-- <li class="nav-list">
                         <a href="#">
@@ -90,6 +90,12 @@
                             <span class="text nav-text">Posições</span>
                         </a>
                     </li>
+                    <li class="nav-list">
+                        <a href="aviso.html">
+                            <i class="fa-solid fa-bell icon"></i>
+                            <span class="text nav-text">Notificação</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -106,13 +112,47 @@
 
     <section class="home">
         <div class="container">
-            <div class="coluna1">
-                <div class="titulo">
-                    <h1>Dashboard Geral</h1>
-                </div>
-                <div class="tabelaPico">
-                    <div class="container">
-                        <h2>Distribuições de Ruas Congestionadas</h2>
+                <div class="coluna1">
+                    <div class="cabecalho">
+                        <div class="titulo">
+                            <h1>Dashboard Geral</h1>
+                        </div>
+                        <div class="subpasta">
+                            <div class="titulo">
+                                <h2>Filtros:</h2>
+                            </div>
+                            <div class="regiao">
+                                <div id="idNorte" class="filtro norte">
+                                    <span class="sigla">N</span>
+                                    <span class="nome-completa">orte</span>
+                                </div>
+                                <div id="idOeste" class="oeste filtro">
+                                    <span class="sigla">O</span>
+                                    <span class="nome-completa">este</span>
+                                </div>
+                                <div id="idCentro" class="centro filtro">
+                                    <span class="sigla">C</span>
+                                    <span class="nome-completa">entro</span>
+                                </div>
+                                <div id="idLeste" class="leste filtro">
+                                    <span class="sigla">L</span>
+                                    <span class="nome-completa">este</span>
+                                </div>
+                                <div id="idSul" class="sul filtro">
+                                    <span class="sigla">S</span>
+                                    <span class="nome-completa">ul</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form">
+                            <i class='bx bx-search-alt icon'></i>
+                            <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
+                            <span class="input-border"></span>
+                        </div>
+                    </div>
+                        <div class="tabelaPico">
+                            <div class="container">
+                                <h2>Distribuições de Ruas Congestionadas</h2>
                         <div class="indicadores">
                             <div class="box"></div>
                             <p>Ótimo</p>
@@ -124,64 +164,9 @@
                         <canvas id="canvas_grafico_inferior"></canvas>
                     </div>
                 </div>
-
-                <div class="nivelCongestionamento">
-
-
-                    <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
-                    <div class="pasta" id="pasta">
-                        <div class="kpi">
-                            <h2>Intensidade do Congestionamento</h2>
-                            <div class="indicadores">
-                                <div class="box"></div>
-                                <p>Ótimo</p>
-                                <div class="box"></div>
-                                <p>Ruim</p>
-                                <div class="box"></div>
-                                <p>Péssimo</p>
-                            </div>
-                            <p id="id_regiao">Centro</p>
-                        </div>
-                        <div class="container">
-                            <div class="pointer animate pointerAnimation"></div>
-                            <div class="circulo-container">
-                                <div class="circulo">
-                                </div>
-                            </div>
-                            <canvas id="canvas_grafico_superior"></canvas>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="coluna2">
-                <div class="subpasta">
-                    <div class="titulo">
-                        <h2>Filtros:</h2>
-                    </div>
-                    <div class="regiao">
-                        <div id="idNorte" class="filtro norte">
-                            <span class="sigla">N</span>
-                            <span class="nome-completa">orte</span>
-                        </div>
-                        <div id="idOeste" class="oeste filtro">
-                            <span class="sigla">O</span>
-                            <span class="nome-completa">este</span>
-                        </div>
-                        <div id="idCentro" class="centro filtro">
-                            <span class="sigla">C</span>
-                            <span class="nome-completa">entro</span>
-                        </div>
-                        <div id="idLeste" class="leste filtro">
-                            <span class="sigla">L</span>
-                            <span class="nome-completa">este</span>
-                        </div>
-                        <div id="idSul" class="sul filtro">
-                            <span class="sigla">S</span>
-                            <span class="nome-completa">ul</span>
-                        </div>
-                    </div>
-                </div>
                 <div class="horario">
                     <div class="container">
                         <h2>Melhor e Pior Horário Congestionadas</h2>
@@ -200,7 +185,7 @@
                     </div>
                 </div>
 
-                <div class="intensidadeCongestionamento">
+                <!-- <div class="intensidadeCongestionamento">
                     <div class="container">
                         <h2>Intensidade do Congestionamento</h2>
                         <div class="indicadores">
@@ -212,6 +197,32 @@
                             <p>Péssimo</p>
                         </div>
                         <canvas id="canvas_grafico_inferior2"></canvas>
+                    </div>
+                </div> -->
+                <div class="nivelCongestionamento">
+                    <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
+                    <div class="pasta" id="pasta">
+                        <div class="kpi">
+                            <h2>Intensidade do Congestionamento</h2>
+                            <div class="indicadores">
+                                <div class="box"></div>
+                                <p>Ótimo</p>
+                                <div class="box"></div>
+                                <p>Ruim</p>
+                                <div class="box"></div>
+                                <p>Péssimo</p>
+                            </div>
+                            <p id="id_regiao">Geral</p>
+                        </div>
+                        <div class="container">
+                            <div class="pointer animate pointerAnimation"></div>
+                            <div class="circulo-container">
+                                <div class="circulo">
+                                </div>
+                            </div>
+                            <canvas id="canvas_grafico_superior" width="300" height="150"></canvas>    
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -245,8 +256,7 @@
                     </div>
                     <div class="grafico">
                         <div class="container">
-                            <canvas id="canvas_grafico_inferior3" width="413" height="216"
-                                style="display: block; box-sizing: border-box; height: 413px; width: 216px;"></canvas>
+                            <canvas id="canvas_grafico_inferior3" width="400" height="255"></canvas>
                         </div>
                     </div>
                 </div>
@@ -382,7 +392,8 @@
             plugins: {
                 tooltip: { enabled: false },
                 legend: { display: true },
-            }
+            },
+            responsive: false,
         }
     });
     
@@ -446,7 +457,7 @@
             ]
         },
         options: {
-            responsive: true,
+            responsive: false,
             scales: {
                 x: {
                     grid: { color: 'gray' },
@@ -466,47 +477,46 @@
             }
         }
     });
-    }
-    
-    const graficoPolarArea = canvas_grafico_inferior2;
-    const polarAreaChart = new Chart(graficoPolarArea, {
-        type: 'polarArea',
-        data: {
-            labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
-            datasets: [{
-                label: 'My Dataset',
-                data: [11, 16, 7, 14, 9],
-                backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#E16A54', '#78A55A'],
-                borderWidth: 1,
-            }]
-        },
-        options: {
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'right',
-                    labels: {
-                        color: 'white',
-                        boxWidth: 20,
-                        boxHeight: 20,
-                        borderRadius: 10,
-                        borderWidth: 1
-                    }
-                }
-            },
-            scales: {
-                r: { // Para gráficos polarArea
-                    grid: {
-                        color: '#d3d3d3'
-                    },
-                    ticks: {
-                        color: 'white',
-                        backdropColor: '#242526' // <-- Remove o fundo dos números
-                    }
-                }
-            }
-        }
-    });
+
+    // const graficoPolarArea = canvas_grafico_inferior2;
+    // const polarAreaChart = new Chart(graficoPolarArea, {
+    //     type: 'polarArea',
+    //     data: {
+    //         labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
+    //         datasets: [{
+    //             label: 'My Dataset',
+    //             data: [11, 16, 7, 14, 9],
+    //             backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#E16A54', '#78A55A'],
+    //             borderWidth: 1,
+    //         }]
+    //     },
+    //     options: {
+    //         plugins: {
+    //             legend: {
+    //                 display: true,
+    //                 position: 'right',
+    //                 labels: {
+    //                     color: 'white',
+    //                     boxWidth: 20,
+    //                     boxHeight: 20,
+    //                     borderRadius: 10,
+    //                     borderWidth: 1
+    //                 }
+    //             }
+    //         },
+    //         scales: {
+    //             r: { // Para gráficos polarArea
+    //                 grid: {
+    //                     color: '#d3d3d3'
+    //                 },
+    //                 ticks: {
+    //                     color: 'white',
+    //                     backdropColor: '#242526' // <-- Remove o fundo dos números
+    //                 }
+    //             }
+    //         }
+    //     }
+    // });
 
 function criarGraficoLinha() {
     const dados = listaHoraTamRua[0]; // pega os dados retornados da API
@@ -570,8 +580,6 @@ function criarGraficoLinha() {
                     display: true,
                     text: 'Linha do Tempo do Trânsito nas Vias Mais Impactadas',
                     font: { family: 'Afacad', size: 20 },
-                    padding: { top: 0, bottom: 30 }
-                },
                 legend: {
                     display: true,
                     position: 'top',
@@ -585,31 +593,28 @@ function criarGraficoLinha() {
     const pasta = document.getElementById("pasta");
 
     const regioes = {
-        idNorte: "#d3d3d3",
-        idOeste: "#d3d3d3",
-        idSul: "#d3d3d3",
-        idLeste: "#d3d3d3",
-        idCentro: "#d3d3d3",
-    };
+    idNorte: { nome: "Norte", cor: "#d3d3d3" },
+    idOeste: { nome: "Oeste", cor: "#d3d3d3" },
+    idCentro: { nome: "Centro", cor: "#d3d3d3" },
+    idLeste: { nome: "Leste", cor: "#d3d3d3" },
+    idSul: { nome: "Sul", cor: "#d3d3d3" }
+};
 
-    const p_regiao = [
-        "Norte",
-        "Oeste",
-        "Sul",
-        "Leste",
-        "Centro"
-    ];
+Object.entries(regioes).forEach(([id, { nome, cor }]) => {
+    const div = document.getElementById(id);
+    if (div) {
+        div.addEventListener("click", () => {
+            id_regiao.style.color = cor;
+            id_regiao.style.transition = "color 0.4s ease-out";
+            id_regiao.innerHTML = nome;
+            console.log(`Eu cliquei em ${nome}`);
+        });
+    }
+});
 
-    Object.entries(regioes).forEach(([id, cor]) => {
-        const div = document.getElementById(id);
-        if (div) {
-            div.addEventListener("click", () => {
-                id_regiao.style.color = cor;
-                id_regiao.style.transition = "color 0.4s ease-out";
-                id_regiao.innerHTML = p_regiao[Object.keys(regioes).indexOf(id)];
-
-                console.log(`Eu cliquei em ${id.replace("id", "")}`);
-            });
-        }
+    // Detecta a troca de tema
+    const toggleSwitch = document.querySelector('.toggle-switch');
+    toggleSwitch.addEventListener('click', () => {
+        atualizarCoresDoGrafico();
     });
 </script>
