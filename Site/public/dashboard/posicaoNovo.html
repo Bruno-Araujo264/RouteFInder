@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posições</title>
-    <link rel="stylesheet" href="../css/posicaoNovo.css"> 
+    <link rel="stylesheet" href="../css/posicaoNovo.css">
     <script src="../js/posicao.js"></script>
-    
+
     <!-- Parte do menu da Dashboard -->
     <link rel="shortcut icon" href="../assets/icon/logo.jpg" type="image/x-icon">
     <meta charset="UTF-8">
@@ -28,21 +29,13 @@
 
 <!-- <body onload=" atualizarFeed()"> -->
 <style>
-    .sidebar .menu-links li:first-child {
+    .sidebar .menu-links li:nth-of-type(3) {
         background: var(--primary-color);
         border-radius: 6px;
-        transition: var(--tran-03);
     }
 
-    body.dark .menu-links .sidebar li:first-child {
-        background: var(--primary-color);
-        border-radius: 6px;
-        transition: var(--tran-03);
-    }
-
-
-    .sidebar .menu-links li:first-child a .text,
-    .sidebar .menu-links li:first-child a .icon {
+    .sidebar .menu-links li:nth-of-type(3) a .text,
+    .sidebar .menu-links li:nth-of-type(3) a .icon {
         color: white;
     }
 </style>
@@ -58,7 +51,7 @@
                 </span>
 
                 <div class="text header-text">
-                    <span class="name"> <span id="NOME_USUARIO_FORMULARIO"></span></span>
+                    <span class="name"> <span id="NOME_USUARIO"></span></span>
                     <span class="profession">#Usuário</span>
                 </div>
             </div>
@@ -68,10 +61,10 @@
 
         <div class="menu-bar">
             <div class="menu">
-                <li class="search-box">
+                <!-- <li class="search-box">
                     <i class='bx bx-search-alt icon'></i>
                     <input type="text" placeholder="Search...">
-                </li>
+                </li> -->
                 <ul class="menu-links">
                     <!-- <li class="nav-list">
                         <a href="#">
@@ -86,7 +79,7 @@
                         </a>
                     </li>
                     <li class="nav-list">
-                        <a href=" empresas.html">
+                        <a href="empresas.html">
                             <i class="fa-solid fa-hotel icon"></i>
                             <span class="text nav-text">Cadastrar Empresas</span>
                         </a>
@@ -95,6 +88,12 @@
                         <a href="posicaoNovo.html">
                             <i class="fa-solid fa-gear icon"></i>
                             <span class="text nav-text">Posições</span>
+                        </a>
+                    </li>
+                    <li class="nav-list">
+                        <a href="aviso.html">
+                            <i class="fa-solid fa-bell icon"></i>
+                            <span class="text nav-text">Notificação</span>
                         </a>
                     </li>
                 </ul>
@@ -111,16 +110,17 @@
         </div>
     </nav>
 
-    <main >
+    <main>
         <div class="adm">
             <img src="../assets/imgs/user.png" alt="">
 
             <div class="informacao-usuario">
 
                 <div class="informacao">
-                        <h3>Usuário: <h3 id="NOME_USUARIO_FORMULARIO"></h3></h3>
-                        <h3>Nível de Acesso: Adm</h3>
-                         <h3>Cargo: Gerente</h3>
+                    <h3>Usuário: <h3 id="NOME_USUARIO_FORMULARIO"></h3>
+                    </h3>
+                    <h3>Nível de Acesso: Adm</h3>
+                    <h3>Cargo: Gerente</h3>
                 </div>
 
                 <div id="div">
@@ -128,8 +128,8 @@
                 </div>
 
                 <div class="informacao">
-                        <h3>Email: </h3>
-                        <h3>Empresa: RouteFinder</h3>                                  
+                    <h3>Email: </h3>
+                    <h3>Empresa: RouteFinder</h3>
                 </div>
 
 
@@ -140,64 +140,64 @@
 
         <div class="geral">
             <div class="cargos">
-               
-                 <div  class="criar-posicao">
+
+                <div class="criar-posicao">
                     <button onclick="redirecionarParaCadastroPosicao()">Criar Posição</button>
 
                 </div>
 
                 <div class="criar-cargos">
-                     <h1>Cargos</h1>
+                    <h1>Cargos</h1>
 
-                     <div class="nome-cargos" id="containerCards">
-                             <div class="cargo">
-                                <span>Admin</span>
-                            </div>
+                    <div class="nome-cargos" id="containerCards">
+                        <div class="cargo">
+                            <span>Admin</span>
+                        </div>
 
-                            <div class="cargo">
-                                <span>Admin</span>
-                            </div>
-                    
-                     </div>
+                        <div class="cargo">
+                            <span>Admin</span>
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
 
             <div class="usuario">
-                  <div class="titulo-usuario">
-                    
+                <div class="titulo-usuario">
+
                     <span>
                         Usuários
                         <img onclick="" src="../assets/imgs/edit.png" alt="">
                     </span>
 
-                    
-
-                  </div>
 
 
-                  <div class="nome-pessoas" id="tabelaProfissionais">
-                        <div class="cargo">
-                                <span>Giovana Zukauskas</span>
-                                <div>
-                                        Gerente
-                                </div>
-                            </div>
-                            <div class="cargo">
-                                <span>Bruno da Silva</span>
-                                <div>
-                                        Admin
-                                </div>
-                            </div>
-                            <div class="cargo">
-                                <span>Erick Lee lalala</span>
-                                <div>
-                                       Motorista
-                                </div>
-                            </div>
+                </div>
 
-                  </div>
+
+                <div class="nome-pessoas" id="tabelaProfissionais">
+                    <div class="cargo">
+                        <span>Giovana Zukauskas</span>
+                        <div>
+                            Gerente
+                        </div>
+                    </div>
+                    <div class="cargo">
+                        <span>Bruno da Silva</span>
+                        <div>
+                            Admin
+                        </div>
+                    </div>
+                    <div class="cargo">
+                        <span>Erick Lee lalala</span>
+                        <div>
+                            Motorista
+                        </div>
+                    </div>
+
+                </div>
 
             </div>
 
@@ -205,6 +205,8 @@
         </div>
 
     </main>
-    
+
+    <script src="../js/slider.js"></script>
 </body>
+
 </html>

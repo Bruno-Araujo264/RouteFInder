@@ -22,22 +22,14 @@
 
 <!-- <body onload=" atualizarFeed()"> -->
 <style>
-    .sidebar .menu-links li:first-child {
-        background: var(--primary-color);
-        border-radius: 6px;
-        transition: var(--tran-03);
+    .sidebar .menu-links li:nth-of-type(3) {
+      background: var(--primary-color);
+      border-radius: 6px;
     }
 
-    body.dark .menu-links .sidebar li:first-child {
-        background: var(--primary-color);
-        border-radius: 6px;
-        transition: var(--tran-03);
-    }
-
-
-    .sidebar .menu-links li:first-child a .text,
-    .sidebar .menu-links li:first-child a .icon {
-        color: white;
+    .sidebar .menu-links li:nth-of-type(3) a .text,
+    .sidebar .menu-links li:nth-of-type(3) a .icon {
+      color: white;
     }
 </style>
 
@@ -51,7 +43,7 @@
                 </span>
 
                 <div class="text header-text">
-                    <span class="name"> <span id="NOME_USUARIO"></span></span>
+                    <span class="name"> <span id="NOME_USUARIO">Olá!</span></span>
                     <span class="profession">#Usuário</span>
                 </div>
             </div>
@@ -61,10 +53,10 @@
 
         <div class="menu-bar">
             <div class="menu">
-                <li class="search-box">
+                <!-- <li class="search-box">
                     <i class='bx bx-search-alt icon'></i>
                     <input type="text" placeholder="Search...">
-                </li>
+                </li> -->
                 <ul class="menu-links">
                     <!-- <li class="nav-list">
                         <a href="#">
@@ -73,7 +65,7 @@
                         </a>
                     </li> -->
                     <li class="nav-list">
-                        <a href="dashboard.html">
+                        <a>
                             <i class="fa-solid fa-house icon"></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
@@ -85,9 +77,15 @@
                         </a>
                     </li>
                     <li class="nav-list">
-                        <a href="posicao.html">
+                        <a href="posicaoNovo.html">
                             <i class="fa-solid fa-gear icon"></i>
                             <span class="text nav-text">Posições</span>
+                        </a>
+                    </li>
+                    <li class="nav-list">
+                        <a href="aviso.html">
+                            <i class="fa-solid fa-bell icon"></i>
+                            <span class="text nav-text">Notificação</span>
                         </a>
                     </li>
                 </ul>
