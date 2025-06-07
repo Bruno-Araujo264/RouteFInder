@@ -11,5 +11,8 @@ router.get("/carregarTop5Ruas", function (req, res) {
     dashboardController.carregarTop5Ruas(req, res);
 })
 
+router.get("/carregarHoraTamRuas", function (req, res) {
+    dashboardController.carregarHoraTamRuas(req, res);
+})
 
 module.exports = router;

@@ -265,12 +265,14 @@
 
     window.onload = function criarGraficos(){
         carregarRuas(),
-        carregarTop5Ruas()
+        carregarTop5Ruas(),
+        carregarHoraTamRuas()
     }
 
     //Listas para gráficos
     var listaRuas = []
     var top5RuasCongestionadas = []
+    var listaHoraTamRua = []
 
     // Carregar ruas congestionadas dia/semana/mes
     function carregarRuas(){
@@ -336,6 +338,31 @@
     })
 }
 
+    //Carregar Horário e tamanho do congestionamento de acordo com as top 5 ruas
+    function carregarHoraTamRuas(){
+        fetch(`/dashboard/carregarHoraTamRuas`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }})
+            .then(resposta => {
+
+            if (resposta.ok) {
+                console.log("Horarios e jam_sizes carregados");
+                return resposta.json();
+                } else {
+                console.log("Houve um erro!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).then(dados => {
+            listaHoraTamRua.push(dados)
+            criarGraficoLinha()
+        })
+    }
+
     const velocimetro = canvas_grafico_superior;
     const gaugeChart = new Chart(velocimetro, {
         type: 'doughnut',
@@ -358,6 +385,7 @@
             }
         }
     });
+    
     function criarGraficoBarra() {
     const graficoBarra = canvas_grafico_inferior;
     const dados = listaRuas[0] || [];
@@ -439,6 +467,7 @@
         }
     });
     }
+    
     const graficoPolarArea = canvas_grafico_inferior2;
     const polarAreaChart = new Chart(graficoPolarArea, {
         type: 'polarArea',
@@ -479,69 +508,79 @@
         }
     });
 
+function criarGraficoLinha() {
+    const dados = listaHoraTamRua[0]; // pega os dados retornados da API
+    const horasSet = new Set();
+    const viasMap = {};
+
+    // Organizar dados
+    dados.forEach(item => {
+        const via = item.name_passage;
+        const hora = item.hora;
+        const valor = item.avg_jam_size;
+
+        horasSet.add(hora);
+
+        if (!viasMap[via]) {
+            viasMap[via] = {};
+        }
+
+        viasMap[via][hora] = valor;
+    });
+
+    // Ordenar as horas
+    const labels = Array.from(horasSet).sort();
+
+    // Criar datasets por via
+    const datasets = Object.keys(viasMap).map((via, i) => {
+        const data = labels.map(hora => viasMap[via][hora] ?? null); // null se não existir valor
+        const cores = ['#ff5101', '#ff7301', '#ff9901', '#ffbb00', '#ffd000'];
+        return {
+            label: via,
+            data: data,
+            borderWidth: 3,
+            borderColor: cores[i % cores.length],
+            backgroundColor: cores[i % cores.length]
+        };
+    });
+
+    // Criar gráfico
     const graficoLinha = new Chart(canvas_grafico_inferior3, {
         type: 'line',
         data: {
-            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '17:00', '17:00', '17:00', '17:00', '17:00', '17:00', '17:00','17:00', ,'17:00', '17:00', ],
-            backgroundColor: ['#ff5101', '#ff7301', '#ff9901', '#ffbb00', '#ffd000'],
-            datasets: [
-                {
-                    label: 'Tietê',
-                    data: [20, 82, 80, 45, 80, 83],
-                    borderWidth: 3
-                },
-                {
-                    label: 'Pacaembu',
-                    data: [30, 69, 28, 25, 82, 23],
-                    borderWidth: 3
-                }
-            ]
+            labels: labels,
+            datasets: datasets
         },
         options: {
             responsive: false,
             scales: {
                 x: {
-                    grid: {
-                        color: '#d3d3d3'
-                    },
-                    ticks: {
-                        color: 'white'
-                    }
+                    grid: { color: '#d3d3d3' },
+                    ticks: { color: 'white' }
                 },
                 y: {
                     beginAtZero: true,
-                    grid: {
-                        color: '#d3d3d3'
-                    },
-                    ticks: {
-                        color: 'white'
-                    }
+                    grid: { color: '#d3d3d3' },
+                    ticks: { color: 'white' }
                 }
             },
             plugins: {
                 title: {
                     color: '#DBDBDB',
                     display: true,
-                    text: 'Histórico do Congestionamento',
-                    font: {
-                        family: 'Afacad',
-                        size: 20 // Aumente o valor para o tamanho desejado
-                    },
-                    padding: {
-                        top: 0,
-                        bottom: 30
-                    }
+                    text: 'Linha do Tempo do Trânsito nas Vias Mais Impactadas',
+                    font: { family: 'Afacad', size: 20 },
+                    padding: { top: 0, bottom: 30 }
                 },
                 legend: {
                     display: true,
                     position: 'top',
-                    labels: {
-                        color: 'white'
-                    }
+                    labels: { color: 'white' }
                 }
             }
         }
     });
+}
 
     const pasta = document.getElementById("pasta");
 
@@ -572,11 +611,5 @@
                 console.log(`Eu cliquei em ${id.replace("id", "")}`);
             });
         }
-    });
-
-    // Detecta a troca de tema
-    const toggleSwitch = document.querySelector('.toggle-switch');
-    toggleSwitch.addEventListener('click', () => {
-        atualizarCoresDoGrafico();
     });
 </script>
