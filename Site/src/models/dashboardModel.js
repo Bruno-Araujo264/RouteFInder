@@ -95,6 +95,7 @@ function carregarTop5Ruas(){
     return database.executar(instrucaoSql);
 }
 
+
 function carregarHoraTamRuas(){
     console.log("Estou carregando as top 5 ruas mais congestionadas");
     

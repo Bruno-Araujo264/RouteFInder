@@ -23,6 +23,4 @@ router.get("/obterMenorHorarioCongestionamento/:region", function (req, res) {
     dashboardController.obterMenorHorarioCongestionamento(req, res);
 })
 
-
-
 module.exports = router;

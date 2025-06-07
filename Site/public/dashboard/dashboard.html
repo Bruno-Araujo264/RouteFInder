@@ -357,7 +357,6 @@
                         console.error(texto);
                     });
                 }
-
             }).then(dados => {
                 top5RuasCongestionadas.push(dados)
                 //TOP 1
@@ -377,7 +376,6 @@
                 divtop5.innerHTML = top5RuasCongestionadas[0][4].region
             })
     }
-
     //Carregar Horário e tamanho do congestionamento de acordo com as top 5 ruas
     function carregarHoraTamRuas() {
         fetch(`/dashboard/carregarHoraTamRuas`, {
@@ -424,7 +422,7 @@
                 tooltip: { enabled: false },
                 legend: { display: true },
             },
-            responsive: false,
+             responsive: false,
         }
     });
 
@@ -585,8 +583,7 @@
                 backgroundColor: cores[i % cores.length]
             };
         });
-
-        // Criar gráfico
+// Criar gráfico
         const graficoLinha = new Chart(canvas_grafico_inferior3, {
             type: 'line',
             data: {
@@ -633,18 +630,19 @@
     idLeste: { nome: "Leste", cor: "#d3d3d3" },
     idSul: { nome: "Sul", cor: "#d3d3d3" }
 };
+ 
+    Object.entries(regioes).forEach(([id, cor]) => {
+        const div = document.getElementById(id);
+        if (div) {
+            div.addEventListener("click", () => {
+                id_regiao.style.color = cor;
+                id_regiao.style.transition = "color 0.4s ease-out";
+                id_regiao.innerHTML = p_regiao[Object.keys(regioes).indexOf(id)];
 
-Object.entries(regioes).forEach(([id, { nome, cor }]) => {
-    const div = document.getElementById(id);
-    if (div) {
-        div.addEventListener("click", () => {
-            id_regiao.style.color = cor;
-            id_regiao.style.transition = "color 0.4s ease-out";
-            id_regiao.innerHTML = nome;
-            console.log(`Eu cliquei em ${nome}`);
-        });
-    }
-});
+                console.log(`Eu cliquei em ${id.replace("id", "")}`);
+            });
+        }
+    });
 
     // Detecta a troca de tema
     const toggleSwitch = document.querySelector('.toggle-switch');
@@ -706,10 +704,4 @@ Object.entries(regioes).forEach(([id, { nome, cor }]) => {
 
             })
     }
-
-
-
-
-
-
 </script>
