@@ -42,7 +42,6 @@
 
 <body onload="carregarPosicoes();carregarProfissionais()">
 
-
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -51,7 +50,7 @@
                 </span>
 
                 <div class="text header-text">
-                    <span class="name"> <span id="NOME_USUARIO"></span></span>
+                    <span class="name"> <span id="NOME_USUARIO">Oi!</span></span>
                     <span class="profession">#Usuário</span>
                 </div>
             </div>
@@ -110,99 +109,102 @@
         </div>
     </nav>
 
-    <main>
-        <div class="adm">
-            <img src="../assets/imgs/user.png" alt="">
+    <main class="home">
+        <div class="container">
+            <div class="adm">
+                <!-- <img src="../assets/imgs/user.png" alt=""> -->
 
-            <div class="informacao-usuario">
+                <div class="informacao-usuario">
+                    <i class="fa-solid fa-circle-user"></i>
 
-                <div class="informacao">
-                    <h3>Usuário: <h3 id="NOME_USUARIO_FORMULARIO"></h3>
-                    </h3>
-                    <h3>Nível de Acesso: Adm</h3>
-                    <h3>Cargo: Gerente</h3>
+                    <div class="primeira-info">
+                        <div class="informacao">
+                            <h3>Usuário: <span id=" NOME_USUARIO_FORMULARIO">Heriqi</span>
+                            </h3>
+                            <h3>Nível de Acesso: adm</h3>
+                            <h3>Cargo: Gerente</h3>
+                        </div>
+                    </div>
+
+                    <div class="segunda-info">
+                        <div class="informacao">
+                            <h3>Email: </h3>
+                            <h3>Empresa: RouteFinder</h3>
+                            <h3>&nbsp;</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="geral">
+                <div class="box-criar">
+                    <div class="container-criar">
+                        <div class="cabecalho">
+                            <button onclick="redirecionarParaCadastroPosicao()">Criar Posição</button>
+                        </div>
+                        <div class="criar-cargos">
+                            <div class="container-criar-cargo">
+                                <div class="titulo">
+                                    <h1>Cargos</h1>
+                                </div>
+                                <div class="nome-cargos" id="containerCards">
+                                    <div class="cargo">
+                                        <span>Admin</span>
+                                    </div>
+                                    <div class="cargo">
+                                        <span>Admin</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div id="div">
+                <div class="usuario">
+                    <div class="titulo-usuario">
+
+                        <span>
+                            Usuários
+                            <img onclick="" src="../assets/imgs/edit.png" alt="">
+                        </span>
+
+
+
+                    </div>
+
+
+                    <div class="nome-pessoas" id="tabelaProfissionais">
+                        <div class="cargo">
+                            <span>Giovana Zukauskas</span>
+                            <div>
+                                Gerente
+                            </div>
+                        </div>
+                        <div class="cargo">
+                            <span>Bruno da Silva</span>
+                            <div>
+                                Admin
+                            </div>
+                        </div>
+                        <div class="cargo">
+                            <span>Erick Lee lalala</span>
+                            <div>
+                                Motorista
+                            </div>
+                        </div>
+
+                    </div>
 
                 </div>
-
-                <div class="informacao">
-                    <h3>Email: </h3>
-                    <h3>Empresa: RouteFinder</h3>
-                </div>
-
 
 
             </div>
 
         </div>
 
-        <div class="geral">
-            <div class="cargos">
-
-                <div class="criar-posicao">
-                    <button onclick="redirecionarParaCadastroPosicao()">Criar Posição</button>
-
-                </div>
-
-                <div class="criar-cargos">
-                    <h1>Cargos</h1>
-
-                    <div class="nome-cargos" id="containerCards">
-                        <div class="cargo">
-                            <span>Admin</span>
-                        </div>
-
-                        <div class="cargo">
-                            <span>Admin</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="usuario">
-                <div class="titulo-usuario">
-
-                    <span>
-                        Usuários
-                        <img onclick="" src="../assets/imgs/edit.png" alt="">
-                    </span>
 
 
-
-                </div>
-
-
-                <div class="nome-pessoas" id="tabelaProfissionais">
-                    <div class="cargo">
-                        <span>Giovana Zukauskas</span>
-                        <div>
-                            Gerente
-                        </div>
-                    </div>
-                    <div class="cargo">
-                        <span>Bruno da Silva</span>
-                        <div>
-                            Admin
-                        </div>
-                    </div>
-                    <div class="cargo">
-                        <span>Erick Lee lalala</span>
-                        <div>
-                            Motorista
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-        </div>
 
     </main>
 
