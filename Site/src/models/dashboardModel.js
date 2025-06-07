@@ -3,47 +3,6 @@ var database = require("../database/config")
 
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function cadastrarEmpresa(corporate_name, address, CNPJ) {
-    console.log("ACESSEI O DASHBOARD MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpresa():", corporate_name, address, CNPJ);
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    var instrucaoSql = `
-        INSERT INTO company (corporate_name, address, CNPJ) VALUES ('${corporate_name}', '${address}', '${CNPJ}');
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function excluirEmpresa(CNPJ) {
-    console.log("ACESSEI O DASHBOARD MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletarEmpresa(): ", CNPJ)
-    var instrucaoSql = `
-        delete from company WHERE CNPJ = '${CNPJ}';
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function editarEmpresa(corporate_name, address, CNPJ) {
-    console.log("ACESSEI O DASHBOARD MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editarEmpresa():", corporate_name, address, CNPJ);
-    console.log("Modificando na tabela company:",corporate_name ,address, CNPJ);
-
-    var instrucaoSql = `
-           UPDATE company SET address = '${address}', corporate_name = '${corporate_name}' WHERE CNPJ = '${CNPJ}';
-    `
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function chamarEmpresa(corporate_name) {
-    console.log("Tô buscando a empresa");
-    
-    var instrucaoSql = `
-        select * from company WHERE corporate_name = '${corporate_name}';
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
 
 function carregarRuas() {
     console.log("Estou coletando as ruas")
@@ -136,6 +95,58 @@ function carregarTop5Ruas(){
     return database.executar(instrucaoSql);
 }
 
+
+function carregarHoraTamRuas(){
+    console.log("Estou carregando as top 5 ruas mais congestionadas");
+    
+    var instrucaoSql = `
+        SELECT 
+            p.name_passage, -- Nome da via (passagem)
+            DATE_FORMAT(t.date_time, '%H:%i') AS hora, -- Extrai apenas a hora e minutos do timestamp
+            ROUND(AVG(t.jam_size)) AS avg_jam_size -- Calcula a média do congestionamento, arredondada
+        FROM 
+            passage p
+        JOIN 
+            direction d ON d.fk_passage = p.id_passage -- Relaciona a via com as direções
+        JOIN 
+            segment s ON s.fk_direction = d.id_direction -- Relaciona a direção com os segmentos
+        JOIN 
+            timestamp t ON t.fk_segment = s.id_segment -- Relaciona o segmento com os registros de tempo e congestionamento
+        JOIN (
+            -- Subquery que pega as 5 vias com maior valor de congestionamento em um período de 9 anos atrás
+            SELECT 
+                p2.name_passage, -- Nome da via
+                MAX(t2.jam_size) AS max_jam -- Maior congestionamento registrado nessa via
+            FROM 
+                passage p2
+            JOIN 
+                direction d2 ON d2.fk_passage = p2.id_passage
+            JOIN 
+                segment s2 ON s2.fk_direction = d2.id_direction
+            JOIN 
+                timestamp t2 ON t2.fk_segment = s2.id_segment
+            WHERE 
+                t2.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR) AND NOW() - INTERVAL 9 YEAR -- Filtra para dados exatamente de 9 anos atrás
+            GROUP BY 
+                p2.name_passage -- Agrupa por via
+            ORDER BY 
+                max_jam DESC -- Ordena da maior para a menor
+            LIMIT 5 -- Pega apenas as 5 maiores
+        ) AS top5 ON top5.name_passage = p.name_passage -- Relaciona os resultados da subquery com a tabela principal, pegando apenas as top 5 vias
+        WHERE 
+            t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR) AND NOW() - INTERVAL 9 YEAR -- Aplica o mesmo filtro de tempo para o restante dos dados
+        GROUP BY 
+            p.name_passage, -- Agrupa por nome da via
+            hora -- E por hora (já extraída do timestamp)
+        ORDER BY 
+            p.name_passage, -- Ordena pelo nome da via
+            hora; -- E pela hora do dia
+
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function obterMaiorHorarioCongestionamento(region = '') {
     var instrucaoSql
 
@@ -196,12 +207,9 @@ function obterMenorHorarioCongestionamento(region = '') {
 
 
 module.exports = {
-    cadastrarEmpresa,
-    editarEmpresa,
-    excluirEmpresa,
-    chamarEmpresa,
     carregarRuas,
     carregarTop5Ruas,
+    carregarHoraTamRuas,
     obterMaiorHorarioCongestionamento,
     obterMenorHorarioCongestionamento
 };

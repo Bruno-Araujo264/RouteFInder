@@ -183,26 +183,6 @@ body.dark .sidebar header .toggle {
   background: white;
 }
 
-.sidebar .search-box {
-  background: var(--primary-color-light);
-  border-radius: 6px;
-  transition: var(--tran-05);
-}
-
-.search-box input {
-  height: 100%;
-  width: 100%;
-  outline: none;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 500;
-  background: var(--primary-color-light);
-  transition: var(--tran-05);
-  color: var(--text-color);
-  border-radius: 6px;
-}
-
 .sidebar li a {
   text-decoration: none;
   height: 100%;
@@ -353,116 +333,198 @@ body.dark .switch::before {
 .coluna1 {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 36%;
-  height: 100%;
+  height: 90%;
+  /* background: red; */
+}
+
+.coluna1 .cabecalho {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 95%;
+  height: 31.5%;
+  /* background: red; */
 }
 
 .coluna1 .titulo {
-    text-align: center;
-    height: auto;
-    /* background: white; */
-    width: 94%;
+  text-align: center;
+  height: auto;
+  /* background: white; */
+  width: 95%;
 }
 
 .coluna1 .titulo h1 {
-    font-size: 1.75em;
-    color: var(--text-color);
+  font-size: 2em;
+  color: var(--text-color);
+  margin-bottom: 20px;
 }
 
-.coluna1 .nivelCongestionamento {
+.coluna1 .subpasta {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 42.5%;
-  width: 95%;
-  /* margin: auto; */
-  background: var(--sidebar-color);
-  border: solid 1px var(--primary-color-light);
-  border-radius: 8px;
-}
-
-.nivelCongestionamento .pasta {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   width: 90%;
-  height: 80%;
-  background: var(--primary-color);
-  border-radius: 8px;
-  margin: auto;
+  height: auto;
+  /* margin-top: 2s0px; */
+  /* background: red; */
 }
 
-.nivelCongestionamento .pasta h2 {
-  width: 100%;
-  color: var(--text-color);
-  font-size: 1.2em;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.nivelCongestionamento .pasta .kpi {
+.coluna1 .subpasta .titulo {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 10%;
-}
-
-.nivelCongestionamento .pasta .kpi h2 {
+  justify-content: center;
+  align-items: start;
+  width: auto;
+  font-size: 0.8em;
   color: var(--text-color);
-  font-size: 1.2em;
-  font-weight: bold;
-  margin: auto;
 }
 
-.nivelCongestionamento .pasta .indicadores {
+.coluna1 .subpasta .regiao {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  width: 80%;
-  color: var(--text-color);
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.nivelCongestionamento .pasta .kpi .indicadores .box {
-  height: 25px;
-  width: 25px;
-  border-radius: 4px;
-}
-
-.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(1) {
-  background: var(--cor-verde);
-}
-
-.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(2) {
-  background: var(--cor-amarela);
-}
-
-.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(3) {
-  background: var(--cor-vermelha);
-}
-
-.nivelCongestionamento .container {
-  height: 90%;
-  width: 100%;
+.coluna1 .subpasta .filtro {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 30px;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--primary-color-light);
+  border: 2px solid var(--text-color);
+  cursor: pointer;
+}
+
+.filtro span {
+  color: white;
+  font-size: 1.2em;
+}
+
+.filtro .sigla {
+  position: absolute;
+}
+
+
+.filtro .nome-completa {
+  position: relative;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s, transform 0.1s;
+
+}
+
+.filtro:hover .nome-completa {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(27px);
+}
+
+.regiao .filtro {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Esconde só os irmãos quando um filtro está em hover */
+.regiao .filtro:hover~.filtro,
+.regiao .filtro:has(~ .filtro:hover) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form {
+  --width-of-input: 80%;
+  --border-height: 1px;
+  --border-before-color: rgba(221, 221, 221, 0.39);
+  --border-after-color: #5891ff;
+  --input-hovered-color: #4985e01f;
+  position: relative;
+  width: var(--width-of-input);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  left: 0;
+}
+
+.form i {
+  color: white;
+}
+
+/* styling of Input */
+input {
+  color: #fff;
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: var(--border-height) solid var(--border-before-color);
+}
+
+/* styling of animated border */
+.input-border {
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 4%;
+  transition: 0.3s;
+}
+
+/* Hover on Input */
+input:hover {
+  background: var(--input-hovered-color);
+}
+
+input:focus {
+  outline: none;
+}
+
+/* here is code of animated border */
+input:focus~.input-border {
+  width: 96%;
+}
+
+
+.input-group .form .icone {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  /* height: 100%; */
+  color: var(--text-color);
+  font-size: 2em;
+  text-align: center;
+
 }
 
 .coluna1 .tabelaPico {
-  height: 42.5%;
+  height: 60.5%;
   width: 95%;
-  /* margin: auto; */
+  margin-top: 5%;
   background: var(--sidebar-color);
   border: solid 1px var(--primary-color-light);
   border-radius: 8px;
+  /* background: blue; */
 }
 
 .coluna1 .tabelaPico .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   width: 95%;
   height: 95%;
@@ -512,24 +574,29 @@ body.dark .switch::before {
   /* margin-right: 50px; */
 }
 
+#canvas_grafico_inferior {
+  width: 90%;
+  height: 80%;
+}
+
 .circulo {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  background: var(--sidebar-color);
+  background: var(--primary-color);
   border-radius: 100%;
-  width: 14vw;
-  height: 30vh;
+  width: 60%;
+  height: 250%;
 }
 
 .circulo-container {
   position: absolute;
-  width: 18.75em;
-  height: 6em;
+  width: 27em;
+  height: 7.80em;
   overflow: hidden;
-  top: 80%;
-  left: 11%;
+  top: 65%;
+  left: 40%;
 }
 
 #id_regiao {
@@ -539,10 +606,10 @@ body.dark .switch::before {
 }
 
 #canvas_grafico_superior {
-  margin-top: 14%;
-  margin-left: -50%;
-  /* margin: auto; */
+  /* background: var(--primary-color-light); */
+  left: 10px;
   z-index: 10;
+  margin-bottom: 15%;
 }
 
 .gauge {
@@ -562,8 +629,8 @@ body.dark .switch::before {
 
 .pointer {
   position: relative;
-  top: 6.5em;
-  left: 25.50%;
+  top: 10em;
+  /* left: 25.50%; */
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
@@ -591,7 +658,7 @@ body.dark .switch::before {
   display: flex;
   flex-direction: column;
   width: 27%;
-  height: 100%;
+  height: 90%;
 }
 
 .coluna2 .horario {
@@ -599,7 +666,7 @@ body.dark .switch::before {
   align-items: center;
   height: 30%;
   width: 95%;
-  margin: 0 auto;
+  margin: 5% auto;
   background: var(--sidebar-color);
   border: solid 1px var(--primary-color-light);
   border-radius: 8px;
@@ -659,151 +726,93 @@ body.dark .switch::before {
   color: var(--text-color);
 }
 
-.intensidadeCongestionamento {
+.coluna2 .nivelCongestionamento {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  height: 55%;
-  width: 95%;
   margin: auto;
+  height: 60%;
+  width: 95%;
+  /* margin: auto; */
   background: var(--sidebar-color);
   border: solid 1px var(--primary-color-light);
   border-radius: 8px;
-
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 95%;
-    width: 95%;
-    /* background: red; */
-  }
 }
 
-.intensidadeCongestionamento .container h2 {
-  width: 100%;
-  white-space: nowrap;
-  color: var(--text-color);
-  font-size: 1.2em;
-  font-weight: bold;
-  text-align: center;
-}
-
-.intensidadeCongestionamento .container .indicadores {
+.nivelCongestionamento .pasta {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
   align-items: center;
-  width: 90%;
-  height: 15%;
-  /* background: white; */
-}
-
-.intensidadeCongestionamento .container .indicadores .box {
-  height: 25px;
-  width: 25px;
-  border-radius: 4px;
+  width: 100%;
+  height: 95%;
+  border-radius: 8px;
+  margin: auto;   
   /* background: red; */
 }
 
-.intensidadeCongestionamento .container .indicadores p {
+.nivelCongestionamento .pasta h2 {
+  width: 100%;
   color: var(--text-color);
-  font-size: 1em;
-  /* margin-right: 50px; */
+  font-size: 1.2em;
+  text-align: center;
+  white-space: nowrap;
 }
 
-.intensidadeCongestionamento .container .indicadores .box:nth-of-type(1) {
-  background: var(--cor-verde);
-}
-
-.intensidadeCongestionamento .container .indicadores .box:nth-of-type(2) {
-  background: var(--cor-amarela);
-}
-
-.intensidadeCongestionamento .container .indicadores .box:nth-of-type(3) {
-  background: var(--cor-vermelha);
-}
-
-.coluna2 .subpasta {
+.nivelCongestionamento .pasta .kpi {
   display: flex;
-  justify-content: space-around;
-  width: 90%;
-  height: 4.5%;
+  flex-direction: column;
+  align-items: center;
+  height: 10%;
+  width: 100%;
+}
+
+.nivelCongestionamento .pasta .kpi h2 {
+  color: var(--text-color);
+  font-size: 1.2em;
+  font-weight: bold;
   margin: auto;
+}
+
+.nivelCongestionamento .pasta .indicadores {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 80%;
+  color: var(--text-color);
   margin-top: 20px;
 }
 
-.coluna2 .subpasta .titulo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  height: 100%;
-  font-size: 0.8em;
-  color: var(--text-color);
-}
-
-.coluna2 .subpasta .regiao {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  display: flex;
-  flex-direction: row;
-}
-
-.coluna2 .subpasta .filtro {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  width: 30px;
-  height: 100%;
+.nivelCongestionamento .pasta .kpi .indicadores .box {
+  height: 25px;
+  width: 25px;
   border-radius: 4px;
-  background: var(--primary-color-light);
-  border: 2px solid var(--body-color);
-  cursor: pointer;
 }
 
-.filtro span {
-  color: white;
-  font-size: 1.2em;
+.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(1) {
+  background: var(--cor-verde);
 }
 
-.filtro .sigla{
-  position: absolute;
+.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(2) {
+  background: var(--cor-amarela);
 }
 
-
-.filtro .nome-completa {
-  position: relative;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.1s, transform 0.1s;
-  
+.nivelCongestionamento .pasta .kpi .indicadores .box:nth-of-type(3) {
+  background: var(--cor-vermelha);
 }
 
-.filtro:hover .nome-completa {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(27px);
-}
-
-.regiao .filtro {
-  opacity: 1;
-  pointer-events: auto;
-  transition: opacity 0.3s, transform 0.3s;
-}
-
-/* Esconde só os irmãos quando um filtro está em hover */
-.regiao .filtro:hover ~ .filtro,
-.regiao .filtro:has(~ .filtro:hover) {
-  opacity: 0;
-  pointer-events: none;
+.nivelCongestionamento .container {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .coluna3 {
   display: flex;
   flex-direction: column;
   width: 37%;
-  height: 100%;
+  height: 90%;
 
   .topCongestionado {
     display: flex;
@@ -832,7 +841,7 @@ body.dark .switch::before {
 
   .lista {
     width: 90%;
-    height: 47%;
+    height: 40%;
 
     .container {
       display: flex;
@@ -869,12 +878,14 @@ body.dark .switch::before {
     justify-content: center;
     align-items: center;
     width: 70px;
-    padding: 5px;
+    padding: 5px 0;
     margin-right: 10px;
     border-radius: 8px;
     color: white;
+    background: rgb(78, 78, 78);
+    border: #98c2ec 1px solid;
   }
-
+/* 
   .norte {
     border: 2px solid var(--norte);
     background: var(--bg-norte);
@@ -898,9 +909,12 @@ body.dark .switch::before {
   .centro {
     border: 2px solid var(--centro);
     background: var(--bg-centro);
-  }
+  } */
 
   .grafico {
+    height: auto;
+    width: 100%;
+
     .container {
       display: flex;
       justify-content: center;
@@ -912,11 +926,9 @@ body.dark .switch::before {
 }
 
 #canvas_grafico_inferior3 {
-  height: 216px !important;
-  width: 413px !important;
+  margin-bottom: 10%;
 }
 
 i {
   transition: var(--tran-03);
 }
-
