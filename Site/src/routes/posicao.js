@@ -14,7 +14,7 @@ router.put("/atualizarPosicao/:idPosicaoAtual", function (req, res) {
 })
 
 //Rota para deletar a posição especifica
-router.delete("/deletarPosicao/:idPosicao", function (req, res) {
+router.delete("/deletarPosicao/:idPosicaoAtual", function (req, res) {
     posicaoController.deletarPosicao(req, res);
 });
 
