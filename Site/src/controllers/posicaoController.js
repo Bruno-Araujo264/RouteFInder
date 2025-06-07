@@ -50,22 +50,36 @@ function atualizarPosicao(req, res) {
     var nome = req.body.name;
     var descricao = req.body.description;
     var nivelAcesso = req.body.fk_access_level;
-    var empresa = req.body.fk_empresa;
-    var listaUsuarios = req.body.usuarios; // array com IDs dos usuários que ficaram vinculados
+    var usuarios = req.body.usuarios;
 
-    if (!idPosicao || !nome || !descricao || !nivelAcesso) {
-        res.status(400).send("Parâmetros ausentes!");
+    if (!nome) {
+        res.status(400).send("Nome está undefined!");
+    } else if (!descricao) {
+        res.status(400).send("Descrição está undefined!");
+    } else if (nivelAcesso === undefined) {
+        res.status(400).send("Nível de acesso está undefined!");
     } else {
-        posicaoModel.atualizarPosicao(empresa, idPosicao, nome, descricao, nivelAcesso, listaUsuarios)
-            .then(
-                resultado => res.json(resultado),
-                erro => {
-                    console.log(erro);
-                    res.status(500).json(erro.sqlMessage);
+        posicaoModel.atualizarDadosPosicao(idPosicao, nome, descricao, nivelAcesso)
+            .then(() => posicaoModel.desvincularUsuariosDaPosicao(idPosicao))
+            .then(() => {
+                if (usuarios.length > 0) {
+                    return posicaoModel.vincularUsuariosNaPosicao(idPosicao, usuarios,nivelAcesso);
                 }
-            );
+                return Promise.resolve();
+            })
+            .then(resultado => {
+                res.status(200).json({
+                    message: "Posição atualizada com sucesso!",
+                    resultado: resultado
+                });
+            })
+            .catch(erro => {
+                console.log("Erro ao atualizar posição: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
     }
 }
+
 
 function buscarPosicoesPorEmpresa(req, res){
   const idEmpresa = req.params.empresaId
@@ -96,7 +110,36 @@ function buscarPosicoesPorEmpresa(req, res){
 
 }
 
+function deletarPosicao(req, res) {
+    var idPosicao = req.params.idPosicaoAtual;
+
+    if (!idPosicao) {
+        return res.status(400).send("ID da posição está undefined!");
+    }
+
+    // 1️ Primeiro, desvincula todos os usuários dessa posição
+    posicaoModel.desvincularUsuariosDaPosicao(idPosicao)
+        .then(() => {
+            // 2️ Depois, deleta a posição
+            return posicaoModel.deletarPosicao(idPosicao);
+        })
+        .then(resultado => {
+            res.status(200).json({
+                message: "Posição excluída com sucesso!",
+                resultado: resultado
+            });
+        })
+        .catch(erro => {
+            console.error("Erro ao excluir posição:", erro);
+            res.status(500).json({
+                message: "Erro ao excluir a posição.",
+                erro: erro.sqlMessage || erro
+            });
+        });
+}
+
 module.exports = {
+    deletarPosicao,
     cadastrarPosicao,
     buscarPosicoesPorEmpresa,
     atualizarPosicao

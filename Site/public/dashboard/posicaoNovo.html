@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posições</title>
+    <link rel="stylesheet" href="../css/posicaoNovo.css"> 
+    <script src="../js/posicao.js"></script>
+    
+    <!-- Parte do menu da Dashboard -->
+    <link rel="shortcut icon" href="../assets/icon/logo.jpg" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MURAL</title>
+
+
+    <link rel="stylesheet" href="../css/mural.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<!-- <body onload=" atualizarFeed()"> -->
+<style>
+    .sidebar .menu-links li:first-child {
+        background: var(--primary-color);
+        border-radius: 6px;
+        transition: var(--tran-03);
+    }
+
+    body.dark .menu-links .sidebar li:first-child {
+        background: var(--primary-color);
+        border-radius: 6px;
+        transition: var(--tran-03);
+    }
+
+
+    .sidebar .menu-links li:first-child a .text,
+    .sidebar .menu-links li:first-child a .icon {
+        color: white;
+    }
+</style>
+
+<body onload="carregarPosicoes();carregarProfissionais()">
+
+
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <i class="fa fa-user" style="font-size:24px"></i>
+                </span>
+
+                <div class="text header-text">
+                    <span class="name"> <span id="NOME_USUARIO_FORMULARIO"></span></span>
+                    <span class="profession">#Usuário</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle' style="cursor: pointer"></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <li class="search-box">
+                    <i class='bx bx-search-alt icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+                <ul class="menu-links">
+                    <!-- <li class="nav-list">
+                        <a href="#">
+                            <i class='bx bxs-user icon'></i>
+                            <span class="text nav-text">Olá, FrizzaTech</span>
+                        </a>
+                    </li> -->
+                    <li class="nav-list">
+                        <a href="dashboard.html">
+                            <i class="fa-solid fa-house icon"></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-list">
+                        <a href=" empresas.html">
+                            <i class="fa-solid fa-hotel icon"></i>
+                            <span class="text nav-text">Cadastrar Empresas</span>
+                        </a>
+                    </li>
+                    <li class="nav-list">
+                        <a href="posicaoNovo.html">
+                            <i class="fa-solid fa-gear icon"></i>
+                            <span class="text nav-text">Posições</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="../index.html">
+                        <i class="fa-solid fa-right-from-bracket icon"></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </nav>
+
+    <main >
+        <div class="adm">
+            <img src="../assets/imgs/user.png" alt="">
+
+            <div class="informacao-usuario">
+
+                <div class="informacao">
+                        <h3>Usuário: <h3 id="NOME_USUARIO_FORMULARIO"></h3></h3>
+                        <h3>Nível de Acesso: Adm</h3>
+                         <h3>Cargo: Gerente</h3>
+                </div>
+
+                <div id="div">
+
+                </div>
+
+                <div class="informacao">
+                        <h3>Email: </h3>
+                        <h3>Empresa: RouteFinder</h3>                                  
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <div class="geral">
+            <div class="cargos">
+               
+                 <div  class="criar-posicao">
+                    <button onclick="redirecionarParaCadastroPosicao()">Criar Posição</button>
+
+                </div>
+
+                <div class="criar-cargos">
+                     <h1>Cargos</h1>
+
+                     <div class="nome-cargos" id="containerCards">
+                             <div class="cargo">
+                                <span>Admin</span>
+                            </div>
+
+                            <div class="cargo">
+                                <span>Admin</span>
+                            </div>
+                    
+                     </div>
+
+                </div>
+
+            </div>
+
+            <div class="usuario">
+                  <div class="titulo-usuario">
+                    
+                    <span>
+                        Usuários
+                        <img onclick="" src="../assets/imgs/edit.png" alt="">
+                    </span>
+
+                    
+
+                  </div>
+
+
+                  <div class="nome-pessoas" id="tabelaProfissionais">
+                        <div class="cargo">
+                                <span>Giovana Zukauskas</span>
+                                <div>
+                                        Gerente
+                                </div>
+                            </div>
+                            <div class="cargo">
+                                <span>Bruno da Silva</span>
+                                <div>
+                                        Admin
+                                </div>
+                            </div>
+                            <div class="cargo">
+                                <span>Erick Lee lalala</span>
+                                <div>
+                                       Motorista
+                                </div>
+                            </div>
+
+                  </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+    
+</body>
+</html>

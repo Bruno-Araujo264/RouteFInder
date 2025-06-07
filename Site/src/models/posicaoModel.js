@@ -31,38 +31,35 @@ function buscarPosicoesPorEmpresa(idEmpresa) {
   return database.executar(instrucao);
 }
 
-// Função para atualizar os dados daquela Posição
-function atualizarPosicao(empresa, idPosicao, nome, descricao, nivelAcesso, listaUsuarios) {
-    console.log('Atualizando posição:', idPosicao);
-
-    // Monta os comandos SQL:
-    return new Promise((resolve, reject) => {
-        var instrucaoSql = `
-            UPDATE position 
-            SET name = '${nome}', description = '${descricao}', fk_access_level = ${nivelAcesso}
-            WHERE id_position = ${idPosicao};
-        `;
-
-        // 1. Atualiza os dados da posição
-        // 2. Remove fk_position de todos os usuários que estavam nessa posição
-        // 3. Atribui fk_position para os usuários selecionados
-
-        instrucaoSql += `
-            UPDATE user SET fk_position = NULL WHERE fk_position = ${idPosicao};
-        `;
-
-        if (listaUsuarios.length > 0) {
-            instrucaoSql += `
-                UPDATE user SET fk_position = ${idPosicao}
-                WHERE id_user IN (${listaUsuarios.join(',')});
-            `;
-        }
-
-        console.log("Executando SQL:\n", instrucaoSql);
-        return database.executar(instrucaoSql)
-            .then(resolve)
-            .catch(reject);
-    });
+// Funções para atualizar os dados daquela Posição
+function atualizarDadosPosicao(id, nome, descricao, nivelAcesso) {
+    var instrucaoSql = `
+        UPDATE position 
+        SET name = '${nome}', description = '${descricao}', fk_access_level = ${nivelAcesso}
+        WHERE id_position = ${id};
+    `;
+    console.log("Executando SQL: " + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+// Funções para atualizar os dados daquela Posição
+function desvincularUsuariosDaPosicao(idPosicao) {
+    var instrucaoSql = `
+        UPDATE user
+        SET fk_position = NULL, fk_access_level = 2
+        WHERE fk_position = ${idPosicao};
+    `;
+    console.log("Executando SQL: " + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+// Funções para atualizar os dados daquela Posição
+function vincularUsuariosNaPosicao(idPosicao, listaIds,nivelAcesso) {
+    var instrucaoSql = `
+        UPDATE user 
+        SET fk_position = ${idPosicao}, fk_access_level = ${nivelAcesso} 
+        WHERE id_user IN (${listaIds.join(',')});
+    `;
+    console.log("Executando SQL: " + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
 function coletarUsuariosDaPosicao(email) {
@@ -96,12 +93,23 @@ function associarPosicaoEAcessoAosUsuarios(idPosicao, usuarios) {
     return database.executar(instrucaoSql);
 }
 
+function deletarPosicao(idPosicao){
+    console.log("ACESSEI O POSIÇÃO MODEL - deletarPosicao");
+     const instrucaoSql = ` DELETE FROM routeFinder.position WHERE id_position = ${idPosicao};
+    `;
+    return database.executar(instrucaoSql);
+
+}
+
 
 
 module.exports = {
     cadastrarPosicao,
-    atualizarPosicao,
+    atualizarDadosPosicao,
+    desvincularUsuariosDaPosicao,
+    vincularUsuariosNaPosicao,
     coletarUsuariosDaPosicao,
     buscarPosicoesPorEmpresa,
-    associarPosicaoEAcessoAosUsuarios
+    associarPosicaoEAcessoAosUsuarios,
+    deletarPosicao
 };

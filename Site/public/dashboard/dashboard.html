@@ -85,7 +85,7 @@
                         </a>
                     </li>
                     <li class="nav-list">
-                        <a href="posicao.html">
+                        <a href="posicaoNovo.html">
                             <i class="fa-solid fa-gear icon"></i>
                             <span class="text nav-text">Posições</span>
                         </a>
@@ -233,24 +233,24 @@
                     <div class="lista">
                         <div class="container">
                             <div class="box">
-                                <p>Pacaembu</p>
-                                <div class="boxRegiao norte">Norte</div>
+                                <p id="ptop1"></p>
+                                <div id="divtop1" class="boxRegiao norte"></div>
                             </div>
                             <div class="box">
-                                <p>Vinte Três</p>
-                                <div class="boxRegiao oeste">Oeste</div>
+                                <p id="ptop2"></p>
+                                <div id="divtop2" class="boxRegiao norte"></div>
                             </div>
                             <div class="box">
-                                <p>Passos</p>
-                                <div class="boxRegiao sul">Sul</div>
+                                <p id="ptop3"></p>
+                                <div id="divtop3" class="boxRegiao norte"></div>
                             </div>
                             <div class="box">
-                                <p>Margin Tietê</p>
-                                <div class="boxRegiao leste">Leste</div>
+                                <p id="ptop4"></p>
+                                <div id="divtop4" class="boxRegiao norte"></div>
                             </div>
                             <div class="box">
-                                <p>Marginal Tietê - Pista Central</p>
-                                <div class="boxRegiao centro">Centro</div>
+                                <p id="ptop5"></p>
+                                <div id="divtop5" class="boxRegiao norte"></div>
                             </div>
                         </div>
                     </div>
@@ -272,6 +272,106 @@
 <script>
 
     NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO
+
+    window.onload = function criarGraficos(){
+        carregarRuas(),
+        carregarTop5Ruas(),
+        carregarHoraTamRuas()
+    }
+
+    //Listas para gráficos
+    var listaRuas = []
+    var top5RuasCongestionadas = []
+    var listaHoraTamRua = []
+
+    // Carregar ruas congestionadas dia/semana/mes
+    function carregarRuas(){
+    fetch(`/dashboard/carregarRuas`, {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    }})
+        .then(resposta => {
+
+        if (resposta.ok) {
+            console.log("Ruas carregadas");
+            return resposta.json();
+            } else {
+            console.log("Houve um erro!");
+            resposta.text().then(texto => {
+                console.error(texto);
+            });
+        }
+
+    }).then(dados => {
+        listaRuas.push(dados)
+        criarGraficoBarra()
+    })
+    }
+
+    // Carregar top 5 ruas
+    function carregarTop5Ruas(){
+    fetch(`/dashboard/carregarTop5Ruas`, {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    }})
+        .then(resposta => {
+
+        if (resposta.ok) {
+            console.log("Top 5 ruas carregadas");
+            return resposta.json();
+            } else {
+            console.log("Houve um erro!");
+            resposta.text().then(texto => {
+                console.error(texto);
+            });
+        }
+
+    }).then(dados => {
+        top5RuasCongestionadas.push(dados)
+        //TOP 1
+        ptop1.innerHTML = top5RuasCongestionadas[0][0].name_passage
+        divtop1.innerHTML= top5RuasCongestionadas[0][0].region
+        //TOP 2
+        ptop2.innerHTML = top5RuasCongestionadas[0][1].name_passage
+        divtop2.innerHTML= top5RuasCongestionadas[0][1].region
+        //TOP 3
+        ptop3.innerHTML = top5RuasCongestionadas[0][2].name_passage
+        divtop3.innerHTML= top5RuasCongestionadas[0][2].region
+        //TOP 4
+        ptop4.innerHTML = top5RuasCongestionadas[0][3].name_passage
+        divtop4.innerHTML= top5RuasCongestionadas[0][3].region
+        //TOP 5
+        ptop5.innerHTML = top5RuasCongestionadas[0][4].name_passage
+        divtop5.innerHTML= top5RuasCongestionadas[0][4].region
+    })
+}
+
+    //Carregar Horário e tamanho do congestionamento de acordo com as top 5 ruas
+    function carregarHoraTamRuas(){
+        fetch(`/dashboard/carregarHoraTamRuas`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }})
+            .then(resposta => {
+
+            if (resposta.ok) {
+                console.log("Horarios e jam_sizes carregados");
+                return resposta.json();
+                } else {
+                console.log("Houve um erro!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).then(dados => {
+            listaHoraTamRua.push(dados)
+            criarGraficoLinha()
+        })
+    }
 
     const velocimetro = canvas_grafico_superior;
     const gaugeChart = new Chart(velocimetro, {
@@ -296,45 +396,83 @@
             responsive: false,
         }
     });
-
+    
+    function criarGraficoBarra() {
     const graficoBarra = canvas_grafico_inferior;
+    const dados = listaRuas[0] || [];
+
+    const labels = [];
+    const dadosDia = {};
+    const dadosSemana = {};
+    const dadosMes = {};
+
+    // Organiza os dados por período e junta os nomes das regiões
+    dados.forEach(item => {
+        if (!labels.includes(item.region)) {
+            labels.push(item.region);
+        }
+
+        if (item.periodo === 'Dia') {
+            dadosDia[item.region] = item.total_ruas;
+        } else if (item.periodo === 'Semana') {
+            dadosSemana[item.region] = item.total_ruas;
+        } else if (item.periodo === 'Mês') {
+            dadosMes[item.region] = item.total_ruas;
+        }
+    });
+
+    const dia = labels.map(region => dadosDia[region] || 0);
+    const semana = labels.map(region => dadosSemana[region] || 0);
+    const mes = labels.map(region => dadosMes[region] || 0);
+
     const barChart = new Chart(graficoBarra, {
         type: 'bar',
         data: {
-            labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
-            datasets: [{
-                data: [12, 19, 3, 5, 8],
-                backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#78A55A', '#FFE862'],
-                borderWidth: 2,
-                borderRadius: 6,
-                borderColor: '#fff',
-
-            }]
+            labels: labels,
+            datasets: [
+                {
+                    label: "Dia",
+                    data: dia,
+                    backgroundColor: '#28bbff',
+                    borderWidth: 2,
+                    borderRadius: 6,
+                    borderColor: '#fff',
+                },
+                {
+                    label: "Semana",
+                    data: semana,
+                    backgroundColor: '#288cff',
+                    borderWidth: 2,
+                    borderRadius: 6,
+                    borderColor: '#fff',
+                },
+                {
+                    label: "Mês",
+                    data: mes,
+                    backgroundColor: '#285aff',
+                    borderWidth: 2,
+                    borderRadius: 6,
+                    borderColor: '#fff',
+                }
+            ]
         },
         options: {
             responsive: false,
             scales: {
                 x: {
-                    grid: {
-                        color: 'gray'
-                    },
-                    ticks: {
-                        color: 'white'
-                    }
+                    grid: { color: 'gray' },
+                    ticks: { color: 'white' }
                 },
                 y: {
                     beginAtZero: true,
-                    grid: {
-                        color: '#d3d3d3'
-                    },
-                    ticks: {
-                        color: 'white'
-                    }
+                    grid: { color: '#d3d3d3' },
+                    ticks: { color: 'white' }
                 }
             },
             plugins: {
                 legend: {
-                    display: false,
+                    display: true,
+                    labels: { color: 'white' }
                 }
             }
         }
@@ -380,65 +518,77 @@
     //     }
     // });
 
+function criarGraficoLinha() {
+    const dados = listaHoraTamRua[0]; // pega os dados retornados da API
+    const horasSet = new Set();
+    const viasMap = {};
+
+    // Organizar dados
+    dados.forEach(item => {
+        const via = item.name_passage;
+        const hora = item.hora;
+        const valor = item.avg_jam_size;
+
+        horasSet.add(hora);
+
+        if (!viasMap[via]) {
+            viasMap[via] = {};
+        }
+
+        viasMap[via][hora] = valor;
+    });
+
+    // Ordenar as horas
+    const labels = Array.from(horasSet).sort();
+
+    // Criar datasets por via
+    const datasets = Object.keys(viasMap).map((via, i) => {
+        const data = labels.map(hora => viasMap[via][hora] ?? null); // null se não existir valor
+        const cores = ['#ff5101', '#ff7301', '#ff9901', '#ffbb00', '#ffd000'];
+        return {
+            label: via,
+            data: data,
+            borderWidth: 3,
+            borderColor: cores[i % cores.length],
+            backgroundColor: cores[i % cores.length]
+        };
+    });
+
+    // Criar gráfico
     const graficoLinha = new Chart(canvas_grafico_inferior3, {
         type: 'line',
         data: {
-            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-            backgroundColor: ['#ff5101', '#ff7301', '#ff9901', '#ffbb00', '#ffd000'],
-            datasets: [
-                {
-                    label: 'Tietê',
-                    data: [20, 82, 80, 45, 80, 83],
-                    borderWidth: 3
-                },
-                {
-                    label: 'Pacaembu',
-                    data: [30, 69, 28, 25, 82, 23],
-                    borderWidth: 3
-                }
-            ]
+            labels: labels,
+            datasets: datasets
         },
         options: {
             responsive: false,
             scales: {
                 x: {
-                    grid: {
-                        color: '#d3d3d3'
-                    },
-                    ticks: {
-                        color: 'white'
-                    }
+                    grid: { color: '#d3d3d3' },
+                    ticks: { color: 'white' }
                 },
                 y: {
                     beginAtZero: true,
-                    grid: {
-                        color: '#d3d3d3'
-                    },
-                    ticks: {
-                        color: 'white'
-                    }
+                    grid: { color: '#d3d3d3' },
+                    ticks: { color: 'white' }
                 }
             },
             plugins: {
                 title: {
                     color: '#DBDBDB',
                     display: true,
-                    text: 'Histórico do Congestionamento',
-                    font: {
-                        family: 'Afacad',
-                        size: 20 // Aumente o valor para o tamanho desejado
-                    },
-                },
+                    text: 'Linha do Tempo do Trânsito nas Vias Mais Impactadas',
+                    font: { family: 'Afacad', size: 20 },
                 legend: {
                     display: true,
                     position: 'top',
-                    labels: {
-                        color: 'white'
-                    }
+                    labels: { color: 'white' }
                 }
             }
         }
     });
+}
 
     const pasta = document.getElementById("pasta");
 
