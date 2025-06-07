@@ -145,8 +145,28 @@ function carregarHoraTamRuas(){
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+function carregarTotalCongestionamentoDia(){
+    console.log("Estou carregando o total de congestionamentos do dia");
+    
+    var instrucaoSql = `
+    SELECT 
+        SUM(t.jam_size) AS total_congestionamento
+    FROM 
+        timestamp t
+    WHERE 
+        t.date_time BETWEEN 
+            CURDATE() - INTERVAL 9 YEAR
+            AND 
+            NOW() - INTERVAL 9 YEAR;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     carregarRuas,
     carregarTop5Ruas,
-    carregarHoraTamRuas
+    carregarHoraTamRuas,
+    carregarTotalCongestionamentoDia
 };

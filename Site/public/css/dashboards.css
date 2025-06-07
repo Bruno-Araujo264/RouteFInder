@@ -878,7 +878,6 @@ i {
   border-bottom: 90px solid white;
   border-bottom-left-radius: 35%;
   border-bottom-right-radius: 35%;
-  transform: rotate(-85deg);
   transform-origin: center bottom;
   z-index: 100;
 }
@@ -889,7 +888,3 @@ i {
   transition-timing-function: ease;
 }
 
-.pasta:hover .pointerAnimation {
-  transform: rotate(85deg);
-  border-bottom-color: darkred;
-}

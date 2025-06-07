@@ -33,8 +33,20 @@ function carregarHoraTamRuas(req, res) {
         );
 }
 
+function carregarTotalCongestionamentoDia(req, res) {
+
+    dashboardModel.carregarTotalCongestionamentoDia()
+        .then(
+            function (resultado) {
+                console.log(`Resultados: ${JSON.stringify(resultado)}`); 
+                res.json(resultado);
+                }
+        );
+}
+
 module.exports = {
     carregarRuas,
     carregarTop5Ruas,
-    carregarHoraTamRuas
+    carregarHoraTamRuas,
+    carregarTotalCongestionamentoDia
 }
