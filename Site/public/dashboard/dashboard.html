@@ -113,40 +113,42 @@
     <section class="home">
         <div class="container">
             <div class="coluna1">
-                <div class="titulo">
-                    <h1>Dashboard Geral</h1>
-                </div>
-                <div class="subpasta">
+                <div class="cabecalho">
                     <div class="titulo">
-                        <h2>Filtros:</h2>
+                        <h1>Dashboard Geral</h1>
                     </div>
-                    <div class="regiao">
-                        <div id="idNorte" class="filtro norte">
-                            <span class="sigla">N</span>
-                            <span class="nome-completa">orte</span>
+                    <div class="subpasta">
+                        <div class="titulo">
+                            <h2>Filtros:</h2>
                         </div>
-                        <div id="idOeste" class="oeste filtro">
-                            <span class="sigla">O</span>
-                            <span class="nome-completa">este</span>
-                        </div>
-                        <div id="idCentro" class="centro filtro">
-                            <span class="sigla">C</span>
-                            <span class="nome-completa">entro</span>
-                        </div>
-                        <div id="idLeste" class="leste filtro">
-                            <span class="sigla">L</span>
-                            <span class="nome-completa">este</span>
-                        </div>
-                        <div id="idSul" class="sul filtro">
-                            <span class="sigla">S</span>
-                            <span class="nome-completa">ul</span>
+                        <div class="regiao">
+                            <div id="idNorte" class="filtro norte">
+                                <span class="sigla">N</span>
+                                <span class="nome-completa">orte</span>
+                            </div>
+                            <div id="idOeste" class="oeste filtro">
+                                <span class="sigla">O</span>
+                                <span class="nome-completa">este</span>
+                            </div>
+                            <div id="idCentro" class="centro filtro">
+                                <span class="sigla">C</span>
+                                <span class="nome-completa">entro</span>
+                            </div>
+                            <div id="idLeste" class="leste filtro">
+                                <span class="sigla">L</span>
+                                <span class="nome-completa">este</span>
+                            </div>
+                            <div id="idSul" class="sul filtro">
+                                <span class="sigla">S</span>
+                                <span class="nome-completa">ul</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form">
-                    <i class='bx bx-search-alt icon'></i>
-                    <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
-                    <span class="input-border"></span>
+                    <div class="form">
+                        <i class='bx bx-search-alt icon'></i>
+                        <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
+                        <span class="input-border"></span>
+                    </div>
                 </div>
                 <div class="tabelaPico">
                     <div class="container">
@@ -198,8 +200,6 @@
                     </div>
                 </div> -->
                 <div class="nivelCongestionamento">
-
-
                     <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
                     <div class="pasta" id="pasta">
                         <div class="kpi">
@@ -214,14 +214,15 @@
                             </div>
                             <p id="id_regiao">Centro</p>
                         </div>
-                        <!-- <div class="container">
+                        <div class="container">
                             <div class="pointer animate pointerAnimation"></div>
                             <div class="circulo-container">
                                 <div class="circulo">
                                 </div>
                             </div>
-                            <canvas id="canvas_grafico_superior"></canvas>
-                        </div> -->
+                            <canvas id="canvas_grafico_superior" width="300" height="150"></canvas>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -273,28 +274,29 @@
 
     NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO
 
-    // const velocimetro = canvas_grafico_superior;
-    // const gaugeChart = new Chart(velocimetro, {
-    //     type: 'doughnut',
-    //     data: {
-    //         // labels: ['N', 'O', 'S', 'L', 'C'],
-    //         datasets: [{
-    //             data: [10, 12.5, 10],
-    //             backgroundColor: ['#78A55A', '#FFE862', '#E16A54'],
-    //             borderWidth: 1,
-    //             borderColor: 'white',
-    //         }]
-    //     },
-    //     options: {
-    //         rotation: -90,
-    //         circumference: 180,
-    //         cutout: '80%',
-    //         plugins: {
-    //             tooltip: { enabled: false },
-    //             legend: { display: true },
-    //         }
-    //     }
-    // });
+    const velocimetro = canvas_grafico_superior;
+    const gaugeChart = new Chart(velocimetro, {
+        type: 'doughnut',
+        data: {
+            // labels: ['N', 'O', 'S', 'L', 'C'],
+            datasets: [{
+                data: [10, 12.5, 10],
+                backgroundColor: ['#78A55A', '#FFE862', '#E16A54'],
+                borderWidth: 1,
+                borderColor: 'white',
+            }]
+        },
+        options: {
+            rotation: -90,
+            circumference: 180,
+            cutout: '80%',
+            plugins: {
+                tooltip: { enabled: false },
+                legend: { display: true },
+            },
+            responsive: false,
+        }
+    });
 
     const graficoBarra = canvas_grafico_inferior;
     const barChart = new Chart(graficoBarra, {

@@ -333,10 +333,20 @@ body.dark .switch::before {
 .coluna1 {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 36%;
   height: 90%;
+  /* background: red; */
+}
+
+.coluna1 .cabecalho {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 95%;
+  height: 31.5%;
   /* background: red; */
 }
 
@@ -350,6 +360,7 @@ body.dark .switch::before {
 .coluna1 .titulo h1 {
   font-size: 2em;
   color: var(--text-color);
+  margin-bottom: 20px;
 }
 
 .coluna1 .subpasta {
@@ -364,9 +375,8 @@ body.dark .switch::before {
 .coluna1 .subpasta .titulo {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   width: auto;
-  height: 100%;
   font-size: 0.8em;
   color: var(--text-color);
 }
@@ -377,6 +387,7 @@ body.dark .switch::before {
   width: 80%;
   display: flex;
   flex-direction: row;
+  margin-bottom: 20px;
 }
 
 .coluna1 .subpasta .filtro {
@@ -387,7 +398,7 @@ body.dark .switch::before {
   height: 100%;
   border-radius: 4px;
   background: var(--primary-color-light);
-  border: 2px solid var(--body-color);
+  border: 2px solid var(--text-color);
   cursor: pointer;
 }
 
@@ -503,7 +514,7 @@ input:focus~.input-border {
 .coluna1 .tabelaPico {
   height: 60.5%;
   width: 95%;
-  /* margin: auto; */
+  margin-top: 5%;
   background: var(--sidebar-color);
   border: solid 1px var(--primary-color-light);
   border-radius: 8px;
@@ -573,19 +584,19 @@ input:focus~.input-border {
   justify-content: center;
   align-items: center;
   position: relative;
-  background: var(--sidebar-color);
+  background: var(--primary-color);
   border-radius: 100%;
-  width: 14vw;
-  height: 30vh;
+  width: 60%;
+  height: 250%;
 }
 
 .circulo-container {
   position: absolute;
-  width: 18.75em;
-  height: 6em;
+  width: 27em;
+  height: 7.80em;
   overflow: hidden;
-  top: 80%;
-  left: 11%;
+  top: 65%;
+  left: 40%;
 }
 
 #id_regiao {
@@ -595,10 +606,10 @@ input:focus~.input-border {
 }
 
 #canvas_grafico_superior {
-  margin-top: 14%;
-  margin-left: -50%;
-  /* margin: auto; */
+  /* background: var(--primary-color-light); */
+  left: 10px;
   z-index: 10;
+  margin-bottom: 15%;
 }
 
 .gauge {
@@ -618,8 +629,8 @@ input:focus~.input-border {
 
 .pointer {
   position: relative;
-  top: 6.5em;
-  left: 25.50%;
+  top: 10em;
+  /* left: 25.50%; */
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
@@ -655,7 +666,7 @@ input:focus~.input-border {
   align-items: center;
   height: 30%;
   width: 95%;
-  margin: 0 auto;
+  margin: 5% auto;
   background: var(--sidebar-color);
   border: solid 1px var(--primary-color-light);
   border-radius: 8px;
@@ -715,76 +726,13 @@ input:focus~.input-border {
   color: var(--text-color);
 }
 
-.intensidadeCongestionamento {
-  display: flex;
-  align-items: center;
-  height: 55%;
-  width: 95%;
-  margin: auto;
-  background: var(--sidebar-color);
-  border: solid 1px var(--primary-color-light);
-  border-radius: 8px;
-
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 95%;
-    width: 95%;
-    /* background: red; */
-  }
-}
-
-.intensidadeCongestionamento .container h2 {
-  width: 100%;
-  white-space: nowrap;
-  color: var(--text-color);
-  font-size: 1.2em;
-  font-weight: bold;
-  text-align: center;
-}
-
-.intensidadeCongestionamento .container .indicadores {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 90%;
-  height: 15%;
-  /* background: white; */
-}
-
-.intensidadeCongestionamento .container .indicadores .box {
-  height: 25px;
-  width: 25px;
-  border-radius: 4px;
-  /* background: red; */
-}
-
-.intensidadeCongestionamento .container .indicadores p {
-  color: var(--text-color);
-  font-size: 1em;
-  /* margin-right: 50px; */
-}
-
-.intensidadeCongestionamento .container .indicadores .box:nth-of-type(1) {
-  background: var(--cor-verde);
-}
-
-.intensidadeCongestionamento .container .indicadores .box:nth-of-type(2) {
-  background: var(--cor-amarela);
-}
-
-.intensidadeCongestionamento .container .indicadores .box:nth-of-type(3) {
-  background: var(--cor-vermelha);
-}
-
 .coluna2 .nivelCongestionamento {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 42.5%;
+  margin: auto;
+  height: 60%;
   width: 95%;
   /* margin: auto; */
   background: var(--sidebar-color);
@@ -795,12 +743,12 @@ input:focus~.input-border {
 .nivelCongestionamento .pasta {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 90%;
-  height: 80%;
-  background: var(--primary-color);
+  align-items: center;
+  width: 100%;
+  height: 95%;
   border-radius: 8px;
-  margin: auto;
+  margin: auto;   
+  /* background: red; */
 }
 
 .nivelCongestionamento .pasta h2 {
@@ -816,6 +764,7 @@ input:focus~.input-border {
   flex-direction: column;
   align-items: center;
   height: 10%;
+  width: 100%;
 }
 
 .nivelCongestionamento .pasta .kpi h2 {
@@ -863,7 +812,7 @@ input:focus~.input-border {
   display: flex;
   flex-direction: column;
   width: 37%;
-  height: 100%;
+  height: 90%;
 
   .topCongestionado {
     display: flex;
