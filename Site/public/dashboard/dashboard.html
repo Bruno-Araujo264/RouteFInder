@@ -222,24 +222,24 @@
                     <div class="lista">
                         <div class="container">
                             <div class="box">
-                                <p>Pacaembu</p>
-                                <div class="boxRegiao norte">Norte</div>
+                                <p id="ptop1"></p>
+                                <div id="divtop1" class="boxRegiao norte"></div>
                             </div>
                             <div class="box">
-                                <p>Vinte Três</p>
-                                <div class="boxRegiao oeste">Oeste</div>
+                                <p id="ptop2"></p>
+                                <div id="divtop2" class="boxRegiao norte"></div>
                             </div>
                             <div class="box">
-                                <p>Passos</p>
-                                <div class="boxRegiao sul">Sul</div>
+                                <p id="ptop3"></p>
+                                <div id="divtop3" class="boxRegiao norte"></div>
                             </div>
                             <div class="box">
-                                <p>Margin Tietê</p>
-                                <div class="boxRegiao leste">Leste</div>
+                                <p id="ptop4"></p>
+                                <div id="divtop4" class="boxRegiao norte"></div>
                             </div>
                             <div class="box">
-                                <p>Marginal Tietê - Pista Central</p>
-                                <div class="boxRegiao centro">Centro</div>
+                                <p id="ptop5"></p>
+                                <div id="divtop5" class="boxRegiao norte"></div>
                             </div>
                         </div>
                     </div>
@@ -262,6 +262,79 @@
 <script>
 
     NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO
+
+    window.onload = function criarGraficos(){
+        carregarRuas(),
+        carregarTop5Ruas()
+    }
+
+    //Listas para gráficos
+    var listaRuas = []
+    var top5RuasCongestionadas = []
+
+    // Carregar ruas congestionadas dia/semana/mes
+    function carregarRuas(){
+    fetch(`/dashboard/carregarRuas`, {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    }})
+        .then(resposta => {
+
+        if (resposta.ok) {
+            console.log("Ruas carregadas");
+            return resposta.json();
+            } else {
+            console.log("Houve um erro!");
+            resposta.text().then(texto => {
+                console.error(texto);
+            });
+        }
+
+    }).then(dados => {
+        listaRuas.push(dados)
+        criarGraficoBarra()
+    })
+    }
+
+    // Carregar top 5 ruas
+    function carregarTop5Ruas(){
+    fetch(`/dashboard/carregarTop5Ruas`, {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    }})
+        .then(resposta => {
+
+        if (resposta.ok) {
+            console.log("Top 5 ruas carregadas");
+            return resposta.json();
+            } else {
+            console.log("Houve um erro!");
+            resposta.text().then(texto => {
+                console.error(texto);
+            });
+        }
+
+    }).then(dados => {
+        top5RuasCongestionadas.push(dados)
+        //TOP 1
+        ptop1.innerHTML = top5RuasCongestionadas[0][0].name_passage
+        divtop1.innerHTML= top5RuasCongestionadas[0][0].region
+        //TOP 2
+        ptop2.innerHTML = top5RuasCongestionadas[0][1].name_passage
+        divtop2.innerHTML= top5RuasCongestionadas[0][1].region
+        //TOP 3
+        ptop3.innerHTML = top5RuasCongestionadas[0][2].name_passage
+        divtop3.innerHTML= top5RuasCongestionadas[0][2].region
+        //TOP 4
+        ptop4.innerHTML = top5RuasCongestionadas[0][3].name_passage
+        divtop4.innerHTML= top5RuasCongestionadas[0][3].region
+        //TOP 5
+        ptop5.innerHTML = top5RuasCongestionadas[0][4].name_passage
+        divtop5.innerHTML= top5RuasCongestionadas[0][4].region
+    })
+}
 
     const velocimetro = canvas_grafico_superior;
     const gaugeChart = new Chart(velocimetro, {
@@ -365,7 +438,7 @@
             }
         }
     });
-
+    }
     const graficoPolarArea = canvas_grafico_inferior2;
     const polarAreaChart = new Chart(graficoPolarArea, {
         type: 'polarArea',
