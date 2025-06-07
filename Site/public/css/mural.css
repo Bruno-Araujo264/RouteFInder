@@ -366,7 +366,7 @@ body.dark .switch::before {
 .coluna1 .subpasta {
   display: flex;
   justify-content: space-around;
-  width: 80%;
+  width: 90%;
   height: auto;
   /* margin-top: 2s0px; */
   /* background: red; */
@@ -841,7 +841,7 @@ input:focus~.input-border {
 
   .lista {
     width: 90%;
-    height: 47%;
+    height: 40%;
 
     .container {
       display: flex;
@@ -878,12 +878,14 @@ input:focus~.input-border {
     justify-content: center;
     align-items: center;
     width: 70px;
-    padding: 5px;
+    padding: 5px 0;
     margin-right: 10px;
     border-radius: 8px;
     color: white;
+    background: rgb(78, 78, 78);
+    border: #98c2ec 1px solid;
   }
-
+/* 
   .norte {
     border: 2px solid var(--norte);
     background: var(--bg-norte);
@@ -907,9 +909,12 @@ input:focus~.input-border {
   .centro {
     border: 2px solid var(--centro);
     background: var(--bg-centro);
-  }
+  } */
 
   .grafico {
+    height: auto;
+    width: 100%;
+
     .container {
       display: flex;
       justify-content: center;
@@ -921,8 +926,7 @@ input:focus~.input-border {
 }
 
 #canvas_grafico_inferior3 {
-  height: 216px !important;
-  width: 413px !important;
+  margin-bottom: 10%;
 }
 
 i {
