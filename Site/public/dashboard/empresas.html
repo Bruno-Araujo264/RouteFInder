@@ -104,7 +104,7 @@
           <div class="input-group">
             <div class="campo">
               <i class="fa-solid fa-signature icone"></i>
-              <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
+              <input id="corporate_name_input" type="text" placeholder="Nome da empresa" onblur="chamarEmpresa()">
             </div>
             <div class="campo">
               <i class="fa-solid fa-location-dot icone"></i>
@@ -159,7 +159,7 @@
     }
 
     // Enviando o valor da nova input
-    fetch("/dashboard/cadastrarEmpresa", {
+    fetch("/empresa/cadastrarEmpresa", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -212,7 +212,7 @@
     }
 
     // Enviando o valor da nova input
-    fetch("/dashboard/editarEmpresa", {
+    fetch("/empresa/editarEmpresa", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -230,6 +230,7 @@
 
         if (resposta.ok) {
           alert("Empresa editada com sucesso!")
+          limparCampos()
         }
       })
       .catch(function (resposta) {
@@ -261,7 +262,7 @@
     }
 
     // Enviando o valor da nova input
-    fetch("/dashboard/excluirEmpresa", {
+    fetch("/empresa/excluirEmpresa", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -300,7 +301,7 @@
     var corporateNameVar = corporate_name_input.value;
 
     // Enviando o valor da nova input
-    fetch("/dashboard/chamarEmpresa", {
+    fetch("/empresa/chamarEmpresa", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

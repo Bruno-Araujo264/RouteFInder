@@ -346,28 +346,42 @@
         }
     });
 
-    function criarGraficoBarra(){
+    function criarGraficoBarra() {
     const graficoBarra = canvas_grafico_inferior;
+    const dados = listaRuas[0] || [];
+
+    const labels = [];
+    const dadosDia = {};
+    const dadosSemana = {};
+    const dadosMes = {};
+
+    // Organiza os dados por período e junta os nomes das regiões
+    dados.forEach(item => {
+        if (!labels.includes(item.region)) {
+            labels.push(item.region);
+        }
+
+        if (item.periodo === 'Dia') {
+            dadosDia[item.region] = item.total_ruas;
+        } else if (item.periodo === 'Semana') {
+            dadosSemana[item.region] = item.total_ruas;
+        } else if (item.periodo === 'Mês') {
+            dadosMes[item.region] = item.total_ruas;
+        }
+    });
+
+    const dia = labels.map(region => dadosDia[region] || 0);
+    const semana = labels.map(region => dadosSemana[region] || 0);
+    const mes = labels.map(region => dadosMes[region] || 0);
+
     const barChart = new Chart(graficoBarra, {
         type: 'bar',
         data: {
-            labels: [
-                listaRuas[0][0].region,
-                listaRuas[0][1].region,
-                listaRuas[0][2].region,
-                listaRuas[0][3].region,
-                listaRuas[0][4].region
-            ],
+            labels: labels,
             datasets: [
                 {
                     label: "Dia",
-                    data: [
-                        listaRuas[0][0].total_ruas,
-                        listaRuas[0][1].total_ruas,
-                        listaRuas[0][2].total_ruas,
-                        listaRuas[0][3].total_ruas,
-                        listaRuas[0][4].total_ruas
-                    ],
+                    data: dia,
                     backgroundColor: '#28bbff',
                     borderWidth: 2,
                     borderRadius: 6,
@@ -375,13 +389,7 @@
                 },
                 {
                     label: "Semana",
-                    data: [
-                        listaRuas[0][5].total_ruas,
-                        listaRuas[0][6].total_ruas,
-                        listaRuas[0][7].total_ruas,
-                        listaRuas[0][8].total_ruas,
-                        listaRuas[0][9].total_ruas
-                    ],
+                    data: semana,
                     backgroundColor: '#288cff',
                     borderWidth: 2,
                     borderRadius: 6,
@@ -389,13 +397,7 @@
                 },
                 {
                     label: "Mês",
-                    data: [
-                        listaRuas[0][10].total_ruas,
-                        listaRuas[0][11].total_ruas,
-                        listaRuas[0][12].total_ruas,
-                        listaRuas[0][13].total_ruas,
-                        listaRuas[0][14].total_ruas
-                    ],
+                    data: mes,
                     backgroundColor: '#285aff',
                     borderWidth: 2,
                     borderRadius: 6,
@@ -407,29 +409,19 @@
             responsive: true,
             scales: {
                 x: {
-                    grid: {
-                        color: 'gray'
-                    },
-                    ticks: {
-                        color: 'white'
-                    }
+                    grid: { color: 'gray' },
+                    ticks: { color: 'white' }
                 },
                 y: {
                     beginAtZero: true,
-                    grid: {
-                        color: '#d3d3d3'
-                    },
-                    ticks: {
-                        color: 'white'
-                    }
+                    grid: { color: '#d3d3d3' },
+                    ticks: { color: 'white' }
                 }
             },
             plugins: {
                 legend: {
                     display: true,
-                    labels: {
-                        color: 'white'
-                    }
+                    labels: { color: 'white' }
                 }
             }
         }
@@ -482,7 +474,7 @@
     const graficoLinha = new Chart(canvas_grafico_inferior3, {
         type: 'line',
         data: {
-            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '17:00', '17:00', '17:00', '17:00', '17:00', '17:00', '17:00','17:00', ,'17:00', '17:00', ],
             backgroundColor: ['#ff5101', '#ff7301', '#ff9901', '#ffbb00', '#ffd000'],
             datasets: [
                 {
