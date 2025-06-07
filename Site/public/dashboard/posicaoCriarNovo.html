@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/posicaoCriarNovo.css"> 
+    <script src=""></script>
+
+    
+    <title>MURAL</title>
+
+
+    <link rel="stylesheet" href="./../css/mural.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<!-- <body onload=" atualizarFeed()"> -->
+<style>
+    .sidebar .menu-links li:first-child {
+        background: var(--primary-color);
+        border-radius: 6px;
+        transition: var(--tran-03);
+    }
+
+    body.dark .menu-links .sidebar li:first-child {
+        background: var(--primary-color);
+        border-radius: 6px;
+        transition: var(--tran-03);
+    }
+
+
+    .sidebar .menu-links li:first-child a .text,
+    .sidebar .menu-links li:first-child a .icon {
+        color: white;
+    }
+</style>
+
+<body onload="carregarProfissionais()">
+
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <i class="fa fa-user" style="font-size:24px"></i>
+                </span>
+
+                <div class="text header-text">
+                    <span class="name"> <span id="NOME_USUARIO"></span></span>
+                    <span class="profession">#Usuário</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle' style="cursor: pointer"></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <li class="search-box">
+                    <i class='bx bx-search-alt icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+                <ul class="menu-links">
+                    <!-- <li class="nav-list">
+                        <a href="#">
+                            <i class='bx bxs-user icon'></i>
+                            <span class="text nav-text">Olá, FrizzaTech</span>
+                        </a>
+                    </li> -->
+                    <li class="nav-list">
+                        <a>
+                            <i class="fa-solid fa-house icon"></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-list">
+                        <a href=" empresas.html">
+                            <i class="fa-solid fa-hotel icon"></i>
+                            <span class="text nav-text">Cadastrar Empresas</span>
+                        </a>
+                    </li>
+                    <li class="nav-list">
+                        <a href="posicaoNovo.html">
+                            <i class="fa-solid fa-gear icon"></i>
+                            <span class="text nav-text">Posições</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="../index.html">
+                        <i class="fa-solid fa-right-from-bracket icon"></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </nav>
+
+    <main >
+
+        
+        <div class="adm">
+            <!-- <img id="imgreturn" src="../public/assets/imgs/WhatsApp-Image-2025-06-01-at-20.37.png" alt=""> -->
+            <img src="../assets/imgs/user.png" alt="">
+
+            <div class="informacao-usuario">
+
+                <div class="informacao">
+                        <h3>Usuário: Giovana Zukauskas<span class="name"> <span id="NOME_USUARIO"></span></span></h3>
+                        <h3>Nível de Acesso: Adm</h3>
+                         <h3>Cargo: Gerente</h3>
+                </div>
+
+                <div id="div">
+
+                </div>
+
+                <div class="informacao">
+                        <h3>Email: lalala@hotmail.com</h3>
+                        <h3>Empresa: RouteFinder</h3>                                  
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <div class="geral">
+            <div class="cargos">
+                <p>Criar Nova Posição</p>
+                <div class="campos">
+                    <span>Nome da Posição:</span>
+                    <input type="text" id="nome">
+                </div>
+                
+                <div class="campos">
+                    <span>Descrição:</span>
+                    <input type="text" id="descricao">
+                </div>
+
+                <div class="campos">
+                    <span>Nível de Acesso:</span>
+                    <select name="" id="nivelAcesso">
+                        <option value="1">Administrador</option>
+                        <option value="2">Funcionário</option>
+                    </select>
+                </div>
+
+
+
+                <button onclick="cadastrarNovaPosicao()" >Cadastrar Posição</button>
+
+            </div>
+
+
+    
+
+            <div class="usuario">
+                  <div class="titulo-usuario">
+                    
+                    <span>Usuários
+                        
+                    </span>
+
+                    
+
+                  </div>
+
+
+                  <div class="nome-pessoas"   id="tabelaProfissionais">
+                        <div class="cargo">
+                            <input type="checkbox">
+                                <span>Giovana</span>
+                                <div>
+                                        Gerente
+                                </div>
+                            </div>
+                            <div class="cargo">
+                                <input type="checkbox">
+                                <span>Bruno</span>
+                                <div>
+                                        Admin
+                                </div>
+                            </div>
+                            <div class="cargo">
+                                <input type="checkbox">
+                                <span>Erick</span>
+                                <div>
+                                       Motorista
+                                </div>
+                            </div>
+                            <div class="cargo">
+                                <input type="checkbox">
+                                <span>Erick</span>
+                                <div>
+                                        Motorista
+                                </div>
+                            </div>
+                            <div class="cargo">
+                                <input type="checkbox">
+                                <span>Erick</span>
+                                <div>
+                                        Motorista
+                                </div>
+                            </div>
+                            <div class="cargo">
+                                <input type="checkbox">
+                                <span>Erick</span>
+                                <div>
+                                        Motorista
+                                </div>
+                            </div>
+                  </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+    
+</body>
+</html>
+<script>
+    NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO
+    function cadastrarNovaPosicao(){
+        //criar nova posição em position e dar update nos usuários dessa posição
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomePosicaoVar = nome.value;
+    var descricaoPosicaoVar = descricao.value;
+    var nivelAcessoVar = nivelAcesso.value;
+    var idEmpresaVar = sessionStorage.getItem("ID_EMPRESA");
+
+    // Coleta de Usuários selecionados pelas checkboxes para atrelar eles à posição
+    const checkboxes = document.querySelectorAll('.checkbox-usuario:checked');
+    const usuariosSelecionados = Array.from(checkboxes).map(cb => cb.value);
+
+
+    // Verificando se há algum campo em branco
+    if (
+      nomePosicaoVar == "" ||
+      descricaoPosicaoVar == "" ||
+      nivelAcessoVar == "" ||
+      idEmpresaVar == "" 
+    ) {
+      alert("Mensagem de erro para todos os campos em branco")
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    //if (senhaVar.length < 8 || !/@|#|%|&/.test(senhaVar) || !/[0-9]/.test(senhaVar)) {
+    //alert("Senha inválida! Ela deve conter pelo menos um número e um caractere especial.");
+    //} else if(senhaVar != confirmacaoSenhaVar){
+    //  alert("As senhas não coincidem. Verifique e tente novamente.");
+    //}
+
+    // Verificando se o código de ativação é de alguma empresa cadastrada
+    //for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+    //  if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+    //    idEmpresaVincular = listaEmpresasCadastradas[i].id
+    //    console.log("Código de ativação válido.");
+    //    break;
+    //  } else {
+    //    alert("Mensagem de erro para código inválido")
+    //    finalizarAguardar();
+    //  }
+    // }
+
+    // Enviando o valor da nova input
+    fetch("/posicao/cadastrarPosicao", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/posicao.js
+        nomePosicaoServer: nomePosicaoVar,
+        descricaoPosicaoServer: descricaoPosicaoVar,
+        nivelAcessoServer: nivelAcessoVar,
+        idEmpresaServer: idEmpresaVar,
+        usuariosServer: usuariosSelecionados
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+    
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    
+                    
+          alert("Cadastro da Posição realizado com sucesso! ")
+          
+          setTimeout(() => {
+            window.location = "./posicaoNovo.html";
+          }, "1000");
+
+        });
+
+          limparFormulario();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro de posição!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  
+}
+function sumirMensagem() {
+  }
+
+  // Função para carregar a pocições da empresa
+    function carregarProfissionais(empresaId) {
+      empresaId = sessionStorage.getItem("ID_EMPRESA")
+      const apiUrl = `/usuarios/${empresaId}`;
+  
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(profissionais => {
+          const tabela = document.getElementById('tabelaProfissionais');
+
+        // Limpa a tabela antes de adicionar os profissionais
+            tabela.innerHTML = '';
+          // Adiciona os usuários a lista 
+          profissionais.forEach(profissional => {
+            console.log(`Nome: ${profissional.name_user}, ID Usuário: ${profissional.id_user}`);
+            const card = document.createElement('div');
+            card.className = 'cargo';
+             card.innerHTML = `
+              <input type="checkbox" class="checkbox-usuario" value="${profissional.id_user}">
+              <span>${profissional.name_user}</span>
+              <div>
+                ${profissional.fk_position}
+                </div>
+              `;
+
+              tabela.appendChild(card);
+          });
+
+        })
+        .catch(error => {
+          console.error('Erro ao carregar profissionais:', error);
+        });
+    }
+</script>
