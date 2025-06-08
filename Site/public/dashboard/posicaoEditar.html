@@ -106,77 +106,42 @@
         //Carregar Lista de usuários nessa posição
     function carregarProfissionaisDaPosicao() {
         const empresaId = sessionStorage.getItem("ID_EMPRESA");
-        const idPosicaoAtual = sessionStorage.getItem("ID_POSICAO_ATUAL");
-        const apiUrl = `/usuarios/${empresaId}`;
+    const idPosicaoAtual = Number(sessionStorage.getItem("ID_POSICAO_ATUAL"));
+    const apiUrl = `/usuarios/${empresaId}`;
 
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(profissionais => {
-                const tabela = document.getElementById('tabelaProfissionaisPosicaoAtual');
+    document.getElementById('listaTodosProfissionaisEmpresa').style.display = "block";
 
-                // Filtra os profissionais que estão na posição atual
-                const profissionaisDaPosicao = profissionais.filter(p => p.fk_position == Number(idPosicaoAtual));
-
-                profissionaisDaPosicao.forEach(profissional => {
-                    document.getElementById('listaProfissionaisPosicaoAtual').style.display = "block";
-                    console.log(`Nome: ${profissional.name_user}, ID Usuário: ${profissional.id_user}`);
-
-                    const linha = document.createElement('tr');
-                    linha.innerHTML = `
-                        <td><input type="checkbox" class="checkbox-usuario" value="${profissional.id_user}"  checked></td>
-                        <td>${profissional.name_user}</td>
-                        <td>${profissional.fk_access_level}</td>
-                    `;
-                    idsProfissionaisJaDaFuncao.push(profissionais.id_user); 
-
-                    tabela.appendChild(linha);
-                });
-
-            })
-            .catch(error => {
-                console.error('Erro ao carregar profissionais da posição:', error);
-            });
-    }
-    // Função para carregar a pocições da empresa
-    function carregarProfissionais(empresaId) {
-        document.getElementById('listaTodosProfissionaisEmpresa').style.display = "block";
-      empresaId = sessionStorage.getItem("ID_EMPRESA")
-      const apiUrl = `/usuarios/${empresaId}`;
-  
-      fetch(apiUrl)
+    fetch(apiUrl)
         .then(response => response.json())
         .then(profissionais => {
-          const tabela = document.getElementById('tabelaProfissionais');
-            
-          // Limpa a tabela antes de adicionar os profissionais
-            tabela.innerHTML = '';
-          // Adiciona os usuários a lista 
-          profissionais.forEach(profissional => {
-            console.log(`Nome: ${profissional.name_user}, ID Usuário: ${profissional.id_user}`);
-            // tabela.innerHTML += `
-            //     <tr>
-            //         <td>${profissional.id_user}</td>
-            //         <td>${profissional.name_user}</td> 
-            //     </tr>
-            // `;
-            
-            const linha = document.createElement('tr');
+            const tabela = document.getElementById('tabelaProfissionais');
+            tabela.innerHTML = ''; // Limpa a tabela
 
-             linha.innerHTML = `
-              <td><input type="checkbox" class="checkbox-usuario" value="${profissional.id_user}"></td>
-              <td>${profissional.name_user}</td>
-              <td>${profissional.fk_access_level}</td>
-              `;
+            profissionais.forEach(profissional => {
+                const estaNaPosicao = Number(profissional.fk_position) === idPosicaoAtual;
 
-              tabela.appendChild(linha);
-          });
+                const linha = document.createElement('tr');
+                linha.innerHTML = `
+                    <td>
+                        <input 
+                            type="checkbox" 
+                            class="checkbox-usuario" 
+                            value="${profissional.id_user}" 
+                            ${estaNaPosicao ? 'checked' : ''}
+                        >
+                    </td>
+                    <td>${profissional.name_user}</td>
+                    <td>${profissional.fk_access_level}</td>
+                `;
 
+                tabela.appendChild(linha);
+            });
         })
         .catch(error => {
-          console.error('Erro ao carregar profissionais:', error);
+            console.error('Erro ao carregar profissionais:', error);
         });
     }
-
+   
     // Atualizar todos os campos dessa posição de acordo com a página
     function editarPosicao() {
     const empresaId = sessionStorage.getItem("ID_EMPRESA");
@@ -229,7 +194,7 @@
         location.reload();
           
           setTimeout(() => {
-            window.location = "./posicao.html";
+            window.location = "./posicaoNovo.html";
           }, "1000");
     })
     .catch(error => {
