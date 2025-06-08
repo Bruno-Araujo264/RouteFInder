@@ -8,6 +8,9 @@
     function redirecionarParaCadastroPosicao() {
       window.location.href = "posicaoCriarNovo.html";
     }
+
+  function redirecionarParaEditarPosicao() {
+      window.location.href = "posicaoEditarNovo.html";
 // função que redireciona para tela de edição de usuários
     function redirecionarParaEdicaoUsuarios() {
       window.location.href = "usuarioEditar.html";
@@ -19,6 +22,7 @@
       NOME_USUARIO_SIDEBAR.innerHTML = sessionStorage.NOME_USUARIO;
       EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
       EMPRESA_USUARIO_FORMULARIO.innerHTML = sessionStorage.ID_EMPRESA;
+
 
     }
 // Função para carregar a pocições da empresa
