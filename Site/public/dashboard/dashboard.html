@@ -115,59 +115,9 @@
             <div class="coluna1">
                 <div class="cabecalho">
                     <div class="titulo">
-                        <h1>Dashboard Geral</h1>
+                      <h1 onclick="obterHorariosCongestionamento('0', '')">Dashboard Geral</h1>
                     </div>
                     <div class="subpasta">
-                        <div class="titulo">
-                            <h2>Filtros:</h2>
-                        </div>
-                        <div class="regiao">
-                            <div id="idNorte" class="filtro norte">
-                                <span class="sigla">N</span>
-                                <span class="nome-completa">orte</span>
-                            </div>
-                            <div id="idOeste" class="oeste filtro">
-                                <span class="sigla">O</span>
-                                <span class="nome-completa">este</span>
-                            </div>
-                            <div id="idCentro" class="centro filtro">
-                                <span class="sigla">C</span>
-                                <span class="nome-completa">entro</span>
-                            </div>
-                            <div id="idLeste" class="leste filtro">
-                                <span class="sigla">L</span>
-                                <span class="nome-completa">este</span>
-                            </div>
-                            <div id="idSul" class="sul filtro">
-                                <span class="sigla">S</span>
-                                <span class="nome-completa">ul</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form">
-                        <i onclick="obterHorariosCongestionamento('0', corporate_name_input.value)" class='bx bx-search-alt icon'></i>
-                        <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
-                        <span class="input-border"></span>
-                    </div>
-                </div>
-                <div class="tabelaPico">
-                    <div class="container">
-                        <h2>Distribuições de Ruas Congestionadas</h2>
-                        <div class="indicadores">
-                            <div class="box"></div>
-                            <p>Ótimo</p>
-                            <div class="box"></div>
-                            <p>Ruim</p>
-                            <div class="box"></div>
-                            <p>Péssimo</p>
-                        </div>
-                        <canvas id="canvas_grafico_inferior"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <div class="coluna2">
-                <div class="subpasta">
                     <div class="titulo">
                         <h2>Filtros:</h2>
                     </div>
@@ -194,9 +144,24 @@
                         </div>
                     </div>
                 </div>
+                    <div class="form">
+                        <i onclick="obterHorariosCongestionamento('0', corporate_name_input.value)" class='bx bx-search-alt icon'></i>
+                        <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
+                        <span class="input-border"></span>
+                    </div>
+                </div>
+                <div class="tabelaPico">
+                        <div class="container">
+                             <h2>Distribuição Regional de Ruas Congestionadas</h2>
+                        <canvas id="canvas_grafico_inferior"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="coluna2">
                 <div class="horario">
                     <div class="container">
-                        <h2>Melhor e Pior Horário Congestionadas</h2>
+                        <h2>Melhor e Pior Horário do Congestionamento</h2>
                         <div class="horas box">
                             <div class="container">
                                 <i class="fa-solid fa-square-check"></i>
@@ -302,30 +267,31 @@
     var total_congestionamento = 0
 
     // Carregar ruas congestionadas dia/semana/mes
-    function carregarRuas() {
-        fetch(`/dashboard/carregarRuas`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .then(resposta => {
+    function carregarRuas(region = "0") {
+    listaRuas = []; // Limpar a lista antes de carregar novas ruas
+    fetch(`/dashboard/carregarRuas/${region}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(resposta => {
+        if (resposta.ok) {
+            console.log(`Ruas ${region ? `da região ${region}` : ''} carregadas`);
+            return resposta.json();
+        } else {
+            console.log("Houve um erro!");
+            resposta.text().then(texto => {
+                console.error(texto);
+            });
+        }
+    })
+    .then(dados => {
+        listaRuas.push(dados);
+        criarGraficoBarra();
+    });
+}
 
-                if (resposta.ok) {
-                    console.log("Ruas carregadas");
-                    return resposta.json();
-                } else {
-                    console.log("Houve um erro!");
-                    resposta.text().then(texto => {
-                        console.error(texto);
-                    });
-                }
-
-            }).then(dados => {
-                listaRuas.push(dados)
-                criarGraficoBarra()
-            })
-    }
 
     // Carregar top 5 ruas
     function carregarTop5Ruas() {
@@ -423,9 +389,6 @@
             })
     }
 
-
-
-
     const velocimetro = canvas_grafico_superior;
     const gaugeChart = new Chart(velocimetro, {
         type: 'doughnut',
@@ -450,38 +413,84 @@
         }
     });
 
-    function criarGraficoBarra() {
-        const graficoBarra = canvas_grafico_inferior;
-        const dados = listaRuas[0] || [];
+    let barChart = null; // variável global
 
-        const labels = [];
-        const dadosDia = {};
-        const dadosSemana = {};
-        const dadosMes = {};
+function criarGraficoBarra() {
+    const graficoBarra = canvas_grafico_inferior;
+    const dados = listaRuas[0] || [];
 
-        // Organiza os dados por período e junta os nomes das regiões
-        dados.forEach(item => {
-            if (!labels.includes(item.region)) {
-                labels.push(item.region);
-            }
+    // Organizar os dados por região e período
+    const dadosDia = {};
+    const dadosSemana = {};
+    const dadosMes = {};
 
-            if (item.periodo === 'Dia') {
-                dadosDia[item.region] = item.total_ruas;
-            } else if (item.periodo === 'Semana') {
-                dadosSemana[item.region] = item.total_ruas;
-            } else if (item.periodo === 'Mês') {
-                dadosMes[item.region] = item.total_ruas;
-            }
-        });
+    const regioesSet = new Set();
 
-        const dia = labels.map(region => dadosDia[region] || 0);
-        const semana = labels.map(region => dadosSemana[region] || 0);
-        const mes = labels.map(region => dadosMes[region] || 0);
+    dados.forEach(item => {
+        regioesSet.add(item.region);
+        if (item.periodo === 'Dia') dadosDia[item.region] = item.total_ruas;
+        else if (item.periodo === 'Semana') dadosSemana[item.region] = item.total_ruas;
+        else if (item.periodo === 'Mês' || item.periodo === 'Ms') dadosMes[item.region] = item.total_ruas;
+    });
 
-        const barChart = new Chart(graficoBarra, {
+    const regioes = Array.from(regioesSet);
+
+    if (barChart) {
+        barChart.destroy();  // destruir gráfico anterior
+    }
+
+    if (regioes.length === 1) {
+        // Gráfico filtrado (uma única região)
+        const unicaRegiao = regioes[0];
+
+        barChart = new Chart(graficoBarra, {
             type: 'bar',
             data: {
-                labels: labels,
+                labels: ['Dia', 'Semana', 'Mês'],
+                datasets: [{
+                    label: unicaRegiao,
+                    data: [
+                        dadosDia[unicaRegiao] || 0,
+                        dadosSemana[unicaRegiao] || 0,
+                        dadosMes[unicaRegiao] || 0
+                    ],
+                    backgroundColor: ['#28bbff', '#288cff', '#285aff'],
+                    borderWidth: 2,
+                    borderRadius: 6,
+                    borderColor: '#fff',
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        grid: { color: 'gray' },
+                        ticks: { color: 'white' }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#d3d3d3' },
+                        ticks: { color: 'white' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: { color: 'white' }
+                    }
+                }
+            }
+        });
+    } else {
+        // Gráfico geral (várias regiões)
+        const dia = regioes.map(region => dadosDia[region] || 0);
+        const semana = regioes.map(region => dadosSemana[region] || 0);
+        const mes = regioes.map(region => dadosMes[region] || 0);
+
+        barChart = new Chart(graficoBarra, {
+            type: 'bar',
+            data: {
+                labels: regioes,
                 datasets: [
                     {
                         label: "Dia",
@@ -531,46 +540,8 @@
             }
         });
     }
+}
 
-    const graficoPolarArea = canvas_grafico_inferior2;
-    const polarAreaChart = new Chart(graficoPolarArea, {
-        type: 'polarArea',
-        data: {
-            labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
-            datasets: [{
-                label: 'My Dataset',
-                data: [11, 16, 7, 14, 9],
-                backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#E16A54', '#78A55A'],
-                borderWidth: 1,
-            }]
-        },
-        options: {
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'right',
-                    labels: {
-                        color: 'white',
-                        boxWidth: 20,
-                        boxHeight: 20,
-                        borderRadius: 10,
-                        borderWidth: 1
-                    }
-                }
-            },
-            scales: {
-                r: { // Para gráficos polarArea
-                    grid: {
-                        color: '#d3d3d3'
-                    },
-                    ticks: {
-                        color: 'white',
-                        backdropColor: '#242526' // <-- Remove o fundo dos números
-                    }
-                }
-            }
-        }
-    });
 
     function criarGraficoLinha() {
         const dados = listaHoraTamRua[0]; // pega os dados retornados da API
@@ -668,14 +639,11 @@
         }
     });
 
-    // Detecta a troca de tema
-    const toggleSwitch = document.querySelector('.toggle-switch');
-    toggleSwitch.addEventListener('click', () => {
-        atualizarCoresDoGrafico();
-    });
+
 
     function obterHorariosCongestionamento(region = "0", rua = "") {
         rua = rua.toUpperCase()
+        carregarRuas(region, rua)
         obterMaiorHorarioCongestionamento(region, rua)
         obterMenorHorarioCongestionamento(region, rua)
     }

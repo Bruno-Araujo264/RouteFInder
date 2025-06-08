@@ -4,66 +4,125 @@ var database = require("../database/config")
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
 
-function carregarRuas() {
-    console.log("Estou coletando as ruas")
-    var instrucaoSql = `
-    -- Dia
-    SELECT 
-        'Dia' AS periodo,
-        p.region, 
-        COUNT(DISTINCT s.id_segment) AS total_ruas
-    FROM 
-        timestamp t
-        JOIN segment s ON t.fk_segment = s.id_segment
-        JOIN direction d ON s.fk_direction = d.id_direction
-        JOIN passage p ON d.fk_passage = p.id_passage
-    WHERE 
-        t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
-                        AND DATE(NOW() - INTERVAL 9 YEAR) + INTERVAL 1 DAY - INTERVAL 1 SECOND
-    GROUP BY 
-        p.region
+function carregarRuas(region = '') {
 
-    UNION ALL
+    var instrucaoSql
 
-    -- Semana (últimos 7 dias a partir de hoje - 9 anos atrás)
-    SELECT 
-        'Semana' AS periodo,
-        p.region, 
-        COUNT(DISTINCT s.id_segment) AS total_ruas
-    FROM 
-        timestamp t
-        JOIN segment s ON t.fk_segment = s.id_segment
-        JOIN direction d ON s.fk_direction = d.id_direction
-        JOIN passage p ON d.fk_passage = p.id_passage
-    WHERE 
-        t.date_time BETWEEN NOW() - INTERVAL 9 YEAR - INTERVAL 6 DAY
-                        AND NOW() - INTERVAL 9 YEAR
-    GROUP BY 
-        p.region
+    if (region == "0") {
 
-    UNION ALL
+    instrucaoSql = `
+        -- Dia
+        SELECT 
+            'Dia' AS periodo,
+            p.region, 
+            COUNT(DISTINCT s.id_segment) AS total_ruas
+        FROM 
+            timestamp t
+            JOIN segment s ON t.fk_segment = s.id_segment
+            JOIN direction d ON s.fk_direction = d.id_direction
+            JOIN passage p ON d.fk_passage = p.id_passage
+        WHERE 
+            t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                            AND DATE(NOW() - INTERVAL 9 YEAR) + INTERVAL 1 DAY - INTERVAL 1 SECOND
+        GROUP BY p.region
 
-    -- Mês (últimos 30 dias a partir de hoje - 9 anos atrás)
-    SELECT 
-        'Mês' AS periodo,
-        p.region, 
-        COUNT(DISTINCT s.id_segment) AS total_ruas
-    FROM 
-        timestamp t
-        JOIN segment s ON t.fk_segment = s.id_segment
-        JOIN direction d ON s.fk_direction = d.id_direction
-        JOIN passage p ON d.fk_passage = p.id_passage
-    WHERE 
-        t.date_time BETWEEN NOW() - INTERVAL 9 YEAR - INTERVAL 30 DAY
-                        AND NOW() - INTERVAL 9 YEAR
-    GROUP BY 
-        p.region;
+        UNION ALL
 
-    `; //Utilizo uma tabela derivada, para selecionar a data limite
-        //UNION ALL - Junta os dados dos diferentes selects como um resultado só
+        -- Semana
+        SELECT 
+            'Semana' AS periodo,
+            p.region, 
+            COUNT(DISTINCT s.id_segment) AS total_ruas
+        FROM 
+            timestamp t
+            JOIN segment s ON t.fk_segment = s.id_segment
+            JOIN direction d ON s.fk_direction = d.id_direction
+            JOIN passage p ON d.fk_passage = p.id_passage
+        WHERE 
+            t.date_time BETWEEN NOW() - INTERVAL 9 YEAR - INTERVAL 6 DAY
+                            AND NOW() - INTERVAL 9 YEAR
+        GROUP BY p.region
+
+        UNION ALL
+
+        -- Mês
+        SELECT 
+            'Mês' AS periodo,
+            p.region, 
+            COUNT(DISTINCT s.id_segment) AS total_ruas
+        FROM 
+            timestamp t
+            JOIN segment s ON t.fk_segment = s.id_segment
+            JOIN direction d ON s.fk_direction = d.id_direction
+            JOIN passage p ON d.fk_passage = p.id_passage
+        WHERE 
+            t.date_time BETWEEN NOW() - INTERVAL 9 YEAR - INTERVAL 30 DAY
+                            AND NOW() - INTERVAL 9 YEAR
+        GROUP BY p.region;
+    `;
+    } else {
+        instrucaoSql = `
+        -- Dia
+        SELECT 
+            'Dia' AS periodo,
+            p.region, 
+            COUNT(DISTINCT s.id_segment) AS total_ruas
+        FROM 
+            timestamp t
+            JOIN segment s ON t.fk_segment = s.id_segment
+            JOIN direction d ON s.fk_direction = d.id_direction
+            JOIN passage p ON d.fk_passage = p.id_passage
+        WHERE 
+            t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                            AND DATE(NOW() - INTERVAL 9 YEAR) + INTERVAL 1 DAY - INTERVAL 1 SECOND
+            AND p.region = '${region}'
+        GROUP BY p.region
+
+        UNION ALL
+
+        -- Semana
+        SELECT 
+            'Semana' AS periodo,
+            p.region, 
+            COUNT(DISTINCT s.id_segment) AS total_ruas
+        FROM 
+            timestamp t
+            JOIN segment s ON t.fk_segment = s.id_segment
+            JOIN direction d ON s.fk_direction = d.id_direction
+            JOIN passage p ON d.fk_passage = p.id_passage
+        WHERE 
+            t.date_time BETWEEN NOW() - INTERVAL 9 YEAR - INTERVAL 6 DAY
+                            AND NOW() - INTERVAL 9 YEAR
+            AND p.region = '${region}'
+        GROUP BY p.region
+
+        UNION ALL
+
+        -- Mês
+        SELECT 
+            'Mês' AS periodo,
+            p.region, 
+            COUNT(DISTINCT s.id_segment) AS total_ruas
+        FROM 
+            timestamp t
+            JOIN segment s ON t.fk_segment = s.id_segment
+            JOIN direction d ON s.fk_direction = d.id_direction
+            JOIN passage p ON d.fk_passage = p.id_passage
+        WHERE 
+            t.date_time BETWEEN NOW() - INTERVAL 9 YEAR - INTERVAL 30 DAY
+                            AND NOW() - INTERVAL 9 YEAR
+            AND p.region = '${region}'
+        GROUP BY p.region;
+
+    `;
+    }
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+
+
 
 function carregarTop5Ruas(){
     console.log("Estou carregando as top 5 ruas mais congestionadas");
@@ -176,7 +235,10 @@ function obterMaiorHorarioCongestionamento(region = "0", rua = undefined) {
                         JOIN segment AS s ON t.fk_segment = s.id_segment 
                         JOIN direction AS d ON s.fk_direction = d.id_direction
                         JOIN passage AS p ON d.fk_passage = p.id_passage 
-                        ORDER BY t.jam_size DESC, t.date_time DESC
+                        WHERE 
+                            t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                                            AND NOW() - INTERVAL 9 YEAR
+                        ORDER BY t.jam_size ASC, t.date_time DESC
                         LIMIT 1;`
 
     } else if (region != "0" && rua == undefined) {
@@ -188,6 +250,8 @@ function obterMaiorHorarioCongestionamento(region = "0", rua = undefined) {
         JOIN direction AS d ON s.fk_direction = d.id_direction
         JOIN passage AS p ON d.fk_passage = p.id_passage 
         WHERE p.region = '${region}'
+        AND t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                                            AND NOW() - INTERVAL 9 YEAR
         ORDER BY t.jam_size DESC, t.date_time DESC
         LIMIT 1;`
 
@@ -201,6 +265,8 @@ function obterMaiorHorarioCongestionamento(region = "0", rua = undefined) {
         JOIN direction AS d ON s.fk_direction = d.id_direction
         JOIN passage AS p ON d.fk_passage = p.id_passage 
         WHERE p.name_passage LIKE '%${rua}%'
+        AND t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                                            AND NOW() - INTERVAL 9 YEAR
         ORDER BY t.jam_size DESC, t.date_time DESC
         LIMIT 1;`
 
@@ -214,9 +280,10 @@ function obterMaiorHorarioCongestionamento(region = "0", rua = undefined) {
         JOIN passage AS p ON d.fk_passage = p.id_passage 
         WHERE p.region = '${region}'
         AND p.name_passage LIKE '%${rua}%'
+        AND t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                            AND NOW() - INTERVAL 9 YEAR
         ORDER BY t.jam_size DESC, t.date_time DESC
         LIMIT 1;`
-
     }
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -233,6 +300,9 @@ function obterMenorHorarioCongestionamento(region = "0", rua = undefined) {
                         JOIN segment AS s ON t.fk_segment = s.id_segment 
                         JOIN direction AS d ON s.fk_direction = d.id_direction
                         JOIN passage AS p ON d.fk_passage = p.id_passage 
+                        WHERE 
+                             t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                             AND NOW() - INTERVAL 9 YEAR
                         ORDER BY t.jam_size ASC, t.date_time ASC
                         LIMIT 1;`
 
@@ -244,6 +314,8 @@ function obterMenorHorarioCongestionamento(region = "0", rua = undefined) {
         JOIN direction AS d ON s.fk_direction = d.id_direction
         JOIN passage AS p ON d.fk_passage = p.id_passage 
         WHERE p.region = '${region}'
+        AND t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                             AND NOW() - INTERVAL 9 YEAR
         ORDER BY t.jam_size ASC, t.date_time ASC
         LIMIT 1;`
 
@@ -256,9 +328,10 @@ function obterMenorHorarioCongestionamento(region = "0", rua = undefined) {
         JOIN direction AS d ON s.fk_direction = d.id_direction
         JOIN passage AS p ON d.fk_passage = p.id_passage 
         WHERE p.name_passage LIKE '%${rua}%'
+        AND t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                             AND NOW() - INTERVAL 9 YEAR
         ORDER BY t.jam_size ASC, t.date_time ASC
         LIMIT 1;`
-
         
     } else {
         console.log("Ultimo if")
@@ -269,6 +342,8 @@ function obterMenorHorarioCongestionamento(region = "0", rua = undefined) {
         JOIN passage AS p ON d.fk_passage = p.id_passage 
         WHERE p.region = '${region}'
         AND p.name_passage LIKE '%${rua}%'
+        AND t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                             AND NOW() - INTERVAL 9 YEAR
         ORDER BY t.jam_size ASC, t.date_time ASC
         LIMIT 1;`
 
