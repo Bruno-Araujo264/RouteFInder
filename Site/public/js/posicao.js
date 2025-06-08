@@ -1,4 +1,3 @@
-NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO
 
 // Função para redirecionar para a Tela da Posição específica
     function abrirPosicao(id_position) {
@@ -10,12 +9,24 @@ NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO
       window.location.href = "posicaoCriarNovo.html";
     }
 
-    function redirecionarParaEditarPosicao() {
+  function redirecionarParaEditarPosicao() {
       window.location.href = "posicaoEditarNovo.html";
+// função que redireciona para tela de edição de usuários
+    function redirecionarParaEdicaoUsuarios() {
+      window.location.href = "usuarioEditar.html";
+    }
+
+//função para carregar informações do usuário da Sessão
+    function carregarInfoUsuarioAtual(id_user){
+      NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
+      NOME_USUARIO_SIDEBAR.innerHTML = sessionStorage.NOME_USUARIO;
+      EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
+      EMPRESA_USUARIO_FORMULARIO.innerHTML = sessionStorage.ID_EMPRESA;
+
+
     }
 // Função para carregar a pocições da empresa
     function carregarPosicoes(empresaId) {
-      
       empresaId = sessionStorage.getItem("ID_EMPRESA")
       const apiUrl = `/posicao/${empresaId}`;
   
@@ -55,6 +66,13 @@ NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO
     }
 
     function carregarProfissionais(empresaId) {
+
+      // CARREGAR PROFISSIONAL DA SESSÃO NA DIV ACIMA 
+      NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
+      NOME_USUARIO_SIDEBAR.innerHTML = sessionStorage.NOME_USUARIO;
+      EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
+     
+
         // document.getElementById('listaTodosProfissionaisEmpresa').style.display = "block";
       empresaId = sessionStorage.getItem("ID_EMPRESA")
       const apiUrl = `/usuarios/${empresaId}`;
@@ -75,10 +93,17 @@ NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO
             card.innerHTML = `
               <span>${profissional.name_user}</span>
               <div>
-                    ${profissional.fk_position}
+                    ${profissional.nome_posicao}
               </div>
             `;
             tabela.appendChild(card);
+
+            if(profissional.id_user == sessionStorage.ID_USUARIO){
+              NIVEL_ACESSO_FORMULARIO.innerHTML = profissional.nome_nivel_acesso;
+              POSICAO_USUARIO_FORMULARIO.innerHTML = profissional.nome_posicao;
+              EMPRESA_USUARIO_FORMULARIO.innerHTML = profissional.nome_empresa;
+
+            }
           });
 
           // profissionais.forEach(profissional => {

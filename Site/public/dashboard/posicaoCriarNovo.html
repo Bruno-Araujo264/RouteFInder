@@ -40,7 +40,9 @@
                 </span>
 
                 <div class="text header-text">
+
                     <span class="name"> <span id="NOME_USUARIO">Olá!</span></span>
+
                     <span class="profession">#Usuário</span>
                 </div>
             </div>
@@ -105,6 +107,7 @@
         </div>
     </nav>
 
+
     <main class="home">
         <div class="container">
             <div class="adm">
@@ -117,19 +120,21 @@
                         <div class="informacao">
                             <h3>Usuário: <span id=" NOME_USUARIO_FORMULARIO">Heriqi</span>
                             </h3>
-                            <h3>Nível de Acesso: adm</h3>
-                            <h3>Cargo: Gerente</h3>
+                            <h3>Nível de Acesso: <span id="NIVEL_ACESSO_FORMULARIO"></span></h3>
+                            <h3>Cargo: <span id="POSICAO_USUARIO_FORMULARIO"></span></h3>
                         </div>
                     </div>
 
                     <div class="segunda-info">
                         <div class="informacao">
-                            <h3>Email: </h3>
-                            <h3>Empresa: RouteFinder</h3>
+                            <h3>Email: <span id="EMAIL_USUARIO_FORMULARIO"></span></h3>
+                            <h3>Empresa: <span id="POSICAO_USUARIO_FORMULARIO"></span></h3>
                             <h3>&nbsp;</h3>
                         </div>
                     </div>
                 </div>
+
+
             </div>
 
 
@@ -321,22 +326,29 @@
 
     // Função para carregar a pocições da empresa
     function carregarProfissionais(empresaId) {
-        empresaId = sessionStorage.getItem("ID_EMPRESA")
-        const apiUrl = `/usuarios/${empresaId}`;
 
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(profissionais => {
-                const tabela = document.getElementById('tabelaProfissionais');
+        // CARREGAR PROFISSIONAL DA SESSÃO NA DIV ACIMA 
+      NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
+      NOME_USUARIO_SIDEBAR.innerHTML = sessionStorage.NOME_USUARIO;
+      EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
 
-                // Limpa a tabela antes de adicionar os profissionais
-                tabela.innerHTML = '';
-                // Adiciona os usuários a lista 
-                profissionais.forEach(profissional => {
-                    console.log(`Nome: ${profissional.name_user}, ID Usuário: ${profissional.id_user}`);
-                    const card = document.createElement('div');
-                    card.className = 'cargo';
-                    card.innerHTML = `
+      empresaId = sessionStorage.getItem("ID_EMPRESA")
+      const apiUrl = `/usuarios/${empresaId}`;
+  
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(profissionais => {
+          const tabela = document.getElementById('tabelaProfissionais');
+
+        // Limpa a tabela antes de adicionar os profissionais
+            tabela.innerHTML = '';
+          // Adiciona os usuários a lista 
+          profissionais.forEach(profissional => {
+            console.log(`Nome: ${profissional.name_user}, ID Usuário: ${profissional.id_user}`);
+            const card = document.createElement('div');
+            card.className = 'cargo';
+             card.innerHTML = `
+
               <input type="checkbox" class="checkbox-usuario" value="${profissional.id_user}">
               <span>${profissional.name_user}</span>
               <div>
@@ -344,8 +356,13 @@
                 </div>
               `;
 
-                    tabela.appendChild(card);
-                });
+              tabela.appendChild(card);
+
+              if(profissional.id_user == sessionStorage.ID_USUARIO){
+              NIVEL_ACESSO_FORMULARIO.innerHTML = profissional.nome_nivel_acesso;
+              POSICAO_USUARIO_FORMULARIO.innerHTML = profissional.nome_posicao;
+              EMPRESA_USUARIO_FORMULARIO.innerHTML = profissional.nome_empresa;}
+          });
 
             })
             .catch(error => {

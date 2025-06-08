@@ -15,4 +15,16 @@ router.get("/carregarHoraTamRuas", function (req, res) {
     dashboardController.carregarHoraTamRuas(req, res);
 })
 
+router.get("/carregarTotalCongestionamentoDia", function (req, res) {
+    dashboardController.carregarTotalCongestionamentoDia(req, res);
+})
+
+router.get("/obterMaiorHorarioCongestionamento/:region", function (req, res) {
+    dashboardController.obterMaiorHorarioCongestionamento(req, res);
+})
+
+router.get("/obterMenorHorarioCongestionamento/:region", function (req, res) {
+    dashboardController.obterMenorHorarioCongestionamento(req, res);
+})
+
 module.exports = router;
