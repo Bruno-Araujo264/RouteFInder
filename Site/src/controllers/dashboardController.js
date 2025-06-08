@@ -33,9 +33,9 @@ function carregarHoraTamRuas(req, res) {
         );
 }
 
-function obterMaiorHorarioCongestionamento(req, res){
-    const region = req.params.region
-    dashboardModel.obterMaiorHorarioCongestionamento(region)
+function carregarTotalCongestionamentoDia(req, res) {
+
+    dashboardModel.carregarTotalCongestionamentoDia()
         .then(
             function (resultado) {
                 console.log(`Resultados: ${JSON.stringify(resultado)}`); 
@@ -43,18 +43,6 @@ function obterMaiorHorarioCongestionamento(req, res){
                 }
         )
 }
-
-function obterMenorHorarioCongestionamento(req, res){
-    const region = req.params.region
-    dashboardModel.obterMenorHorarioCongestionamento(region)
-        .then(
-            function (resultado) {
-                console.log(`Resultados: ${JSON.stringify(resultado)}`); 
-                res.json(resultado);
-                }
-        )
-}
-
 function obterMaiorHorarioCongestionamento(req, res){
     const region = req.params.region
     dashboardModel.obterMaiorHorarioCongestionamento(region)
@@ -81,6 +69,7 @@ module.exports = {
     carregarRuas,
     carregarTop5Ruas,
     carregarHoraTamRuas,
+    carregarTotalCongestionamentoDia,
     obterMaiorHorarioCongestionamento,
     obterMenorHorarioCongestionamento
 }

@@ -211,21 +211,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- <div class="intensidadeCongestionamento">
-                    <div class="container">
-                        <h2>Intensidade do Congestionamento</h2>
-                        <div class="indicadores">
-                            <div class="box"></div>
-                            <p>Ótimo</p>
-                            <div class="box"></div>
-                            <p>Ruim</p>
-                            <div class="box"></div>
-                            <p>Péssimo</p>
-                        </div>
-                        <canvas id="canvas_grafico_inferior2"></canvas>
-                    </div>
-                </div> -->
                 <div class="nivelCongestionamento">
                     <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
                     <div class="pasta" id="pasta">
@@ -233,16 +218,16 @@
                             <h2>Intensidade do Congestionamento</h2>
                             <div class="indicadores">
                                 <div class="box"></div>
-                                <p>Ótimo</p>
+                                <p>1 Milhão de metros<</p>
                                 <div class="box"></div>
-                                <p>Ruim</p>
+                                <p>Entre 1 M e 2 M </p>
                                 <div class="box"></div>
-                                <p>Péssimo</p>
+                                <p>2 Milhões de metros > </p>
                             </div>
                             <p id="id_regiao">Geral</p>
                         </div>
                         <div class="container">
-                            <div class="pointer animate pointerAnimation"></div>
+                            <div id="ponteiro" class="pointer animate"></div>
                             <div class="circulo-container">
                                 <div class="circulo">
                                 </div>
@@ -302,15 +287,18 @@
 
     window.onload = function criarGraficos() {
         carregarRuas(),
-            carregarTop5Ruas(),
-            carregarHoraTamRuas(),
-            obterHorariosCongestionamento("0")
+        carregarTop5Ruas(),
+        carregarHoraTamRuas(),
+        carregarTotalCongestionamentoDia(),
+        obterHorariosCongestionamento("0")
     }
 
     //Listas para gráficos
     var listaRuas = []
     var top5RuasCongestionadas = []
     var listaHoraTamRua = []
+    var totalCongestionamento = []
+    var total_congestionamento = 0
 
     // Carregar ruas congestionadas dia/semana/mes
     function carregarRuas() {
@@ -401,6 +389,40 @@
                 criarGraficoLinha()
             })
     }
+
+    function carregarTotalCongestionamentoDia(){
+        fetch(`/dashboard/carregarTotalCongestionamentoDia`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }})
+            .then(resposta => {
+
+            if (resposta.ok) {
+                console.log("Total congestionamento carregado");
+                return resposta.json();
+                } else {
+                console.log("Houve um erro!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).then(dados => {
+            totalCongestionamento = dados
+            total_congestionamento = Number(totalCongestionamento[0].total_congestionamento)
+            if (total_congestionamento < 1000000) {
+            document.getElementById("ponteiro").style.transform = `rotate(-65deg)`;
+            } else if (total_congestionamento >= 1000000 && total_congestionamento < 2000000) {
+                document.getElementById("ponteiro").style.transform = `rotate(0deg)`;
+            } else if (total_congestionamento >= 2000000) {
+                document.getElementById("ponteiro").style.transform = `rotate(65deg)`;
+            }
+        })
+    }
+
+    
+    
 
     const velocimetro = canvas_grafico_superior;
     const gaugeChart = new Chart(velocimetro, {
