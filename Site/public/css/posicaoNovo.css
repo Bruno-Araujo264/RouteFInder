@@ -402,6 +402,7 @@ body.dark .switch::before {
     border-radius: 8px;
     /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); */
     background: white;
+
 }
 
 .container-criar {
@@ -413,7 +414,8 @@ body.dark .switch::before {
     margin: auto;
 }
 
-.cabecalho {
+.cabecalho
+ {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -524,7 +526,7 @@ body.dark .switch::before {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 14%;
+    height: 20%;
     background-color: #f4d03f;
     border-radius: 8px 8px 0 0;
     /* border-radius: 12px 12px 0px 0px; */
@@ -648,7 +650,16 @@ select {
     background: #f4d03f;
     border: none;
     border-radius: 8px;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
+    transition: var(--tran-04);
+}
+
+.button-cadastrar:hover {
+    box-shadow: #353535 0 -2px 3px;
+    background: gray;
+    color: var(--text-color);
+    transform: translateY(5px);
+    transition: var(--tran-04);
 }
 
 input[type="checkbox"] {
@@ -677,4 +688,33 @@ input[type="checkbox"]:checked::after {
   border: solid rgb(71, 71, 73);
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
+}
+
+.box-criar .cabecalho,
+.box-usuario .cabecalho {
+    min-height: 20%; /* ajuste conforme necessário */
+}
+
+.list-botao {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: auto;
+}
+
+.list-botao button {
+    width: 40%;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    color: var(--text-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--tran-04);
+    font-size: 1.2em;
+}
+
+.box i {
+    font-size: 1.2em;
 }

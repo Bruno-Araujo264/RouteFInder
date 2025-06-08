@@ -1,138 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="tela3.css"> 
-    <script src=""></script>
+    <link rel="stylesheet" href="../css/posicaoNovo.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="../assets/icon/logo.jpg" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
-<body>
 
-    <main >
+<body onload="carregarProfissionais()">
 
-        <!-- <div class="adm">
-            <img id="imgreturn" src="../public/assets/imgs/WhatsApp-Image-2025-06-01-at-20.37.png" alt="">
-            <img src="../public/assets/imgs/user.png" alt="">
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <i class="fa fa-user" style="font-size:24px"></i>
+                </span>
 
-            <div class="informacao-usuario"> -->
-
-                <!-- <div class="informacao">
-                        <h3>Usuário: Giovana Zukauskas</h3>
-                        <h3>Nível de Acesso: Adm</h3>
-                         <h3>Cargo: Gerente</h3>
-                </div> -->
-<!-- 
-                <div id="div">
-
+                <div class="text header-text">
+                    <span class="name"> <span id="NOME_USUARIO">Olá!</span></span>
+                    <span class="profession">#Usuário</span>
                 </div>
+            </div>
 
-                <div class="informacao">
-                        <h3>Email: lalala@hotmail.com</h3>
-                        <h3>Empresa: RouteFinder</h3>                                  
-                </div> -->
+            <i class='bx bx-chevron-right toggle' style="cursor: pointer"></i>
+        </header>
 
+        <div class="menu-bar">
+            <div class="menu">
+                <!-- <li class="search-box">
+          <i class='bx bx-search-alt icon'></i>
+          <input type="text" placeholder="Search...">
+        </li> -->
+                <ul class="menu-links">
+                    <!-- <li class="nav-list">
+                        <a href="#">
+                            <i class='bx bxs-user icon'></i>
+                            <span class="text nav-text">Olá, FrizzaTech</span>
+                        </a>
+                    </li> -->
+                    <li class="nav-list">
+                        <a href="dashboard.html">
+                            <i class="fa-solid fa-house icon"></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <!-- <li class="nav-list">
+                            <a href=" mural.html">
+                        <i class='bx bx-search-alt icon'></i>
+                        <span class="text nav-text">Consultar</span>
+                        </a>
+                    </li> -->
+                    <li class="nav-list">
+                        <a href="empresas.html">
+                            <i class="fa-solid fa-hotel icon"></i>
+                            <span class="text nav-text">Cadastrar Empresas</span>
+                        </a>
+                    </li>
+                    <li class="nav-list">
+                        <a href="posicaoNovo.html">
+                            <i class="fa-solid fa-gear icon"></i>
+                            <span class="text nav-text">Posições</span>
+                        </a>
+                    </li>
+                    <li class="nav-list">
+                        <a href="aviso.html">
+                            <i class="fa-solid fa-bell icon"></i>
+                            <span class="text nav-text">Notificação</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-
-            <!-- </div> -->
-        <!-- </div> -->
-
-        <div class="titulo">
-              <img id="imgreturn" src="../public/assets/imgs/WhatsApp-Image-2025-06-01-at-20.37.png" alt="">
-            <h1>Editar Usuário</h1>
+            <div class="bottom-content">
+                <li class="">
+                    <a href="../index.html">
+                        <i class="fa-solid fa-right-from-bracket icon"></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+            </div>
         </div>
+    </nav>
 
-        <div class="geral">
-            <div class="cargos">
-                <p id="lixo">Informações do usuário <img id="lixo" src="../public/assets/imgs/delete.png" alt=""></p>
-                <div class="campos">
-                    <span>Nome do usuário:</span>
-                    <input type="text">
+    <main class="home">
+        <div class="container">
+            <div class="adm">
+                <!-- <img src="../assets/imgs/user.png" alt=""> -->
+
+                <div class="informacao-usuario">
+                    <i class="fa-solid fa-circle-user"></i>
+
+                    <div class="primeira-info">
+                        <div class="informacao">
+                            <h3>Usuário: <span id=" NOME_USUARIO_FORMULARIO">Heriqi</span></h3>
+                            <h3>Nível de Acesso: adm</h3>
+                            <h3>Cargo: Gerente</h3>
+                        </div>
+                    </div>
+
+                    <div class="segunda-info">
+                        <div class="informacao">
+                            <h3>Email: </h3>
+                            <h3>Empresa: RouteFinder</h3>
+                            <h3>&nbsp;</h3>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="campos">
-                    <span>Email do usuário:</span>
-                    <input type="text">
-                </div>
-
-                <div class="campos">
-                    <span>Cargo do usuário:</span>
-                    <input type="text">
-                </div>
-
-                <div class="campos">
-                    <span>Nível de Acesso:</span>
-                    <input type="text">
-                </div>
-
-
-
-                <button>Salvar</button>
-
             </div>
 
 
-    
 
-            <div class="usuario">
-                  <div class="titulo-usuario">
-                    <span>Usuários
-                        
-                    </span>
-                  </div>
+            <div class="geral">
+                <div class="box-criar">
+                    <div class="container-criar">
+                        <div class="cabecalho">
+                            <p>Editar as posições:</p>
+                        </div>
+                        <div class="lista-usuario">
+                            <div class="container-lista">
+                                <div class="box">
+                                    <div class="form">
+                                        <span>Nome do usuário:</span>
+                                        <input id="address_input" type="text" placeholder="(Nome)*">
+                                        <div class="input-border"></div>
+                                    </div>
+                                </div>
+                                <div class="box">
+                                    <div class="form">
+                                        <span>Email do usuário:</span>
+                                        <input id="address_input" type="text" placeholder="(Nome)*">
+                                        <div class="input-border"></div>
+                                    </div>
+                                </div>
+                                <div class="box">
+                                    <div class="form">
+                                        <span>Cargo do usuário:</span>
+                                        <input id="address_input" type="text" placeholder="(Nome)*">
+                                        <div class="input-border"></div>
+                                    </div>
+                                </div>
+                                <div class="box">
+                                    <div class="form">
+                                        <span>Nível de Acesso:</span>
+                                        <input id="address_input" type="text" placeholder="(Nome)*">
+                                        <div class="input-border"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-botao">
+                                <button>Salvar</button>
+                                <button>Excluir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-
-                  <div class="nome-pessoas">
-                        <div class="cargo">
-                           <img src="../public/assets/imgs/edit.png" alt="">
-                                <span>Giovana</span>
-                                <div>
-                                        Gerente
+                <div class="box-usuario">
+                    <div class="container-usuario">
+                        <div class="cabecalho">
+                            <p>Usuários: </p>
+                            <!-- <img onclick="" src="../assets/imgs/edit.png" alt=""> -->
+                        </div>
+                        <div class="lista-usuario" id="tabelaProfissionais">
+                            <div class="container-lista">
+                                <div class="box">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Giovana</span>
+                                    <div class="cargo">Gerente</div>
+                                </div>
+                                <div class="box">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Bruno</span>
+                                    <div class="cargo">Admin</div>
+                                </div>
+                                <div class="box">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Erick</span>
+                                    <div class="cargo">Motorista</div>
+                                </div>
+                                <div class="box">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Ali</span>
+                                    <div class="cargo">Motorista</div>
+                                </div>
+                                <div class="box">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Leão</span>
+                                    <div class="cargo">Motorista</div>
+                                </div>
+                                <div class="box">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Kaue</span>
+                                    <div class="cargo">Motorista</div>
                                 </div>
                             </div>
-                            <div class="cargo">
-                                <img src="../public/assets/imgs/edit.png" alt="">
-                                <span>Bruno</span>
-                                <div>
-                                        Admin
-                                </div>
-                            </div>
-                            <div class="cargo">
-                                <img src="../public/assets/imgs/edit.png" alt="">
-                                <span>Erick</span>
-                                <div>
-                                       Motorista
-                                </div>
-                            </div>
-                            <div class="cargo">
-                               <img src="../public/assets/imgs/edit.png" alt="">
-                                <span>Erick</span>
-                                <div>
-                                        Motorista
-                                </div>
-                            </div>
-                            <div class="cargo">
-                                <img src="../public/assets/imgs/edit.png" alt="">
-                                <span>Erick</span>
-                                <div>
-                                        Motorista
-                                </div>
-                            </div>
-                            <div class="cargo">
-                               <img src="../public/assets/imgs/edit.png" alt="">
-                                <span>Erick</span>
-                                <div>
-                                        Motorista
-                                </div>
-                            </div>
-                  </div>
-
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
         </div>
-
     </main>
-    
+
 </body>
+
 </html>
