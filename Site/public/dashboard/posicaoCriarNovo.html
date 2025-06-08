@@ -52,7 +52,7 @@
                 </span>
 
                 <div class="text header-text">
-                    <span class="name"> <span id="NOME_USUARIO"></span></span>
+                    <span class="name"> <span id="NOME_USUARIO_SIDEBAR"></span></span>
                     <span class="profession">#Usuário</span>
                 </div>
             </div>
@@ -115,9 +115,9 @@
             <div class="informacao-usuario">
 
                 <div class="informacao">
-                        <h3>Usuário: Giovana Zukauskas<span class="name"> <span id="NOME_USUARIO"></span></span></h3>
-                        <h3>Nível de Acesso: Adm</h3>
-                         <h3>Cargo: Gerente</h3>
+                        <h3>Usuário: <span id="NOME_USUARIO_FORMULARIO"></span></h3>
+                        <h3>Nível de Acesso: <span id="NIVEL_ACESSO_FORMULARIO"></span></h3>
+                         <h3>Cargo: <span id="POSICAO_USUARIO_FORMULARIO"></span></h3>
                 </div>
 
                 <div id="div">
@@ -125,8 +125,8 @@
                 </div>
 
                 <div class="informacao">
-                        <h3>Email: lalala@hotmail.com</h3>
-                        <h3>Empresa: RouteFinder</h3>                                  
+                        <h3>Email: <span id="EMAIL_USUARIO_FORMULARIO"></span> </h3>
+                        <h3>Empresa: <span id="EMPRESA_USUARIO_FORMULARIO"></span></h3>                                  
                 </div>
 
 
@@ -330,6 +330,12 @@ function sumirMensagem() {
 
   // Função para carregar a pocições da empresa
     function carregarProfissionais(empresaId) {
+
+        // CARREGAR PROFISSIONAL DA SESSÃO NA DIV ACIMA 
+      NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
+      NOME_USUARIO_SIDEBAR.innerHTML = sessionStorage.NOME_USUARIO;
+      EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
+
       empresaId = sessionStorage.getItem("ID_EMPRESA")
       const apiUrl = `/usuarios/${empresaId}`;
   
@@ -354,6 +360,11 @@ function sumirMensagem() {
               `;
 
               tabela.appendChild(card);
+
+              if(profissional.id_user == sessionStorage.ID_USUARIO){
+              NIVEL_ACESSO_FORMULARIO.innerHTML = profissional.nome_nivel_acesso;
+              POSICAO_USUARIO_FORMULARIO.innerHTML = profissional.nome_posicao;
+              EMPRESA_USUARIO_FORMULARIO.innerHTML = profissional.nome_empresa;}
           });
 
         })

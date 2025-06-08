@@ -145,7 +145,7 @@ main {
     gap: 10px;
     background-color: #FFF;
     padding: 2.5%;
-    margin-right: 5px;
+    /* margin-right: 5px; */
     border-radius: 0px 0px 12px 12px ;
 }
 

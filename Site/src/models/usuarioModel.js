@@ -47,15 +47,33 @@ function coletarEmail(email) {
 function buscarProfissionaisDaEmpresa(idEmpresa) {
   const instrucao = `
     SELECT
-        id_user,
-        name_user,
-        fk_access_level,
-        fk_position
+        u.id_user,
+        u.name_user,
+        u.fk_access_level,
+        u.fk_position,
+        u.fk_company,
+        
+        p.name AS nome_posicao,
+        al.name AS nome_nivel_acesso,
+        c.corporate_name AS nome_empresa
 
     FROM
-        routeFinder.user
+        routeFinder.user AS u
+
+    -- JOIN com a posição
+    LEFT JOIN routeFinder.position AS p
+        ON u.fk_position = p.id_position
+
+    -- JOIN com o nível de acesso
+    LEFT JOIN routeFinder.access_level AS al
+        ON u.fk_access_level = al.id_access_level
+
+    -- JOIN com a empresa
+    LEFT JOIN routeFinder.company AS c
+        ON u.fk_company = c.id_company
+
     WHERE
-        fk_company = ${idEmpresa};
+        u.fk_company = ${idEmpresa};
   `;
   return database.executar(instrucao);
 }
