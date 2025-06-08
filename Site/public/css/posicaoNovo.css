@@ -322,6 +322,7 @@ body.dark .switch::before {
 
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     width: 99%;
     height: 100%;
@@ -421,6 +422,7 @@ body.dark .switch::before {
     height: 20%;
     background-color: #f4d03f;
     border-radius: 8px 8px 0 0;
+    font-size: 1.2em;
     /* border-radius: 12px 12px 0px 0px; */
 }
 
@@ -487,7 +489,7 @@ body.dark .switch::before {
 
 .box {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
     height: 50px;
@@ -496,7 +498,7 @@ body.dark .switch::before {
     font-weight: 500;
     color: #333;
     flex-shrink: 0;
-    gap: 100px;
+    /* gap: 100px; */
 }
 
 .box-usuario {
@@ -522,32 +524,10 @@ body.dark .switch::before {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 20%;
+    height: 14%;
     background-color: #f4d03f;
     border-radius: 8px 8px 0 0;
     /* border-radius: 12px 12px 0px 0px; */
-}
-
-.container-cab {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70%;
-    height: 70%;
-    background: white;
-    border-radius: 8px;
-}
-
-.container-cab p {
-    font-weight: 600;
-    font-size: 1.2em;
-    margin-right: 40px;
-}
-
-.container-cab i {
-    font-size: 2.2em;
-    font-weight: normal;
-
 }
 
 .lista-usuario {
@@ -557,6 +537,7 @@ body.dark .switch::before {
     align-items: center;
     width: 100%;
     height: 100%;
+    overflow-y: auto;
 }
 
 .lista-usuario .container-lista {
@@ -574,7 +555,8 @@ body.dark .switch::before {
 .lista-usuario .container-lista .box span {
     display: flex;
     align-items: center;
-    width: 70%;
+    /* justify-content: center; */
+    width: 60%;
     height: 100%;
     text-indent: 35px;
     text-wrap: nowrap;
@@ -585,8 +567,104 @@ body.dark .switch::before {
     justify-content: center;
     align-items: center;
     height: 80%;
-    width: 30%;
+    width: 20%;
     background: #f4d03f;
     border-radius: 8px;
     margin-right: 10px;
+}
+
+.form {
+    --width-of-input: 100%;
+    --border-height: 1px;
+    --border-before-color: rgba(221, 221, 221, 0.39);
+    --border-after-color: #5891ff;
+    --input-hovered-color: #4985e01f;
+    position: relative;
+    width: var(--width-of-input);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    /* background: red; */
+}
+
+/* styling of Input */
+.form input {
+    color: black;
+    font-size: 1rem;
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0.3em;
+    padding-block: 0.7em;
+    border: none;
+    border-bottom: var(--border-height) solid var(--border-before-color);
+}
+
+/* styling of animated border */
+.input-border {
+    position: absolute;
+    background: var(--border-after-color);
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 38%;
+    transition: 0.3s;
+    /* height: var(--border-height); */
+}
+
+input:focus {
+    outline: none;
+}
+
+/* here is code of animated border */
+input:focus~.input-border {
+    width: 58%;
+}
+
+select {
+    width: 40%;
+    margin-right: 20%;
+    padding: 10px;
+    background: #dcdcdc;
+    border: 1px solid rgb(101, 101, 101);
+    border-radius: 3px;
+}
+
+.button-cadastrar {
+    width: 30%;
+    height: 25%;
+    background: #f4d03f;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 10%;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.2s;
+}
+
+.container input[type="checkbox"]:checked {
+    background: #f4d03f;
+}
+
+input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid rgb(71, 71, 73);
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
 }
