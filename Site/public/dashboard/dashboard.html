@@ -145,7 +145,7 @@
                         </div>
                     </div>
                     <div class="form">
-                        <i class='bx bx-search-alt icon'></i>
+                        <i onclick="obterHorariosCongestionamento('0', corporate_name_input.value)" class='bx bx-search-alt icon'></i>
                         <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
                         <span class="input-border"></span>
                     </div>
@@ -286,7 +286,8 @@
     NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO
 
     window.onload = function criarGraficos() {
-        carregarRuas(),
+            sessionStorage.clear(),
+            carregarRuas(),
             carregarTop5Ruas(),
             carregarHoraTamRuas(),
             carregarTotalCongestionamentoDia(),
@@ -673,12 +674,29 @@
         atualizarCoresDoGrafico();
     });
 
-    function obterHorariosCongestionamento(region) {
-        obterMaiorHorarioCongestionamento(region)
-        obterMenorHorarioCongestionamento(region)
+    function obterHorariosCongestionamento(region = "0", rua = "") {
+        rua = rua.toUpperCase()
+        obterMaiorHorarioCongestionamento(region, rua)
+        obterMenorHorarioCongestionamento(region, rua)
     }
 
     function obterMaiorHorarioCongestionamento(region = "0", rua = "") {
+        
+        const savedRegion = sessionStorage.getItem("REGION");
+        const savedRua = sessionStorage.getItem("RUA");
+
+
+        if (region === "0" && savedRegion) {
+            region = savedRegion;
+        } else if (region !== "0") {
+            sessionStorage.setItem("REGION", region);
+        }
+            
+        if (rua.trim() === "" && savedRua) {
+            rua = savedRua;
+        } else if (rua.trim() !== "") {
+            sessionStorage.setItem("RUA", rua.trim());
+        }
         var url = `/dashboard/obterMaiorHorarioCongestionamento/${region}`
         if (rua !== "") {
             url += `?rua=${encodeURIComponent(rua)}`;
@@ -693,9 +711,13 @@
 
                 if (resposta.ok) {
                     resposta.json().then(json => {
+                        if(json.length == 0){
+                            alert(`Região e Rua não são compatíveis`)
+                            return
+                        }
                         const dataHora = new Date(json[0].date_time);
                         const horarioFormatado = dataHora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                        document.getElementById("melhor_horario").innerHTML = horarioFormatado;
+                        document.getElementById("pior_horario").innerHTML = horarioFormatado;
                     })
                 } else {
                     console.log("Houve um erro!");
@@ -707,8 +729,28 @@
             })
     }
 
-    function obterMenorHorarioCongestionamento(region) {
-        fetch(`/dashboard/obterMenorHorarioCongestionamento/${region}`, {
+    function obterMenorHorarioCongestionamento(region = "0", rua = "") {
+        
+        const savedRegion = sessionStorage.getItem("REGION");
+        const savedRua = sessionStorage.getItem("RUA");
+
+
+        if (region === "0" && savedRegion) {
+            region = savedRegion;
+        } else if (region !== "0") {
+            sessionStorage.setItem("REGION", region);
+        }
+
+        if (rua.trim() === "" && savedRua) {
+            rua = savedRua;
+        } else if (rua.trim() !== "") {
+            sessionStorage.setItem("RUA", rua.trim());
+        }
+        var url = `/dashboard/obterMenorHorarioCongestionamento/${region}`
+        if (rua !== "") {
+            url += `?rua=${encodeURIComponent(rua)}`;
+        }
+        fetch(url, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -718,9 +760,13 @@
 
                 if (resposta.ok) {
                     resposta.json().then(json => {
+                        if(json.length == 0){
+                            alert(`Região e Rua não são compatíveis`)
+                            return
+                        }
                         const dataHora = new Date(json[0].date_time);
                         const horarioFormatado = dataHora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                        document.getElementById("pior_horario").innerHTML = horarioFormatado;
+                        document.getElementById("melhor_horario").innerHTML = horarioFormatado;
                     })
                 } else {
                     console.log("Houve um erro!");
