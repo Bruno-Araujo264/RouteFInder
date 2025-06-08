@@ -121,15 +121,13 @@ function carregarRuas(region = '') {
     return database.executar(instrucaoSql);
 }
 
+function carregarTop5Ruas(rua = undefined){
 
-
-
-function carregarTop5Ruas(){
     console.log("Estou carregando as top 5 ruas mais congestionadas");
     
-    var instrucaoSql = `
+   let instrucaoSql = `
         SELECT 
-            p.name_passage, p.region, MAX(t.jam_size) AS max_jam
+            p.name_passage as rua, p.region as region, MAX(t.jam_size) AS max_jam
         FROM 
             passage p
         JOIN 
@@ -139,17 +137,24 @@ function carregarTop5Ruas(){
         JOIN 
             timestamp t ON t.fk_segment = s.id_segment
         WHERE 
-            t.date_time 
-        BETWEEN 
-            DATE(NOW() - INTERVAL 9 YEAR) 
-        AND 
-            NOW() - INTERVAL 9 YEAR
+            t.date_time BETWEEN DATE(NOW() - INTERVAL 10 YEAR) AND NOW() - INTERVAL 7 YEAR
+    `;
+
+    if (rua !== undefined && rua.trim() !== "") {
+        instrucaoSql += ` AND p.name_passage LIKE '%${rua.trim()}%'`;
+    }
+
+    instrucaoSql += `
         GROUP BY 
             p.name_passage, p.region
         ORDER BY 
             max_jam DESC
-        LIMIT 5;
     `;
+
+    if (rua === undefined || rua.trim() === "") {
+        instrucaoSql += ` LIMIT 5`;
+    }
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }

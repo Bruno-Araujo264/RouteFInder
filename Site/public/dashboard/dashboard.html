@@ -118,41 +118,41 @@
                       <h1 onclick="obterHorariosCongestionamento('0', '')">Dashboard Geral</h1>
                     </div>
                     <div class="subpasta">
-                    <div class="titulo">
-                        <h2>Filtros:</h2>
+
+                        <div class="titulo">
+                            <h2>Filtros:</h2>
+                        </div>
+                        <div class="regiao">
+                          <div onclick="obterHorariosCongestionamento('NORTE', '')" id="idNorte" class="filtro norte">
+                                <span class="sigla">N</span>
+                                <span class="nome-completa">orte</span>
+                            </div>
+                            <div onclick="obterHorariosCongestionamento('OESTE', '')" id="idOeste" class="oeste filtro">
+                                <span class="sigla">O</span>
+                                <span class="nome-completa">este</span>
+                            </div>
+                            <div onclick="obterHorariosCongestionamento('CENTRO', '')" id="idCentro" class="centro filtro">
+                                <span class="sigla">C</span>
+                                <span class="nome-completa">entro</span>
+                            </div>
+                            <div onclick="obterHorariosCongestionamento('LESTE', '')" id="idLeste" class="leste filtro">
+                                <span class="sigla">L</span>
+                                <span class="nome-completa">este</span>
+                            </div>
+                            <div onclick="obterHorariosCongestionamento('SUL', '')" id="idSul" class="sul filtro">
+                                <span class="sigla">S</span>
+                                <span class="nome-completa">ul</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="regiao">
-                        <div onclick="obterHorariosCongestionamento('NORTE', '')" id="idNorte" class="filtro norte">
-                            <span class="sigla">N</span>
-                            <span class="nome-completa">orte</span>
-                        </div>
-                        <div onclick="obterHorariosCongestionamento('OESTE', '')" id="idOeste" class="oeste filtro">
-                            <span class="sigla">O</span>
-                            <span class="nome-completa">este</span>
-                        </div>
-                        <div onclick="obterHorariosCongestionamento('CENTRO', '')" id="idCentro" class="centro filtro">
-                            <span class="sigla">C</span>
-                            <span class="nome-completa">entro</span>
-                        </div>
-                        <div onclick="obterHorariosCongestionamento('LESTE', '')" id="idLeste" class="leste filtro">
-                            <span class="sigla">L</span>
-                            <span class="nome-completa">este</span>
-                        </div>
-                        <div onclick="obterHorariosCongestionamento('SUL', '')" id="idSul" class="sul filtro">
-                            <span class="sigla">S</span>
-                            <span class="nome-completa">ul</span>
-                        </div>
-                    </div>
-                </div>
                     <div class="form">
-                        <i onclick="obterHorariosCongestionamento('0', corporate_name_input.value)" class='bx bx-search-alt icon'></i>
-                        <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
+                        <i onclick="obterHorariosCongestionamento('0', input_rua.value) ; carregarTop5Ruas()" class='bx bx-search-alt icon'></i>
+                        <input id="input_rua" type="text" placeholder="Nome da via">
                         <span class="input-border"></span>
                     </div>
-                </div>
-                <div class="tabelaPico">
-                        <div class="container">
-                             <h2>Distribuição Regional de Ruas Congestionadas</h2>
+                    <div class="tabelaPico">
+                      <div class="container">
+                        <h2>Distribuições de Ruas Congestionadas</h2>
                         <canvas id="canvas_grafico_inferior"></canvas>
                     </div>
                 </div>
@@ -254,7 +254,7 @@
             sessionStorage.clear(),
             carregarRuas(),
             carregarTop5Ruas(),
-            carregarHoraTamRuas(),
+            // carregarHoraTamRuas(),
             carregarTotalCongestionamentoDia(),
             obterHorariosCongestionamento()
     }
@@ -295,67 +295,68 @@
 
     // Carregar top 5 ruas
     function carregarTop5Ruas() {
-        fetch(`/dashboard/carregarTop5Ruas`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
+    let rua = document.getElementById("input_rua").value.trim();
+    const savedRua = sessionStorage.getItem("RUA");
+
+    if (rua === "" && savedRua) {
+        rua = savedRua;
+    } else if (rua !== "") {
+        sessionStorage.setItem("RUA", rua);
+    }
+
+    let url = `/dashboard/carregarTop5Ruas`;
+    if (rua !== "") {
+        url += `?rua=${encodeURIComponent(rua)}`;
+    }
+
+    fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(resposta => {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                console.log("Houve um erro!");
+                return resposta.text().then(texto => {
+                    console.error(texto);
+                });
             }
         })
-            .then(resposta => {
+        .then(dados => {
+            // if (!dados || dados.length === 0) {
+            //     alert("Nenhuma rua encontrada.");
+            //     return;
+            // }
 
-                if (resposta.ok) {
-                    console.log("Top 5 ruas carregadas");
-                    return resposta.json();
-                } else {
-                    console.log("Houve um erro!");
-                    resposta.text().then(texto => {
-                        console.error(texto);
-                    });
+            top5RuasCongestionadas.length = 0; // limpa array
+            top5RuasCongestionadas.push(dados);
+
+            
+            if (dados.length === 1) {
+                ptop1.innerHTML = dados[0].rua;
+                divtop1.innerHTML = dados[0].region;
+                // Oculta ou limpa os outros 4, se quiser
+                ptop2.innerHTML = "";
+                divtop2.innerHTML = "";
+                ptop3.innerHTML = "";
+                divtop3.innerHTML = "";
+                ptop4.innerHTML = "";
+                divtop4.innerHTML = "";
+                ptop5.innerHTML = "";
+                divtop5.innerHTML = "";
+            } else {
+                 console.log(dados)
+                for (let i = 0; i < 5; i++) {
+                    window[`ptop${i+1}`].innerHTML = dados[i].rua;
+                    window[`divtop${i+1}`].innerHTML = dados[i].region;
                 }
-            }).then(dados => {
-                top5RuasCongestionadas.push(dados)
-                //TOP 1
-                ptop1.innerHTML = top5RuasCongestionadas[0][0].name_passage
-                divtop1.innerHTML = top5RuasCongestionadas[0][0].region
-                //TOP 2
-                ptop2.innerHTML = top5RuasCongestionadas[0][1].name_passage
-                divtop2.innerHTML = top5RuasCongestionadas[0][1].region
-                //TOP 3
-                ptop3.innerHTML = top5RuasCongestionadas[0][2].name_passage
-                divtop3.innerHTML = top5RuasCongestionadas[0][2].region
-                //TOP 4
-                ptop4.innerHTML = top5RuasCongestionadas[0][3].name_passage
-                divtop4.innerHTML = top5RuasCongestionadas[0][3].region
-                //TOP 5
-                ptop5.innerHTML = top5RuasCongestionadas[0][4].name_passage
-                divtop5.innerHTML = top5RuasCongestionadas[0][4].region
-            })
-    }
-    //Carregar Horário e tamanho do congestionamento de acordo com as top 5 ruas
-    function carregarHoraTamRuas() {
-        fetch(`/dashboard/carregarHoraTamRuas`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
+               
             }
-        })
-            .then(resposta => {
-
-                if (resposta.ok) {
-                    console.log("Horarios e jam_sizes carregados");
-                    return resposta.json();
-                } else {
-                    console.log("Houve um erro!");
-                    resposta.text().then(texto => {
-                        console.error(texto);
-                    });
-                }
-
-            }).then(dados => {
-                listaHoraTamRua.push(dados)
-                criarGraficoLinha()
-            })
-    }
+        });
+}
 
     function carregarTotalCongestionamentoDia() {
         fetch(`/dashboard/carregarTotalCongestionamentoDia`, {
