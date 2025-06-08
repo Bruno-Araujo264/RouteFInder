@@ -168,7 +168,7 @@ function carregarTotalCongestionamentoDia(){
 function obterMaiorHorarioCongestionamento(region = '') {
     var instrucaoSql
 
-    if(region == "0"){
+    if(region == "0" && rua == undefined ){
         
         instrucaoSql = `SELECT t.date_time
                         FROM timestamp AS t
@@ -178,7 +178,7 @@ function obterMaiorHorarioCongestionamento(region = '') {
                         ORDER BY t.jam_size ASC, t.date_time DESC
                         LIMIT 1;`
 
-    } else {
+    } else if (region != "0" && rua == undefined) {
 
         instrucaoSql = `SELECT t.date_time
         FROM timestamp AS t
@@ -188,7 +188,31 @@ function obterMaiorHorarioCongestionamento(region = '') {
         WHERE p.region = '${region}'
         ORDER BY t.jam_size DESC
         LIMIT 1;`
+
+    } else if (rua != undefined && region == "0"){
+
+        instrucaoSql = `SELECT t.date_time
+        FROM timestamp AS t
+        JOIN segment AS s ON t.fk_segment = s.id_segment 
+        JOIN direction AS d ON s.fk_direction = d.id_direction
+        JOIN passage AS p ON d.fk_passage = p.id_passage 
+        WHERE p.name_passage = '${namePassage}'
+        ORDER BY t.jam_size DESC
+        LIMIT 1;`
+        
+    } else {
+        
+        instrucaoSql = `SELECT t.date_time
+        FROM timestamp AS t
+        JOIN segment AS s ON t.fk_segment = s.id_segment 
+        JOIN direction AS d ON s.fk_direction = d.id_direction
+        JOIN passage AS p ON d.fk_passage = p.id_passage 
+        WHERE p.region = '${region}'
+          AND p.name_passage = '${namePassage}'
+        ORDER BY t.jam_size DESC
+        LIMIT 1;`
     }
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }

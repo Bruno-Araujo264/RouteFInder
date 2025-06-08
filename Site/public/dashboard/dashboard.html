@@ -112,47 +112,47 @@
 
     <section class="home">
         <div class="container">
-                <div class="coluna1">
-                    <div class="cabecalho">
+            <div class="coluna1">
+                <div class="cabecalho">
+                    <div class="titulo">
+                        <h1>Dashboard Geral</h1>
+                    </div>
+                    <div class="subpasta">
                         <div class="titulo">
-                            <h1>Dashboard Geral</h1>
+                            <h2>Filtros:</h2>
                         </div>
-                        <div class="subpasta">
-                            <div class="titulo">
-                                <h2>Filtros:</h2>
+                        <div class="regiao">
+                            <div id="idNorte" class="filtro norte">
+                                <span class="sigla">N</span>
+                                <span class="nome-completa">orte</span>
                             </div>
-                            <div class="regiao">
-                                <div id="idNorte" class="filtro norte">
-                                    <span class="sigla">N</span>
-                                    <span class="nome-completa">orte</span>
-                                </div>
-                                <div id="idOeste" class="oeste filtro">
-                                    <span class="sigla">O</span>
-                                    <span class="nome-completa">este</span>
-                                </div>
-                                <div id="idCentro" class="centro filtro">
-                                    <span class="sigla">C</span>
-                                    <span class="nome-completa">entro</span>
-                                </div>
-                                <div id="idLeste" class="leste filtro">
-                                    <span class="sigla">L</span>
-                                    <span class="nome-completa">este</span>
-                                </div>
-                                <div id="idSul" class="sul filtro">
-                                    <span class="sigla">S</span>
-                                    <span class="nome-completa">ul</span>
-                                </div>
+                            <div id="idOeste" class="oeste filtro">
+                                <span class="sigla">O</span>
+                                <span class="nome-completa">este</span>
                             </div>
-                        </div>
-                        <div class="form">
-                            <i class='bx bx-search-alt icon'></i>
-                            <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
-                            <span class="input-border"></span>
+                            <div id="idCentro" class="centro filtro">
+                                <span class="sigla">C</span>
+                                <span class="nome-completa">entro</span>
+                            </div>
+                            <div id="idLeste" class="leste filtro">
+                                <span class="sigla">L</span>
+                                <span class="nome-completa">este</span>
+                            </div>
+                            <div id="idSul" class="sul filtro">
+                                <span class="sigla">S</span>
+                                <span class="nome-completa">ul</span>
+                            </div>
                         </div>
                     </div>
-                        <div class="tabelaPico">
-                            <div class="container">
-                                <h2>Distribuições de Ruas Congestionadas</h2>
+                    <div class="form">
+                        <i class='bx bx-search-alt icon'></i>
+                        <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
+                        <span class="input-border"></span>
+                    </div>
+                </div>
+                <div class="tabelaPico">
+                    <div class="container">
+                        <h2>Distribuições de Ruas Congestionadas</h2>
                         <div class="indicadores">
                             <div class="box"></div>
                             <p>Ótimo</p>
@@ -172,23 +172,23 @@
                         <h2>Filtros:</h2>
                     </div>
                     <div class="regiao">
-                        <div onclick="obterHorariosCongestionamento('NORTE')" id="idNorte" class="filtro norte">
+                        <div onclick="obterHorariosCongestionamento('NORTE', '')" id="idNorte" class="filtro norte">
                             <span class="sigla">N</span>
                             <span class="nome-completa">orte</span>
                         </div>
-                        <div onclick="obterHorariosCongestionamento('OESTE')" id="idOeste" class="oeste filtro">
+                        <div onclick="obterHorariosCongestionamento('OESTE', '')" id="idOeste" class="oeste filtro">
                             <span class="sigla">O</span>
                             <span class="nome-completa">este</span>
                         </div>
-                        <div onclick="obterHorariosCongestionamento('CENTRO')" id="idCentro" class="centro filtro">
+                        <div onclick="obterHorariosCongestionamento('CENTRO', '')" id="idCentro" class="centro filtro">
                             <span class="sigla">C</span>
                             <span class="nome-completa">entro</span>
                         </div>
-                        <div onclick="obterHorariosCongestionamento('LESTE')" id="idLeste" class="leste filtro">
+                        <div onclick="obterHorariosCongestionamento('LESTE', '')" id="idLeste" class="leste filtro">
                             <span class="sigla">L</span>
                             <span class="nome-completa">este</span>
                         </div>
-                        <div onclick="obterHorariosCongestionamento('SUL')" id="idSul" class="sul filtro">
+                        <div onclick="obterHorariosCongestionamento('SUL', '')" id="idSul" class="sul filtro">
                             <span class="sigla">S</span>
                             <span class="nome-completa">ul</span>
                         </div>
@@ -232,7 +232,7 @@
                                 <div class="circulo">
                                 </div>
                             </div>
-                            <canvas id="canvas_grafico_superior" width="300" height="150"></canvas>    
+                            <canvas id="canvas_grafico_superior" width="300" height="150"></canvas>
                         </div>
 
                     </div>
@@ -287,10 +287,10 @@
 
     window.onload = function criarGraficos() {
         carregarRuas(),
-        carregarTop5Ruas(),
-        carregarHoraTamRuas(),
-        carregarTotalCongestionamentoDia(),
-        obterHorariosCongestionamento("0")
+            carregarTop5Ruas(),
+            carregarHoraTamRuas(),
+            carregarTotalCongestionamentoDia(),
+            obterHorariosCongestionamento()
     }
 
     //Listas para gráficos
@@ -390,39 +390,40 @@
             })
     }
 
-    function carregarTotalCongestionamentoDia(){
+    function carregarTotalCongestionamentoDia() {
         fetch(`/dashboard/carregarTotalCongestionamentoDia`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }})
-            .then(resposta => {
-
-            if (resposta.ok) {
-                console.log("Total congestionamento carregado");
-                return resposta.json();
-                } else {
-                console.log("Houve um erro!");
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).then(dados => {
-            totalCongestionamento = dados
-            total_congestionamento = Number(totalCongestionamento[0].total_congestionamento)
-            if (total_congestionamento < 1000000) {
-            document.getElementById("ponteiro").style.transform = `rotate(-65deg)`;
-            } else if (total_congestionamento >= 1000000 && total_congestionamento < 2000000) {
-                document.getElementById("ponteiro").style.transform = `rotate(0deg)`;
-            } else if (total_congestionamento >= 2000000) {
-                document.getElementById("ponteiro").style.transform = `rotate(65deg)`;
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
             }
         })
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    console.log("Total congestionamento carregado");
+                    return resposta.json();
+                } else {
+                    console.log("Houve um erro!");
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            }).then(dados => {
+                totalCongestionamento = dados
+                total_congestionamento = Number(totalCongestionamento[0].total_congestionamento)
+                if (total_congestionamento < 1000000) {
+                    document.getElementById("ponteiro").style.transform = `rotate(-65deg)`;
+                } else if (total_congestionamento >= 1000000 && total_congestionamento < 2000000) {
+                    document.getElementById("ponteiro").style.transform = `rotate(0deg)`;
+                } else if (total_congestionamento >= 2000000) {
+                    document.getElementById("ponteiro").style.transform = `rotate(65deg)`;
+                }
+            })
     }
 
-    
-    
+
+
 
     const velocimetro = canvas_grafico_superior;
     const gaugeChart = new Chart(velocimetro, {
@@ -444,7 +445,7 @@
                 tooltip: { enabled: false },
                 legend: { display: true },
             },
-             responsive: false,
+            responsive: false,
         }
     });
 
@@ -605,7 +606,7 @@
                 backgroundColor: cores[i % cores.length]
             };
         });
-// Criar gráfico
+        // Criar gráfico
         const graficoLinha = new Chart(canvas_grafico_inferior3, {
             type: 'line',
             data: {
@@ -646,13 +647,13 @@
     const pasta = document.getElementById("pasta");
 
     const regioes = {
-    idNorte: { nome: "Norte", cor: "#d3d3d3" },
-    idOeste: { nome: "Oeste", cor: "#d3d3d3" },
-    idCentro: { nome: "Centro", cor: "#d3d3d3" },
-    idLeste: { nome: "Leste", cor: "#d3d3d3" },
-    idSul: { nome: "Sul", cor: "#d3d3d3" }
-};
- 
+        idNorte: { nome: "Norte", cor: "#d3d3d3" },
+        idOeste: { nome: "Oeste", cor: "#d3d3d3" },
+        idCentro: { nome: "Centro", cor: "#d3d3d3" },
+        idLeste: { nome: "Leste", cor: "#d3d3d3" },
+        idSul: { nome: "Sul", cor: "#d3d3d3" }
+    };
+
     Object.entries(regioes).forEach(([id, cor]) => {
         const div = document.getElementById(id);
         if (div) {
@@ -672,13 +673,17 @@
         atualizarCoresDoGrafico();
     });
 
-    function obterHorariosCongestionamento(region){
+    function obterHorariosCongestionamento(region) {
         obterMaiorHorarioCongestionamento(region)
         obterMenorHorarioCongestionamento(region)
     }
 
-    function obterMaiorHorarioCongestionamento(region) {
-        fetch(`/dashboard/obterMaiorHorarioCongestionamento/${region}`, {
+    function obterMaiorHorarioCongestionamento(region = "0", rua = "") {
+        var url = `/dashboard/obterMaiorHorarioCongestionamento/${region}`
+        if (rua !== "") {
+            url += `?rua=${encodeURIComponent(rua)}`;
+        }
+        fetch(url, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
