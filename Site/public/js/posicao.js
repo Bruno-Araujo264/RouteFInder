@@ -2,7 +2,7 @@
 // Função para redirecionar para a Tela da Posição específica
     function abrirPosicao(id_position) {
       sessionStorage.setItem("ID_POSICAO_ATUAL", id_position); // Armazena o ID da posição atual no SessionStorage
-      window.location.href = "posicaoEditar.html";
+      window.location.href = "posicaoEditarNovo.html";
     }
 // função que redireciona para tela de criação de Posição
     function redirecionarParaCadastroPosicao() {
