@@ -1,17 +1,33 @@
-NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO
 
 // Função para redirecionar para a Tela da Posição específica
     function abrirPosicao(id_position) {
       sessionStorage.setItem("ID_POSICAO_ATUAL", id_position); // Armazena o ID da posição atual no SessionStorage
-      window.location.href = "posicaoEditar.html";
+      window.location.href = "posicaoEditarNovo.html";
     }
 // função que redireciona para tela de criação de Posição
     function redirecionarParaCadastroPosicao() {
       window.location.href = "posicaoCriarNovo.html";
     }
+
+  function redirecionarParaEditarPosicao() {
+      window.location.href = "posicaoEditarNovo.html";
+  }
+// função que redireciona para tela de edição de usuários
+    function redirecionarParaEdicaoUsuarios() {
+      window.location.href = "usuarioEditar.html";
+    }
+
+//função para carregar informações do usuário da Sessão
+    function carregarInfoUsuarioAtual(id_user){
+      NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
+      NOME_USUARIO_SIDEBAR.innerHTML = sessionStorage.NOME_USUARIO;
+      EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
+      EMPRESA_USUARIO_FORMULARIO.innerHTML = sessionStorage.ID_EMPRESA;
+
+
+    }
 // Função para carregar a pocições da empresa
     function carregarPosicoes(empresaId) {
-      
       empresaId = sessionStorage.getItem("ID_EMPRESA")
       const apiUrl = `/posicao/${empresaId}`;
   
@@ -27,7 +43,7 @@ NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO
           // Adiciona os cards das posições retornadas pela API
           posicoes.forEach(posicao => {
             const card = document.createElement('div');
-            card.className = 'cargo';
+            card.className = 'box';
             card.onclick = () => abrirPosicao(posicao.id_position);
             card.innerHTML = `
               <span>${posicao.name}</span>
@@ -51,6 +67,20 @@ NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO
     }
 
     function carregarProfissionais(empresaId) {
+      //puxar os ids dos spans
+      const NOME_USUARIO_FORMULARIO = document.getElementById("NOME_USUARIO_FORMULARIO");
+      const NOME_USUARIO_SIDEBAR = document.getElementById("NOME_USUARIO");
+      const EMAIL_USUARIO_FORMULARIO = document.getElementById("EMAIL_USUARIO_FORMULARIO");
+      const EMPRESA_USUARIO_FORMULARIO = document.getElementById("EMPRESA_USUARIO_FORMULARIO");
+      const NIVEL_ACESSO_FORMULARIO = document.getElementById("NIVEL_ACESSO_FORMULARIO");
+      const POSICAO_USUARIO_FORMULARIO = document.getElementById("POSICAO_USUARIO_FORMULARIO");
+
+      // CARREGAR PROFISSIONAL DA SESSÃO NA DIV ACIMA 
+      NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
+      NOME_USUARIO_SIDEBAR.innerHTML = sessionStorage.NOME_USUARIO;
+      EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
+     
+
         // document.getElementById('listaTodosProfissionaisEmpresa').style.display = "block";
       empresaId = sessionStorage.getItem("ID_EMPRESA")
       const apiUrl = `/usuarios/${empresaId}`;
@@ -66,15 +96,22 @@ NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO
             profissionais.forEach(profissional => {
             console.log(`Nome: ${profissional.name_user}, ID Usuário: ${profissional.id_user}`);
             const card = document.createElement('div');
-            card.className = 'cargo';
+            card.className = 'box';
             // card.onclick = () => abrirPosicao(posicao.id_position);
             card.innerHTML = `
               <span>${profissional.name_user}</span>
-              <div>
-                    ${profissional.fk_position}
+              <div class="cargo">
+                    ${profissional.nome_posicao}
               </div>
             `;
             tabela.appendChild(card);
+
+            if(profissional.id_user == sessionStorage.ID_USUARIO){
+              NIVEL_ACESSO_FORMULARIO.innerHTML = profissional.nome_nivel_acesso;
+              POSICAO_USUARIO_FORMULARIO.innerHTML = profissional.nome_posicao;
+              EMPRESA_USUARIO_FORMULARIO.innerHTML = profissional.nome_empresa;
+
+            }
           });
 
           // profissionais.forEach(profissional => {
@@ -100,4 +137,5 @@ NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO
         .catch(error => {
           console.error('Erro ao carregar profissionais:', error);
         });
-    }
+      }
+    

@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRIAR</title>
-    <link rel="stylesheet" href="./../css/posicaoNovo.css">
-    <!-- <link rel="stylesheet" href="../css/posicaoCriarNovo.css"> -->
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/posicaoNovo.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="../assets/icon/logo.jpg" type="image/x-icon">
     <link
@@ -15,22 +14,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
-<!-- <body onload=" atualizarFeed()"> -->
-<style>
-    .sidebar .menu-links li:nth-of-type(3) {
-        background: var(--primary-color);
-        border-radius: 6px;
-    }
-
-    .sidebar .menu-links li:nth-of-type(3) a .text,
-    .sidebar .menu-links li:nth-of-type(3) a .icon {
-        color: white;
-    }
-</style>
-
-<body onload="carregarProfissionais()">
+<body onload="carregarPosicaoEspecifica();carregarProfissionaisDaPosicao();">
 
     <nav class="sidebar close">
         <header>
@@ -40,9 +27,7 @@
                 </span>
 
                 <div class="text header-text">
-
                     <span class="name"> <span id="NOME_USUARIO">Olá!</span></span>
-
                     <span class="profession">#Usuário</span>
                 </div>
             </div>
@@ -107,7 +92,6 @@
         </div>
     </nav>
 
-
     <main class="home">
         <div class="container">
             <div class="adm">
@@ -118,38 +102,36 @@
 
                     <div class="primeira-info">
                         <div class="informacao">
-                            <h3>Usuário: <span id="NOME_USUARIO_FORMULARIO">Heriqi</span>
-                            </h3>
-                            <h3>Nível de Acesso: <span id="NIVEL_ACESSO_FORMULARIO"></span></h3>
-                            <h3>Cargo: <span id="POSICAO_USUARIO_FORMULARIO"></span></h3>
+                            <h3>Usuário: <span id=" NOME_USUARIO_FORMULARIO">Heriqi</span></h3>
+                            <h3>Nível de Acesso: adm</h3>
+                            <h3>Cargo: Gerente</h3>
                         </div>
                     </div>
 
                     <div class="segunda-info">
                         <div class="informacao">
-                            <h3>Email: <span id="EMAIL_USUARIO_FORMULARIO"></span></h3>
-                            <h3>Empresa: <span id="EMPRESA_USUARIO_FORMULARIO"></span></h3>
+                            <h3>Email: </h3>
+                            <h3>Empresa: RouteFinder</h3>
                             <h3>&nbsp;</h3>
                         </div>
                     </div>
                 </div>
-
-
             </div>
+
 
 
             <div class="geral">
                 <div class="box-criar">
                     <div class="container-criar">
                         <div class="cabecalho">
-                            <p>Criar Nova Posição:</p>
+                            <p>Editar Posição:</p>
                         </div>
                         <div class="lista-usuario">
                             <div class="container-lista">
                                 <div class="box">
                                     <div class="form">
                                         <span>Nome da Posição:</span>
-                                        <input id="nome" type="text" placeholder="(Nome)*">
+                                        <input id="NomePosicao" type="text">
                                         <div class="input-border"></div>
 
                                     </div>
@@ -158,7 +140,7 @@
                                 <div class="box">
                                     <div class="form">
                                         <span>Descrição:</span>
-                                        <input id="descricao" type="text" placeholder="(Descrição)*">
+                                        <input id="Descricao" type="text">
                                         <div class="input-border"></div>
 
                                     </div>
@@ -174,46 +156,49 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="list-botao">
+                                <button onclick="editarPosicao()">Salvar</button>
+                                <button onclick="excluirPosicao()" >Excluir</button>
+                            </div>
                         </div>
-                        <button onclick="cadastrarNovaPosicao()" class="button-cadastrar">Cadastrar Posição</button>
                     </div>
                 </div>
 
                 <div class="box-usuario">
                     <div class="container-usuario">
                         <div class="cabecalho">
-                            <p >Usuários: </p>
+                            <p>Usuários: </p>
                             <!-- <img onclick="" src="../assets/imgs/edit.png" alt=""> -->
                         </div>
-                        <div class="lista-usuario" >
+                        <div class="lista-usuario">
                             <div id="tabelaProfissionais" class="container-lista">
                                 <div class="box">
-                                    <input type="checkbox">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                     <span>Giovana</span>
                                     <div class="cargo">Gerente</div>
                                 </div>
                                 <div class="box">
-                                    <input type="checkbox">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                     <span>Bruno</span>
                                     <div class="cargo">Admin</div>
                                 </div>
                                 <div class="box">
-                                    <input type="checkbox">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                     <span>Erick</span>
                                     <div class="cargo">Motorista</div>
                                 </div>
                                 <div class="box">
-                                    <input type="checkbox">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                     <span>Ali</span>
                                     <div class="cargo">Motorista</div>
                                 </div>
                                 <div class="box">
-                                    <input type="checkbox">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                     <span>Leão</span>
                                     <div class="cargo">Motorista</div>
                                 </div>
                                 <div class="box">
-                                    <input type="checkbox">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                     <span>Kaue</span>
                                     <div class="cargo">Motorista</div>
                                 </div>
@@ -224,149 +209,162 @@
             </div>
         </div>
     </main>
+
 </body>
 
 </html>
-<script>
-    NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO
-    function cadastrarNovaPosicao() {
-        //criar nova posição em position e dar update nos usuários dessa posição
+<Script>
+    function excluirPosicao() {
+    const idPosicao = sessionStorage.getItem("ID_POSICAO_ATUAL");
 
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
-        var nomePosicaoVar = nome.value;
-        var descricaoPosicaoVar = descricao.value;
-        var nivelAcessoVar = nivelAcesso.value;
-        var idEmpresaVar = sessionStorage.getItem("ID_EMPRESA");
+    if (!confirm("Tem certeza que deseja excluir esta posição? Essa ação não poderá ser desfeita.")) {
+        return; // Cancela se o usuário desistir
+    }
 
-        // Coleta de Usuários selecionados pelas checkboxes para atrelar eles à posição
-        const checkboxes = document.querySelectorAll('.checkbox-usuario:checked');
-        const usuariosSelecionados = Array.from(checkboxes).map(cb => cb.value);
-
-
-        // Verificando se há algum campo em branco
-        if (
-            nomePosicaoVar == "" ||
-            descricaoPosicaoVar == "" ||
-            nivelAcessoVar == "" ||
-            idEmpresaVar == ""
-        ) {
-            alert("Mensagem de erro para todos os campos em branco")
-            return false;
-        } else {
-            setInterval(sumirMensagem, 5000);
+    fetch(`/posicao/deletarPosicao/${idPosicao}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao excluir a posição');
         }
+        alert('Posição excluída com sucesso!');
+        // Redireciona para a página principal após 1s
+        setTimeout(() => {
+            window.location.href = "./posicaoNovo.html";
+        }, 1000);
+    })
+    .catch(error => {
+        console.error('Erro ao excluir a posição:', error);
+        alert('Erro ao excluir a posição. Verifique se há usuários vinculados.');
+    });
+}
+    var idsProfissionaisJaDaFuncao = [];
+    function carregarPosicaoEspecifica() {
+        const empresaId = sessionStorage.getItem("ID_EMPRESA");
+        const idPosicaoAtual = sessionStorage.getItem("ID_POSICAO_ATUAL");
+        const apiUrl = `/posicao/${empresaId}`;
 
-        //if (senhaVar.length < 8 || !/@|#|%|&/.test(senhaVar) || !/[0-9]/.test(senhaVar)) {
-        //alert("Senha inválida! Ela deve conter pelo menos um número e um caractere especial.");
-        //} else if(senhaVar != confirmacaoSenhaVar){
-        //  alert("As senhas não coincidem. Verifique e tente novamente.");
-        //}
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(posicoes => {
+                const posicao = posicoes.find(p => p.id_position == idPosicaoAtual);
 
-        // Verificando se o código de ativação é de alguma empresa cadastrada
-        //for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-        //  if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        //    idEmpresaVincular = listaEmpresasCadastradas[i].id
-        //    console.log("Código de ativação válido.");
-        //    break;
-        //  } else {
-        //    alert("Mensagem de erro para código inválido")
-        //    finalizarAguardar();
-        //  }
-        // }
-
-        // Enviando o valor da nova input
-        fetch("/posicao/cadastrarPosicao", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/posicao.js
-                nomePosicaoServer: nomePosicaoVar,
-                descricaoPosicaoServer: descricaoPosicaoVar,
-                nivelAcessoServer: nivelAcessoVar,
-                idEmpresaServer: idEmpresaVar,
-                usuariosServer: usuariosSelecionados
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
-
-                    resposta.json().then(json => {
-                        console.log(json);
-                        console.log(JSON.stringify(json));
-
-
-                        alert("Cadastro da Posição realizado com sucesso! ")
-
-                        setTimeout(() => {
-                            window.location = "./posicaoNovo.html";
-                        }, "1000");
-
-                    });
-
-                    limparFormulario();
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro de posição!";
+                if (!posicao) {
+                    console.error("Posição não encontrada!");
+                    return;
                 }
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
 
-        return false;
-
-    }
-    function sumirMensagem() {
-    }
-
-    // Função para carregar a pocições da empresa
-    function carregarProfissionais(empresaId) {
-
-        // CARREGAR PROFISSIONAL DA SESSÃO NA DIV ACIMA 
-      NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
-      NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO;
-      EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
-
-      empresaId = sessionStorage.getItem("ID_EMPRESA")
-      const apiUrl = `/usuarios/${empresaId}`;
-  
-      fetch(apiUrl)
-        .then(response => response.json())
-        .then(profissionais => {
-          const tabela = document.getElementById('tabelaProfissionais');
-
-        // Limpa a tabela antes de adicionar os profissionais
-            tabela.innerHTML = '';
-          // Adiciona os usuários a lista 
-          profissionais.forEach(profissional => {
-            console.log(`Nome: ${profissional.name_user}, ID Usuário: ${profissional.id_user}`);
-            const card = document.createElement('div');
-            card.className = 'box';
-             card.innerHTML = `
-
-              <input type="checkbox" class="checkbox-usuario" value="${profissional.id_user}">
-              <span>${profissional.name_user}</span>
-              <div class="cargo">
-                ${profissional.nome_posicao}
-                </div>
-              `;
-
-              tabela.appendChild(card);
-
-              if(profissional.id_user == sessionStorage.ID_USUARIO){
-              NIVEL_ACESSO_FORMULARIO.innerHTML = profissional.nome_nivel_acesso;
-              POSICAO_USUARIO_FORMULARIO.innerHTML = profissional.nome_posicao;
-              EMPRESA_USUARIO_FORMULARIO.innerHTML = profissional.nome_empresa;}
-          });
+                // Aqui você pode preencher os inputs da tela de edição
+                document.getElementById('NomePosicao').value = posicao.name;
+                document.getElementById('Descricao').value = posicao.description;
+                document.getElementById('nivelAcesso').value = posicao.fk_access_level.toString();
+                // Se tiver mais campos, adiciona aqui
 
             })
             .catch(error => {
-                console.error('Erro ao carregar profissionais:', error);
+                console.error('Erro ao carregar a posição:', error);
             });
     }
-</script>
+        //Carregar Lista de usuários nessa posição
+    function carregarProfissionaisDaPosicao() {
+        const empresaId = sessionStorage.getItem("ID_EMPRESA");
+    const idPosicaoAtual = Number(sessionStorage.getItem("ID_POSICAO_ATUAL"));
+    const apiUrl = `/usuarios/${empresaId}`;
+
+
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(profissionais => {
+            const tabela = document.getElementById('tabelaProfissionais');
+            tabela.innerHTML = ''; // Limpa a tabela
+
+            profissionais.forEach(profissional => {
+                const estaNaPosicao = Number(profissional.fk_position) === idPosicaoAtual;
+
+                const linha = document.createElement('div');
+                linha.className = 'box';
+                linha.innerHTML = `
+                    
+                        <input 
+                            type="checkbox" 
+                            class="checkbox-usuario" 
+                            value="${profissional.id_user}" 
+                            ${estaNaPosicao ? 'checked' : ''}
+                        >
+                     <span>${profissional.name_user}</span>
+                        <div class="cargo">
+                        ${profissional.nome_posicao}
+                        </div>
+                `;
+
+                tabela.appendChild(linha);
+            });
+        })
+        .catch(error => {
+            console.error('Erro ao carregar profissionais:', error);
+        });
+    }
+   
+    // Atualizar todos os campos dessa posição de acordo com a página
+    function editarPosicao() {
+    const empresaId = sessionStorage.getItem("ID_EMPRESA");
+    const idPosicaoAtual = sessionStorage.getItem("ID_POSICAO_ATUAL");
+
+    // Ler dados dos inputs
+    const nomePosicao = document.getElementById('NomePosicao').value;
+    const descricao = document.getElementById('Descricao').value;
+    const nivelAcesso = document.getElementById('nivelAcesso').value;
+
+    // Ler checkboxes selecionadas
+    const checkboxes = document.querySelectorAll('.checkbox-usuario:checked');
+    const usuariosSelecionados = Array.from(checkboxes).map(cb => Number(cb.value));
+
+    // 1️⃣ Atualizar os dados da posição
+    const dadosPosicao = {
+        name: nomePosicao,
+        description: descricao,
+        fk_access_level: Number(nivelAcesso),
+        fk_empresa: Number(empresaId),
+        usuarios: usuariosSelecionados
+    };
+
+    fetch(`/posicao/atualizarPosicao/${idPosicaoAtual}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(dadosPosicao)
+    })
+    .then(response => {
+        // if (!response.ok) {
+        //     throw new Error('Erro ao atualizar a posição');
+        // }
+        console.log('Posição atualizada com sucesso');
+
+        // 2️⃣ Atualizar os usuários da posição
+        return fetch(`/usuarios/atualizarPosicao`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                fk_position: Number(idPosicaoAtual),
+                usuarios: usuariosSelecionados
+            })
+        });
+    })
+    .then(response => {
+        // if (!response.ok) {
+        //     throw new Error('Erro ao atualizar os usuários da posição');
+        // }
+        alert('Posição e usuários atualizados com sucesso!');
+        location.reload();
+          
+          setTimeout(() => {
+            window.location = "./posicaoNovo.html";
+          }, "1000");
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Erro ao atualizar');
+    });
+}
+</Script>

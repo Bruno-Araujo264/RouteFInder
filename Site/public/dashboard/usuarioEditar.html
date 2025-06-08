@@ -4,43 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posições</title>
+    <title>Document</title>
     <link rel="stylesheet" href="../css/posicaoNovo.css">
-    
-
-    <!-- Parte do menu da Dashboard -->
-    <link rel="shortcut icon" href="../assets/icon/logo.jpg" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>MURAL</title>
-
-
-    <link rel="stylesheet" href="../css/mural.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="../assets/icon/logo.jpg" type="image/x-icon">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
-<!-- <body onload=" atualizarFeed()"> -->
-<style>
-    .sidebar .menu-links li:nth-of-type(3) {
-        background: var(--primary-color);
-        border-radius: 6px;
-    }
-
-    .sidebar .menu-links li:nth-of-type(3) a .text,
-    .sidebar .menu-links li:nth-of-type(3) a .icon {
-        color: white;
-    }
-</style>
-
-<body onload="carregarPosicoes();carregarProfissionais()">
+<body onload="carregarPosicaoEspecifica();carregarProfissionaisDaPosicao();">
 
     <nav class="sidebar close">
         <header>
@@ -50,9 +27,7 @@
                 </span>
 
                 <div class="text header-text">
-
-                    <span class="name"> <span id="NOME_USUARIO">Olá!</span></span
-
+                    <span class="name"> <span id="NOME_USUARIO">Olá!</span></span>
                     <span class="profession">#Usuário</span>
                 </div>
             </div>
@@ -117,7 +92,6 @@
         </div>
     </nav>
 
-
     <main class="home">
         <div class="container">
             <div class="adm">
@@ -128,69 +102,105 @@
 
                     <div class="primeira-info">
                         <div class="informacao">
-                            <h3>Usuário: <span id="NOME_USUARIO_FORMULARIO"></span>
-                            </h3>
-                            <h3>Nível de Acesso: <span id="NIVEL_ACESSO_FORMULARIO"></span></h3>
-                            <h3>Cargo: <span id="POSICAO_USUARIO_FORMULARIO"></span></h3>
+                            <h3>Usuário: <span id=" NOME_USUARIO_FORMULARIO">Heriqi</span></h3>
+                            <h3>Nível de Acesso: adm</h3>
+                            <h3>Cargo: Gerente</h3>
                         </div>
                     </div>
 
                     <div class="segunda-info">
                         <div class="informacao">
-                            <h3>Email: <span id="EMAIL_USUARIO_FORMULARIO"></span> </h3>
-                            <h3>Empresa: <span id="EMPRESA_USUARIO_FORMULARIO"></span></h3>
+                            <h3>Email: </h3>
+                            <h3>Empresa: RouteFinder</h3>
                             <h3>&nbsp;</h3>
                         </div>
                     </div>
                 </div>
-
-
             </div>
+
+
 
             <div class="geral">
                 <div class="box-criar">
                     <div class="container-criar">
                         <div class="cabecalho">
-                            <button onclick="redirecionarParaCadastroPosicao()">+ Criar Posição</button>
+                            <p>Editar Posição:</p>
                         </div>
-                        <div class="criar-cargos">
-                            <div class="container-criar-cargo">
-                                <div class="titulo">
-                                    <h1>Cargos</h1>
-                                </div>
-                                <div class="lista-cargos" id="containerCards">
-                                    <div class="box">
-                                        <span>Admin</span>
-                                    </div>
-                                    <div class="box">
-                                        <span>Admin</span>
+                        <div class="lista-usuario">
+                            <div class="container-lista">
+                                <div class="box">
+                                    <div class="form">
+                                        <span>Nome da  usuário:</span>
+                                        <input id="address_input" type="text" placeholder="(Nome)*">
+                                        <div class="input-border"></div>
                                     </div>
                                 </div>
+                                <div class="box">
+                                    <div class="form">
+                                        <span>Email do usuário:</span>
+                                        <input id="address_input" type="text" placeholder="(Nome)*">
+                                        <div class="input-border"></div>
+                                    </div>
+                                </div>
+                                <div class="box">
+                                    <div class="form">
+                                        <span>Cargo do usuário:</span>
+                                        <input id="address_input" type="text" placeholder="(Nome)*">
+                                        <div class="input-border"></div>
+                                    </div>
+                                </div>
+                                <div class="box">
+                                    <div class="form">
+                                        <span>Nível de Acesso:</span>
+                                        <input id="address_input" type="text" placeholder="(Nome)*">
+                                        <div class="input-border"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-botao">
+                                <button>Salvar</button>
+                                <button>Excluir</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-
-            
-
                 <div class="box-usuario">
                     <div class="container-usuario">
                         <div class="cabecalho">
-                             <button onclick="redirecionarParaEditarPosicao()">+ Editar Usuário</button>
+                            <p>Usuários: </p>
+                            <!-- <img onclick="" src="../assets/imgs/edit.png" alt=""> -->
                         </div>
-                        <div class="lista-usuario">
-                            <div id="tabelaProfissionais" class="container-lista">
+                        <div class="lista-usuario" id="tabelaProfissionais">
+                            <div class="container-lista">
                                 <div class="box">
-                                    <span>Giovana Zukauskas</span>
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Giovana</span>
                                     <div class="cargo">Gerente</div>
                                 </div>
                                 <div class="box">
-                                    <span>Bruno da Silva</span>
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Bruno</span>
                                     <div class="cargo">Admin</div>
                                 </div>
                                 <div class="box">
-                                    <span>Erick Lee lalala</span>
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Erick</span>
+                                    <div class="cargo">Motorista</div>
+                                </div>
+                                <div class="box">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Ali</span>
+                                    <div class="cargo">Motorista</div>
+                                </div>
+                                <div class="box">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Leão</span>
+                                    <div class="cargo">Motorista</div>
+                                </div>
+                                <div class="box">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Kaue</span>
                                     <div class="cargo">Motorista</div>
                                 </div>
                             </div>
@@ -200,8 +210,7 @@
             </div>
         </div>
     </main>
-    <script src="../js/posicao.js"></script>
-    <script src="../js/slider.js"></script>
+
 </body>
 
 </html>

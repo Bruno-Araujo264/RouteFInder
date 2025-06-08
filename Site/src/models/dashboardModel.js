@@ -224,10 +224,11 @@ function carregarTotalCongestionamentoDia(){
     return database.executar(instrucaoSql);
 }
 
-function obterMaiorHorarioCongestionamento(region = '') {
+function obterMaiorHorarioCongestionamento(region = "0", rua = undefined) {
     var instrucaoSql
 
-    if(region == "0"){
+    if(region == "0" && rua == undefined ){
+        console.log("Estou no if 1 do maior horário")
         
         instrucaoSql = `SELECT t.date_time
                         FROM timestamp AS t
@@ -240,7 +241,8 @@ function obterMaiorHorarioCongestionamento(region = '') {
                         ORDER BY t.jam_size ASC, t.date_time DESC
                         LIMIT 1;`
 
-    } else {
+    } else if (region != "0" && rua == undefined) {
+        console.log("Estou no if 2 do maior horário")
 
         instrucaoSql = `SELECT t.date_time
         FROM timestamp AS t
@@ -249,31 +251,62 @@ function obterMaiorHorarioCongestionamento(region = '') {
         JOIN passage AS p ON d.fk_passage = p.id_passage 
         WHERE p.region = '${region}'
         AND t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                                            AND NOW() - INTERVAL 9 YEAR
+        ORDER BY t.jam_size DESC, t.date_time DESC
+        LIMIT 1;`
+
+
+    } else if (rua != undefined && region == "0"){
+        console.log("Estou no if 3 do maior horário")
+
+        instrucaoSql = `SELECT t.date_time
+        FROM timestamp AS t
+        JOIN segment AS s ON t.fk_segment = s.id_segment 
+        JOIN direction AS d ON s.fk_direction = d.id_direction
+        JOIN passage AS p ON d.fk_passage = p.id_passage 
+        WHERE p.name_passage LIKE '%${rua}%'
+        AND t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                                            AND NOW() - INTERVAL 9 YEAR
+        ORDER BY t.jam_size DESC, t.date_time DESC
+        LIMIT 1;`
+
+        
+    } else {
+        console.log("Estou no if 4 do maior horário")
+        instrucaoSql = `SELECT t.date_time
+        FROM timestamp AS t
+        JOIN segment AS s ON t.fk_segment = s.id_segment 
+        JOIN direction AS d ON s.fk_direction = d.id_direction
+        JOIN passage AS p ON d.fk_passage = p.id_passage 
+        WHERE p.region = '${region}'
+        AND p.name_passage LIKE '%${rua}%'
+        AND t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
                             AND NOW() - INTERVAL 9 YEAR
-        ORDER BY t.jam_size DESC
+        ORDER BY t.jam_size DESC, t.date_time DESC
         LIMIT 1;`
     }
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function obterMenorHorarioCongestionamento(region = '') {
+function obterMenorHorarioCongestionamento(region = "0", rua = undefined) {
     var instrucaoSql
 
-    if(region == "0"){
+    if(region == "0" && rua == undefined ){
         
         instrucaoSql = `SELECT t.date_time
-            FROM timestamp AS t
-            JOIN segment AS s ON t.fk_segment = s.id_segment 
-            JOIN direction AS d ON s.fk_direction = d.id_direction
-            JOIN passage AS p ON d.fk_passage = p.id_passage 
-            WHERE 
-                t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
-                                AND NOW() - INTERVAL 9 YEAR
-            ORDER BY t.jam_size ASC, t.date_time ASC
-            LIMIT 1;`
+                        FROM timestamp AS t
+                        JOIN segment AS s ON t.fk_segment = s.id_segment 
+                        JOIN direction AS d ON s.fk_direction = d.id_direction
+                        JOIN passage AS p ON d.fk_passage = p.id_passage 
+                        WHERE 
+                             t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                             AND NOW() - INTERVAL 9 YEAR
+                        ORDER BY t.jam_size ASC, t.date_time ASC
+                        LIMIT 1;`
 
-    } else {
+    } else if (region != "0" && rua == undefined) {
 
         instrucaoSql = `SELECT t.date_time
         FROM timestamp AS t
@@ -282,9 +315,38 @@ function obterMenorHorarioCongestionamento(region = '') {
         JOIN passage AS p ON d.fk_passage = p.id_passage 
         WHERE p.region = '${region}'
         AND t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
-                            AND NOW() - INTERVAL 9 YEAR
-        ORDER BY t.jam_size ASC
+                             AND NOW() - INTERVAL 9 YEAR
+        ORDER BY t.jam_size ASC, t.date_time ASC
         LIMIT 1;`
+
+
+    } else if (rua != undefined && region == "0"){
+
+        instrucaoSql = `SELECT t.date_time
+        FROM timestamp AS t
+        JOIN segment AS s ON t.fk_segment = s.id_segment 
+        JOIN direction AS d ON s.fk_direction = d.id_direction
+        JOIN passage AS p ON d.fk_passage = p.id_passage 
+        WHERE p.name_passage LIKE '%${rua}%'
+        AND t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                             AND NOW() - INTERVAL 9 YEAR
+        ORDER BY t.jam_size ASC, t.date_time ASC
+        LIMIT 1;`
+        
+    } else {
+        console.log("Ultimo if")
+        instrucaoSql = `SELECT t.date_time
+        FROM timestamp AS t
+        JOIN segment AS s ON t.fk_segment = s.id_segment 
+        JOIN direction AS d ON s.fk_direction = d.id_direction
+        JOIN passage AS p ON d.fk_passage = p.id_passage 
+        WHERE p.region = '${region}'
+        AND p.name_passage LIKE '%${rua}%'
+        AND t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
+                             AND NOW() - INTERVAL 9 YEAR
+        ORDER BY t.jam_size ASC, t.date_time ASC
+        LIMIT 1;`
+
     }
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

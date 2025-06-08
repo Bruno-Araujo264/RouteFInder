@@ -112,47 +112,47 @@
 
     <section class="home">
         <div class="container">
-                <div class="coluna1">
-                    <div class="cabecalho">
-                        <div class="titulo">
-                            <h1 onclick="obterHorariosCongestionamento('0')">Dashboard Geral</h1>
+            <div class="coluna1">
+                <div class="cabecalho">
+                    <div class="titulo">
+                      <h1 onclick="obterHorariosCongestionamento('0', '')">Dashboard Geral</h1>
+                    </div>
+                    <div class="subpasta">
+                    <div class="titulo">
+                        <h2>Filtros:</h2>
+                    </div>
+                    <div class="regiao">
+                        <div onclick="obterHorariosCongestionamento('NORTE', '')" id="idNorte" class="filtro norte">
+                            <span class="sigla">N</span>
+                            <span class="nome-completa">orte</span>
                         </div>
-                        <div class="subpasta">
-                            <div class="titulo">
-                                <h2>Filtros:</h2>
-                            </div>
-                            <div class="regiao">
-                                <div onclick="obterHorariosCongestionamento('NORTE')"  id="idNorte" class="filtro norte">
-                                    <span class="sigla">N</span>
-                                    <span class="nome-completa">orte</span>
-                                </div>
-                                <div onclick="obterHorariosCongestionamento('OESTE')"  id="idOeste" class="oeste filtro">
-                                    <span class="sigla">O</span>
-                                    <span class="nome-completa">este</span>
-                                </div>
-                                <div onclick="obterHorariosCongestionamento('CENTRO')"  id="idCentro" class="centro filtro">
-                                    <span class="sigla">C</span>
-                                    <span class="nome-completa">entro</span>
-                                </div>
-                                <div onclick="obterHorariosCongestionamento('LESTE')"  id="idLeste" class="leste filtro">
-                                    <span class="sigla">L</span>
-                                    <span class="nome-completa">este</span>
-                                </div>
-                                <div onclick="obterHorariosCongestionamento('SUL')"  id="idSul" class="sul filtro">
-                                    <span class="sigla">S</span>
-                                    <span class="nome-completa">ul</span>
-                                </div>
-                            </div>
+                        <div onclick="obterHorariosCongestionamento('OESTE', '')" id="idOeste" class="oeste filtro">
+                            <span class="sigla">O</span>
+                            <span class="nome-completa">este</span>
                         </div>
-                        <div class="form">
-                            <i class='bx bx-search-alt icon'></i>
-                            <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
-                            <span class="input-border"></span>
+                        <div onclick="obterHorariosCongestionamento('CENTRO', '')" id="idCentro" class="centro filtro">
+                            <span class="sigla">C</span>
+                            <span class="nome-completa">entro</span>
+                        </div>
+                        <div onclick="obterHorariosCongestionamento('LESTE', '')" id="idLeste" class="leste filtro">
+                            <span class="sigla">L</span>
+                            <span class="nome-completa">este</span>
+                        </div>
+                        <div onclick="obterHorariosCongestionamento('SUL', '')" id="idSul" class="sul filtro">
+                            <span class="sigla">S</span>
+                            <span class="nome-completa">ul</span>
                         </div>
                     </div>
-                        <div class="tabelaPico">
-                            <div class="container">
-                                <h2>Distribuição Regional de Ruas Congestionadas</h2>
+                </div>
+                    <div class="form">
+                        <i onclick="obterHorariosCongestionamento('0', corporate_name_input.value)" class='bx bx-search-alt icon'></i>
+                        <input id="corporate_name_input" type="text" placeholder="Nome da empresa">
+                        <span class="input-border"></span>
+                    </div>
+                </div>
+                <div class="tabelaPico">
+                        <div class="container">
+                             <h2>Distribuição Regional de Ruas Congestionadas</h2>
                         <canvas id="canvas_grafico_inferior"></canvas>
                     </div>
                 </div>
@@ -165,13 +165,13 @@
                         <div class="horas box">
                             <div class="container">
                                 <i class="fa-solid fa-square-check"></i>
-                                <p><u id="melhor_horario"></u></p>
+                                <p><u id="melhor_horario">--:--</u></p>
                             </div>
                         </div>
                         <div class="horas box">
                             <div class="container">
                                 <i class="fa-solid fa-circle-xmark"></i>
-                                <p><u id="pior_horario"></u></p>
+                                <p><u id="pior_horario">--:--</u></p>
                             </div>
                         </div>
                     </div>
@@ -183,7 +183,7 @@
                             <h2>Intensidade do Congestionamento</h2>
                             <div class="indicadores">
                                 <div class="box"></div>
-                                <p>1 Milhão de metros<</p>
+                                <p>1 Milhão de metros</p>
                                 <div class="box"></div>
                                 <p>Entre 1 M e 2 M </p>
                                 <div class="box"></div>
@@ -197,7 +197,7 @@
                                 <div class="circulo">
                                 </div>
                             </div>
-                            <canvas id="canvas_grafico_superior" width="300" height="150"></canvas>    
+                            <canvas id="canvas_grafico_superior" width="300" height="150"></canvas>
                         </div>
 
                     </div>
@@ -251,11 +251,12 @@
     NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO
 
     window.onload = function criarGraficos() {
-        carregarRuas("0"),
-        carregarTop5Ruas(),
-        carregarHoraTamRuas(),
-        carregarTotalCongestionamentoDia(),
-        obterHorariosCongestionamento("0")
+            sessionStorage.clear(),
+            carregarRuas(),
+            carregarTop5Ruas(),
+            carregarHoraTamRuas(),
+            carregarTotalCongestionamentoDia(),
+            obterHorariosCongestionamento()
     }
 
     //Listas para gráficos
@@ -266,7 +267,7 @@
     var total_congestionamento = 0
 
     // Carregar ruas congestionadas dia/semana/mes
-    function carregarRuas(region) {
+    function carregarRuas(region = "0") {
     listaRuas = []; // Limpar a lista antes de carregar novas ruas
     fetch(`/dashboard/carregarRuas/${region}`, {
         method: "GET",
@@ -356,35 +357,36 @@
             })
     }
 
-    function carregarTotalCongestionamentoDia(){
+    function carregarTotalCongestionamentoDia() {
         fetch(`/dashboard/carregarTotalCongestionamentoDia`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }})
-            .then(resposta => {
-
-            if (resposta.ok) {
-                console.log("Total congestionamento carregado");
-                return resposta.json();
-                } else {
-                console.log("Houve um erro!");
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).then(dados => {
-            totalCongestionamento = dados
-            total_congestionamento = Number(totalCongestionamento[0].total_congestionamento)
-            if (total_congestionamento < 1000000) {
-            document.getElementById("ponteiro").style.transform = `rotate(-65deg)`;
-            } else if (total_congestionamento >= 1000000 && total_congestionamento < 2000000) {
-                document.getElementById("ponteiro").style.transform = `rotate(0deg)`;
-            } else if (total_congestionamento >= 2000000) {
-                document.getElementById("ponteiro").style.transform = `rotate(65deg)`;
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
             }
         })
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    console.log("Total congestionamento carregado");
+                    return resposta.json();
+                } else {
+                    console.log("Houve um erro!");
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            }).then(dados => {
+                totalCongestionamento = dados
+                total_congestionamento = Number(totalCongestionamento[0].total_congestionamento)
+                if (total_congestionamento < 1000000) {
+                    document.getElementById("ponteiro").style.transform = `rotate(-65deg)`;
+                } else if (total_congestionamento >= 1000000 && total_congestionamento < 2000000) {
+                    document.getElementById("ponteiro").style.transform = `rotate(0deg)`;
+                } else if (total_congestionamento >= 2000000) {
+                    document.getElementById("ponteiro").style.transform = `rotate(65deg)`;
+                }
+            })
     }
 
     const velocimetro = canvas_grafico_superior;
@@ -407,7 +409,7 @@
                 tooltip: { enabled: false },
                 legend: { display: true },
             },
-             responsive: false,
+            responsive: false,
         }
     });
 
@@ -576,7 +578,7 @@ function criarGraficoBarra() {
                 backgroundColor: cores[i % cores.length]
             };
         });
-// Criar gráfico
+        // Criar gráfico
         const graficoLinha = new Chart(canvas_grafico_inferior3, {
             type: 'line',
             data: {
@@ -617,13 +619,13 @@ function criarGraficoBarra() {
     const pasta = document.getElementById("pasta");
 
     const regioes = {
-    idNorte: { nome: "Norte", cor: "#d3d3d3" },
-    idOeste: { nome: "Oeste", cor: "#d3d3d3" },
-    idCentro: { nome: "Centro", cor: "#d3d3d3" },
-    idLeste: { nome: "Leste", cor: "#d3d3d3" },
-    idSul: { nome: "Sul", cor: "#d3d3d3" }
-};
- 
+        idNorte: { nome: "Norte", cor: "#d3d3d3" },
+        idOeste: { nome: "Oeste", cor: "#d3d3d3" },
+        idCentro: { nome: "Centro", cor: "#d3d3d3" },
+        idLeste: { nome: "Leste", cor: "#d3d3d3" },
+        idSul: { nome: "Sul", cor: "#d3d3d3" }
+    };
+
     Object.entries(regioes).forEach(([id, cor]) => {
         const div = document.getElementById(id);
         if (div) {
@@ -638,14 +640,36 @@ function criarGraficoBarra() {
     });
 
 
-    function obterHorariosCongestionamento(region){
-        carregarRuas(region)
-        obterMaiorHorarioCongestionamento(region)
-        obterMenorHorarioCongestionamento(region)
+
+    function obterHorariosCongestionamento(region = "0", rua = "") {
+        rua = rua.toUpperCase()
+        carregarRuas(region, rua)
+        obterMaiorHorarioCongestionamento(region, rua)
+        obterMenorHorarioCongestionamento(region, rua)
     }
 
-    function obterMaiorHorarioCongestionamento(region) {
-        fetch(`/dashboard/obterMaiorHorarioCongestionamento/${region}`, {
+    function obterMaiorHorarioCongestionamento(region = "0", rua = "") {
+        
+        const savedRegion = sessionStorage.getItem("REGION");
+        const savedRua = sessionStorage.getItem("RUA");
+
+
+        if (region === "0" && savedRegion) {
+            region = savedRegion;
+        } else if (region !== "0") {
+            sessionStorage.setItem("REGION", region);
+        }
+            
+        if (rua.trim() === "" && savedRua) {
+            rua = savedRua;
+        } else if (rua.trim() !== "") {
+            sessionStorage.setItem("RUA", rua.trim());
+        }
+        var url = `/dashboard/obterMaiorHorarioCongestionamento/${region}`
+        if (rua !== "") {
+            url += `?rua=${encodeURIComponent(rua)}`;
+        }
+        fetch(url, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -655,9 +679,13 @@ function criarGraficoBarra() {
 
                 if (resposta.ok) {
                     resposta.json().then(json => {
+                        if(json.length == 0){
+                            alert(`Região e Rua não são compatíveis`)
+                            return
+                        }
                         const dataHora = new Date(json[0].date_time);
                         const horarioFormatado = dataHora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                        document.getElementById("melhor_horario").innerHTML = horarioFormatado;
+                        document.getElementById("pior_horario").innerHTML = horarioFormatado;
                     })
                 } else {
                     console.log("Houve um erro!");
@@ -669,8 +697,28 @@ function criarGraficoBarra() {
             })
     }
 
-    function obterMenorHorarioCongestionamento(region) {
-        fetch(`/dashboard/obterMenorHorarioCongestionamento/${region}`, {
+    function obterMenorHorarioCongestionamento(region = "0", rua = "") {
+        
+        const savedRegion = sessionStorage.getItem("REGION");
+        const savedRua = sessionStorage.getItem("RUA");
+
+
+        if (region === "0" && savedRegion) {
+            region = savedRegion;
+        } else if (region !== "0") {
+            sessionStorage.setItem("REGION", region);
+        }
+
+        if (rua.trim() === "" && savedRua) {
+            rua = savedRua;
+        } else if (rua.trim() !== "") {
+            sessionStorage.setItem("RUA", rua.trim());
+        }
+        var url = `/dashboard/obterMenorHorarioCongestionamento/${region}`
+        if (rua !== "") {
+            url += `?rua=${encodeURIComponent(rua)}`;
+        }
+        fetch(url, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -680,9 +728,13 @@ function criarGraficoBarra() {
 
                 if (resposta.ok) {
                     resposta.json().then(json => {
+                        if(json.length == 0){
+                            alert(`Região e Rua não são compatíveis`)
+                            return
+                        }
                         const dataHora = new Date(json[0].date_time);
                         const horarioFormatado = dataHora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                        document.getElementById("pior_horario").innerHTML = horarioFormatado;
+                        document.getElementById("melhor_horario").innerHTML = horarioFormatado;
                     })
                 } else {
                     console.log("Houve um erro!");
