@@ -326,6 +326,7 @@ body.dark .switch::before {
     justify-content: center;
     width: 99%;
     height: 100%;
+    margin: auto;
 }
 
 .adm {
