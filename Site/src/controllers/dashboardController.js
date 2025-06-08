@@ -41,12 +41,35 @@ function carregarTotalCongestionamentoDia(req, res) {
                 console.log(`Resultados: ${JSON.stringify(resultado)}`); 
                 res.json(resultado);
                 }
-        );
+        )
+}
+function obterMaiorHorarioCongestionamento(req, res){
+    const region = req.params.region
+    dashboardModel.obterMaiorHorarioCongestionamento(region)
+        .then(
+            function (resultado) {
+                console.log(`Resultados: ${JSON.stringify(resultado)}`); 
+                res.json(resultado);
+                }
+        )
+}
+
+function obterMenorHorarioCongestionamento(req, res){
+    const region = req.params.region
+    dashboardModel.obterMenorHorarioCongestionamento(region)
+        .then(
+            function (resultado) {
+                console.log(`Resultados: ${JSON.stringify(resultado)}`); 
+                res.json(resultado);
+                }
+        )
 }
 
 module.exports = {
     carregarRuas,
     carregarTop5Ruas,
     carregarHoraTamRuas,
-    carregarTotalCongestionamentoDia
+    carregarTotalCongestionamentoDia,
+    obterMaiorHorarioCongestionamento,
+    obterMenorHorarioCongestionamento
 }

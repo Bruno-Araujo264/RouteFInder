@@ -167,19 +167,46 @@
             </div>
 
             <div class="coluna2">
+                <div class="subpasta">
+                    <div class="titulo">
+                        <h2>Filtros:</h2>
+                    </div>
+                    <div class="regiao">
+                        <div onclick="obterHorariosCongestionamento('NORTE')" id="idNorte" class="filtro norte">
+                            <span class="sigla">N</span>
+                            <span class="nome-completa">orte</span>
+                        </div>
+                        <div onclick="obterHorariosCongestionamento('OESTE')" id="idOeste" class="oeste filtro">
+                            <span class="sigla">O</span>
+                            <span class="nome-completa">este</span>
+                        </div>
+                        <div onclick="obterHorariosCongestionamento('CENTRO')" id="idCentro" class="centro filtro">
+                            <span class="sigla">C</span>
+                            <span class="nome-completa">entro</span>
+                        </div>
+                        <div onclick="obterHorariosCongestionamento('LESTE')" id="idLeste" class="leste filtro">
+                            <span class="sigla">L</span>
+                            <span class="nome-completa">este</span>
+                        </div>
+                        <div onclick="obterHorariosCongestionamento('SUL')" id="idSul" class="sul filtro">
+                            <span class="sigla">S</span>
+                            <span class="nome-completa">ul</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="horario">
                     <div class="container">
                         <h2>Melhor e Pior Horário Congestionadas</h2>
                         <div class="horas box">
                             <div class="container">
                                 <i class="fa-solid fa-square-check"></i>
-                                <p><u>15:00</u></p>
+                                <p><u id="melhor_horario">15:00</u></p>
                             </div>
                         </div>
                         <div class="horas box">
                             <div class="container">
                                 <i class="fa-solid fa-circle-xmark"></i>
-                                <p><u>08:00</u></p>
+                                <p><u id="pior_horario">08:00</u></p>
                             </div>
                         </div>
                     </div>
@@ -258,11 +285,12 @@
 
     NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO
 
-    window.onload = function criarGraficos(){
+    window.onload = function criarGraficos() {
         carregarRuas(),
         carregarTop5Ruas(),
         carregarHoraTamRuas(),
-        carregarTotalCongestionamentoDia()
+        carregarTotalCongestionamentoDia(),
+        obterHorariosCongestionamento("0")
     }
 
     //Listas para gráficos
@@ -273,92 +301,93 @@
     var total_congestionamento = 0
 
     // Carregar ruas congestionadas dia/semana/mes
-    function carregarRuas(){
-    fetch(`/dashboard/carregarRuas`, {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json"
-    }})
-        .then(resposta => {
+    function carregarRuas() {
+        fetch(`/dashboard/carregarRuas`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(resposta => {
 
-        if (resposta.ok) {
-            console.log("Ruas carregadas");
-            return resposta.json();
-            } else {
-            console.log("Houve um erro!");
-            resposta.text().then(texto => {
-                console.error(texto);
-            });
-        }
+                if (resposta.ok) {
+                    console.log("Ruas carregadas");
+                    return resposta.json();
+                } else {
+                    console.log("Houve um erro!");
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
 
-    }).then(dados => {
-        listaRuas.push(dados)
-        criarGraficoBarra()
-    })
+            }).then(dados => {
+                listaRuas.push(dados)
+                criarGraficoBarra()
+            })
     }
 
     // Carregar top 5 ruas
-    function carregarTop5Ruas(){
-    fetch(`/dashboard/carregarTop5Ruas`, {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json"
-    }})
-        .then(resposta => {
-
-        if (resposta.ok) {
-            console.log("Top 5 ruas carregadas");
-            return resposta.json();
-            } else {
-            console.log("Houve um erro!");
-            resposta.text().then(texto => {
-                console.error(texto);
-            });
-        }
-
-    }).then(dados => {
-        top5RuasCongestionadas.push(dados)
-        //TOP 1
-        ptop1.innerHTML = top5RuasCongestionadas[0][0].name_passage
-        divtop1.innerHTML= top5RuasCongestionadas[0][0].region
-        //TOP 2
-        ptop2.innerHTML = top5RuasCongestionadas[0][1].name_passage
-        divtop2.innerHTML= top5RuasCongestionadas[0][1].region
-        //TOP 3
-        ptop3.innerHTML = top5RuasCongestionadas[0][2].name_passage
-        divtop3.innerHTML= top5RuasCongestionadas[0][2].region
-        //TOP 4
-        ptop4.innerHTML = top5RuasCongestionadas[0][3].name_passage
-        divtop4.innerHTML= top5RuasCongestionadas[0][3].region
-        //TOP 5
-        ptop5.innerHTML = top5RuasCongestionadas[0][4].name_passage
-        divtop5.innerHTML= top5RuasCongestionadas[0][4].region
-    })
-}
-
-    //Carregar Horário e tamanho do congestionamento de acordo com as top 5 ruas
-    function carregarHoraTamRuas(){
-        fetch(`/dashboard/carregarHoraTamRuas`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }})
+    function carregarTop5Ruas() {
+        fetch(`/dashboard/carregarTop5Ruas`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
             .then(resposta => {
 
-            if (resposta.ok) {
-                console.log("Horarios e jam_sizes carregados");
-                return resposta.json();
+                if (resposta.ok) {
+                    console.log("Top 5 ruas carregadas");
+                    return resposta.json();
                 } else {
-                console.log("Houve um erro!");
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
+                    console.log("Houve um erro!");
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+            }).then(dados => {
+                top5RuasCongestionadas.push(dados)
+                //TOP 1
+                ptop1.innerHTML = top5RuasCongestionadas[0][0].name_passage
+                divtop1.innerHTML = top5RuasCongestionadas[0][0].region
+                //TOP 2
+                ptop2.innerHTML = top5RuasCongestionadas[0][1].name_passage
+                divtop2.innerHTML = top5RuasCongestionadas[0][1].region
+                //TOP 3
+                ptop3.innerHTML = top5RuasCongestionadas[0][2].name_passage
+                divtop3.innerHTML = top5RuasCongestionadas[0][2].region
+                //TOP 4
+                ptop4.innerHTML = top5RuasCongestionadas[0][3].name_passage
+                divtop4.innerHTML = top5RuasCongestionadas[0][3].region
+                //TOP 5
+                ptop5.innerHTML = top5RuasCongestionadas[0][4].name_passage
+                divtop5.innerHTML = top5RuasCongestionadas[0][4].region
+            })
+    }
+    //Carregar Horário e tamanho do congestionamento de acordo com as top 5 ruas
+    function carregarHoraTamRuas() {
+        fetch(`/dashboard/carregarHoraTamRuas`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
             }
-
-        }).then(dados => {
-            listaHoraTamRua.push(dados)
-            criarGraficoLinha()
         })
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    console.log("Horarios e jam_sizes carregados");
+                    return resposta.json();
+                } else {
+                    console.log("Houve um erro!");
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            }).then(dados => {
+                listaHoraTamRua.push(dados)
+                criarGraficoLinha()
+            })
     }
 
     function carregarTotalCongestionamentoDia(){
@@ -415,202 +444,203 @@
                 tooltip: { enabled: false },
                 legend: { display: true },
             },
-            responsive: false,
+             responsive: false,
         }
     });
-    
+
     function criarGraficoBarra() {
-    const graficoBarra = canvas_grafico_inferior;
-    const dados = listaRuas[0] || [];
+        const graficoBarra = canvas_grafico_inferior;
+        const dados = listaRuas[0] || [];
 
-    const labels = [];
-    const dadosDia = {};
-    const dadosSemana = {};
-    const dadosMes = {};
+        const labels = [];
+        const dadosDia = {};
+        const dadosSemana = {};
+        const dadosMes = {};
 
-    // Organiza os dados por período e junta os nomes das regiões
-    dados.forEach(item => {
-        if (!labels.includes(item.region)) {
-            labels.push(item.region);
-        }
+        // Organiza os dados por período e junta os nomes das regiões
+        dados.forEach(item => {
+            if (!labels.includes(item.region)) {
+                labels.push(item.region);
+            }
 
-        if (item.periodo === 'Dia') {
-            dadosDia[item.region] = item.total_ruas;
-        } else if (item.periodo === 'Semana') {
-            dadosSemana[item.region] = item.total_ruas;
-        } else if (item.periodo === 'Mês') {
-            dadosMes[item.region] = item.total_ruas;
-        }
-    });
+            if (item.periodo === 'Dia') {
+                dadosDia[item.region] = item.total_ruas;
+            } else if (item.periodo === 'Semana') {
+                dadosSemana[item.region] = item.total_ruas;
+            } else if (item.periodo === 'Mês') {
+                dadosMes[item.region] = item.total_ruas;
+            }
+        });
 
-    const dia = labels.map(region => dadosDia[region] || 0);
-    const semana = labels.map(region => dadosSemana[region] || 0);
-    const mes = labels.map(region => dadosMes[region] || 0);
+        const dia = labels.map(region => dadosDia[region] || 0);
+        const semana = labels.map(region => dadosSemana[region] || 0);
+        const mes = labels.map(region => dadosMes[region] || 0);
 
-    const barChart = new Chart(graficoBarra, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: "Dia",
-                    data: dia,
-                    backgroundColor: '#28bbff',
-                    borderWidth: 2,
-                    borderRadius: 6,
-                    borderColor: '#fff',
-                },
-                {
-                    label: "Semana",
-                    data: semana,
-                    backgroundColor: '#288cff',
-                    borderWidth: 2,
-                    borderRadius: 6,
-                    borderColor: '#fff',
-                },
-                {
-                    label: "Mês",
-                    data: mes,
-                    backgroundColor: '#285aff',
-                    borderWidth: 2,
-                    borderRadius: 6,
-                    borderColor: '#fff',
-                }
-            ]
-        },
-        options: {
-            responsive: false,
-            scales: {
-                x: {
-                    grid: { color: 'gray' },
-                    ticks: { color: 'white' }
-                },
-                y: {
-                    beginAtZero: true,
-                    grid: { color: '#d3d3d3' },
-                    ticks: { color: 'white' }
-                }
+        const barChart = new Chart(graficoBarra, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: "Dia",
+                        data: dia,
+                        backgroundColor: '#28bbff',
+                        borderWidth: 2,
+                        borderRadius: 6,
+                        borderColor: '#fff',
+                    },
+                    {
+                        label: "Semana",
+                        data: semana,
+                        backgroundColor: '#288cff',
+                        borderWidth: 2,
+                        borderRadius: 6,
+                        borderColor: '#fff',
+                    },
+                    {
+                        label: "Mês",
+                        data: mes,
+                        backgroundColor: '#285aff',
+                        borderWidth: 2,
+                        borderRadius: 6,
+                        borderColor: '#fff',
+                    }
+                ]
             },
-            plugins: {
-                legend: {
-                    display: true,
-                    labels: { color: 'white' }
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        grid: { color: 'gray' },
+                        ticks: { color: 'white' }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#d3d3d3' },
+                        ticks: { color: 'white' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: { color: 'white' }
+                    }
                 }
             }
-        }
-    });
+        });
     }
-    // const graficoPolarArea = canvas_grafico_inferior2;
-    // const polarAreaChart = new Chart(graficoPolarArea, {
-    //     type: 'polarArea',
-    //     data: {
-    //         labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
-    //         datasets: [{
-    //             label: 'My Dataset',
-    //             data: [11, 16, 7, 14, 9],
-    //             backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#E16A54', '#78A55A'],
-    //             borderWidth: 1,
-    //         }]
-    //     },
-    //     options: {
-    //         plugins: {
-    //             legend: {
-    //                 display: true,
-    //                 position: 'right',
-    //                 labels: {
-    //                     color: 'white',
-    //                     boxWidth: 20,
-    //                     boxHeight: 20,
-    //                     borderRadius: 10,
-    //                     borderWidth: 1
-    //                 }
-    //             }
-    //         },
-    //         scales: {
-    //             r: { // Para gráficos polarArea
-    //                 grid: {
-    //                     color: '#d3d3d3'
-    //                 },
-    //                 ticks: {
-    //                     color: 'white',
-    //                     backdropColor: '#242526' // <-- Remove o fundo dos números
-    //                 }
-    //             }
-    //         }
-    //     }
-    // });
 
-function criarGraficoLinha() {
-    const dados = listaHoraTamRua[0]; // pega os dados retornados da API
-    const horasSet = new Set();
-    const viasMap = {};
-
-    // Organizar dados
-    dados.forEach(item => {
-        const via = item.name_passage;
-        const hora = item.hora;
-        const valor = item.avg_jam_size;
-
-        horasSet.add(hora);
-
-        if (!viasMap[via]) {
-            viasMap[via] = {};
-        }
-
-        viasMap[via][hora] = valor;
-    });
-
-    // Ordenar as horas
-    const labels = Array.from(horasSet).sort();
-
-    // Criar datasets por via
-    const datasets = Object.keys(viasMap).map((via, i) => {
-        const data = labels.map(hora => viasMap[via][hora] ?? null); // null se não existir valor
-        const cores = ['#ff5101', '#ff7301', '#ff9901', '#ffbb00', '#ffd000'];
-        return {
-            label: via,
-            data: data,
-            borderWidth: 3,
-            borderColor: cores[i % cores.length],
-            backgroundColor: cores[i % cores.length]
-        };
-    });
-
-    // Criar gráfico
-    const graficoLinha = new Chart(canvas_grafico_inferior3, {
-        type: 'line',
+    const graficoPolarArea = canvas_grafico_inferior2;
+    const polarAreaChart = new Chart(graficoPolarArea, {
+        type: 'polarArea',
         data: {
-            labels: labels,
-            datasets: datasets
+            labels: ['Norte', 'Oeste', 'Sul', 'Leste', 'Centro'],
+            datasets: [{
+                label: 'My Dataset',
+                data: [11, 16, 7, 14, 9],
+                backgroundColor: ['#FFE862', '#E16A54', '#78A55A', '#E16A54', '#78A55A'],
+                borderWidth: 1,
+            }]
         },
         options: {
-            responsive: false,
-            scales: {
-                x: {
-                    grid: { color: '#d3d3d3' },
-                    ticks: { color: 'white' }
-                },
-                y: {
-                    beginAtZero: true,
-                    grid: { color: '#d3d3d3' },
-                    ticks: { color: 'white' }
-                }
-            },
             plugins: {
-                title: {
-                    color: '#DBDBDB',
-                    display: true,
-                    text: 'Linha do Tempo do Trânsito nas Vias Mais Impactadas',
-                    font: { family: 'Afacad', size: 20 },
                 legend: {
                     display: true,
-                    position: 'top',
-                    labels: { color: 'white' }
+                    position: 'right',
+                    labels: {
+                        color: 'white',
+                        boxWidth: 20,
+                        boxHeight: 20,
+                        borderRadius: 10,
+                        borderWidth: 1
+                    }
                 }
-            }
+            },
+            scales: {
+                r: { // Para gráficos polarArea
+                    grid: {
+                        color: '#d3d3d3'
+                    },
+                    ticks: {
+                        color: 'white',
+                        backdropColor: '#242526' // <-- Remove o fundo dos números
+                    }
+                }
             }
         }
     });
+
+    function criarGraficoLinha() {
+        const dados = listaHoraTamRua[0]; // pega os dados retornados da API
+        const horasSet = new Set();
+        const viasMap = {};
+
+        // Organizar dados
+        dados.forEach(item => {
+            const via = item.name_passage;
+            const hora = item.hora;
+            const valor = item.avg_jam_size;
+
+            horasSet.add(hora);
+
+            if (!viasMap[via]) {
+                viasMap[via] = {};
+            }
+
+            viasMap[via][hora] = valor;
+        });
+
+        // Ordenar as horas
+        const labels = Array.from(horasSet).sort();
+
+        // Criar datasets por via
+        const datasets = Object.keys(viasMap).map((via, i) => {
+            const data = labels.map(hora => viasMap[via][hora] ?? null); // null se não existir valor
+            const cores = ['#ff5101', '#ff7301', '#ff9901', '#ffbb00', '#ffd000'];
+            return {
+                label: via,
+                data: data,
+                borderWidth: 3,
+                borderColor: cores[i % cores.length],
+                backgroundColor: cores[i % cores.length]
+            };
+        });
+// Criar gráfico
+        const graficoLinha = new Chart(canvas_grafico_inferior3, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: datasets
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    x: {
+                        grid: { color: '#d3d3d3' },
+                        ticks: { color: 'white' }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#d3d3d3' },
+                        ticks: { color: 'white' }
+                    }
+                },
+                plugins: {
+                    title: {
+                        color: '#DBDBDB',
+                        display: true,
+                        text: 'Linha do Tempo do Trânsito nas Vias Mais Impactadas',
+                        font: { family: 'Afacad', size: 20 },
+                        padding: { top: 0, bottom: 30 }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: { color: 'white' }
+                    }
+                }
+            }
+        });
     }
 
     const pasta = document.getElementById("pasta");
@@ -622,22 +652,78 @@ function criarGraficoLinha() {
     idLeste: { nome: "Leste", cor: "#d3d3d3" },
     idSul: { nome: "Sul", cor: "#d3d3d3" }
 };
+ 
+    Object.entries(regioes).forEach(([id, cor]) => {
+        const div = document.getElementById(id);
+        if (div) {
+            div.addEventListener("click", () => {
+                id_regiao.style.color = cor;
+                id_regiao.style.transition = "color 0.4s ease-out";
+                id_regiao.innerHTML = p_regiao[Object.keys(regioes).indexOf(id)];
 
-Object.entries(regioes).forEach(([id, { nome, cor }]) => {
-    const div = document.getElementById(id);
-    if (div) {
-        div.addEventListener("click", () => {
-            id_regiao.style.color = cor;
-            id_regiao.style.transition = "color 0.4s ease-out";
-            id_regiao.innerHTML = nome;
-            console.log(`Eu cliquei em ${nome}`);
-        });
-    }
-});
+                console.log(`Eu cliquei em ${id.replace("id", "")}`);
+            });
+        }
+    });
 
     // Detecta a troca de tema
     const toggleSwitch = document.querySelector('.toggle-switch');
     toggleSwitch.addEventListener('click', () => {
         atualizarCoresDoGrafico();
     });
+
+    function obterHorariosCongestionamento(region){
+        obterMaiorHorarioCongestionamento(region)
+        obterMenorHorarioCongestionamento(region)
+    }
+
+    function obterMaiorHorarioCongestionamento(region) {
+        fetch(`/dashboard/obterMaiorHorarioCongestionamento/${region}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        const dataHora = new Date(json[0].date_time);
+                        const horarioFormatado = dataHora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                        document.getElementById("melhor_horario").innerHTML = horarioFormatado;
+                    })
+                } else {
+                    console.log("Houve um erro!");
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            })
+    }
+
+    function obterMenorHorarioCongestionamento(region) {
+        fetch(`/dashboard/obterMenorHorarioCongestionamento/${region}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        const dataHora = new Date(json[0].date_time);
+                        const horarioFormatado = dataHora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                        document.getElementById("pior_horario").innerHTML = horarioFormatado;
+                    })
+                } else {
+                    console.log("Houve um erro!");
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            })
+    }
 </script>

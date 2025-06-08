@@ -95,6 +95,7 @@ function carregarTop5Ruas(){
     return database.executar(instrucaoSql);
 }
 
+
 function carregarHoraTamRuas(){
     console.log("Estou carregando as top 5 ruas mais congestionadas");
     
@@ -160,6 +161,63 @@ function carregarTotalCongestionamentoDia(){
             AND 
             NOW() - INTERVAL 9 YEAR;
     `;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function obterMaiorHorarioCongestionamento(region = '') {
+    var instrucaoSql
+
+    if(region == "0"){
+        
+        instrucaoSql = `SELECT t.date_time
+                        FROM timestamp AS t
+                        JOIN segment AS s ON t.fk_segment = s.id_segment 
+                        JOIN direction AS d ON s.fk_direction = d.id_direction
+                        JOIN passage AS p ON d.fk_passage = p.id_passage 
+                        ORDER BY t.jam_size ASC, t.date_time DESC
+                        LIMIT 1;`
+
+    } else {
+
+        instrucaoSql = `SELECT t.date_time
+        FROM timestamp AS t
+        JOIN segment AS s ON t.fk_segment = s.id_segment 
+        JOIN direction AS d ON s.fk_direction = d.id_direction
+        JOIN passage AS p ON d.fk_passage = p.id_passage 
+        WHERE p.region = '${region}'
+        ORDER BY t.jam_size DESC
+        LIMIT 1;`
+    }
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function obterMenorHorarioCongestionamento(region = '') {
+    var instrucaoSql
+
+    if(region == "0"){
+        
+        instrucaoSql = `SELECT t.date_time
+            FROM timestamp AS t
+            JOIN segment AS s ON t.fk_segment = s.id_segment 
+            JOIN direction AS d ON s.fk_direction = d.id_direction
+            JOIN passage AS p ON d.fk_passage = p.id_passage 
+            ORDER BY t.jam_size ASC, t.date_time ASC
+            LIMIT 1;`
+
+    } else {
+
+        instrucaoSql = `SELECT t.date_time
+        FROM timestamp AS t
+        JOIN segment AS s ON t.fk_segment = s.id_segment 
+        JOIN direction AS d ON s.fk_direction = d.id_direction
+        JOIN passage AS p ON d.fk_passage = p.id_passage 
+        WHERE p.region = '${region}'
+        ORDER BY t.jam_size ASC
+        LIMIT 1;`
+    }
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -168,5 +226,7 @@ module.exports = {
     carregarRuas,
     carregarTop5Ruas,
     carregarHoraTamRuas,
-    carregarTotalCongestionamentoDia
+    carregarTotalCongestionamentoDia,
+    obterMaiorHorarioCongestionamento,
+    obterMenorHorarioCongestionamento
 };
