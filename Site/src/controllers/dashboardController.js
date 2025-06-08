@@ -1,15 +1,22 @@
 var dashboardModel = require("../models/dashboardModel");
 
 function carregarRuas(req, res) {
+    const region = req.params.region;
 
-    dashboardModel.carregarRuas()
-        .then(
-            function (resultado) {
-                console.log(`Resultados: ${JSON.stringify(resultado)}`); 
+    
+        dashboardModel.carregarRuas(region)
+            .then(resultado => {
+                console.log(`Resultados (com filtro ${region}): ${JSON.stringify(resultado)}`);
                 res.json(resultado);
-                }
-        );
+            })
+            .catch(erro => {
+                console.error(erro);
+                res.status(500).send(erro);
+            });
 }
+
+
+
 
 function carregarTop5Ruas(req, res) {
 
@@ -43,6 +50,7 @@ function carregarTotalCongestionamentoDia(req, res) {
                 }
         )
 }
+
 function obterMaiorHorarioCongestionamento(req, res){
     const region = req.params.region
     dashboardModel.obterMaiorHorarioCongestionamento(region)
