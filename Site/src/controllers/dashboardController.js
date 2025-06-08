@@ -12,8 +12,8 @@ function carregarRuas(req, res) {
 }
 
 function carregarTop5Ruas(req, res) {
-
-    dashboardModel.carregarTop5Ruas()
+    const rua = req.query.rua
+    dashboardModel.carregarTop5Ruas(rua)
         .then(
             function (resultado) {
                 console.log(`Resultados: ${JSON.stringify(resultado)}`); 
