@@ -326,7 +326,6 @@ body.dark .switch::before {
     justify-content: center;
     width: 99%;
     height: 100%;
-    margin: auto;
 }
 
 .adm {
@@ -557,6 +556,16 @@ body.dark .switch::before {
     display: flex;
     align-items: center;
     /* justify-content: center; */
+    width: 60%;
+    height: 100%;
+    text-indent: 35px;
+    text-wrap: nowrap;
+}
+
+.box-usuario .lista-usuario .container-lista .box span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 60%;
     height: 100%;
     text-indent: 35px;

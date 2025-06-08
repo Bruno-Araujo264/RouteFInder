@@ -9,6 +9,10 @@ NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO
     function redirecionarParaCadastroPosicao() {
       window.location.href = "posicaoCriarNovo.html";
     }
+
+    function redirecionarParaEditarPosicao() {
+      window.location.href = "posicaoEditarNovo.html";
+    }
 // Função para carregar a pocições da empresa
     function carregarPosicoes(empresaId) {
       
