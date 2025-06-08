@@ -118,7 +118,7 @@
 
                     <div class="primeira-info">
                         <div class="informacao">
-                            <h3>Usuário: <span id=" NOME_USUARIO_FORMULARIO">Heriqi</span>
+                            <h3>Usuário: <span id="NOME_USUARIO_FORMULARIO">Heriqi</span>
                             </h3>
                             <h3>Nível de Acesso: <span id="NIVEL_ACESSO_FORMULARIO"></span></h3>
                             <h3>Cargo: <span id="POSICAO_USUARIO_FORMULARIO"></span></h3>
@@ -128,7 +128,7 @@
                     <div class="segunda-info">
                         <div class="informacao">
                             <h3>Email: <span id="EMAIL_USUARIO_FORMULARIO"></span></h3>
-                            <h3>Empresa: <span id="POSICAO_USUARIO_FORMULARIO"></span></h3>
+                            <h3>Empresa: <span id="EMPRESA_USUARIO_FORMULARIO"></span></h3>
                             <h3>&nbsp;</h3>
                         </div>
                     </div>
@@ -149,7 +149,7 @@
                                 <div class="box">
                                     <div class="form">
                                         <span>Nome da Posição:</span>
-                                        <input id="address_input" type="text" placeholder="(Nome)*">
+                                        <input id="nome" type="text" placeholder="(Nome)*">
                                         <div class="input-border"></div>
 
                                     </div>
@@ -158,7 +158,7 @@
                                 <div class="box">
                                     <div class="form">
                                         <span>Descrição:</span>
-                                        <input id="address_input" type="text" placeholder="(Descrição)*">
+                                        <input id="descricao" type="text" placeholder="(Descrição)*">
                                         <div class="input-border"></div>
 
                                     </div>
@@ -185,8 +185,8 @@
                             <p >Usuários: </p>
                             <!-- <img onclick="" src="../assets/imgs/edit.png" alt=""> -->
                         </div>
-                        <div class="lista-usuario" id="tabelaProfissionais">
-                            <div class="container-lista">
+                        <div class="lista-usuario" >
+                            <div id="tabelaProfissionais" class="container-lista">
                                 <div class="box">
                                     <input type="checkbox">
                                     <span>Giovana</span>
@@ -329,7 +329,7 @@
 
         // CARREGAR PROFISSIONAL DA SESSÃO NA DIV ACIMA 
       NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
-      NOME_USUARIO_SIDEBAR.innerHTML = sessionStorage.NOME_USUARIO;
+      NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO;
       EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
 
       empresaId = sessionStorage.getItem("ID_EMPRESA")
@@ -346,13 +346,13 @@
           profissionais.forEach(profissional => {
             console.log(`Nome: ${profissional.name_user}, ID Usuário: ${profissional.id_user}`);
             const card = document.createElement('div');
-            card.className = 'cargo';
+            card.className = 'box';
              card.innerHTML = `
 
               <input type="checkbox" class="checkbox-usuario" value="${profissional.id_user}">
               <span>${profissional.name_user}</span>
-              <div>
-                ${profissional.fk_position}
+              <div class="cargo">
+                ${profissional.nome_posicao}
                 </div>
               `;
 

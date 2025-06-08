@@ -11,6 +11,7 @@
 
   function redirecionarParaEditarPosicao() {
       window.location.href = "posicaoEditarNovo.html";
+  }
 // função que redireciona para tela de edição de usuários
     function redirecionarParaEdicaoUsuarios() {
       window.location.href = "usuarioEditar.html";
@@ -42,7 +43,7 @@
           // Adiciona os cards das posições retornadas pela API
           posicoes.forEach(posicao => {
             const card = document.createElement('div');
-            card.className = 'cargo';
+            card.className = 'box';
             card.onclick = () => abrirPosicao(posicao.id_position);
             card.innerHTML = `
               <span>${posicao.name}</span>
@@ -66,6 +67,13 @@
     }
 
     function carregarProfissionais(empresaId) {
+      //puxar os ids dos spans
+      const NOME_USUARIO_FORMULARIO = document.getElementById("NOME_USUARIO_FORMULARIO");
+      const NOME_USUARIO_SIDEBAR = document.getElementById("NOME_USUARIO");
+      const EMAIL_USUARIO_FORMULARIO = document.getElementById("EMAIL_USUARIO_FORMULARIO");
+      const EMPRESA_USUARIO_FORMULARIO = document.getElementById("EMPRESA_USUARIO_FORMULARIO");
+      const NIVEL_ACESSO_FORMULARIO = document.getElementById("NIVEL_ACESSO_FORMULARIO");
+      const POSICAO_USUARIO_FORMULARIO = document.getElementById("POSICAO_USUARIO_FORMULARIO");
 
       // CARREGAR PROFISSIONAL DA SESSÃO NA DIV ACIMA 
       NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
@@ -88,11 +96,11 @@
             profissionais.forEach(profissional => {
             console.log(`Nome: ${profissional.name_user}, ID Usuário: ${profissional.id_user}`);
             const card = document.createElement('div');
-            card.className = 'cargo';
+            card.className = 'box';
             // card.onclick = () => abrirPosicao(posicao.id_position);
             card.innerHTML = `
               <span>${profissional.name_user}</span>
-              <div>
+              <div class="cargo">
                     ${profissional.nome_posicao}
               </div>
             `;
@@ -129,4 +137,5 @@
         .catch(error => {
           console.error('Erro ao carregar profissionais:', error);
         });
-    }
+      }
+    

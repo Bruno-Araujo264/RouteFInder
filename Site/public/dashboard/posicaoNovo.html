@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posições</title>
     <link rel="stylesheet" href="../css/posicaoNovo.css">
-    <script src="../js/posicao.js"></script>
+    
 
     <!-- Parte do menu da Dashboard -->
     <link rel="shortcut icon" href="../assets/icon/logo.jpg" type="image/x-icon">
@@ -128,7 +128,7 @@
 
                     <div class="primeira-info">
                         <div class="informacao">
-                            <h3>Usuário: <span id=" NOME_USUARIO_FORMULARIO">Heriqi</span>
+                            <h3>Usuário: <span id="NOME_USUARIO_FORMULARIO"></span>
                             </h3>
                             <h3>Nível de Acesso: <span id="NIVEL_ACESSO_FORMULARIO"></span></h3>
                             <h3>Cargo: <span id="POSICAO_USUARIO_FORMULARIO"></span></h3>
@@ -172,26 +172,15 @@
                 </div>
 
 
-            </div>
-
-            <div class="usuario">
-                  <div class="titulo-usuario">
-                    
-                    <span>
-                        Usuários
-                        <img onclick="redirecionarParaEdicaoUsuarios()" src="../assets/imgs/edit.png" alt="">
-                    </span>
-
-                    
-
+            
 
                 <div class="box-usuario">
                     <div class="container-usuario">
                         <div class="cabecalho">
                              <button onclick="redirecionarParaEditarPosicao()">+ Editar Usuário</button>
                         </div>
-                        <div class="lista-usuario" id="tabelaProfissionais">
-                            <div class="container-lista">
+                        <div class="lista-usuario">
+                            <div id="tabelaProfissionais" class="container-lista">
                                 <div class="box">
                                     <span>Giovana Zukauskas</span>
                                     <div class="cargo">Gerente</div>
@@ -211,7 +200,7 @@
             </div>
         </div>
     </main>
-
+    <script src="../js/posicao.js"></script>
     <script src="../js/slider.js"></script>
 </body>
 
