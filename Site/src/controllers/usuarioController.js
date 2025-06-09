@@ -160,10 +160,66 @@ function buscarProfissionaisDaEmpresa(req, res){
 
 }
 
+function deletarUsuario(req, res) {
+    var idUsuario = req.params.idUsuarioAtual;
+
+    if (!idUsuario) {
+        return res.status(400).send("ID da usuario atual está undefined!");
+    }
+
+    
+        
+            
+    usuarioModel.deletarUsuario(idUsuario)
+        .then(resultado => {
+            res.status(200).json({
+                message: "Usuário excluído com sucesso!",
+                resultado: resultado
+            });
+        })
+        .catch(erro => {
+            console.error("Erro ao excluir usuário:", erro);
+            res.status(500).json({
+                message: "Erro ao excluir a usuário.",
+                erro: erro.sqlMessage || erro
+            });
+        });
+}
+
+function atualizarUsuario(req, res) {
+    var idUsuario = req.params.idUsuarioAtual;
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var posicao = req.body.posicaoServer;
+    var nivelAcesso = req.body.nivelAcessoServer;
+
+    if (!nome) {
+        res.status(400).send("Nome está undefined!");
+    } else if (!email) {
+        res.status(400).send("email está undefined!");
+    } else if (nivelAcesso === undefined) {
+        res.status(400).send("Nível de acesso está undefined!");
+    } else {
+        usuarioModel.atualizarDadosUsuario(idUsuario, nome, email, posicao, nivelAcesso)
+            .then(resultado => {
+                res.status(200).json({
+                    message: "Usuário atualizado com sucesso!",
+                    resultado: resultado
+                });
+            })
+            .catch(erro => {
+                console.log("Erro ao atualizar usuário: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     alterarSenha,
     coletarEmail,
-    buscarProfissionaisDaEmpresa
+    buscarProfissionaisDaEmpresa,
+    deletarUsuario,
+    atualizarUsuario
 }

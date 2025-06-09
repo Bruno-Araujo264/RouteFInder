@@ -1,26 +1,14 @@
 
 // Função para redirecionar para a Tela da Posição específica
-    function abrirPosicao(id_position) {
-      sessionStorage.setItem("ID_POSICAO_ATUAL", id_position); // Armazena o ID da posição atual no SessionStorage
-      window.location.href = "posicaoEditarNovo.html";
-    }
-// função que redireciona para tela de criação de Posição
-    function redirecionarParaCadastroPosicao() {
-      window.location.href = "posicaoCriarNovo.html";
-    }
-
-  function redirecionarParaEditarUsuario() {
-      window.location.href = "usuarioEditar.html";
-  }
-// função que redireciona para tela de edição de usuários
-    function redirecionarParaEdicaoUsuarios() {
-      window.location.href = "usuarioEditar.html";
+    function abrirUsuario(id_usuario) {
+      sessionStorage.setItem("ID_USUARIO_ATUAL", id_usuario); // Armazena o ID da posição atual no SessionStorage
+      window.location.reload();;
     }
 
 //função para carregar informações do usuário da Sessão
-    function carregarInfoUsuarioAtual(id_user){
-      NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
-      NOME_USUARIO_SIDEBAR.innerHTML = sessionStorage.NOME_USUARIO;
+    function carregarInfoUsuarioAtual(id_usuario){
+
+      NOME_USUARIO_ATUAL.innerHTML = 
       EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
       EMPRESA_USUARIO_FORMULARIO.innerHTML = sessionStorage.ID_EMPRESA;
 
@@ -66,19 +54,12 @@
         });
     }
 
-    function carregarProfissionais(empresaId) {
+    function carregarProfissionaisParaEdicao(empresaId) {
       //puxar os ids dos spans
-      const NOME_USUARIO_FORMULARIO = document.getElementById("NOME_USUARIO_FORMULARIO");
-      const NOME_USUARIO_SIDEBAR = document.getElementById("NOME_USUARIO");
-      const EMAIL_USUARIO_FORMULARIO = document.getElementById("EMAIL_USUARIO_FORMULARIO");
-      const EMPRESA_USUARIO_FORMULARIO = document.getElementById("EMPRESA_USUARIO_FORMULARIO");
-      const NIVEL_ACESSO_FORMULARIO = document.getElementById("NIVEL_ACESSO_FORMULARIO");
-      const POSICAO_USUARIO_FORMULARIO = document.getElementById("POSICAO_USUARIO_FORMULARIO");
-
-      // CARREGAR PROFISSIONAL DA SESSÃO NA DIV ACIMA 
-      NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
-      NOME_USUARIO_SIDEBAR.innerHTML = sessionStorage.NOME_USUARIO;
-      EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
+      const NOME_USUARIO_ATUAL = document.getElementById("NOME_USUARIO_ATUAL");
+      const EMAIL_USUARIO_ATUAL = document.getElementById("EMAIL_USUARIO_ATUAL");
+      const nivelAcesso = document.getElementById("nivelAcesso");
+      const POSICAO_USUARIO_ATUAL = document.getElementById("POSICAO_USUARIO_ATUAL");
      
 
         // document.getElementById('listaTodosProfissionaisEmpresa').style.display = "block";
@@ -99,6 +80,7 @@
             card.className = 'box';
             // card.onclick = () => abrirPosicao(posicao.id_position);
             card.innerHTML = `
+            <i onclick="abrirUsuario(${profissional.id_user})" class="fa-regular fa-pen-to-square"></i>
               <span>${profissional.name_user}</span>
               <div class="cargo">
                     ${profissional.nome_posicao}
@@ -106,10 +88,11 @@
             `;
             tabela.appendChild(card);
 
-            if(profissional.id_user == sessionStorage.ID_USUARIO){
-              NIVEL_ACESSO_FORMULARIO.innerHTML = profissional.nome_nivel_acesso;
-              POSICAO_USUARIO_FORMULARIO.innerHTML = profissional.nome_posicao;
-              EMPRESA_USUARIO_FORMULARIO.innerHTML = profissional.nome_empresa;
+            if(profissional.id_user == sessionStorage.ID_USUARIO_ATUAL){
+              NOME_USUARIO_ATUAL.value = profissional.name_user;
+              EMAIL_USUARIO_ATUAL.value = profissional.email;
+              POSICAO_USUARIO_ATUAL.value = profissional.nome_posicao;
+              nivelAcesso.value = profissional.fk_access_level;
 
             }
           });
@@ -139,3 +122,73 @@
         });
       }
     
+function excluirUsuario() {
+    const idUsuarioAtual = sessionStorage.getItem("ID_USUARIO_ATUAL");
+
+    if (!confirm("Tem certeza que deseja excluir este usuário? Essa ação não poderá ser desfeita.")) {
+        return; // Cancela se o usuário desistir
+    }
+
+    fetch(`/usuarios/deletarUsuario/${idUsuarioAtual}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao excluir o usuário');
+        }
+        alert('Usuário excluído com sucesso!');
+        // Redireciona para a página principal após 1s
+        setTimeout(() => {
+            window.location.href = "./posicaoNovo.html";
+        }, 1000);
+    })
+    .catch(error => {
+        console.error('Erro ao excluir o usuário:', error);
+        alert('Erro ao excluir o usuário. Verifique se há usuários vinculados.');
+    });
+  }
+
+function editarUsuario() {
+    const empresaId = sessionStorage.getItem("ID_EMPRESA");
+    const idUsuarioAtual = sessionStorage.getItem("ID_USUARIO_ATUAL");
+
+    // Ler dados dos inputs
+    const nome = document.getElementById('NOME_USUARIO_ATUAL').value;
+    const email = document.getElementById('EMAIL_USUARIO_ATUAL').value;
+    const posicao = document.getElementById('POSICAO_USUARIO_ATUAL').value;
+    const nivelAcesso = document.getElementById('nivelAcesso').value;
+
+    // 1️⃣ Atualizar os dados do usuário
+    const dadosPosicao = {
+        nomeServer: nome,
+        emailServer: email,
+        posicaoServer: posicao,
+        nivelAcessoServer: Number(nivelAcesso)
+    };
+
+    fetch(`/usuarios/atualizarUsuario/${idUsuarioAtual}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(dadosPosicao)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao atualizar usuário');
+        }else{
+          alert('Usuário attualizado com sucesso!');
+        // Redireciona para a página principal após 1s
+        setTimeout(() => {
+            window.location.href = "./usuarioEditar.html";
+        }, 1000);
+        }
+        console.log('Usuário atualizada com sucesso');
+
+
+    })
+
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Erro ao atualizar');
+    });
+
+}

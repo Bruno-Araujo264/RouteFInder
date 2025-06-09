@@ -20,6 +20,16 @@ router.get("/coletarEmail/:email", function (req, res) {
     usuarioController.coletarEmail(req, res);
 })
 
+//Rota para atualizar dados do usuário atual
+router.put("/atualizarUsuario/:idUsuarioAtual", function (req, res) {
+    usuarioController.atualizarUsuario(req, res);
+})
+
+//Rota para deletar o usuário especifico
+router.delete("/deletarUsuario/:idUsuarioAtual", function (req, res) {
+    usuarioController.deletarUsuario(req, res);
+});
+
 // Rota para buscar usuários por ID da empresa
 router.get("/:empresaId", function (req, res) {
   console.log("Ta indo até aqui - usuários")

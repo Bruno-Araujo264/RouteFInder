@@ -49,6 +49,7 @@ function buscarProfissionaisDaEmpresa(idEmpresa) {
     SELECT
         u.id_user,
         u.name_user,
+        u.email,
         u.fk_access_level,
         u.fk_position,
         u.fk_company,
@@ -78,11 +79,30 @@ function buscarProfissionaisDaEmpresa(idEmpresa) {
   return database.executar(instrucao);
 }
 
+function deletarUsuario(idUsuario){
+    console.log("ACESSEI O USUÁRIO MODEL - deletarUsuario");
+     const instrucaoSql = ` DELETE FROM routeFinder.user WHERE id_user = ${idUsuario};
+    `;
+    return database.executar(instrucaoSql);
+
+}
+
+function atualizarDadosUsuario(idUsuario, nome, email, posicao, nivelAcesso){
+    var instrucaoSql = `
+            UPDATE user 
+            SET name_user = '${nome}', email = '${email}', fk_access_level = ${nivelAcesso}
+            WHERE id_user = ${idUsuario};
+        `;
+        console.log("Executando SQL: " + instrucaoSql);
+        return database.executar(instrucaoSql);
+}
 
 module.exports = {
     autenticar,
     cadastrar,
     alterarSenha,
     coletarEmail,
-    buscarProfissionaisDaEmpresa
+    buscarProfissionaisDaEmpresa,
+    deletarUsuario,
+    atualizarDadosUsuario
 };

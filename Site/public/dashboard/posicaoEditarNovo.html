@@ -103,15 +103,15 @@
                     <div class="primeira-info">
                         <div class="informacao">
                             <h3>Usuário: <span id=" NOME_USUARIO_FORMULARIO">Heriqi</span></h3>
-                            <h3>Nível de Acesso: adm</h3>
-                            <h3>Cargo: Gerente</h3>
+                            <h3>Nível de Acesso: <span id="NIVEL_ACESSO_FORMULARIO"></span></h3>
+                            <h3>Cargo: <span id="POSICAO_USUARIO_FORMULARIO"></span></h3>
                         </div>
                     </div>
 
                     <div class="segunda-info">
                         <div class="informacao">
-                            <h3>Email: </h3>
-                            <h3>Empresa: RouteFinder</h3>
+                            <h3>Email: <span id="EMAIL_USUARIO_FORMULARIO"></span></h3>
+                            <h3>Empresa: <span id="EMPRESA_USUARIO_FORMULARIO"></span></h3>
                             <h3>&nbsp;</h3>
                         </div>
                     </div>
@@ -209,7 +209,7 @@
             </div>
         </div>
     </main>
-
+<script src="../js/slider.js"></script>
 </body>
 
 </html>
@@ -268,6 +268,20 @@
     }
         //Carregar Lista de usuários nessa posição
     function carregarProfissionaisDaPosicao() {
+        //puxar os ids dos spans
+    const NOME_USUARIO_FORMULARIO = document.getElementById("NOME_USUARIO_FORMULARIO");
+      const NOME_USUARIO = document.getElementById("NOME_USUARIO");
+      const EMAIL_USUARIO_FORMULARIO = document.getElementById("EMAIL_USUARIO_FORMULARIO");
+      const EMPRESA_USUARIO_FORMULARIO = document.getElementById("EMPRESA_USUARIO_FORMULARIO");
+      const NIVEL_ACESSO_FORMULARIO = document.getElementById("NIVEL_ACESSO_FORMULARIO");
+      const POSICAO_USUARIO_FORMULARIO = document.getElementById("POSICAO_USUARIO_FORMULARIO");
+
+         // CARREGAR PROFISSIONAL DA SESSÃO NA DIV ACIMA 
+      NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
+      NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO;
+      EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
+
+
         const empresaId = sessionStorage.getItem("ID_EMPRESA");
     const idPosicaoAtual = Number(sessionStorage.getItem("ID_POSICAO_ATUAL"));
     const apiUrl = `/usuarios/${empresaId}`;
@@ -300,6 +314,12 @@
                 `;
 
                 tabela.appendChild(linha);
+
+                 if(profissional.id_user == sessionStorage.ID_USUARIO){
+                    NIVEL_ACESSO_FORMULARIO.innerHTML = profissional.nome_nivel_acesso;
+                    POSICAO_USUARIO_FORMULARIO.innerHTML = profissional.nome_posicao;
+                    EMPRESA_USUARIO_FORMULARIO.innerHTML = profissional.nome_empresa;}
+
             });
         })
         .catch(error => {
