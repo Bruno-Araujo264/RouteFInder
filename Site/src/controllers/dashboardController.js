@@ -15,15 +15,9 @@ function carregarRuas(req, res) {
             });
 }
 
-
-
-
 function carregarTop5Ruas(req, res) {
-
     const region = req.params.region;
-    const rua = req.query.rua
-    dashboardModel.carregarTop5Ruas(region, rua)
-
+    dashboardModel.carregarTop5Ruas(region)
         .then(
             function (resultado) {
                 console.log(`Resultados: ${JSON.stringify(resultado)}`); 
