@@ -61,25 +61,25 @@
         <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
-                    <li class="nav-list">
+                    <li id="menu-dashboard" class="nav-list">
                         <a>
                             <i class="fa-solid fa-house icon"></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-list">
+                    <li id="menu-empresas" class="nav-list">
                         <a href="empresas.html">
                             <i class="fa-solid fa-hotel icon"></i>
                             <span class="text nav-text">Cadastrar Empresas</span>
                         </a>
                     </li>
-                    <li class="nav-list">
+                    <li id="menu-posicoes" class="nav-list">
                         <a href="posicaoNovo.html">
                             <i class="fa-solid fa-gear icon"></i>
                             <span class="text nav-text">Posições</span>
                         </a>
                     </li>
-                    <li class="nav-list">
+                    <li id="menu-notificacao" class="nav-list">
                         <a href="aviso.html">
                             <i class="fa-solid fa-bell icon"></i>
                             <span class="text nav-text">Notificação</span>
@@ -227,6 +227,49 @@
             </div>
         </div>
     </section>
+    <script>
+function controlarMenuLateral() {
+    const empresaId = sessionStorage.getItem("ID_EMPRESA");
+    const nivelAcesso = sessionStorage.getItem("ID_NIVEL_ACESSO");
+    const nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
+
+    // Mostrar o nome do usuário
+    if (nomeUsuario) {
+        document.getElementById("NOME_USUARIO").innerText = nomeUsuario;
+    }
+
+    // Referência aos menus
+    const menuDashboard = document.getElementById("menu-dashboard");
+    const menuEmpresas = document.getElementById("menu-empresas");
+    const menuPosicoes = document.getElementById("menu-posicoes");
+    const menuNotificacao = document.getElementById("menu-notificacao");
+
+    // Primeiro, oculta todos os menus controlados
+    menuDashboard.style.display = "none";
+    menuEmpresas.style.display = "none";
+    menuPosicoes.style.display = "none";
+    menuNotificacao.style.display = "none";
+
+    // Lógica de exibição
+    if (empresaId === "1000") {
+        // Admin: mostra tudo
+        menuDashboard.style.display = "block";
+        menuEmpresas.style.display = "block";
+        menuPosicoes.style.display = "block";
+        menuNotificacao.style.display = "block";
+    } else if (nivelAcesso === "1") {
+        // Nível 1: pode ver Posições e Dashboard
+        menuDashboard.style.display = "block";
+        menuPosicoes.style.display = "block";
+    } else if (nivelAcesso === "2") {
+        // Nível 2: só vê Dashboard
+        menuDashboard.style.display = "block";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", controlarMenuLateral);
+</script>
+
 
     <script src="../js/slider.js"></script>
 </body>
@@ -242,7 +285,14 @@
             carregarTop5Ruas(),
             carregarHoraTamRuas(),
             carregarTotalCongestionamentoDia(),
-            obterHorariosCongestionamento()
+            obterHorariosCongestionamento(),
+            carregarMenuLateral()
+    }
+
+    function carregarMenuLateral(){
+        const empresaSessao = sessionStorage.getItem("ID_EMPRESA")
+        const nivelAcessoSessao = sessionStorage.getItem("ID_NIVEL_ACESSO")
+
     }
 
     //Listas para gráficos

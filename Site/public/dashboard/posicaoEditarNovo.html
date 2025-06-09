@@ -27,8 +27,8 @@
                 </span>
 
                 <div class="text header-text">
-                    <span class="name"> <span id="NOME_USUARIO">Olá!</span></span>
-                    <span class="profession">#Usuário</span>
+                    <span class="name"> Olá!</span>
+                    <span class="profession"><span id="NOME_USUARIO"></span></span></span>
                 </div>
             </div>
 
@@ -102,7 +102,7 @@
 
                     <div class="primeira-info">
                         <div class="informacao">
-                            <h3>Usuário: <span id=" NOME_USUARIO_FORMULARIO">Heriqi</span></h3>
+                            <h3>Usuário: <span id="NOME_USUARIO_FORMULARIO">Heriqi</span></h3>
                             <h3>Nível de Acesso: <span id="NIVEL_ACESSO_FORMULARIO"></span></h3>
                             <h3>Cargo: <span id="POSICAO_USUARIO_FORMULARIO"></span></h3>
                         </div>
@@ -277,9 +277,9 @@
       const POSICAO_USUARIO_FORMULARIO = document.getElementById("POSICAO_USUARIO_FORMULARIO");
 
          // CARREGAR PROFISSIONAL DA SESSÃO NA DIV ACIMA 
-      NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
-      NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO;
-      EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
+      NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.getItem("NOME_USUARIO");
+      NOME_USUARIO.innerHTML = sessionStorage.getItem("NOME_USUARIO");
+      EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.getItem("EMAIL_USUARIO");
 
 
         const empresaId = sessionStorage.getItem("ID_EMPRESA");

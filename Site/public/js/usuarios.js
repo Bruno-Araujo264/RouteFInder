@@ -55,6 +55,13 @@
     }
 
     function carregarProfissionaisParaEdicao(empresaId) {
+
+      // CARREGAR PROFISSIONAL DA SESSÃO NA DIV ACIMA 
+      NOME_USUARIO_FORMULARIO.innerHTML = sessionStorage.NOME_USUARIO;
+      NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO;
+      EMAIL_USUARIO_FORMULARIO.innerHTML = sessionStorage.EMAIL_USUARIO;
+
+
       //puxar os ids dos spans
       const NOME_USUARIO_ATUAL = document.getElementById("NOME_USUARIO_ATUAL");
       const EMAIL_USUARIO_ATUAL = document.getElementById("EMAIL_USUARIO_ATUAL");
@@ -87,7 +94,13 @@
               </div>
             `;
             tabela.appendChild(card);
+              // seta as informações na DIV da sessão
+             if(profissional.id_user == sessionStorage.ID_USUARIO){
+              NIVEL_ACESSO_FORMULARIO.innerHTML = profissional.nome_nivel_acesso;
+              POSICAO_USUARIO_FORMULARIO.innerHTML = profissional.nome_posicao;
+              EMPRESA_USUARIO_FORMULARIO.innerHTML = profissional.nome_empresa;}
 
+              // seta as informações nos inputs
             if(profissional.id_user == sessionStorage.ID_USUARIO_ATUAL){
               NOME_USUARIO_ATUAL.value = profissional.name_user;
               EMAIL_USUARIO_ATUAL.value = profissional.email;
