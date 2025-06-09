@@ -171,11 +171,11 @@
                             <h2>Intensidade do Congestionamento em Metrps</h2>
                             <div class="indicadores">
                                 <div class="box"></div>
-                                <p id="ind_bom" >1 Milhão <</p>
+                                <p id="ind_bom" >1 Mi <</p>
                                 <div class="box"></div>
-                                <p id="ind_med" >Entre 1 e 2 Milhões </p>
+                                <p id="ind_med" >Entre 1 a 2 Mi </p>
                                 <div  class="box"></div>
-                                <p id="ind_ruim">2 Milhões > </p>
+                                <p id="ind_ruim">2 Mi > </p>
                             </div>
                             <p id="id_regiao"></p>
                         </div>
@@ -383,14 +383,14 @@
             }).then(dados => {
                 if (region !== "0") {
                     id_regiao.innerHTML = `${region}`;
-                    ind_bom.innerHTML = `100 mil <`;
-                    ind_med.innerHTML = `Entre 100 a 200 mil`;
-                    ind_ruim.innerHTML = `200 mil >`;
+                    ind_bom.innerHTML = `100 k <`;
+                    ind_med.innerHTML = `100 a 200 k`;
+                    ind_ruim.innerHTML = `200 k >`;
                 } else {
                     id_regiao.innerHTML = `Geral`;
-                    ind_bom.innerHTML = `1 milhão  <`;
-                    ind_med.innerHTML = `Entre 1 a 2 milhões`;
-                    ind_ruim.innerHTML = `2 milhões >`;
+                    ind_bom.innerHTML = `< 1 Mi`;
+                    ind_med.innerHTML = `1 a 2 Mi`;
+                    ind_ruim.innerHTML = ` > 2 Mi`;
                 }
                 totalCongestionamento = dados
                 total_congestionamento = Number(totalCongestionamento[0].total_congestionamento)
