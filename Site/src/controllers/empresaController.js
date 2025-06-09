@@ -1,4 +1,4 @@
-var dashboardModel = require("../models/dashboardModel");
+var empresaModel = require("../models/empresaModel");
 
 function cadastrarEmpresa(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -16,8 +16,8 @@ function cadastrarEmpresa(req, res) {
         res.status(400).send("Sua CNPJ está undefined!");
     } else {
 
-        // Passe os valores como parâmetro e vá para o arquivo dashboardModel.js
-        dashboardModel.cadastrarEmpresa(corporate_name, address, CNPJ)
+        // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
+        empresaModel.cadastrarEmpresa(corporate_name, address, CNPJ)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -53,8 +53,8 @@ function editarEmpresa(req, res) {
         res.status(400).send("Sua CNPJ está undefined!");
     } else {
 
-        // Passe os valores como parâmetro e vá para o arquivo dashboardModel.js
-        dashboardModel.editarEmpresa(corporate_name, address, CNPJ)
+        // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
+        empresaModel.editarEmpresa(corporate_name, address, CNPJ)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -78,7 +78,7 @@ function excluirEmpresa(req, res) {
     if (CNPJ == undefined) {
         res.status(400).send("Seu CNPJ está undefined!");
     } else {
-        dashboardModel.excluirEmpresa(CNPJ)
+        empresaModel.excluirEmpresa(CNPJ)
             .then( 
                 function (resultado) {
                     console.log('Empresa Excluida')
@@ -99,7 +99,7 @@ function excluirEmpresa(req, res) {
 
 function chamarEmpresa(req, res) {
     var corporate_name = req.body.corporateNameServer
-    dashboardModel.chamarEmpresa(corporate_name)
+    empresaModel.chamarEmpresa(corporate_name)
         .then(
             function (resultado) {  
                 console.log(`Resultados: ${JSON.stringify(resultado)}`); 

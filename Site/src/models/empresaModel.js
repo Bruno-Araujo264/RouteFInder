@@ -27,7 +27,7 @@ function editarEmpresa(corporate_name, address, CNPJ) {
     console.log("Modificando na tabela company:",corporate_name ,address, CNPJ);
 
     var instrucaoSql = `
-           UPDATE company SET address = '${address}', corporate_name = '${corporate_name}', CNPJ = '${CNPJ} WHERE CNPJ = '${CNPJ}';
+           UPDATE company SET address = '${address}', corporate_name = '${corporate_name}', CNPJ = '${CNPJ}' WHERE CNPJ = '${CNPJ}';
     `
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
