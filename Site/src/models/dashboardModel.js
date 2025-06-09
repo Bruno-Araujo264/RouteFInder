@@ -22,8 +22,11 @@ function carregarRuas(region = '') {
             JOIN direction d ON s.fk_direction = d.id_direction
             JOIN passage p ON d.fk_passage = p.id_passage
         WHERE 
-            t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
-                            AND DATE(NOW() - INTERVAL 9 YEAR) + INTERVAL 1 DAY - INTERVAL 1 SECOND
+            t.date_time 
+        BETWEEN 
+            DATE(NOW() - INTERVAL 9 YEAR) 
+        AND 
+            NOW() - INTERVAL 9 YEAR
         GROUP BY p.region
 
         UNION ALL
@@ -73,9 +76,12 @@ function carregarRuas(region = '') {
             JOIN direction d ON s.fk_direction = d.id_direction
             JOIN passage p ON d.fk_passage = p.id_passage
         WHERE 
-            t.date_time BETWEEN DATE(NOW() - INTERVAL 9 YEAR)
-                            AND DATE(NOW() - INTERVAL 9 YEAR) + INTERVAL 1 DAY - INTERVAL 1 SECOND
-            AND p.region = '${region}'
+            t.date_time 
+        BETWEEN 
+            DATE(NOW() - INTERVAL 9 YEAR) 
+        AND 
+            NOW() - INTERVAL 9 YEAR
+        AND p.region = '${region}'
         GROUP BY p.region
 
         UNION ALL
@@ -335,7 +341,13 @@ function obterMaiorHorarioCongestionamento(region = "0", rua = undefined) {
                         FROM timestamp AS t
                         JOIN segment AS s ON t.fk_segment = s.id_segment 
                         JOIN direction AS d ON s.fk_direction = d.id_direction
-                        JOIN passage AS p ON d.fk_passage = p.id_passage 
+                        JOIN passage AS p ON d.fk_passage = p.id_passage
+                        WHERE 
+                            t.date_time 
+                        BETWEEN 
+                            DATE(NOW() - INTERVAL 9 YEAR) 
+                        AND 
+                            NOW() - INTERVAL 9 YEAR 
                         ORDER BY t.jam_size DESC, t.date_time DESC
                         LIMIT 1;`
 
@@ -348,6 +360,11 @@ function obterMaiorHorarioCongestionamento(region = "0", rua = undefined) {
         JOIN direction AS d ON s.fk_direction = d.id_direction
         JOIN passage AS p ON d.fk_passage = p.id_passage 
         WHERE p.region = '${region}'
+        AND t.date_time 
+        BETWEEN 
+            DATE(NOW() - INTERVAL 9 YEAR) 
+        AND 
+            NOW() - INTERVAL 9 YEAR
         ORDER BY t.jam_size DESC, t.date_time DESC
         LIMIT 1;`
 
@@ -393,6 +410,12 @@ function obterMenorHorarioCongestionamento(region = "0", rua = undefined) {
                         JOIN segment AS s ON t.fk_segment = s.id_segment 
                         JOIN direction AS d ON s.fk_direction = d.id_direction
                         JOIN passage AS p ON d.fk_passage = p.id_passage 
+                        WHERE 
+                            t.date_time 
+                        BETWEEN 
+                            DATE(NOW() - INTERVAL 9 YEAR) 
+                        AND 
+                            NOW() - INTERVAL 9 YEAR
                         ORDER BY t.jam_size ASC, t.date_time ASC
                         LIMIT 1;`
 
@@ -404,6 +427,11 @@ function obterMenorHorarioCongestionamento(region = "0", rua = undefined) {
         JOIN direction AS d ON s.fk_direction = d.id_direction
         JOIN passage AS p ON d.fk_passage = p.id_passage 
         WHERE p.region = '${region}'
+        AND t.date_time 
+        BETWEEN 
+            DATE(NOW() - INTERVAL 9 YEAR) 
+        AND 
+            NOW() - INTERVAL 9 YEAR
         ORDER BY t.jam_size ASC, t.date_time ASC
         LIMIT 1;`
 
