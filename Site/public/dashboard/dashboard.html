@@ -285,15 +285,10 @@ document.addEventListener("DOMContentLoaded", controlarMenuLateral);
             carregarTop5Ruas(),
             carregarHoraTamRuas(),
             carregarTotalCongestionamentoDia(),
-            obterHorariosCongestionamento(),
-            carregarMenuLateral()
+            obterHorariosCongestionamento()
+            
     }
 
-    function carregarMenuLateral(){
-        const empresaSessao = sessionStorage.getItem("ID_EMPRESA")
-        const nivelAcessoSessao = sessionStorage.getItem("ID_NIVEL_ACESSO")
-
-    }
 
     //Listas para gráficos
     var listaRuas = []
