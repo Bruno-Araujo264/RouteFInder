@@ -19,8 +19,11 @@ function carregarRuas(req, res) {
 
 
 function carregarTop5Ruas(req, res) {
+
+    const region = req.params.region;
     const rua = req.query.rua
-    dashboardModel.carregarTop5Ruas(rua)
+    dashboardModel.carregarTop5Ruas(region, rua)
+
         .then(
             function (resultado) {
                 console.log(`Resultados: ${JSON.stringify(resultado)}`); 
@@ -30,8 +33,8 @@ function carregarTop5Ruas(req, res) {
 }
 
 function carregarHoraTamRuas(req, res) {
-
-    dashboardModel.carregarHoraTamRuas()
+    const region = req.params.region;
+    dashboardModel.carregarHoraTamRuas(region)
         .then(
             function (resultado) {
                 console.log(`Resultados: ${JSON.stringify(resultado)}`); 
@@ -41,8 +44,8 @@ function carregarHoraTamRuas(req, res) {
 }
 
 function carregarTotalCongestionamentoDia(req, res) {
-
-    dashboardModel.carregarTotalCongestionamentoDia()
+    const region = req.params.region;
+    dashboardModel.carregarTotalCongestionamentoDia(region)
         .then(
             function (resultado) {
                 console.log(`Resultados: ${JSON.stringify(resultado)}`); 

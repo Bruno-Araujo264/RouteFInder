@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="pt-br">
 
 <head>
@@ -52,7 +52,6 @@
 
                 <div class="text header-text">
                     <span class="name"> <span id="NOME_USUARIO"></span></span>
-                    <span class="profession">#Usuário</span>
                 </div>
             </div>
 
@@ -61,17 +60,7 @@
 
         <div class="menu-bar">
             <div class="menu">
-                <!-- <li class="search-box">
-                    <i class='bx bx-search-alt icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li> -->
                 <ul class="menu-links">
-                    <!-- <li class="nav-list">
-                        <a href="#">
-                            <i class='bx bxs-user icon'></i>
-                            <span class="text nav-text">Olá, FrizzaTech</span>
-                        </a>
-                    </li> -->
                     <li class="nav-list">
                         <a>
                             <i class="fa-solid fa-house icon"></i>
@@ -79,7 +68,7 @@
                         </a>
                     </li>
                     <li class="nav-list">
-                        <a href=" empresas.html">
+                        <a href="empresas.html">
                             <i class="fa-solid fa-hotel icon"></i>
                             <span class="text nav-text">Cadastrar Empresas</span>
                         </a>
@@ -118,12 +107,11 @@
                       <h1 onclick="obterHorariosCongestionamento('0', '')">Dashboard Geral</h1>
                     </div>
                     <div class="subpasta">
-
                         <div class="titulo">
                             <h2>Filtros:</h2>
                         </div>
                         <div class="regiao">
-                          <div onclick="obterHorariosCongestionamento('NORTE', '')" id="idNorte" class="filtro norte">
+                            <div onclick="obterHorariosCongestionamento('NORTE', '')" id="idNorte" class="filtro norte">
                                 <span class="sigla">N</span>
                                 <span class="nome-completa">orte</span>
                             </div>
@@ -145,18 +133,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form">
-                        <i onclick="obterHorariosCongestionamento('0', input_rua.value) ; carregarTop5Ruas()" class='bx bx-search-alt icon'></i>
-                        <input id="input_rua" type="text" placeholder="Nome da via">
-                        <span class="input-border"></span>
-                    </div>
+                      <div class="form">
+                          <i onclick="obterHorariosCongestionamento('0', input_rua.value) ; carregarTop5Ruas()" class='bx bx-search-alt icon'></i>
+                          <input id="input_rua" type="text" placeholder="Nome da via">
+                          <span class="input-border"></span>
+                      </div>
                     <div class="tabelaPico">
                       <div class="container">
-                        <h2>Distribuições de Ruas Congestionadas</h2>
+                        <h2>Distribuição Regional de Ruas Congestionadas</h2>
                         <canvas id="canvas_grafico_inferior"></canvas>
+                      </div>
                     </div>
-                </div>
-            </div>
+              </div>
 
             <div class="coluna2">
                 <div class="horario">
@@ -177,19 +165,18 @@
                     </div>
                 </div>
                 <div class="nivelCongestionamento">
-                    <!-- <p>Ajustar as cores, posição e tamanho</p> <br> -->
                     <div class="pasta" id="pasta">
                         <div class="kpi">
                             <h2>Intensidade do Congestionamento</h2>
                             <div class="indicadores">
                                 <div class="box"></div>
-                                <p>1 Milhão de metros</p>
+                                <p id="ind_bom" >1 Milhão de metros</p>
                                 <div class="box"></div>
-                                <p>Entre 1 M e 2 M </p>
-                                <div class="box"></div>
-                                <p>2 Milhões de metros > </p>
+                                <p id="ind_med" >Entre 1 M e 2 M </p>
+                                <div  class="box"></div>
+                                <p id="ind_ruim">2 Milhões de metros > </p>
                             </div>
-                            <p id="id_regiao">Geral</p>
+                            <p id="id_regiao"></p>
                         </div>
                         <div class="container">
                             <div id="ponteiro" class="pointer animate"></div>
@@ -199,7 +186,6 @@
                             </div>
                             <canvas id="canvas_grafico_superior" width="300" height="150"></canvas>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -254,7 +240,7 @@
             sessionStorage.clear(),
             carregarRuas(),
             carregarTop5Ruas(),
-            // carregarHoraTamRuas(),
+            carregarHoraTamRuas(),
             carregarTotalCongestionamentoDia(),
             obterHorariosCongestionamento()
     }
@@ -292,24 +278,30 @@
     });
 }
 
-
+    function limparTop5(){
+        ptop1.innerHTML = "";
+        divtop1.innerHTML = "";
+        ptop2.innerHTML = "";
+        divtop2.innerHTML = "";
+        ptop3.innerHTML = "";
+        divtop3.innerHTML = "";
+        ptop4.innerHTML = "";
+        divtop4.innerHTML = "";
+        ptop5.innerHTML = "";
+        divtop5.innerHTML = "";
+    }
+    
     // Carregar top 5 ruas
-    function carregarTop5Ruas() {
+    function carregarTop5Ruas(region = "0", rua = '') {
+    top5RuasCongestionadas = []; // Limpar a lista antes de carregar novas ruas
+    limparTop5(); // Limpar os elementos do top 5 antes de carregar novos dados
     let rua = document.getElementById("input_rua").value.trim();
     const savedRua = sessionStorage.getItem("RUA");
-
-    if (rua === "" && savedRua) {
-        rua = savedRua;
-    } else if (rua !== "") {
-        sessionStorage.setItem("RUA", rua);
-    }
-
-    let url = `/dashboard/carregarTop5Ruas`;
+    let url = `/dashboard/carregarTop5Ruas/${region}`;
     if (rua !== "") {
         url += `?rua=${encodeURIComponent(rua)}`;
     }
-
-    fetch(url, {
+        fetch(url, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -317,6 +309,7 @@
     })
         .then(resposta => {
             if (resposta.ok) {
+                console.log("Top 5 ruas carregadas");
                 return resposta.json();
             } else {
                 console.log("Houve um erro!");
@@ -353,13 +346,41 @@
                     window[`ptop${i+1}`].innerHTML = dados[i].rua;
                     window[`divtop${i+1}`].innerHTML = dados[i].region;
                 }
-               
             }
         });
 }
+    
+    //Carregar Horário e tamanho do congestionamento de acordo com as top 5 ruas
+    function carregarHoraTamRuas(region = "0") {
+        listaHoraTamRua = []; // Limpar a lista antes de carregar novos dados
+        fetch(`/dashboard/carregarHoraTamRuas/${region}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(resposta => {
 
-    function carregarTotalCongestionamentoDia() {
-        fetch(`/dashboard/carregarTotalCongestionamentoDia`, {
+                if (resposta.ok) {
+                    console.log("Horarios e jam_sizes carregados");
+                    return resposta.json();
+                } else {
+                    console.log("Houve um erro!");
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            }).then(dados => {
+                listaHoraTamRua.push(dados)
+                criarGraficoLinha()
+            })
+    }
+
+    function carregarTotalCongestionamentoDia(region = "0") {
+        totalCongestionamento = []; // Limpar a lista antes de carregar novos dados
+        total_congestionamento = 0; // Reiniciar o total de congestionamento
+        fetch(`/dashboard/carregarTotalCongestionamentoDia/${region}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -378,14 +399,35 @@
                 }
 
             }).then(dados => {
+                if (region !== "0") {
+                    id_regiao.innerHTML = `${region}`;
+                    ind_bom.innerHTML = `100 mil metros <`;
+                    ind_med.innerHTML = `Entre 100 mil a 200 mil metros`;
+                    ind_ruim.innerHTML = `200 mil metros >`;
+                } else {
+                    id_regiao.innerHTML = `Geral`;
+                    ind_bom.innerHTML = `1 milhão de metros <`;
+                    ind_med.innerHTML = `Entre 1 milhão a 2 milhões de metros`;
+                    ind_ruim.innerHTML = `2 milhões de metros >`;
+                }
                 totalCongestionamento = dados
                 total_congestionamento = Number(totalCongestionamento[0].total_congestionamento)
-                if (total_congestionamento < 1000000) {
+                if(region !== "0"){
+                    if (total_congestionamento < 100000) {
                     document.getElementById("ponteiro").style.transform = `rotate(-65deg)`;
-                } else if (total_congestionamento >= 1000000 && total_congestionamento < 2000000) {
-                    document.getElementById("ponteiro").style.transform = `rotate(0deg)`;
-                } else if (total_congestionamento >= 2000000) {
-                    document.getElementById("ponteiro").style.transform = `rotate(65deg)`;
+                    } else if (total_congestionamento >= 100000 && total_congestionamento < 200000) {
+                        document.getElementById("ponteiro").style.transform = `rotate(0deg)`;
+                    } else if (total_congestionamento >= 200000) {
+                        document.getElementById("ponteiro").style.transform = `rotate(65deg)`;
+                    }                
+                } else {
+                   if (total_congestionamento < 1000000) {
+                    document.getElementById("ponteiro").style.transform = `rotate(-65deg)`;
+                    } else if (total_congestionamento >= 1000000 && total_congestionamento < 2000000) {
+                        document.getElementById("ponteiro").style.transform = `rotate(0deg)`;
+                    } else if (total_congestionamento >= 2000000) {
+                        document.getElementById("ponteiro").style.transform = `rotate(65deg)`;
+                    }
                 }
             })
     }
@@ -416,7 +458,7 @@
 
     let barChart = null; // variável global
 
-function criarGraficoBarra() {
+    function criarGraficoBarra() {
     const graficoBarra = canvas_grafico_inferior;
     const dados = listaRuas[0] || [];
 
@@ -544,78 +586,86 @@ function criarGraficoBarra() {
 }
 
 
-    function criarGraficoLinha() {
-        const dados = listaHoraTamRua[0]; // pega os dados retornados da API
-        const horasSet = new Set();
-        const viasMap = {};
+    let lineChart = null; // variável global para o gráfico de linha
 
-        // Organizar dados
-        dados.forEach(item => {
-            const via = item.name_passage;
-            const hora = item.hora;
-            const valor = item.avg_jam_size;
+function criarGraficoLinha() {
+    const dados = listaHoraTamRua[0]; // pega os dados retornados da API
+    const horasSet = new Set();
+    const viasMap = {};
 
-            horasSet.add(hora);
+    // Organizar dados
+    dados.forEach(item => {
+        const via = item.name_passage;
+        const hora = item.hora;
+        const valor = item.avg_jam_size;
 
-            if (!viasMap[via]) {
-                viasMap[via] = {};
-            }
+        horasSet.add(hora);
 
-            viasMap[via][hora] = valor;
-        });
+        if (!viasMap[via]) {
+            viasMap[via] = {};
+        }
 
-        // Ordenar as horas
-        const labels = Array.from(horasSet).sort();
+        viasMap[via][hora] = valor;
+    });
 
-        // Criar datasets por via
-        const datasets = Object.keys(viasMap).map((via, i) => {
-            const data = labels.map(hora => viasMap[via][hora] ?? null); // null se não existir valor
-            const cores = ['#ff5101', '#ff7301', '#ff9901', '#ffbb00', '#ffd000'];
-            return {
-                label: via,
-                data: data,
-                borderWidth: 3,
-                borderColor: cores[i % cores.length],
-                backgroundColor: cores[i % cores.length]
-            };
-        });
-        // Criar gráfico
-        const graficoLinha = new Chart(canvas_grafico_inferior3, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: datasets
-            },
-            options: {
-                responsive: false,
-                scales: {
-                    x: {
-                        grid: { color: '#d3d3d3' },
-                        ticks: { color: 'white' }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        grid: { color: '#d3d3d3' },
-                        ticks: { color: 'white' }
-                    }
+    // Ordenar as horas
+    const labels = Array.from(horasSet).sort();
+
+    // Criar datasets por via
+    const datasets = Object.keys(viasMap).map((via, i) => {
+        const data = labels.map(hora => viasMap[via][hora] ?? null); // null se não existir valor
+        const cores = ['#ff5101', '#ff7301', '#ff9901', '#ffbb00', '#ffd000'];
+        return {
+            label: via,
+            data: data,
+            borderWidth: 3,
+            borderColor: cores[i % cores.length],
+            backgroundColor: cores[i % cores.length]
+        };
+    });
+
+    // Destruir gráfico anterior, se existir
+    if (lineChart) {
+        lineChart.destroy();
+    }
+
+    // Criar gráfico
+    lineChart = new Chart(canvas_grafico_inferior3, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            responsive: false,
+            scales: {
+                x: {
+                    grid: { color: '#d3d3d3' },
+                    ticks: { color: 'white' }
                 },
-                plugins: {
-                    title: {
-                        color: '#DBDBDB',
-                        display: true,
-                        text: 'Linha do Tempo do Trânsito nas Vias Mais Impactadas',
-                        font: { family: 'Afacad', size: 20 },
-                        padding: { top: 0, bottom: 30 }
-                    },
-                    legend: {
-                        display: true,
-                        position: 'top',
-                        labels: { color: 'white' }
-                    }
+                y: {
+                    beginAtZero: true,
+                    grid: { color: '#d3d3d3' },
+                    ticks: { color: 'white' }
+                }
+            },
+            plugins: {
+                title: {
+                    color: '#DBDBDB',
+                    display: true,
+                    text: 'Linha do Tempo do Trânsito nas Vias Mais Impactadas',
+                    font: { family: 'Afacad', size: 20 },
+                    padding: { top: 0, bottom: 30 }
+                },
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: { color: 'white' }
                 }
             }
-        });
-    }
+        }
+    });
+}
 
     const pasta = document.getElementById("pasta");
 
@@ -627,24 +677,12 @@ function criarGraficoBarra() {
         idSul: { nome: "Sul", cor: "#d3d3d3" }
     };
 
-    Object.entries(regioes).forEach(([id, cor]) => {
-        const div = document.getElementById(id);
-        if (div) {
-            div.addEventListener("click", () => {
-                id_regiao.style.color = cor;
-                id_regiao.style.transition = "color 0.4s ease-out";
-                id_regiao.innerHTML = p_regiao[Object.keys(regioes).indexOf(id)];
-
-                console.log(`Eu cliquei em ${id.replace("id", "")}`);
-            });
-        }
-    });
-
-
-
     function obterHorariosCongestionamento(region = "0", rua = "") {
         rua = rua.toUpperCase()
         carregarRuas(region, rua)
+        carregarTop5Ruas(region)
+        carregarHoraTamRuas(region)
+        carregarTotalCongestionamentoDia(region)
         obterMaiorHorarioCongestionamento(region, rua)
         obterMenorHorarioCongestionamento(region, rua)
     }

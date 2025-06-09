@@ -7,15 +7,15 @@ router.get("/carregarRuas/:region", function (req, res) {
     dashboardController.carregarRuas(req, res);
 });
 
-router.get("/carregarTop5Ruas", function (req, res) {
+router.get("/carregarTop5Ruas/:region", function (req, res) {
     dashboardController.carregarTop5Ruas(req, res);
 })
 
-router.get("/carregarHoraTamRuas", function (req, res) {
+router.get("/carregarHoraTamRuas/:region", function (req, res) {
     dashboardController.carregarHoraTamRuas(req, res);
 })
 
-router.get("/carregarTotalCongestionamentoDia", function (req, res) {
+router.get("/carregarTotalCongestionamentoDia/:region", function (req, res) {
     dashboardController.carregarTotalCongestionamentoDia(req, res);
 })
 
