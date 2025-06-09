@@ -121,10 +121,7 @@ function carregarRuas(region = '') {
     return database.executar(instrucaoSql);
 }
 
-
-
-
-function carregarTop5Ruas(region = ''){
+function carregarTop5Ruas(region = '', rua = undefined){
     
     var instrucaoSql
     console.log("Estou carregando as top 5 ruas mais congestionadas");
@@ -132,7 +129,7 @@ function carregarTop5Ruas(region = ''){
     if (region == "0") {
     instrucaoSql = `
         SELECT 
-            p.name_passage, p.region, MAX(t.jam_size) AS max_jam
+            p.name_passage as rua, p.region as region, MAX(t.jam_size) AS max_jam
         FROM 
             passage p
         JOIN 
@@ -141,7 +138,7 @@ function carregarTop5Ruas(region = ''){
             segment s ON s.fk_direction = d.id_direction
         JOIN 
             timestamp t ON t.fk_segment = s.id_segment
-        WHERE 
+        WHERE
             t.date_time 
         BETWEEN 
             DATE(NOW() - INTERVAL 9 YEAR) 
@@ -153,8 +150,34 @@ function carregarTop5Ruas(region = ''){
             max_jam DESC
         LIMIT 5;
     `;
-    } else {
+    } else if (rua !== undefined && rua.trim() !== "") {
         instrucaoSql = `
+        SELECT 
+            p.name_passage as rua, p.region as region, MAX(t.jam_size) AS max_jam
+        FROM 
+            passage p
+        JOIN 
+            direction d ON d.fk_passage = p.id_passage
+        JOIN 
+            segment s ON s.fk_direction = d.id_direction
+        JOIN 
+            timestamp t ON t.fk_segment = s.id_segment
+        WHERE 
+            p.name_passage LIKE '%${rua.trim()}%'
+        AND
+            t.date_time 
+        BETWEEN 
+            DATE(NOW() - INTERVAL 9 YEAR) 
+        AND 
+            NOW() - INTERVAL 9 YEAR
+        GROUP BY 
+            p.name_passage, p.region
+        ORDER BY 
+            max_jam DESC
+        LIMIT 5;
+    `;
+    } else if (region !== "0" && (rua === undefined || rua.trim() === "")){
+      instrucaoSql = `
         SELECT 
             p.name_passage, p.region, MAX(t.jam_size) AS max_jam
         FROM 

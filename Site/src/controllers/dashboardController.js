@@ -19,8 +19,11 @@ function carregarRuas(req, res) {
 
 
 function carregarTop5Ruas(req, res) {
+
     const region = req.params.region;
-    dashboardModel.carregarTop5Ruas(region)
+    const rua = req.query.rua
+    dashboardModel.carregarTop5Ruas(region, rua)
+
         .then(
             function (resultado) {
                 console.log(`Resultados: ${JSON.stringify(resultado)}`); 
