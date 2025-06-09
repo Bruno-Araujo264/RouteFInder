@@ -31,8 +31,7 @@
         </span>
 
         <div class="text header-text">
-          <span class="name"> <span id="NOME_USUARIO">Olá!</span></span>
-          <span class="profession">#Usuário</span>
+          <span class="name"> <span id="NOME_USUARIO"></span></span>
         </div>
       </div>
 
@@ -140,6 +139,9 @@
 </html>
 
 <script>
+
+    NOME_USUARIO.innerHTML = sessionStorage.NOME_USUARIO
+
 
   function cadastrarEmpresa() {
 
