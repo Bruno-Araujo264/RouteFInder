@@ -104,47 +104,48 @@
             <div class="coluna1">
                 <div class="cabecalho">
                     <div class="titulo">
-                      <h1 onclick="obterHorariosCongestionamento('0', '')">Dashboard Geral</h1>
+                      <h1 onclick="obterHorariosCongestionamento('0', input_rua.value)">Dashboard Geral</h1>
                     </div>
                     <div class="subpasta">
                         <div class="titulo">
                             <h2>Filtros:</h2>
                         </div>
-                        <div class="regiao">
-                            <div onclick="obterHorariosCongestionamento('NORTE', '')" id="idNorte" class="filtro norte">
-                                <span class="sigla">N</span>
-                                <span class="nome-completa">orte</span>
-                            </div>
-                            <div onclick="obterHorariosCongestionamento('OESTE', '')" id="idOeste" class="oeste filtro">
-                                <span class="sigla">O</span>
-                                <span class="nome-completa">este</span>
-                            </div>
-                            <div onclick="obterHorariosCongestionamento('CENTRO', '')" id="idCentro" class="centro filtro">
-                                <span class="sigla">C</span>
-                                <span class="nome-completa">entro</span>
-                            </div>
-                            <div onclick="obterHorariosCongestionamento('LESTE', '')" id="idLeste" class="leste filtro">
-                                <span class="sigla">L</span>
-                                <span class="nome-completa">este</span>
-                            </div>
-                            <div onclick="obterHorariosCongestionamento('SUL', '')" id="idSul" class="sul filtro">
-                                <span class="sigla">S</span>
-                                <span class="nome-completa">ul</span>
-                            </div>
+                    <div class="regiao">
+                        <div onclick="obterHorariosCongestionamento('NORTE', input_rua.value)" id="idNorte" class="filtro norte">
+                            <span class="sigla">N</span>
+                            <span class="nome-completa">orte</span>
+                        </div>
+                        <div onclick="obterHorariosCongestionamento('OESTE', input_rua.value)" id="idOeste" class="oeste filtro">
+                            <span class="sigla">O</span>
+                            <span class="nome-completa">este</span>
+                        </div>
+                        <div onclick="obterHorariosCongestionamento('CENTRO', input_rua.value)" id="idCentro" class="centro filtro">
+                            <span class="sigla">C</span>
+                            <span class="nome-completa">entro</span>
+                        </div>
+                        <div onclick="obterHorariosCongestionamento('LESTE', input_rua.value)" id="idLeste" class="leste filtro">
+                            <span class="sigla">L</span>
+                            <span class="nome-completa">este</span>
+                        </div>
+                        <div onclick="obterHorariosCongestionamento('SUL', input_rua.value)" id="idSul" class="sul filtro">
+                            <span class="sigla">S</span>
+                            <span class="nome-completa">ul</span>
                         </div>
                     </div>
-                      <div class="form">
-                          <i onclick="obterHorariosCongestionamento('0', input_rua.value) ; carregarTop5Ruas()" class='bx bx-search-alt icon'></i>
-                          <input id="input_rua" type="text" placeholder="Nome da via">
-                          <span class="input-border"></span>
-                      </div>
-                    <div class="tabelaPico">
-                      <div class="container">
+                </div>
+                    <div class="form">
+                        <i onclick="obterHorariosCongestionamento('0', input_rua.value) ; carregarTop5Ruas()" class='bx bx-search-alt icon'></i>
+                        <input id="input_rua" type="text" placeholder="Nome da via">
+                        <span class="input-border"></span>
+                    </div>
+                </div>
+                <div class="tabelaPico">
+                    <div class="container">
                         <h2>Distribuição Regional de Ruas Congestionadas</h2>
                         <canvas id="canvas_grafico_inferior"></canvas>
-                      </div>
                     </div>
-              </div>
+                </div>
+            </div>
 
             <div class="coluna2">
                 <div class="horario">
@@ -291,11 +292,11 @@
         divtop5.innerHTML = "";
     }
     
-    // Carregar top 5 ruas
+    
     function carregarTop5Ruas(region = "0", rua = '') {
     top5RuasCongestionadas = []; // Limpar a lista antes de carregar novas ruas
     limparTop5(); // Limpar os elementos do top 5 antes de carregar novos dados
-    let rua = document.getElementById("input_rua").value.trim();
+    rua = document.getElementById("input_rua").value.trim();
     const savedRua = sessionStorage.getItem("RUA");
     let url = `/dashboard/carregarTop5Ruas/${region}`;
     if (rua !== "") {
