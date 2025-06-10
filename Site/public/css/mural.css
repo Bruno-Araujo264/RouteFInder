@@ -596,7 +596,7 @@ input:focus~.input-border {
   height: 7.80em;
   overflow: hidden;
   top: 65%;
-  left: 40%;
+  left: 38.5%;
 }
 
 #id_regiao {
@@ -684,7 +684,7 @@ input:focus~.input-border {
   display: flex;
   justify-content: center;
   color: var(--text-color);
-  font-size: 0.95em;
+  font-size: 1em;
   font-weight: bold;
   width: 100%;
 }
@@ -827,7 +827,7 @@ input:focus~.input-border {
     justify-content: center;
     align-items: center;
     width: 100%;
-    font-size: 1.2em;
+    font-size: 1em;
     margin-top: 1%;
     font-weight: bold;
     color: var(--text-color);

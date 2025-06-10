@@ -80,7 +80,7 @@
                         </a>
                     </li>
                     <li id="menu-notificacao" class="nav-list">
-                        <a href="aviso.html">
+                        <a href="https://app.slack.com/client/T08V4UXR0E4/C08U22VEGQP">
                             <i class="fa-solid fa-bell icon"></i>
                             <span class="text nav-text">Notificação</span>
                         </a>
@@ -682,13 +682,17 @@ function criarGraficoLinha() {
                     display: true,
                     text: 'Linha do Tempo do Trânsito nas Vias Mais Impactadas',
                     font: { family: 'Afacad', size: 20 },
-                    padding: { top: 0, bottom: 30 }
                 },
                 legend: {
                     display: true,
                     position: 'top',
-                    labels: { color: 'white' }
-                }
+                    labels: { color: 'white',
+                    font: {
+                        family: 'Afacad',
+                        size: 11
+                    }
+                },
+            },
             }
         }
     });
